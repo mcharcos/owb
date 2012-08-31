@@ -1,0 +1,19 @@
+Orphanage Without Borders (OWB) is a volunteer non-profit organization aiming to improve the live quality of children in orphanages and abandoned children. We are trying to create an application in GWT that aims to increase collaboration between NGOs and improve the efficiency of the work to the cause of orphan children. It would also be a portal for companies and individuals to participate or contribute in different ways (donations, volunteering, fund-raising,\u2026). In addition, it would allow to share information about the state and needs of orphanages and previous experiences of projects that helped to improve the quality of orphanages. We intend to make the interface friendly and amusing by creating a simple game that would allow the users to gain points as they participate and see the status at all time of their contribution. The project is very challenging, not only technically but conceptually since behind there is a whole plan to allow orphanages to acquire minimum standards of life (something that every child deserve). The application is based on the Model-View-Presenter so we can separate the development work at the back-end from the graphical design. The project include refining our current rough design and ideas, development and testing. Our philosophy is based on the enthusiasm of helping others. If you believe in the cause of helping orphan children and you love challenging technical projects we would love to work with you. 
+
+The approach of this application is a Model-View-Presenter. The application is developped in GWT/java.
+
+The global picture is as follow:
+
+ * client packages contain the front end
+ * server packages contain the back end
+ * shared packages are visible by the front and back end
+ 
+CLIENT:
+
+A pair of view/presenter exist for each view. The presenter is responsible of starting the view, listening to events and firing events when necessary.
+
+More details to come...
+
+SERVER:
+
+SHARED:
