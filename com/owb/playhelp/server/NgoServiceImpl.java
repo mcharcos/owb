@@ -13,6 +13,7 @@ import javax.jdo.Transaction;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.owb.playhelp.client.service.ngo.NgoService;
+import com.owb.playhelp.server.domain.ConfirmationBadge;
 import com.owb.playhelp.server.domain.UserProfile;
 import com.owb.playhelp.server.domain.ngo.Ngo;
 import com.owb.playhelp.server.domain.ngo.NgoItem;
@@ -25,11 +26,78 @@ public class NgoServiceImpl extends RemoteServiceServlet implements NgoService {
 	private static Logger logger = Logger.getLogger(NgoServiceImpl.class.getName());
 	public final static String CHANNEL_ID = "channel_id";
 	private static final int NUM_RETRIES = 5;
+  
+	@Override
+	public NgoInfo requestMemberNgo(NgoInfo ngoInfo){
 
+		Ngo ngo = Ngo.findOrCreateNgo(new Ngo(ngoInfo));
+		
+	    PersistenceManager pm = PMFactory.getTxnPm();
+	    UserProfile user = LoginHelper.getLoggedUser(getThreadLocalRequest().getSession(), pm);
+	    
+        
+	    pm.close();
+	    
+	    pm = PMFactory.getTxnPm();
+		String userUniqueId = user.getUniqueId();
+		
+	    if (ngo.getMembers().size() == 0){
+			ngo.addMember(userUniqueId);
+	    }
+		
+	    if (ngo.isMember(userUniqueId)) return null;
+	    
+	    ngo.requestMember(userUniqueId);
+	    
+		try {
+			for (int i = 0; i < NUM_RETRIES; i++){
+				pm.currentTransaction().begin();
+				pm.makePersistent(ngo);
+				try {
+			          logger.fine("starting commit");
+			          pm.currentTransaction().commit();
+			          logger.fine("commit was successful");
+			          break;
+			    } catch (JDOCanRetryException e1) {
+			          if (i == (NUM_RETRIES - 1)) {
+			            throw e1;
+			          }
+			        }
+			} // end for
+		}catch (Exception e) {
+		      e.printStackTrace();
+		      logger.warning(e.getMessage());
+		      ngoInfo = null;
+		} finally {
+			if (pm.currentTransaction().isActive()){
+				pm.currentTransaction().rollback();
+				logger.warning("transaction rollback");
+				ngoInfo = null;
+			}
+			pm.close();
+		}
+		
+		return ngoInfo;
+		
+		// Check if name changed. Name is the key for UniqueId. 
+		// If it changed we have to verify that the new name does not overlap with 
+		// an existing name. I guess, for simplicity now, we should keep the name unchangeable
+		// but we could perform these kind of tests in the future if we want something more sophisticated
+		
+		//Ngo addedNgo = addNgo(ngoInfo);
+		
+		// do something to store the information
+		// probably creating a Ngo from NgoInfo and
+		// store it if it does not exist already
+		//return Ngo.toInfo(addedNgo);
+	}
+	
+	
 	@Override
 	public NgoInfo updateNgo(NgoInfo ngoInfo){
 
 		Ngo ngo = Ngo.findOrCreateNgo(new Ngo(ngoInfo));
+		if (ngo == null) return ngoInfo;
 		ngo.reEdit(ngoInfo);
 		
 	    PersistenceManager pm = PMFactory.getTxnPm();
@@ -89,7 +157,66 @@ public class NgoServiceImpl extends RemoteServiceServlet implements NgoService {
 		//return Ngo.toInfo(addedNgo);
 	}
 	
+    @Override
+    public NgoInfo reportAbuseNgo(NgoInfo ngoInfo, String report){
 
+		Ngo ngo = Ngo.findOrCreateNgo(new Ngo(ngoInfo));
+		
+	    PersistenceManager pm = PMFactory.getTxnPm();
+	    UserProfile user = LoginHelper.getLoggedUser(getThreadLocalRequest().getSession(), pm);
+	    if (user == null) return null;
+	    pm.close();
+	    
+	    pm = PMFactory.getTxnPm();
+		String userUniqueId = user.getUniqueId();
+		
+		// Now update ConfirmationBadge
+		ConfirmationBadge confB = ngo.getConfirmationBadge();
+		confB.addAbuse(userUniqueId, report);
+	    
+		try {
+			for (int i = 0; i < NUM_RETRIES; i++){
+				pm.currentTransaction().begin();
+				pm.makePersistent(confB);
+				try {
+			          logger.fine("starting commit");
+			          pm.currentTransaction().commit();
+			          logger.fine("commit was successful");
+			          break;
+			    } catch (JDOCanRetryException e1) {
+			          if (i == (NUM_RETRIES - 1)) {
+			            throw e1;
+			          }
+			        }
+			} // end for
+		}catch (Exception e) {
+		      e.printStackTrace();
+		      logger.warning(e.getMessage());
+		      ngoInfo = null;
+		} finally {
+			if (pm.currentTransaction().isActive()){
+				pm.currentTransaction().rollback();
+				logger.warning("transaction rollback");
+				ngoInfo = null;
+			}
+			pm.close();
+		}
+		
+		return ngoInfo;
+		
+		// Check if name changed. Name is the key for UniqueId. 
+		// If it changed we have to verify that the new name does not overlap with 
+		// an existing name. I guess, for simplicity now, we should keep the name unchangeable
+		// but we could perform these kind of tests in the future if we want something more sophisticated
+		
+		//Ngo addedNgo = addNgo(ngoInfo);
+		
+		// do something to store the information
+		// probably creating a Ngo from NgoInfo and
+		// store it if it does not exist already
+		//return Ngo.toInfo(addedNgo);
+	}
+    
 	@Override
 	public ArrayList<NgoInfo> getNgoList(){
 		ArrayList<NgoInfo> ngoList = new ArrayList<NgoInfo>();
@@ -118,7 +245,16 @@ public class NgoServiceImpl extends RemoteServiceServlet implements NgoService {
 					foundNgo = pm.getObjectById(Ngo.class, ngoId);
 					//pm.deletePersistent(pm.getObjectById(Ngo.class, ngoId));
 					ngoInfo = Ngo.toInfo(foundNgo,userUniqueId);
-					ngoArray.add(ngoInfo);	
+					if (user != null){
+						if (ngoInfo.getConfirmed() || user.isAdmin() || foundNgo.isMember(userUniqueId)){
+							ngoArray.add(ngoInfo);
+						}
+					} else {
+						if (ngoInfo.getConfirmed()){
+							ngoArray.add(ngoInfo);
+						}
+					}
+											
 				}
 			}
 			 return ngoArray;

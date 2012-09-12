@@ -84,7 +84,7 @@ public class ProjectAddPresenter implements Presenter {
 	public void bind() {
 	      this.display.getSaveButton().addClickHandler(new ClickHandler() {
 	        public void onClick(ClickEvent event) {
-	          doSave();
+	          //doSave();
 	        }
 	      });
 
@@ -104,7 +104,7 @@ public class ProjectAddPresenter implements Presenter {
 	      eventBus.addHandler(ProjectNeedAddEvent.TYPE, new ProjectNeedAddEventHandler(){
 	    	  public void onProjectNeedAdd(ProjectNeedAddEvent event){
 	    		  // update project with new need resource and update table
-	    		  addNeed(event.getResource());
+	    		  //addNeed(event.getResource());
 	    	  }
 	      });
 	      
@@ -112,13 +112,14 @@ public class ProjectAddPresenter implements Presenter {
 	    	 public void onClick(ClickEvent event){
 	    		 String deletedNeed = display.getDeleteNeed(event); 
 	    		 if (deletedNeed != null){
-	    			 project.getNeeds().remove(deletedNeed);
-	    			 display.setData(toStringList(project.getNeeds()));
+	    			 //project.getNeeds().remove(deletedNeed);
+	    			 //display.setData(toStringList(project.getNeeds()));
 	    		 }
 	    	 }
 	      });
 	}
 	
+	/*
 	private void addNeed(ResourceInfo need){
 		if (need.equals("")) return;
 		project.addNeed(need);
@@ -150,7 +151,7 @@ public class ProjectAddPresenter implements Presenter {
 	      }
 	    }.retry(3);
 	  }
-	  
+	  */
 	public void go(final HasWidgets container) {
 		container.clear();
 		container.add(display.asWidget());
@@ -164,5 +165,6 @@ public class ProjectAddPresenter implements Presenter {
 		}
 		return list;
 	}
+	
 
 }

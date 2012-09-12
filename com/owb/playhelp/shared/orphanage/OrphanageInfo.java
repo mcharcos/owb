@@ -10,7 +10,7 @@ import com.google.gwt.maps.client.geocode.LatLngCallback;
 import com.google.gwt.maps.client.geom.LatLng;
 import com.google.gwt.user.client.Timer;
 import com.owb.playhelp.client.helper.MapHelper;
-import com.owb.playhelp.shared.Standard;
+import com.owb.playhelp.shared.StandardInfo;
 
 @SuppressWarnings("serial") public class OrphanageInfo implements Serializable {
 
@@ -24,7 +24,7 @@ import com.owb.playhelp.shared.Standard;
 	private String email;
 	private String website;
 	private String uniqueId;
-	private Standard status;
+	private StandardInfo status;
 	private boolean member;
 	private boolean follower;
 	private Set<String> ngoNames = new HashSet<String>();
@@ -95,11 +95,11 @@ import com.owb.playhelp.shared.Standard;
 		this.id = id;
 	}
 
-	public Standard getStandard() {
+	public StandardInfo getStandard() {
 		return this.status;
 	}
 
-	public void setStandard(Standard status) {
+	public void setStandard(StandardInfo status) {
 		this.status = status;
 	}
 	

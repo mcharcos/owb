@@ -13,7 +13,9 @@ import com.owb.playhelp.shared.ngo.NgoItemInfo;
 
 @RemoteServiceRelativePath("ngoService")
 public interface NgoService extends RemoteService {
+	NgoInfo requestMemberNgo(NgoInfo ngoInfo);
 	NgoInfo updateNgo(NgoInfo ngo);	
+	NgoInfo reportAbuseNgo(NgoInfo ngoInfo, String report);
 	ArrayList<NgoInfo> getNgoList();
 	void removeNgo(NgoInfo ngoInfo);
 	/*

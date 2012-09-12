@@ -54,16 +54,16 @@ public class Contribution implements Serializable, Cacheable {
 	public Contribution(ProjectInfo projectInfo, UserProfileInfo userInfo, double resource){
 		this.creationDate = new Date();
 		
-		this.projectUser = projectInfo.getUserId();
-		this.projectDate = projectInfo.getCreationDate();
+		//this.projectUser = projectInfo.getUserId();
+		//this.projectDate = projectInfo.getCreationDate();
 		this.contributorId = userInfo.getUniqueId();
 		this.resource = resource;
 	}
 	public Contribution(ContributionInfo contribInfo){
 		this.creationDate = new Date();
 		this.contributorId = contribInfo.getUser().getUniqueId();
-		this.projectDate = contribInfo.getProject().getCreationDate();
-		this.projectUser = contribInfo.getProject().getUserId();
+		//this.projectDate = contribInfo.getProject().getCreationDate();
+		//this.projectUser = contribInfo.getProject().getUserId();
 		
 		this.resource = contribInfo.getResource();
 	}

@@ -11,7 +11,7 @@ import com.owb.playhelp.shared.project.ProjectItemInfo;
 
 public interface ProjectServiceAsync {
 	void getUserProjectList(AsyncCallback<ArrayList<ProjectItemInfo>> callback);
-	void updateProject(String uniqueId, ProjectInfo project, AsyncCallback<ProjectInfo> callback);	
+	void updateProject(ProjectInfo project, AsyncCallback<ProjectInfo> callback);	
 	void getProjectList(AsyncCallback<ArrayList<ProjectInfo>> callback);
 	void getProject(String id, AsyncCallback<ProjectInfo> callback);
 	void deleteProject(String id, AsyncCallback<String> callback) throws NoUserException;

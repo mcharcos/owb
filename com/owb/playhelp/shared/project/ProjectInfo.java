@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.Date;
 
+import com.owb.playhelp.shared.StandardInfo;
 import com.owb.playhelp.shared.ResourceInfo;
 import com.owb.playhelp.shared.ChapterInfo;
 import com.owb.playhelp.shared.orphanage.OrphanageInfo;
@@ -18,14 +19,17 @@ import com.owb.playhelp.shared.ngo.NgoInfo;
 	private String id;
 	private String name;
 	private String description;
-	private String status;
-	private String userId;
-	private Date creationDate;
-	private ChapterInfo chapter;
-	private NgoInfo ngo;
-	private OrphanageInfo orphanage;
-	private Set<ResourceInfo> needs = new HashSet<ResourceInfo>();
-	private Set<ResourceInfo> contributions = new HashSet<ResourceInfo>();
+	private String website;
+	private String uniqueId;
+	private StandardInfo status;
+	private boolean member;
+	private boolean follower;
+	private Set<String> ngoList = new HashSet<String>();
+	private String orphanage = "";
+	
+	// projects and needs are managed through their uniqueId key.
+	private Set<String> needs = new HashSet<String>();
+	private Set<String> contributions = new HashSet<String>();
 
 	public ProjectInfo() {
 	}
@@ -37,6 +41,15 @@ import com.owb.playhelp.shared.ngo.NgoInfo;
 	public ProjectInfo(String name, String description) {
 		this(name);
 		this.description = description;
+	}
+
+	public ProjectInfo(String name, String description, String website) {
+		this(name,description);
+		this.website = website;
+	}
+	
+	public String getWebsite() {
+		return this.website;
 	}
 
 	public String getId() {
@@ -51,28 +64,28 @@ import com.owb.playhelp.shared.ngo.NgoInfo;
 		return this.description;
 	}
 
-	public String getStatus() {
+	public StandardInfo getStandard() {
 		return this.status;
 	}
 
-	public String getUserId() {
-		return this.userId;
+	public String getUniqueId() {
+		return this.uniqueId;
 	}
 
-	public Date getCreationDate() {
-		return this.creationDate;
+	public boolean getMember(){
+		return member;
 	}
 	
-	public ChapterInfo getChapter(){
-		return this.chapter;
+	public boolean getFollower(){
+		return follower;
 	}
 	
-	public OrphanageInfo getOrphanage(){
-		return this.orphanage;
+	public Set<String> getNgoList(){
+		return ngoList;
 	}
 	
-	public NgoInfo getNgo(){
-		return this.ngo;
+	public String getOrphanage(){
+		return orphanage;
 	}
 
 	public void setId(String id) {
@@ -87,42 +100,32 @@ import com.owb.playhelp.shared.ngo.NgoInfo;
 		this.description = desc;
 	}
 
-	public void setStatus(String status) {
+	public void setWebsite(String website) {
+		this.website = website;
+	}
+
+	public void setStatus(StandardInfo status) {
 		this.status = status;
 	}
 
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
-
-	public void setCreationDate(Date creationDate) {
-		this.creationDate = creationDate;
+	public void setUniqueId(String uniqueId) {
+		this.uniqueId = uniqueId;
 	}
 	
-	public void setNgo(NgoInfo ngo){
-		this.ngo = ngo;
-	}
-	
-	public void setChapter(ChapterInfo chapter){
-		this.chapter = chapter;
-	}
-	
-	public void setOrphanage(OrphanageInfo orphanage){
+	public void setOrphanage(String orphanage){
 		this.orphanage = orphanage;
 	}
-	
-	public void addNeed(ResourceInfo need){
-		needs.add(need);
+		
+	public void activateMember(){
+		this.member = true;
 	}
-	public Set<ResourceInfo> getNeeds(){
-		return needs;
+	public void deactivateMember(){
+		this.member = false;
 	}
-	
-	public void addContribution(ResourceInfo contribution){
-		this.contributions.add(contribution);
+	public void activateFollower(){
+		this.follower = true;
 	}
-	
-	public Set<ResourceInfo> getContributions(){
-		return this.contributions;
+	public void deactivateFollower(){
+		this.follower = false;
 	}
 }

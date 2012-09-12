@@ -24,9 +24,11 @@ import com.owb.playhelp.client.helper.RPCCall;
 import com.owb.playhelp.client.service.LoginServiceAsync;
 import com.owb.playhelp.shared.UserProfileInfo;
 import com.owb.playhelp.shared.orphanage.OrphanageInfo;
+import com.owb.playhelp.shared.project.ProjectInfo;
 import com.owb.playhelp.client.presenter.Presenter;
 import com.owb.playhelp.client.event.orphanage.ShowPopupAddOrphanageEvent;
 import com.owb.playhelp.client.event.orphanage.OrphanageRemoveEvent;
+import com.owb.playhelp.client.event.project.ShowPopupAddProjectEvent;
 import com.owb.playhelp.client.helper.ClickPoint;
 
 public class OrphanageMapMarkerInfoPresenter implements Presenter {
@@ -43,6 +45,7 @@ public class OrphanageMapMarkerInfoPresenter implements Presenter {
 		public HasClickHandlers getReportBut();
 		public HasClickHandlers getFollowBut();
 		public HasClickHandlers getFulldescBut();
+		public HasClickHandlers getAddprojBut();
 	}
 
 	private final SimpleEventBus eventBus;
@@ -80,6 +83,11 @@ public class OrphanageMapMarkerInfoPresenter implements Presenter {
 	      });
 	    this.display.getFulldescBut().addClickHandler(new ClickHandler() {
 	        public void onClick(ClickEvent event) {
+	        }
+	      });
+	    this.display.getAddprojBut().addClickHandler(new ClickHandler() {
+	        public void onClick(ClickEvent event) {
+	        	eventBus.fireEvent(new ShowPopupAddProjectEvent(new ClickPoint(100,100),new ProjectInfo()));
 	        }
 	      });
 	}

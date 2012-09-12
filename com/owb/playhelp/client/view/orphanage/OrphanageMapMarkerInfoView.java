@@ -34,7 +34,7 @@ public class OrphanageMapMarkerInfoView extends Composite implements OrphanageMa
 	@UiField
 	HTMLPanel mainPanel;
 	@UiField
-	Anchor editBut, removeBut, reportBut, followBut, fulldescBut;
+	Anchor editBut, removeBut, reportBut, followBut, fulldescBut,addprojBut;
 
 	  @Override
 	public Widget asWidget(){
@@ -85,6 +85,10 @@ public class OrphanageMapMarkerInfoView extends Composite implements OrphanageMa
 		@Override
 		public HasClickHandlers getFulldescBut(){
 		  return fulldescBut;
+		}
+		@Override
+		public HasClickHandlers getAddprojBut(){
+		  return addprojBut;
 		}
 
 

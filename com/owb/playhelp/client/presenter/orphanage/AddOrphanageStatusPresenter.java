@@ -16,7 +16,7 @@ import com.owb.playhelp.client.helper.RPCCall;
 import com.owb.playhelp.client.presenter.Presenter;
 import com.owb.playhelp.client.presenter.orphanage.AddOrphanagePresenter.Display;
 import com.owb.playhelp.client.service.orphanage.OrphanageServiceAsync;
-import com.owb.playhelp.shared.Standard;
+import com.owb.playhelp.shared.StandardInfo;
 import com.owb.playhelp.shared.UserProfileInfo;
 import com.owb.playhelp.shared.orphanage.OrphanageInfo;
 
@@ -65,7 +65,7 @@ public class AddOrphanageStatusPresenter implements Presenter{
 		
 		if (orphanage == null) return;
         
-		Standard status = this.orphanage.getStandard();
+		StandardInfo status = this.orphanage.getStandard();
 		this.display.getNameField().setText(this.orphanage.getName());
 		if (status!=null){
 			this.display.getHealthField().setValue(String.valueOf(status.getHealth()));
@@ -76,7 +76,7 @@ public class AddOrphanageStatusPresenter implements Presenter{
 
 	  private void doSave() {
 		  
-		  Standard status = new Standard();
+		  StandardInfo status = new StandardInfo();
 		  status.setHealth(Float.valueOf(this.display.getHealthField().getValue()));
 		  status.setEducation(Float.valueOf(this.display.getEducationField().getValue()));
 		  status.setNutrition(Float.valueOf(this.display.getNutritionField().getValue()));

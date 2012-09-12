@@ -7,6 +7,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.UUID;
 import java.util.logging.Logger;
 
 import javax.jdo.JDOCanRetryException;
@@ -21,14 +22,16 @@ import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
 import com.owb.playhelp.server.LoginHelper;
+import com.owb.playhelp.server.domain.ConfirmationBadge;
+import com.owb.playhelp.server.domain.Standard;
 import com.owb.playhelp.server.domain.UserProfile;
 import com.owb.playhelp.server.PMFactory;
 import com.owb.playhelp.server.domain.UserProfile;
+import com.owb.playhelp.shared.StandardInfo;
 import com.owb.playhelp.server.utils.Utils;
 import com.owb.playhelp.server.utils.cache.CacheSupport;
 import com.owb.playhelp.server.utils.cache.Cacheable;
 import com.owb.playhelp.shared.orphanage.OrphanageInfo;
-import com.owb.playhelp.shared.Standard;
 
 @SuppressWarnings("serial")
 @PersistenceCapable(identityType = IdentityType.APPLICATION, detachable = "true")
@@ -63,10 +66,13 @@ public class Orphanage implements Serializable, Cacheable {
 	private String website;
 	
 	@Persistent(dependent = "true")
-	private OrphanageStandard status;
+	private Standard status;
 
 	@Persistent
 	private String uniqueId;
+	
+	@Persistent
+	private String confirmationBadge;
 
 	// Members and followers must be individuals 
 	// Individuals could add organizations that they are register to
@@ -80,7 +86,11 @@ public class Orphanage implements Serializable, Cacheable {
 	private Set<String> ngos = new HashSet<String>();
 
 	public Orphanage() {
-		this.status = new OrphanageStandard();
+		this.status = new Standard();
+		if (this.getUniqueId() == null) {
+			UUID uuid = UUID.randomUUID();
+			this.uniqueId = uuid.toString();  //this.getEmail();
+		} 
 	}
 
 	public Orphanage(OrphanageInfo OrphanageInfo) {
@@ -94,7 +104,7 @@ public class Orphanage implements Serializable, Cacheable {
 		this.setEmail(OrphanageInfo.getEmail());
 		this.setWebsite(OrphanageInfo.getWebsite());
 		this.setUniqueId(OrphanageInfo.getUniqueId());
-		this.setStandard(OrphanageInfo.getStandard());
+		this.status.fromInfo(OrphanageInfo.getStandard());
 		
 		if (this.getUniqueId() == null) {
 			this.uniqueId = this.getEmail();
@@ -130,7 +140,7 @@ public class Orphanage implements Serializable, Cacheable {
 		status.setHealth(o.getStandard().getHealth());
 		status.setEducation(o.getStandard().getEducation());
 		status.setNutrition(o.getStandard().getNutrition());
-		oInfo.setStandard(status);
+		oInfo.setStandard(status.toInfo());
 		//oInfo.setPoint(o.getLatitude(),o.getLongitude());
 		oInfo.deactivateMember();
 		oInfo.deactivateFollower();
@@ -262,6 +272,12 @@ public class Orphanage implements Serializable, Cacheable {
 	public String getWebsite() {
 		return this.website;
 	}
+	
+	public ConfirmationBadge getConfirmationBadge(){
+		// Search for Confirmation Badge with confirmationBadge uniqueId
+		
+		return new ConfirmationBadge(this);
+	}
 
 	public void setName(String name) {
 		this.name = name;
@@ -304,16 +320,16 @@ public class Orphanage implements Serializable, Cacheable {
 		return uniqueId;
 	}
 	
-	public OrphanageStandard getStandard() {
+	public Standard getStandard() {
 		return this.status;
 	}
 
-	public void setStandard(OrphanageStandard status) {
-		this.status = status;
+	public void setStandard(StandardInfo status) {
+		this.status.fromInfo(status);
 	}
 	public void setStandard(Standard status) {
 		if (this.status == null) {
-			this.status = new OrphanageStandard();
+			this.status = new Standard();
 		}
 		this.status.setHealth(status.getHealth());
 		this.status.setEducation(status.getEducation());

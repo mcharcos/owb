@@ -25,10 +25,13 @@ import com.owb.playhelp.server.PMFactory;
 import com.owb.playhelp.server.utils.Utils;
 import com.owb.playhelp.server.utils.cache.CacheSupport;
 import com.owb.playhelp.server.utils.cache.Cacheable;
+import com.owb.playhelp.server.domain.ngo.Ngo;
 import com.owb.playhelp.server.domain.ngo.NgoItem;
 import com.owb.playhelp.server.domain.project.Project;
-import com.owb.playhelp.server.domain.project.ProjectItem;
+import com.owb.playhelp.shared.project.ProjectInfo;
 import com.owb.playhelp.shared.UserProfileInfo;
+import com.owb.playhelp.shared.ngo.NgoInfo;
+import com.owb.playhelp.shared.orphanage.OrphanageInfo;
 
 @SuppressWarnings("serial")
 @PersistenceCapable(identityType = IdentityType.APPLICATION, detachable = "true")
@@ -78,7 +81,11 @@ public class UserProfile implements Serializable, Cacheable  {
 	   */
 	  @Persistent
 	  private String uniqueId;
+
+      @Persistent
+      private boolean isAdmin;
 	  
+      /*
 	  @Persistent(mappedBy = "userChap")
 	  //@Element(dependent = "true")
 	  private Set<ChapterItem> chapters = new HashSet<ChapterItem>();
@@ -98,16 +105,36 @@ public class UserProfile implements Serializable, Cacheable  {
 	  @Persistent(mappedBy = "userFriends")
 	  //@Element(dependent = "true")
 	  private Set<FriendItem> friends = new HashSet<FriendItem>();
+	  */
 
+	  @Persistent
+	  private Set<String> chapters = new HashSet<String>();
+	  
+	  @Persistent
+	  private Set<String> projects = new HashSet<String>();
+	  
+	  @Persistent
+	  private Set<String> ngos = new HashSet<String>();
+	  
+	  @Persistent
+	  private Set<String> orphanages = new HashSet<String>();
+	  
+	  @Persistent
+	  private Set<String> friends = new HashSet<String>();
+	  
 	  public UserProfile(){
+		  this.isAdmin = true;
 	  }
 
 	  public UserProfile(String loginId, Integer loginProvider){
 		  this();
 		  this.setUniqueId(loginId + "-" + loginProvider);
+		  
+		  // We should may be retrieve the Name from Google
 		  this.setName(loginId);
-		  this.emailAddress = "Edit your email Address";
+		  this.emailAddress = loginId;
 			  this.picture = "profile_icon.png";
+		  if (loginId=="mcharcos@example.com") this.isAdmin = true;
 	  }
 	  
 	  public UserProfile(String uniqueId){
@@ -222,14 +249,15 @@ public class UserProfile implements Serializable, Cacheable  {
         UserProfile superUser = new UserProfile();
         OrphanageItem orphanage = new OrphanageItem();
         NgoItem ngo = new NgoItem();
-        ProjectItem project = new ProjectItem();
+        ProjectInfo project = new ProjectInfo();
         ChapterItem chapter = new ChapterItem();
         FriendItem friend = new FriendItem();
+        /*
         superUser.addOrphanage(orphanage);
         superUser.addNgo(ngo);
         superUser.addProject(project);
         superUser.addChapter(chapter);
-        superUser.addFriend(friend);
+        superUser.addFriend(friend);*/
 
 	    // perform the query and creation under transactional control,
 	    // to prevent another process from creating an acct with the same id.
@@ -304,6 +332,7 @@ public class UserProfile implements Serializable, Cacheable  {
 	    return uniqueId;
 	  }
 	  
+	  /*
 	  public void addChapter(ChapterItem chapter){
 		  chapters.add(chapter);
 	  }
@@ -338,6 +367,38 @@ public class UserProfile implements Serializable, Cacheable  {
 	  public Set<FriendItem> getFriends(){
 		  return friends;
 	  }
+	  */
+
+	  public void addChapter(ChapterItem chapter){
+		  chapters.add(chapter.getUniqueId());
+	  }
+	  public Set<String> getChapters(){
+		  // retrieve the chapters with the corresponding UniqueIds
+		  return chapters;
+	  }
+	  
+	  public void addProject(ProjectInfo project){
+		  projects.add(project.getUniqueId());
+	  }
+	  public Set<String> getProjects(){
+		  return projects;
+	  }
+	  
+	  public void addOrphanage(OrphanageInfo orphanage){
+		  orphanages.add(orphanage.getUniqueId());
+	  }
+	  public Set<String> getOrphanagess(){
+		  return orphanages;
+	  }
+	  
+	  public void addNgo(NgoInfo ngo){
+		  ngos.add(ngo.getUniqueId());
+	  }
+	  public Set<String> getNgos(){
+		  return ngos;
+	  }
+	  
+	  
 
 	  public void setLastLoginOn(Date lastLoginOn) {
 	    this.lastLoginOn = lastLoginOn;
@@ -361,6 +422,14 @@ public class UserProfile implements Serializable, Cacheable  {
 
 	  public Date getLastReported() {
 	    return lastReported;
+	  }
+	  
+	  public boolean isAdmin(){
+		  return this.isAdmin;
+	  }
+	  
+	  public boolean isMember(Ngo ngo){
+		  return ngos.contains(ngo.getUniqueId());
 	  }
 	  
 	  /*

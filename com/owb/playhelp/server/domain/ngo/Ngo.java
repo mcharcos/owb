@@ -24,7 +24,8 @@ import javax.jdo.annotations.PrimaryKey;
 import com.owb.playhelp.server.LoginHelper;
 import com.owb.playhelp.server.domain.UserProfile;
 import com.owb.playhelp.server.PMFactory;
-import com.owb.playhelp.server.domain.UserProfile;
+import com.owb.playhelp.server.domain.ConfirmationBadge;
+import com.owb.playhelp.server.domain.Standard;
 import com.owb.playhelp.server.utils.Utils;
 import com.owb.playhelp.server.utils.cache.CacheSupport;
 import com.owb.playhelp.server.utils.cache.Cacheable;
@@ -62,8 +63,19 @@ public class Ngo implements Serializable, Cacheable {
 	@Persistent
 	private String website;
 
+	/*
+	@Persistent(dependent = "true")
+	private Standard status;
+	*/
+	
 	@Persistent
 	private String uniqueId;
+	
+	@Persistent
+	private String confirmationBadge;
+
+	@Persistent
+	private Set<String> memberRequests = new HashSet<String>();
 
 	@Persistent
 	private Set<String> members = new HashSet<String>();
@@ -76,6 +88,16 @@ public class Ngo implements Serializable, Cacheable {
 	//private Set<FriendItem> friends = new HashSet<FriendItem>();
 
 	public Ngo() {
+		if (this.getUniqueId() == null) {
+			UUID uuid = UUID.randomUUID();
+			this.uniqueId = uuid.toString();  //this.getEmail();
+		} 
+		
+		//ConfirmationBadge confB = ConfirmationBadge.findOrCreateNgo(new ConfirmationBadge(this));
+        
+		// Don't need to update the uniqueId of the confirmationBadge because
+		// the class ConfirmationBadge takes care of this
+		//this.confirmationBadge = confB.getUniqueId();
 	}
 
 	public Ngo(NgoInfo ngoInfo) {
@@ -88,23 +110,11 @@ public class Ngo implements Serializable, Cacheable {
 		this.setPhone(ngoInfo.getPhone());
 		this.setEmail(ngoInfo.getEmail());
 		this.setWebsite(ngoInfo.getWebsite());
-		this.setUniqueId(ngoInfo.getUniqueId());
+		if (ngoInfo.getUniqueId() != null) this.setUniqueId(ngoInfo.getUniqueId());
 		
-		if (this.getUniqueId() == null) {
-			UUID uuid = UUID.randomUUID();
-			this.uniqueId = uuid.toString();  //this.getEmail();
-		} 
 	}
 
 	public void reEdit(NgoInfo ngoInfo) {
-		
-		/*String ngoId = uniqueId;  //this.getUniqueId();
-		String ngoInfoId = ngoInfo.getUniqueId();
-		boolean tst = ngoId.toString().equals(ngoInfoId.toString());
-		if (!tst){
-			return;
-		}*/
-		
 		this.setName(ngoInfo.getName());
 		this.setDescription(ngoInfo.getDescription());
 		this.setName(ngoInfo.getName());
@@ -125,6 +135,8 @@ public class Ngo implements Serializable, Cacheable {
 		//oInfo.setPoint(o.getLatitude(),o.getLongitude());
 		oInfo.deactivateMember();
 		oInfo.deactivateFollower();
+		oInfo.setValid(o.isValid());
+		oInfo.setConfirm(false);
 		
 		return oInfo;
 	}
@@ -138,6 +150,9 @@ public class Ngo implements Serializable, Cacheable {
 		//oInfo.setPoint(o.getLatitude(),o.getLongitude());
 		if (o.isMember(userUniqueId)) oInfo.activateMember();
 		if (o.isFollower(userUniqueId)) oInfo.activateFollower();
+
+		oInfo.setValid(o.isValid());
+		oInfo.setConfirm(o.isConfirmed(userUniqueId,o));
 		
 		return oInfo;
 	}
@@ -161,14 +176,15 @@ public class Ngo implements Serializable, Cacheable {
 	      for (int i = 0; i < NUM_RETRIES; i++) {
 	        tx = pm.currentTransaction();
 	        tx.begin();
-	        oneResult = (Ngo) q.execute(uniqueId);
+	        if (uniqueId != null) oneResult = (Ngo) q.execute(uniqueId);
 	        if (oneResult != null) {
 	          log.info("User uniqueId already exists: " + uniqueId);
 	          detached = pm.detachCopy(oneResult);
 	        } else {
-	          log.info("UserProfile " + uniqueId + " does not exist, creating...");
+	          log.info("Ngo " + uniqueId + " does not exist, creating...");
 	          // Create friends from Google+
 	          //user.setKarma(new Karma());
+	          ConfirmationBadge confB = ConfirmationBadge.findOrCreateNgo(new ConfirmationBadge(ngo));
 	          pm.makePersistent(ngo);
 	          detached = pm.detachCopy(ngo);
 	        }
@@ -203,15 +219,37 @@ public class Ngo implements Serializable, Cacheable {
 	      q.closeAll();
 	    }
 	    
+	    
 	    return detached;
 	  }
 	
+
+	public void addConfirmation(UserProfile user, Ngo ngo){
+		if (!user.isMember(ngo)){
+			log.info("User is not a member of the NGO");
+			return;
+		}
+		this.getConfirmationBadge().addConfirmation(user, ngo);
+	}
+	
+	public void addConfirmation(UserProfile user){
+		this.getConfirmationBadge().addConfirmation(user);
+	}
+	  
 	public boolean isMember(String userUniqueId){
 		return members.contains(userUniqueId);
 	}
 	
 	public boolean isFollower(String userUniqueId){
 		return followers.contains(userUniqueId);
+	}
+
+	public boolean isConfirmed(String userId, Ngo ngo){
+		return this.getConfirmationBadge().isConfirmed(userId, ngo);
+	}
+	
+	public boolean isValid(){
+		return this.getConfirmationBadge().isValid();
 	}
 	  
 	public void addToCache() {
@@ -246,6 +284,14 @@ public class Ngo implements Serializable, Cacheable {
 	public String getWebsite() {
 		return this.website;
 	}
+	
+	public ConfirmationBadge getConfirmationBadge(){
+		return ConfirmationBadge.findOrCreateNgo(new ConfirmationBadge(this));
+	}
+	
+	public String getConfirmationBadgeId(){
+		return confirmationBadge;
+	}
 
 	public void setName(String name) {
 		this.name = name;
@@ -275,7 +321,11 @@ public class Ngo implements Serializable, Cacheable {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
+	
+	public void setConfirmationBadge(String uniqueId){
+		this.confirmationBadge = uniqueId;
+	}
+	
 	public Long getId() {
 		return this.id;
 	}
@@ -288,12 +338,24 @@ public class Ngo implements Serializable, Cacheable {
 		return uniqueId;
 	}
 	
+	public void requestMember(String member){
+		// Check if the member exist
+		if (memberRequests.contains(member)) return;
+		
+		// Add it if it does not
+		memberRequests.add(member);
+	}
+	
 	public void addMember(String member){
 		// Check if the member exist
 		if (members.contains(member)) return;
 		
 		// Add it if it does not
 		members.add(member);
+	}
+	
+	public Set<String> getMemberRequests(){
+		return memberRequests;
 	}
 	
 	public Set<String> getMembers(){

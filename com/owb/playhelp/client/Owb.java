@@ -32,6 +32,8 @@ import com.owb.playhelp.client.service.ngo.NgoService;
 import com.owb.playhelp.client.service.ngo.NgoServiceAsync;
 import com.owb.playhelp.client.service.orphanage.OrphanageService;
 import com.owb.playhelp.client.service.orphanage.OrphanageServiceAsync;
+import com.owb.playhelp.client.service.project.ProjectService;
+import com.owb.playhelp.client.service.project.ProjectServiceAsync;
 import com.owb.playhelp.client.channel.Channel;
 import com.owb.playhelp.client.channel.ChannelFactory;
 import com.owb.playhelp.client.channel.SocketListener;
@@ -246,7 +248,8 @@ public class Owb implements EntryPoint {
 	  UserServiceAsync userService = GWT.create(UserService.class);
 	  NgoServiceAsync ngoService = GWT.create(NgoService.class);
 	  OrphanageServiceAsync orphanageService = GWT.create(OrphanageService.class);
-	  PathGuide guide = new PathGuide(loginService, userService, ngoService, orphanageService, thePath, currentUser);
+	  ProjectServiceAsync projectService = GWT.create(ProjectService.class);
+	  PathGuide guide = new PathGuide(loginService, userService, ngoService, orphanageService, projectService, thePath, currentUser);
 	  guide.go();
 	  
 	  

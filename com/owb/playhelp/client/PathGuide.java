@@ -29,8 +29,11 @@ import com.owb.playhelp.client.presenter.project.ProjectHomePresenter;
 import com.owb.playhelp.client.presenter.project.ProjectMainPresenter;
 import com.owb.playhelp.client.presenter.UserPreferenceEditPresenter;
 import com.owb.playhelp.client.presenter.ngo.AddNgoPresenter;
+import com.owb.playhelp.client.presenter.ngo.ReportAbuseNgoPresenter;
 import com.owb.playhelp.client.presenter.orphanage.AddOrphanagePresenter;
 import com.owb.playhelp.client.presenter.orphanage.AddOrphanageStatusPresenter;
+import com.owb.playhelp.client.presenter.project.AddProjectPresenter;
+import com.owb.playhelp.client.presenter.project.AddProjectStatusPresenter;
 import com.owb.playhelp.client.service.project.ProjectService;
 import com.owb.playhelp.client.service.project.ProjectServiceAsync;
 import com.owb.playhelp.client.service.ContributionService;
@@ -52,8 +55,11 @@ import com.owb.playhelp.client.view.chapter.ChapterHomeView;
 import com.owb.playhelp.client.view.friend.FriendHomeView;
 import com.owb.playhelp.client.view.ngo.NgoHomeView;
 import com.owb.playhelp.client.view.ngo.AddNgoView;
+import com.owb.playhelp.client.view.ngo.ReportAbuseNgoView;
 import com.owb.playhelp.client.view.orphanage.AddOrphanageView;
 import com.owb.playhelp.client.view.orphanage.AddOrphanageStatusView;
+import com.owb.playhelp.client.view.project.AddProjectView;
+import com.owb.playhelp.client.view.project.AddProjectStatusView;
 import com.owb.playhelp.client.view.orphanage.OrphanageHomeView;
 import com.owb.playhelp.client.view.project.ProjectHomeView;
 import com.owb.playhelp.client.view.project.ProjectMainView;
@@ -91,12 +97,16 @@ import com.owb.playhelp.client.event.user.UserPreferenceEditCancelEventHandler;
 import com.owb.playhelp.client.event.ngo.NgoUpdateEvent;
 import com.owb.playhelp.client.event.ngo.ShowPopupAddNgoEvent;
 import com.owb.playhelp.client.event.ngo.ShowPopupAddNgoEventHandler;
+import com.owb.playhelp.client.event.ngo.ShowPopupReportAbuseNgoEvent;
+import com.owb.playhelp.client.event.ngo.ShowPopupReportAbuseNgoEventHandler;
 import com.owb.playhelp.client.event.ngo.NgoRemoveEvent;
 import com.owb.playhelp.client.event.ngo.NgoRemoveEventHandler;
 import com.owb.playhelp.client.event.orphanage.ShowPopupAddOrphanageEvent;
 import com.owb.playhelp.client.event.orphanage.ShowPopupAddOrphanageEventHandler;
 import com.owb.playhelp.client.event.orphanage.ShowPopupAddOrphanageStatusEvent;
 import com.owb.playhelp.client.event.orphanage.ShowPopupAddOrphanageStatusEventHandler;
+import com.owb.playhelp.client.event.project.ShowPopupAddProjectEvent;
+import com.owb.playhelp.client.event.project.ShowPopupAddProjectEventHandler;
 import com.owb.playhelp.client.helper.RPCCall;
 
 
@@ -106,6 +116,7 @@ public class PathGuide implements ValueChangeHandler<String>  {
 	
 	private final NgoServiceAsync ngoService;
 	private final OrphanageServiceAsync orphanageService;
+	private final ProjectServiceAsync projectService;
 	private final UserServiceAsync userService;
 	private final LoginServiceAsync loginService;
 	Presenter presenter = null;
@@ -115,11 +126,12 @@ public class PathGuide implements ValueChangeHandler<String>  {
 	
 	
 	public PathGuide(LoginServiceAsync loginService, UserServiceAsync userService, NgoServiceAsync ngoService, OrphanageServiceAsync orphanageService, 
-			SimpleEventBus thePath, UserProfileInfo currentUser){
+			ProjectServiceAsync projectService, SimpleEventBus thePath, UserProfileInfo currentUser){
 		this.loginService = loginService;
 		this.userService = userService;
 		this.ngoService = ngoService;
 		this.orphanageService = orphanageService;
+		this.projectService = projectService;
 		this.thePath = thePath;
 		this.currentUser = currentUser;
 		this.geocoder = null;
@@ -128,7 +140,7 @@ public class PathGuide implements ValueChangeHandler<String>  {
 	
 	private void bind(){
 		
-		ProjectServiceAsync projectService = GWT.create(ProjectService.class);
+		//ProjectServiceAsync projectService = GWT.create(ProjectService.class);
 		ContributionServiceAsync contributionService = GWT.create(ContributionService.class);
 		ProjectGuide projectGuide = new ProjectGuide(projectService, contributionService, thePath, currentUser);
 		projectGuide.go();
@@ -203,6 +215,17 @@ public class PathGuide implements ValueChangeHandler<String>  {
 				History.newItem("orphome");
 			}
 		});
+		thePath.addHandler(ShowPopupReportAbuseNgoEvent.TYPE, new ShowPopupReportAbuseNgoEventHandler(){
+			public void onShowPopupReportAbuseNgo(ShowPopupReportAbuseNgoEvent event){
+				if (currentUser == null){
+					Window.alert("You must log in to report an Organization");
+					return;
+				}
+
+				ReportAbuseNgoPresenter reportNgoPresenter = new ReportAbuseNgoPresenter(event.getNgo(), currentUser, ngoService,thePath,new ReportAbuseNgoView(event.getClickPoint()));
+				reportNgoPresenter.go(Owb.get().getMainPanel());
+			}
+		});
 		thePath.addHandler(ShowPopupAddNgoEvent.TYPE, new ShowPopupAddNgoEventHandler(){
 			public void onShowPopupAddNgo(ShowPopupAddNgoEvent event){
 				if (currentUser == null){
@@ -249,6 +272,22 @@ public class PathGuide implements ValueChangeHandler<String>  {
 				}
 				AddOrphanageStatusPresenter addOrphanageStatusPresenter = new AddOrphanageStatusPresenter(event.getOrphanage(), orphanageService,thePath,new AddOrphanageStatusView(event.getClickPoint()));
 				addOrphanageStatusPresenter.go(Owb.get().getMainPanel());
+			}
+		});
+		thePath.addHandler(ShowPopupAddProjectEvent.TYPE, new ShowPopupAddProjectEventHandler(){
+			public void onShowPopupAddProject(ShowPopupAddProjectEvent event){
+				if (currentUser == null){
+					Window.alert("You must log in to add or update a Project");
+					return;
+				}
+				if (event.getProject() != null){
+					if (!event.getProject().getMember()){
+						Window.alert("You can't update an Project if you are not a member ");
+						return;
+					}
+				}
+				AddProjectPresenter addProjectPresenter = new AddProjectPresenter(event.getProject(), currentUser, projectService,thePath,geocoder,new AddProjectView(event.getClickPoint()));
+				addProjectPresenter.go(Owb.get().getMainPanel());
 			}
 		});
 		thePath.addHandler(NgoRemoveEvent.TYPE, new NgoRemoveEventHandler(){

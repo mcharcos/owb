@@ -21,6 +21,8 @@ import com.owb.playhelp.client.helper.MapHelper;
 	private String email;
 	private String website;
 	private String uniqueId;
+	private boolean valid;
+	private boolean confirmed;
 	private boolean member;
 	private boolean follower;
 
@@ -169,6 +171,12 @@ import com.owb.playhelp.client.helper.MapHelper;
 	public boolean getFollower(){
 		return follower;
 	}
+	public boolean getConfirmed(){
+		return confirmed;
+	}
+	public boolean getValid(){
+		return valid;
+	}
 	
 	public void activateMember(){
 		this.member = true;
@@ -182,6 +190,12 @@ import com.owb.playhelp.client.helper.MapHelper;
 	public void deactivateFollower(){
 		this.follower = false;
 	}
-	
+	public void setConfirm(boolean confirmed){
+		this.confirmed = confirmed;
+	}
+
+	public void setValid(boolean valid){
+		this.valid = valid;
+	}
 }
 

@@ -9,8 +9,10 @@ import java.util.Set;
 import java.util.logging.Logger;
 
 import javax.jdo.JDOCanRetryException;
+import javax.jdo.JDOUserException;
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
+import javax.jdo.Transaction;
 import javax.servlet.http.HttpSession;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
@@ -18,6 +20,7 @@ import com.owb.playhelp.server.PMFactory;
 import com.owb.playhelp.server.LoginHelper;
 import com.owb.playhelp.server.utils.cache.CacheSupport;
 import com.owb.playhelp.server.domain.UserProfile;
+import com.owb.playhelp.server.domain.orphanage.Orphanage;
 import com.owb.playhelp.server.domain.project.Project;
 import com.owb.playhelp.server.domain.project.ProjectItem;
 import com.owb.playhelp.client.service.project.ProjectService;
@@ -33,9 +36,9 @@ public class ProjectServiceImpl extends RemoteServiceServlet implements ProjectS
 	private static final int NUM_RETRIES = 5;
 
 	@Override
-	public ProjectInfo updateProject(String uniqueId, ProjectInfo projectInfo){
+	public ProjectInfo updateProject(ProjectInfo projectInfo){
 
-		Project addedProject = addProject(uniqueId, projectInfo);
+		Project addedProject = addProject(projectInfo);
 		
 		// do something to store the information
 		// probably creating a Project from ProjectInfo and
@@ -54,12 +57,12 @@ public class ProjectServiceImpl extends RemoteServiceServlet implements ProjectS
 		// should delete the project
 		return "projectDeleted";
 	}
-	private Project addProject(String uniqueId, ProjectInfo projectInfo){
+	private Project addProject(ProjectInfo projectInfo){
 		PersistenceManager pm = PMFactory.getTxnPm();
 		Project project = null;
 		try{
 				pm.currentTransaction().begin();
-				project = new Project(uniqueId,projectInfo);
+				project = new Project(projectInfo);
 				pm.makePersistent(project);
 				try{
 					pm.currentTransaction().commit();
@@ -88,7 +91,12 @@ public class ProjectServiceImpl extends RemoteServiceServlet implements ProjectS
 		      if (user == null)
 		        return null;
 		      
-		      Set<ProjectItem> projects = user.getProjects();
+		      Set<ProjectItem> projects = null;
+		      Set<String> projIds = user.getProjects();
+		      
+		      for (String pi: projIds){
+		    	  
+		      }
 		      
 		      if (projects == null) return null;
 		      for (ProjectItem project:projects){
@@ -129,16 +137,24 @@ public class ProjectServiceImpl extends RemoteServiceServlet implements ProjectS
 	    return null;
 	}
 		
-	private ProjectItem addUserProject(ProjectItemInfo projectItemInfo){
+	private void addUserProject(ProjectInfo projectInfo){
 		
 		PersistenceManager pm = PMFactory.getTxnPm();
-		ProjectItem projectItem = null;
+		Project projectItem = null;
+		String newid = null;
+		
 		try{
 			for (int i = 0; i < NUM_RETRIES; i++){
 				pm.currentTransaction().begin();
 				UserProfile currentUser = LoginHelper.getLoggedUser(getThreadLocalRequest().getSession(), pm);
-				projectItem = new ProjectItem(projectItemInfo);
-				currentUser.getProjects().add(projectItem);
+				
+				// I would say that we need to check if the project exist in the data base
+				// but since it is a private function we may not
+				//projectItem = findOrCreateProject(projectInfo.getUniqueId());
+				currentUser.getProjects().add(projectInfo.getUniqueId());
+				
+				//projectItem = new Project(projectInfo);
+				//currentUser.getProjects().add(projectItem);
 				pm.makePersistent(currentUser);
 				try{
 					logger.fine("commiting...");
@@ -163,7 +179,71 @@ public class ProjectServiceImpl extends RemoteServiceServlet implements ProjectS
 			}
 			pm.close();
 		}
-		return projectItem;
 	}
+	
+
+	  // Retrieve the user from the database if it already exist or
+	  // create a new account if it is the first loggin
+	  public static Project findOrCreateProject(Project project) {
+	    PersistenceManager pm = PMFactory.getTxnPm();
+	    Transaction tx = null;
+	    Project oneResult = null, detached = null;
+	
+	    String uniqueId = project.getUniqueId();
+	    
+	    Query q = pm.newQuery(Project.class, "uniqueId == :uniqueId");
+	    q.setUnique(true);
+	
+	    // perform the query and creation under transactional control,
+	    // to prevent another process from creating an acct with the same id.
+	    try {
+	      for (int i = 0; i < NUM_RETRIES; i++) {
+	        tx = pm.currentTransaction();
+	        tx.begin();
+	        oneResult = (Project) q.execute(uniqueId);
+	        if (oneResult != null) {
+	          logger.info("User uniqueId already exists: " + uniqueId);
+	          detached = pm.detachCopy(oneResult);
+	        } else {
+	          logger.info("UserProfile " + uniqueId + " does not exist, creating...");
+	          // Create friends from Google+
+	          //user.setKarma(new Karma());
+	          pm.makePersistent(project);
+	          detached = pm.detachCopy(project);
+	        }
+	        try {
+	          tx.commit();
+	          break;
+	        }
+	        catch (JDOCanRetryException e1) {
+	          if (i == (NUM_RETRIES - 1)) { 
+	            throw e1;
+	          }
+	        }
+	      } // end for
+	    } catch (JDOUserException e){
+	          logger.info("JDOUserException: UserProfile table is empty");
+	          // Create friends from Google+
+	          pm.makePersistent(project);
+	          detached = pm.detachCopy(project);	    	
+		        try {
+			          tx.commit();
+			        }
+			        catch (JDOCanRetryException e1) {
+			        }
+	    } catch (Exception e) {
+	      e.printStackTrace();
+	    } 
+	    finally {
+	      if (tx.isActive()) {
+	        tx.rollback();
+	      }
+	      pm.close();
+	      q.closeAll();
+	    }
+	    
+	    return detached;
+	  }
+	
 }
 

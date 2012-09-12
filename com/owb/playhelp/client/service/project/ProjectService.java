@@ -13,7 +13,7 @@ import com.owb.playhelp.shared.project.ProjectItemInfo;
 
 @RemoteServiceRelativePath("projectService")
 public interface ProjectService extends RemoteService {
-	ProjectInfo updateProject(String uniqueId,ProjectInfo project);	
+	ProjectInfo updateProject(ProjectInfo project);	
 	ArrayList<ProjectItemInfo> getUserProjectList();
 	ArrayList<ProjectInfo> getProjectList();
 	  ProjectInfo getProject(String id);

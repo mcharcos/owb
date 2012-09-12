@@ -30,11 +30,11 @@ public class NgoMapMarkerInfoView extends Composite implements NgoMapMarkerInfoP
 	}
 
 	@UiField
-	Label ngoName, ngoDescription, ngoAddress, ngoPhone, ngoEmail;
+	Label warningMsg, ngoName, ngoDescription, ngoAddress, ngoPhone, ngoEmail;
 	@UiField
 	HTMLPanel mainPanel;
 	@UiField
-	Anchor editBut, removeBut, reportBut, followBut, fulldescBut;
+	Anchor editBut, removeBut, reportBut, joinBut, followBut, confirmBut, fulldescBut;
 
 	  @Override
 	public Widget asWidget(){
@@ -49,6 +49,11 @@ public class NgoMapMarkerInfoView extends Composite implements NgoMapMarkerInfoP
 	public Label getNgoName(){
 		return ngoName;
 	}
+	  @Override
+	public Label getWarningMsg(){
+		return warningMsg;
+	}
+	  
 	  @Override
 	public Label getNgoDescription(){
 		return ngoDescription;
@@ -75,15 +80,23 @@ public class NgoMapMarkerInfoView extends Composite implements NgoMapMarkerInfoP
 		  return removeBut;
 		}
 		@Override
-		public HasClickHandlers getReportBut(){
+		public Anchor getReportBut(){
 		  return reportBut;
 		}
 		@Override
-		public HasClickHandlers getFollowBut(){
+		public Anchor getJoinBut(){
+		  return joinBut;
+		}
+		@Override
+		public Anchor getFollowBut(){
 		  return followBut;
 		}
 		@Override
-		public HasClickHandlers getFulldescBut(){
+		public Anchor getConfirmBut(){
+		  return confirmBut;
+		}
+		@Override
+		public Anchor getFulldescBut(){
 		  return fulldescBut;
 		}
 
