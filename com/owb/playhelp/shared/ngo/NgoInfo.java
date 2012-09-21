@@ -1,6 +1,7 @@
 package com.owb.playhelp.shared.ngo;
 
 import java.io.Serializable;
+import java.util.Set;
 
 import com.google.gwt.maps.client.Maps;
 import com.google.gwt.maps.client.geocode.Geocoder;
@@ -25,6 +26,12 @@ import com.owb.playhelp.client.helper.MapHelper;
 	private boolean confirmed;
 	private boolean member;
 	private boolean follower;
+	private Set<String> memberList;
+	private Set<String> memberReqList;
+	private Set<String> followerList;
+	private Set<String> abuseReportList;
+	private Set<String> ngoReportList;
+	private Set<String> adminReportList;
 
 	private boolean isApiLoaded;
 	
@@ -130,6 +137,25 @@ import com.owb.playhelp.client.helper.MapHelper;
 	public String getUniqueId() {
 		return uniqueId;
 	}
+	
+	public Set<String> getMemberList(){
+		return memberList;
+	}
+	public Set<String> getMemberReqList(){
+		return memberReqList;
+	}
+	public Set<String> getFollowerList(){
+		return followerList;
+	}
+	public Set<String> getAbuseReportList(){
+		return abuseReportList;
+	}
+	public Set<String> getNgoReportList(){
+		return ngoReportList;
+	}
+	public Set<String> getAdminReportList(){
+		return adminReportList;
+	}
 
 	public void setId(String id) {
 		this.id = id;
@@ -163,6 +189,26 @@ import com.owb.playhelp.client.helper.MapHelper;
 	public void setUniqueId(String uniqueId) {
 		this.uniqueId = uniqueId;
 	}
+
+	public void setMemberList(Set<String> memberList){
+		this.memberList = memberList;
+	}
+	public void setMemberReqList(Set<String> memberReqList){
+		this.memberReqList = memberReqList;
+	}
+	public void setFollowerList(Set<String> followerList){
+		this.followerList = followerList;
+	}
+	public void setAbuseReportList(Set<String> abuseReportList){
+		this.abuseReportList = abuseReportList;
+	}
+	public void setNgoReportList(Set<String> ngoReportList){
+		this.ngoReportList = ngoReportList;
+	}
+	public void setAdminReportList(Set<String> adminReportList){
+		this.adminReportList = adminReportList;
+	}
+
 	
 	public boolean getMember(){
 		return member;

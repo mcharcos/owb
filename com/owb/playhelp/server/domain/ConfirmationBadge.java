@@ -99,8 +99,13 @@ public class ConfirmationBadge implements Serializable, Cacheable  {
 	public ConfirmationBadge(Ngo ngo){
 		this();
 		this.elementType = ConfirmationBadge.NGO;
-		this.element = ngo.getUniqueId();	
-		ngo.setConfirmationBadge(this.uniqueId);	
+		this.element = ngo.getUniqueId();
+		if (ngo.getConfirmationBadgeId() == null){
+			ngo.setConfirmationBadge(this.uniqueId);
+		} else {
+			this.uniqueId = ngo.getConfirmationBadgeId();
+		}
+			
 	}
 	
 	public ConfirmationBadge(Orphanage orphanage){
@@ -199,7 +204,62 @@ public class ConfirmationBadge implements Serializable, Cacheable  {
 		}
 		return true;
 	}
+	public static ConfirmationBadge findNgo(Ngo ngo) {
+	    PersistenceManager pm = PMFactory.getTxnPm();
+	    Transaction tx = null;
+	    ConfirmationBadge oneResult = null, detached = null;
 	
+	    String uniqueId = ngo.getConfirmationBadgeId();
+	
+	    Query q = pm.newQuery(ConfirmationBadge.class, "uniqueId == :uniqueId");
+	    q.setUnique(true);
+	
+	    // perform the query and creation under transactional control,
+	    // to prevent another process from creating an acct with the same id.
+	    try {
+	      for (int i = 0; i < NUM_RETRIES; i++) {
+	        tx = pm.currentTransaction();
+	        tx.begin();
+	        oneResult = (ConfirmationBadge) q.execute(uniqueId);
+	        if (oneResult != null) {
+	          log.info("User uniqueId already exists: " + uniqueId);
+	          detached = pm.detachCopy(oneResult);
+	        } else {
+	          log.info("UserProfile " + uniqueId + " does not exist, creating...");
+	          // Something is really wrong here because that means that we got a NGO without a badge
+	          //pm.makePersistent(confB);
+	          //detached = pm.detachCopy(confB);
+	        }
+	        try {
+	          tx.commit();
+	          break;
+	        }
+	        catch (JDOCanRetryException e1) {
+	          if (i == (NUM_RETRIES - 1)) { 
+	            throw e1;
+	          }
+	        }
+	      } // end for
+	    } catch (JDOUserException e){
+	          log.info("JDOUserException: UserProfile table is empty");   	
+		        try {
+			          tx.commit();
+			        }
+			        catch (JDOCanRetryException e1) {
+			        }
+	    } catch (Exception e) {
+	      e.printStackTrace();
+	    } 
+	    finally {
+	      if (tx.isActive()) {
+	        tx.rollback();
+	      }
+	      pm.close();
+	      q.closeAll();
+	    }
+	    
+	    return detached;
+	}
 	public static ConfirmationBadge findOrCreateNgo(ConfirmationBadge confB) {
 		
 	    PersistenceManager pm = PMFactory.getTxnPm();

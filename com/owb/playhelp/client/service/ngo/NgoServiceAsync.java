@@ -12,6 +12,7 @@ import com.owb.playhelp.shared.ngo.NgoItemInfo;
 public interface NgoServiceAsync {
 	void requestMemberNgo(NgoInfo ngoInfo, AsyncCallback<NgoInfo> callback);
 	void updateNgo(NgoInfo ngo, AsyncCallback<NgoInfo> callback);	
+	void confirmNgo(NgoInfo ngoInfo, AsyncCallback<NgoInfo> callback);
 	void reportAbuseNgo(NgoInfo ngoInfo, String report, AsyncCallback<NgoInfo> callback);
 	void getNgoList(AsyncCallback<ArrayList<NgoInfo>> callback);
 	void removeNgo(NgoInfo ngo, AsyncCallback<Void> callback);	

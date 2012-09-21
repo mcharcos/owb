@@ -240,7 +240,7 @@ public class MainHomePresenter implements Presenter {
 
 		//Window.alert(ngo.getName()+" => "+ngo.getUniqueId());
 		final InfoWindow info = map.getInfoWindow();
-		NgoMapMarkerInfoPresenter markPresenter = new NgoMapMarkerInfoPresenter(this.currentUser, this.eventBus, ngo, new NgoMapMarkerInfoView());
+		NgoMapMarkerInfoPresenter markPresenter = new NgoMapMarkerInfoPresenter(this.currentUser, this.ngoService, this.eventBus, ngo, new NgoMapMarkerInfoView());
 		VerticalPanel container = new VerticalPanel();
 		markPresenter.go(container);
 		final InfoWindowContent infoContent = new InfoWindowContent(container);

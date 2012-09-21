@@ -22,15 +22,21 @@ import com.google.gwt.user.client.ui.Widget;
 
 import com.owb.playhelp.client.helper.RPCCall;
 import com.owb.playhelp.client.service.LoginServiceAsync;
+import com.owb.playhelp.client.service.ngo.NgoServiceAsync;
 import com.owb.playhelp.shared.UserProfileInfo;
 import com.owb.playhelp.shared.ngo.NgoInfo;
 import com.owb.playhelp.client.presenter.Presenter;
+import com.owb.playhelp.client.event.ngo.NgoUpdateEventHandler;
 import com.owb.playhelp.client.event.ngo.ShowPopupAddNgoEvent;
+import com.owb.playhelp.client.event.ngo.ShowPopupDetailsNgoEvent;
 import com.owb.playhelp.client.event.ngo.ShowPopupReportAbuseNgoEvent;
 import com.owb.playhelp.client.event.ngo.NgoRemoveEvent;
 import com.owb.playhelp.client.event.ngo.JoinNgoEvent;
 import com.owb.playhelp.client.event.ngo.LeaveNgoEvent;
+import com.owb.playhelp.client.event.ngo.NgoUpdateEvent;
 import com.owb.playhelp.client.helper.ClickPoint;
+
+import java.util.Set;
 
 public class NgoMapMarkerInfoPresenter implements Presenter {
 	public interface Display {
@@ -55,18 +61,31 @@ public class NgoMapMarkerInfoPresenter implements Presenter {
 	public final Display display;
 
 	private UserProfileInfo currentUser;
+	private final NgoServiceAsync ngoService;
 	private final NgoInfo ngo;
 
-	public NgoMapMarkerInfoPresenter(UserProfileInfo currentUser,
+	public NgoMapMarkerInfoPresenter(UserProfileInfo currentUser, NgoServiceAsync ngoService,
 			SimpleEventBus eventBus, NgoInfo ngo, Display display) {
 		this.currentUser = currentUser;
+		this.ngoService = ngoService;
 		this.eventBus = eventBus;
 		this.display = display;
 		this.ngo = ngo;
 	}
 
 	public void bind() {
-	    this.display.getEditBut().addClickHandler(new ClickHandler() {
+		eventBus.addHandler(NgoUpdateEvent.TYPE, new NgoUpdateEventHandler(){
+	    	  public void onNgoUpdate(NgoUpdateEvent event){
+	    		  NgoInfo newNgo = event.getUpdatedNgo();
+	    		  Set<String> foo = newNgo.getAdminReportList();
+	    		  // update project info in the marker
+	    		  if (ngo.getUniqueId() == event.getUpdatedNgo().getUniqueId()){	    			  
+	    			  updateNgo(event.getUpdatedNgo());
+	    			  updateButtons();
+	    		  }	    		  
+	    	  }
+	      });
+		this.display.getEditBut().addClickHandler(new ClickHandler() {
 	        public void onClick(ClickEvent event) {
 	        	eventBus.fireEvent(new ShowPopupAddNgoEvent(new ClickPoint(100,100),ngo));
 	        }
@@ -98,16 +117,42 @@ public class NgoMapMarkerInfoPresenter implements Presenter {
 	        	updateButtons();
 	        }
 	      });
+	    this.display.getConfirmBut().addClickHandler(new ClickHandler() {
+	    	public void onClick(ClickEvent event) {
+	    		new RPCCall<NgoInfo>() {
+				      @Override
+				      protected void callService(AsyncCallback<NgoInfo> cb) {
+				    	  ngoService.confirmNgo(ngo, cb);
+				      }
+
+				      @Override
+				      public void onSuccess(NgoInfo result) {
+				    	  GWT.log("NgoMapMarkerInfoPresenter: Ngo was confirmed");
+				        eventBus.fireEvent(new NgoUpdateEvent(result));
+				      }
+
+				      @Override
+				      public void onFailure(Throwable caught) {
+				        Window.alert("Error removing Ngo...");
+				      }
+				    }.retry(3);
+	        }
+	      });
 	    this.display.getFollowBut().addClickHandler(new ClickHandler() {
 	        public void onClick(ClickEvent event) {
 	        }
 	      });
 	    this.display.getFulldescBut().addClickHandler(new ClickHandler() {
 	        public void onClick(ClickEvent event) {
+	        	eventBus.fireEvent(new ShowPopupDetailsNgoEvent(new ClickPoint(100,100), ngo));
 	        }
 	      });
 	}
 
+	private void updateNgo(NgoInfo newNgo){
+		ngo.setAdminReportList(newNgo.getAdminReportList());
+	}
+	
 	private void updateButtons(){
 
 		if(!ngo.getValid()){

@@ -15,6 +15,7 @@ import com.owb.playhelp.shared.ngo.NgoItemInfo;
 public interface NgoService extends RemoteService {
 	NgoInfo requestMemberNgo(NgoInfo ngoInfo);
 	NgoInfo updateNgo(NgoInfo ngo);	
+	NgoInfo confirmNgo(NgoInfo ngoInfo);
 	NgoInfo reportAbuseNgo(NgoInfo ngoInfo, String report);
 	ArrayList<NgoInfo> getNgoList();
 	void removeNgo(NgoInfo ngoInfo);

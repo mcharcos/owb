@@ -30,6 +30,7 @@ import com.owb.playhelp.client.presenter.project.ProjectMainPresenter;
 import com.owb.playhelp.client.presenter.UserPreferenceEditPresenter;
 import com.owb.playhelp.client.presenter.ngo.AddNgoPresenter;
 import com.owb.playhelp.client.presenter.ngo.ReportAbuseNgoPresenter;
+import com.owb.playhelp.client.presenter.ngo.ShowDetailsNgoPresenter;
 import com.owb.playhelp.client.presenter.orphanage.AddOrphanagePresenter;
 import com.owb.playhelp.client.presenter.orphanage.AddOrphanageStatusPresenter;
 import com.owb.playhelp.client.presenter.project.AddProjectPresenter;
@@ -56,6 +57,7 @@ import com.owb.playhelp.client.view.friend.FriendHomeView;
 import com.owb.playhelp.client.view.ngo.NgoHomeView;
 import com.owb.playhelp.client.view.ngo.AddNgoView;
 import com.owb.playhelp.client.view.ngo.ReportAbuseNgoView;
+import com.owb.playhelp.client.view.ngo.ShowDetailsNgoView;
 import com.owb.playhelp.client.view.orphanage.AddOrphanageView;
 import com.owb.playhelp.client.view.orphanage.AddOrphanageStatusView;
 import com.owb.playhelp.client.view.project.AddProjectView;
@@ -97,10 +99,13 @@ import com.owb.playhelp.client.event.user.UserPreferenceEditCancelEventHandler;
 import com.owb.playhelp.client.event.ngo.NgoUpdateEvent;
 import com.owb.playhelp.client.event.ngo.ShowPopupAddNgoEvent;
 import com.owb.playhelp.client.event.ngo.ShowPopupAddNgoEventHandler;
+import com.owb.playhelp.client.event.ngo.ShowPopupDetailsNgoEventHandler;
 import com.owb.playhelp.client.event.ngo.ShowPopupReportAbuseNgoEvent;
 import com.owb.playhelp.client.event.ngo.ShowPopupReportAbuseNgoEventHandler;
 import com.owb.playhelp.client.event.ngo.NgoRemoveEvent;
 import com.owb.playhelp.client.event.ngo.NgoRemoveEventHandler;
+import com.owb.playhelp.client.event.ngo.ShowPopupDetailsNgoEvent;
+import com.owb.playhelp.client.event.ngo.ShowPopupDetailsNgoEventHandler;
 import com.owb.playhelp.client.event.orphanage.ShowPopupAddOrphanageEvent;
 import com.owb.playhelp.client.event.orphanage.ShowPopupAddOrphanageEventHandler;
 import com.owb.playhelp.client.event.orphanage.ShowPopupAddOrphanageStatusEvent;
@@ -213,6 +218,12 @@ public class PathGuide implements ValueChangeHandler<String>  {
 		thePath.addHandler(OrphanageHomeEvent.TYPE, new OrphanageHomeEventHandler(){
 			public void onOrphanageHomeRequest(OrphanageHomeEvent event){
 				History.newItem("orphome");
+			}
+		});
+		thePath.addHandler(ShowPopupDetailsNgoEvent.TYPE, new ShowPopupDetailsNgoEventHandler(){
+			public void onShowPopupDetailsNgo(ShowPopupDetailsNgoEvent event){
+				ShowDetailsNgoPresenter showDetailsNgoPresenter = new ShowDetailsNgoPresenter(event.getNgo(),currentUser, ngoService, thePath,new ShowDetailsNgoView(event.getClickPoint()));
+				showDetailsNgoPresenter.go(Owb.get().getMainPanel());
 			}
 		});
 		thePath.addHandler(ShowPopupReportAbuseNgoEvent.TYPE, new ShowPopupReportAbuseNgoEventHandler(){

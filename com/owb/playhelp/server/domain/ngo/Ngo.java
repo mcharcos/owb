@@ -138,6 +138,31 @@ public class Ngo implements Serializable, Cacheable {
 		oInfo.setValid(o.isValid());
 		oInfo.setConfirm(false);
 		
+		// Fill the information about members, followers,...
+		Set<String> nameList = new HashSet<String>();
+		if (o.getMembers() != null){
+			for(String m:o.getMembers()){
+				nameList.add(UserProfile.findUserProfile(new UserProfile(m)).getName());
+			}
+		} 
+		oInfo.setMemberList(nameList);
+
+		nameList = new HashSet<String>();
+		if (o.getMemberRequests() != null){
+			for(String m:o.getMemberRequests()){
+				nameList.add(UserProfile.findUserProfile(new UserProfile(m)).getName());
+			}
+		} 
+		oInfo.setMemberReqList(nameList);
+
+		nameList = new HashSet<String>();
+		if (o.getFollowers() != null){
+			for(String m:o.getFollowers()){
+				nameList.add(UserProfile.findUserProfile(new UserProfile(m)).getName());
+			}
+		} 
+		oInfo.setFollowerList(nameList);
+		
 		return oInfo;
 	}
 
@@ -151,7 +176,7 @@ public class Ngo implements Serializable, Cacheable {
 		if (o.isMember(userUniqueId)) oInfo.activateMember();
 		if (o.isFollower(userUniqueId)) oInfo.activateFollower();
 
-		oInfo.setValid(o.isValid());
+		//oInfo.setValid(o.isValid());
 		oInfo.setConfirm(o.isConfirmed(userUniqueId,o));
 		
 		return oInfo;
@@ -170,6 +195,8 @@ public class Ngo implements Serializable, Cacheable {
 	    Query q = pm.newQuery(Ngo.class, "uniqueId == :uniqueId");
 	    q.setUnique(true);
 	
+	    boolean persistConfirmationBadge = false;
+	    ConfirmationBadge confB = null;
 	    // perform the query and creation under transactional control,
 	    // to prevent another process from creating an acct with the same id.
 	    try {
@@ -182,9 +209,8 @@ public class Ngo implements Serializable, Cacheable {
 	          detached = pm.detachCopy(oneResult);
 	        } else {
 	          log.info("Ngo " + uniqueId + " does not exist, creating...");
-	          // Create friends from Google+
-	          //user.setKarma(new Karma());
-	          ConfirmationBadge confB = ConfirmationBadge.findOrCreateNgo(new ConfirmationBadge(ngo));
+	          confB = new ConfirmationBadge(ngo);
+	          persistConfirmationBadge = true;
 	          pm.makePersistent(ngo);
 	          detached = pm.detachCopy(ngo);
 	        }
@@ -219,7 +245,9 @@ public class Ngo implements Serializable, Cacheable {
 	      q.closeAll();
 	    }
 	    
-	    
+	    if (persistConfirmationBadge) {
+	    	ConfirmationBadge newConfB = ConfirmationBadge.findOrCreateNgo(confB);
+	    }
 	    return detached;
 	  }
 	
@@ -286,7 +314,7 @@ public class Ngo implements Serializable, Cacheable {
 	}
 	
 	public ConfirmationBadge getConfirmationBadge(){
-		return ConfirmationBadge.findOrCreateNgo(new ConfirmationBadge(this));
+		return ConfirmationBadge.findNgo(this);
 	}
 	
 	public String getConfirmationBadgeId(){

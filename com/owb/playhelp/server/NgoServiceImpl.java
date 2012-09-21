@@ -216,6 +216,69 @@ public class NgoServiceImpl extends RemoteServiceServlet implements NgoService {
 		// store it if it does not exist already
 		//return Ngo.toInfo(addedNgo);
 	}
+	
+    @Override
+    public NgoInfo confirmNgo(NgoInfo ngoInfo){
+
+		Ngo ngo = Ngo.findOrCreateNgo(new Ngo(ngoInfo));
+		
+	    PersistenceManager pm = PMFactory.getTxnPm();
+	    UserProfile user = LoginHelper.getLoggedUser(getThreadLocalRequest().getSession(), pm);
+		//ngo.addConfirmation(user);
+	    if (user == null) return null;
+	    pm.close();
+	    
+	    pm = PMFactory.getTxnPm();
+		//String userUniqueId = user.getUniqueId();
+		
+		// Now update ConfirmationBadge
+		ConfirmationBadge confB = ngo.getConfirmationBadge();
+		confB.addConfirmation(user);
+				
+		try {
+			for (int i = 0; i < NUM_RETRIES; i++){
+				pm.currentTransaction().begin();
+				pm.makePersistent(confB);
+				try {
+			          logger.fine("starting commit");
+			          pm.currentTransaction().commit();
+			          logger.fine("commit was successful");
+			          break;
+			    } catch (JDOCanRetryException e1) {
+			          if (i == (NUM_RETRIES - 1)) {
+			            throw e1;
+			          }
+			        }
+			} // end for
+		}catch (Exception e) {
+		      e.printStackTrace();
+		      logger.warning(e.getMessage());
+		      ngoInfo = null;
+		} finally {
+			if (pm.currentTransaction().isActive()){
+				pm.currentTransaction().rollback();
+				logger.warning("transaction rollback");
+				ngoInfo = null;
+			}
+			pm.close();
+		}
+			    
+        // Update the ngoInfo that will be returned
+        if (ngoInfo != null) ngoInfo = Ngo.toInfo(ngo,user.getUniqueId());
+		return ngoInfo;
+		
+		// Check if name changed. Name is the key for UniqueId. 
+		// If it changed we have to verify that the new name does not overlap with 
+		// an existing name. I guess, for simplicity now, we should keep the name unchangeable
+		// but we could perform these kind of tests in the future if we want something more sophisticated
+		
+		//Ngo addedNgo = addNgo(ngoInfo);
+		
+		// do something to store the information
+		// probably creating a Ngo from NgoInfo and
+		// store it if it does not exist already
+		//return Ngo.toInfo(addedNgo);
+	}
     
 	@Override
 	public ArrayList<NgoInfo> getNgoList(){
