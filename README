@@ -42,3 +42,20 @@ More details to come...
 SERVER:
 
 SHARED:
+
+***********************************
+  Installation
+***********************************
+1. Install Eclipse
+2. Open eclipse and browse to Help > Install New Software > Put the url http://dl.google.com/eclipse/plugin/<version>
+   Replace the <version> with whatever eclipse version that you have.
+3. Type 'Google' in the search term and select
+   a. Developer Tools
+   b. Google plugin for eclipse
+   c. GWT designer for GPE
+   d. SDKs
+4. Now type in "GWT" and select
+   a. GWT Designer Core
+   b. GWT Designer Editor
+   c. GWT Designer GPE
+5. Install
