@@ -1,6 +1,6 @@
 Introduction
 ============
-[Orphanage Without Borders (OWB)](orphanagewithoutborders.org) is a volunteer non-profit organization aiming to improve the live quality of children in orphanages and abandoned children.
+[Orphanage Without Borders (OWB)](http://orphanagewithoutborders.org) is a volunteer non-profit organization aiming to improve the live quality of children in orphanages and abandoned children.
 
 - OWB is an application made in GWT + Java that aims to increase collaboration between NGOs and improve the efficiency of the work to the cause of orphan children.
 - It would also be a portal for companies and individuals to participate or contribute in different ways (donations, volunteering, fund-raising).
