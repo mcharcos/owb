@@ -1,5 +1,6 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+    xmlns:app='urn:import:com.owb.playhelp.client.view'
 	xmlns:g="urn:import:com.google.gwt.user.client.ui">
 	<ui:style src="../../resources/GlobalStyles.css" >
 	</ui:style>
@@ -75,7 +76,7 @@
 				<tr>
 					<td>Admin Report:</td>
 					<td>
-						<g:Label ui:field='adminReportField'>No admin report</g:Label>
+						<app:ListReportView ui:field='adminReportField'/>
 					</td>
 				</tr>
 			</table>

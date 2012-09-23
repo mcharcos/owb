@@ -37,6 +37,7 @@ import com.owb.playhelp.client.event.ngo.NgoUpdateEvent;
 import com.owb.playhelp.client.helper.ClickPoint;
 
 import java.util.Set;
+import java.util.List;
 
 public class NgoMapMarkerInfoPresenter implements Presenter {
 	public interface Display {
@@ -77,7 +78,7 @@ public class NgoMapMarkerInfoPresenter implements Presenter {
 		eventBus.addHandler(NgoUpdateEvent.TYPE, new NgoUpdateEventHandler(){
 	    	  public void onNgoUpdate(NgoUpdateEvent event){
 	    		  NgoInfo newNgo = event.getUpdatedNgo();
-	    		  Set<String> foo = newNgo.getAdminReportList();
+	    		  List<String> foo = newNgo.getAdminReportList();
 	    		  // update project info in the marker
 	    		  if (ngo.getUniqueId() == event.getUpdatedNgo().getUniqueId()){	    			  
 	    			  updateNgo(event.getUpdatedNgo());

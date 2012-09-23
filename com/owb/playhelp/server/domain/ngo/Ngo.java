@@ -7,6 +7,8 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.List;
+import java.util.ArrayList;
 import java.util.logging.Logger;
 import java.util.UUID;
 
@@ -139,7 +141,7 @@ public class Ngo implements Serializable, Cacheable {
 		oInfo.setConfirm(false);
 		
 		// Fill the information about members, followers,...
-		Set<String> nameList = new HashSet<String>();
+		List<String> nameList = new ArrayList<String>();
 		if (o.getMembers() != null){
 			for(String m:o.getMembers()){
 				nameList.add(UserProfile.findUserProfile(new UserProfile(m)).getName());
@@ -147,7 +149,7 @@ public class Ngo implements Serializable, Cacheable {
 		} 
 		oInfo.setMemberList(nameList);
 
-		nameList = new HashSet<String>();
+		nameList = new ArrayList<String>();
 		if (o.getMemberRequests() != null){
 			for(String m:o.getMemberRequests()){
 				nameList.add(UserProfile.findUserProfile(new UserProfile(m)).getName());
@@ -155,7 +157,7 @@ public class Ngo implements Serializable, Cacheable {
 		} 
 		oInfo.setMemberReqList(nameList);
 
-		nameList = new HashSet<String>();
+		nameList = new ArrayList<String>();
 		if (o.getFollowers() != null){
 			for(String m:o.getFollowers()){
 				nameList.add(UserProfile.findUserProfile(new UserProfile(m)).getName());

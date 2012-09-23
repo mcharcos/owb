@@ -17,6 +17,7 @@ import com.google.gwt.user.client.ui.HasText;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.Widget;
 import com.owb.playhelp.client.helper.ClickPoint;
+import com.owb.playhelp.client.view.ListReportView;
 import com.owb.playhelp.client.presenter.ngo.ShowDetailsNgoPresenter;
 import com.google.gwt.user.client.ui.PopupPanel;
 
@@ -42,7 +43,8 @@ public class ShowDetailsNgoView extends PopupPanel implements ShowDetailsNgoPres
 	}
 	
 	@UiField Label nameField,descField,addressField,phoneField,emailField,webField;
-	@UiField Label membersField,membersReqField,followersField,abuseReportField,adminReportField;
+	@UiField Label membersField,membersReqField,followersField,abuseReportField;
+	@UiField ListReportView adminReportField;
 	@UiField
 	Anchor okBut;
 
@@ -108,7 +110,7 @@ public class ShowDetailsNgoView extends PopupPanel implements ShowDetailsNgoPres
 		  return abuseReportField;
 	  }
 	  @Override
-	  public Label getAdminReportField(){
+	  public ListReportView getAdminReportField(){
 		  return adminReportField;
 	  }
 

@@ -57,6 +57,10 @@ public interface Resources extends ClientBundle {
     @Source("radioSelTop.gif")
     ImageResource radioSelLogo();
     
+
+	@Source("propertyButton.png")
+	ImageResource propertyButton();
+    
     // Map images
     @Source("NgoMapIcon2.gif")
     ImageResource ngoMapIcon();

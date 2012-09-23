@@ -3,6 +3,7 @@
  */
 package com.owb.playhelp.client.presenter.ngo;
 
+import java.util.List;
 import java.util.Set;
 
 import com.google.gwt.core.client.GWT;
@@ -31,6 +32,7 @@ import com.owb.playhelp.client.event.ngo.NgoUpdateEvent;
 import com.owb.playhelp.client.helper.RPCCall;
 import com.owb.playhelp.client.service.LoginServiceAsync;
 import com.owb.playhelp.client.service.ngo.NgoServiceAsync;
+import com.owb.playhelp.client.view.ListReportView;
 import com.owb.playhelp.shared.ChapterInfo;
 import com.owb.playhelp.shared.orphanage.OrphanageInfo;
 import com.owb.playhelp.shared.UserProfileInfo;
@@ -53,7 +55,7 @@ public class ShowDetailsNgoPresenter implements Presenter {
 	    Label getMembersReqField();
 	    Label getFollowersField();
 	    Label getAbuseReportField();
-	    Label getAdminReportField();
+	    ListReportView getAdminReportField();
 	}
 
 	private final SimpleEventBus eventBus;
@@ -105,13 +107,13 @@ public class ShowDetailsNgoPresenter implements Presenter {
 		this.display.getMembersReqField().setText(this.getMemberReqListField(ngo));
 		this.display.getFollowersField().setText(this.getFollowerListField(ngo));
 		this.display.getAbuseReportField().setText(this.getAbuseReportListField(ngo));
-		this.display.getAdminReportField().setText(this.getAdminReportListField(ngo));
+		this.display.getAdminReportField().setData(ngo.getAdminReportList());
 	}
 	
 	
 	private String getMemberListField(NgoInfo ngo){
 		
-		Set<String> oList = ngo.getMemberList(); 
+		List<String> oList = ngo.getMemberList(); 
 		if (oList == null) return "No members";
 		
 		String listField = "";
@@ -124,7 +126,7 @@ public class ShowDetailsNgoPresenter implements Presenter {
 	}
 	private String getMemberReqListField(NgoInfo ngo){
 		
-		Set<String> oList = ngo.getMemberReqList(); 
+		List<String> oList = ngo.getMemberReqList(); 
 		if (oList == null) return "No members";
 		
 		String listField = "";
@@ -137,7 +139,7 @@ public class ShowDetailsNgoPresenter implements Presenter {
 	}
 	private String getFollowerListField(NgoInfo ngo){
 		
-		Set<String> oList = ngo.getFollowerList(); 
+		List<String> oList = ngo.getFollowerList(); 
 		if (oList == null) return "No members";
 		
 		String listField = "";
@@ -151,7 +153,7 @@ public class ShowDetailsNgoPresenter implements Presenter {
 	  
 	private String getAbuseReportListField(NgoInfo ngo){
 		
-		Set<String> oList = ngo.getAbuseReportList(); 
+		List<String> oList = ngo.getAbuseReportList(); 
 		if (oList == null) return "No members";
 		
 		String listField = "";
@@ -165,21 +167,7 @@ public class ShowDetailsNgoPresenter implements Presenter {
 	  
 	private String getNgoReportListField(NgoInfo ngo){
 		
-		Set<String> oList = ngo.getNgoReportList(); 
-		if (oList == null) return "No members";
-		
-		String listField = "";
-		
-		for (String m:oList){
-			listField = listField + "|" + m + "|";
-		}
-		return listField;
-		
-	}
-	  
-	private String getAdminReportListField(NgoInfo ngo){
-		
-		Set<String> oList = ngo.getAdminReportList(); 
+		List<String> oList = ngo.getNgoReportList(); 
 		if (oList == null) return "No members";
 		
 		String listField = "";

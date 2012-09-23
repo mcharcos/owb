@@ -1,7 +1,7 @@
 package com.owb.playhelp.shared.ngo;
 
 import java.io.Serializable;
-import java.util.Set;
+import java.util.List;
 
 import com.google.gwt.maps.client.Maps;
 import com.google.gwt.maps.client.geocode.Geocoder;
@@ -26,12 +26,12 @@ import com.owb.playhelp.client.helper.MapHelper;
 	private boolean confirmed;
 	private boolean member;
 	private boolean follower;
-	private Set<String> memberList;
-	private Set<String> memberReqList;
-	private Set<String> followerList;
-	private Set<String> abuseReportList;
-	private Set<String> ngoReportList;
-	private Set<String> adminReportList;
+	private List<String> memberList;
+	private List<String> memberReqList;
+	private List<String> followerList;
+	private List<String> abuseReportList;
+	private List<String> ngoReportList;
+	private List<String> adminReportList;
 
 	private boolean isApiLoaded;
 	
@@ -138,22 +138,22 @@ import com.owb.playhelp.client.helper.MapHelper;
 		return uniqueId;
 	}
 	
-	public Set<String> getMemberList(){
+	public List<String> getMemberList(){
 		return memberList;
 	}
-	public Set<String> getMemberReqList(){
+	public List<String> getMemberReqList(){
 		return memberReqList;
 	}
-	public Set<String> getFollowerList(){
+	public List<String> getFollowerList(){
 		return followerList;
 	}
-	public Set<String> getAbuseReportList(){
+	public List<String> getAbuseReportList(){
 		return abuseReportList;
 	}
-	public Set<String> getNgoReportList(){
+	public List<String> getNgoReportList(){
 		return ngoReportList;
 	}
-	public Set<String> getAdminReportList(){
+	public List<String> getAdminReportList(){
 		return adminReportList;
 	}
 
@@ -190,22 +190,22 @@ import com.owb.playhelp.client.helper.MapHelper;
 		this.uniqueId = uniqueId;
 	}
 
-	public void setMemberList(Set<String> memberList){
+	public void setMemberList(List<String> memberList){
 		this.memberList = memberList;
 	}
-	public void setMemberReqList(Set<String> memberReqList){
+	public void setMemberReqList(List<String> memberReqList){
 		this.memberReqList = memberReqList;
 	}
-	public void setFollowerList(Set<String> followerList){
+	public void setFollowerList(List<String> followerList){
 		this.followerList = followerList;
 	}
-	public void setAbuseReportList(Set<String> abuseReportList){
+	public void setAbuseReportList(List<String> abuseReportList){
 		this.abuseReportList = abuseReportList;
 	}
-	public void setNgoReportList(Set<String> ngoReportList){
+	public void setNgoReportList(List<String> ngoReportList){
 		this.ngoReportList = ngoReportList;
 	}
-	public void setAdminReportList(Set<String> adminReportList){
+	public void setAdminReportList(List<String> adminReportList){
 		this.adminReportList = adminReportList;
 	}
 
