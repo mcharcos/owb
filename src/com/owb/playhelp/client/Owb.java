@@ -42,6 +42,7 @@ import com.owb.playhelp.client.event.project.ProjectAvailableEvent;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.RunAsyncCallback;
+import com.google.gwt.dom.client.Document;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.KeyCodes;
@@ -173,6 +174,11 @@ public class Owb implements EntryPoint {
 
 		
 		//doSuperUser();
+		
+		// set the title of the browser window
+		if (Document.get() != null) {
+			Document.get().setTitle("Orphanage Without Borders"); // TODO move it to properties file
+		}
 		showCurrentUserView();
 	}
 
