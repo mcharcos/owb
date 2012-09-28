@@ -1,7 +1,7 @@
 /** 
  * Copyright 2011 Miguel Charcos Llorens
  */
-package com.owb.playhelp.client.presenter;
+package com.owb.playhelp.client.presenter.web;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.HasClickHandlers;
@@ -19,13 +19,11 @@ import com.google.gwt.user.client.ui.Widget;
 import com.owb.playhelp.client.helper.RPCCall;
 import com.owb.playhelp.client.service.LoginServiceAsync;
 import com.owb.playhelp.shared.UserProfileInfo;
+import com.owb.playhelp.client.presenter.Presenter;
 
-public class LeftPanelPresenter implements Presenter {
+public class MainMenuPresenter implements Presenter {
 	public interface Display {
 		Widget asWidget();
-		VerticalPanel getProfilePanel();
-		VerticalPanel getTestPanel();
-		VerticalPanel getMenuPanel();
 	}
 
 	private final SimpleEventBus eventBus;
@@ -33,7 +31,7 @@ public class LeftPanelPresenter implements Presenter {
 
 	private UserProfileInfo currentUser;
 
-	public LeftPanelPresenter(UserProfileInfo currentUser,
+	public MainMenuPresenter(UserProfileInfo currentUser,
 			SimpleEventBus eventBus, Display display) {
 		this.currentUser = currentUser;
 		this.eventBus = eventBus;

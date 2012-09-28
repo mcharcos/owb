@@ -57,7 +57,27 @@ public interface Resources extends ClientBundle {
     @Source("radioSelTop.gif")
     ImageResource radioSelLogo();
     
+    // The new desigh September 27th 2012
+    @Source("TopPanelMain.jpg")
+    ImageResource name3Logo();
+    @Source("NewsIconPanel.jpg")
+    ImageResource newsLogo2();
+    @Source("MapIconPanel.jpg")
+    ImageResource worldLogo2();
+    @Source("FriendsIconPanel.jpg")
+    ImageResource friendLogo2();
+    
+    @Source("NewsIconPanelSel.jpg")
+    ImageResource newsSelLogo2();
+    @Source("MapIconPanelSel.jpg")
+    ImageResource worldSelLogo2();
+    @Source("FriendsIconPanelSel.jpg")
+    ImageResource friendSelLogo2();
 
+    @Source("TopLeftPanel.jpg")
+    ImageResource nameLeftLogo();
+    
+    
 	@Source("propertyButton.png")
 	ImageResource propertyButton();
     

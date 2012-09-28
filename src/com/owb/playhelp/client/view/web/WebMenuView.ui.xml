@@ -1,0 +1,18 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+		.important {
+			font-weight: bold;
+		}
+	</ui:style>
+	<g:HTMLPanel>
+		Join the OWB Network
+		Are you interested in Volunteering with OWB?
+		What Makes Us Different?
+		History
+		Why?
+		Orphanage Guidelines
+		The People Behind OWB
+	</g:HTMLPanel>
+</ui:UiBinder> 

@@ -54,8 +54,11 @@
 		{
 		    background-color            :   #fff;
 		}
+		.backgroundall {  
+	        background-color: #fff;
+         }  
 	</ui:style>
-	<g:HTMLPanel>
+	<g:HTMLPanel styleName='{style.backgroundall}'>
 		<table>
 		<tr>
 		    <div class="{style.topBar}"><g:HorizontalPanel ui:field='barPanel'/></div>

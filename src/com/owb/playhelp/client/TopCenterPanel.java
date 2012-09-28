@@ -24,17 +24,11 @@ public class TopCenterPanel extends Composite implements TopCenterPanelPresenter
 	}
 
 	@UiField
-	Image emailPanel;
-	@UiField
 	Image newsPanel;
 	@UiField
 	Image worldPanel;
 	@UiField
 	Image friendPanel;
-	@UiField
-	Image blogPanel;
-	@UiField
-	Image radioPanel;
 	@UiField
 	Image owbPanel;
 	
@@ -46,9 +40,6 @@ public class TopCenterPanel extends Composite implements TopCenterPanelPresenter
 		return this;
 	}
 
-	public Image getEmailPanel() {
-	    return emailPanel;
-	}
 	public Image getNewsPanel() {
 	    return newsPanel;
 	}
@@ -58,13 +49,7 @@ public class TopCenterPanel extends Composite implements TopCenterPanelPresenter
 	public Image getFriendPanel() {
 	    return friendPanel;
 	}
-	public Image getBlogPanel() {
-	    return blogPanel;
-	}
-	public Image getRadioPanel() {
-	    return radioPanel;
-	}
 	public Image getOwbPanel() {
-	    return owbPanel;
+	    return friendPanel;
 	}
 }

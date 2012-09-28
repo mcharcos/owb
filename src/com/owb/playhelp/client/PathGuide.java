@@ -25,6 +25,7 @@ import com.owb.playhelp.client.presenter.ChapterHomePresenter;
 import com.owb.playhelp.client.presenter.FriendHomePresenter;
 import com.owb.playhelp.client.presenter.NgoHomePresenter;
 import com.owb.playhelp.client.presenter.OrphanageHomePresenter;
+import com.owb.playhelp.client.presenter.UserBadgePresenter;
 import com.owb.playhelp.client.presenter.project.ProjectHomePresenter;
 import com.owb.playhelp.client.presenter.project.ProjectMainPresenter;
 import com.owb.playhelp.client.presenter.UserPreferenceEditPresenter;
@@ -52,6 +53,7 @@ import com.owb.playhelp.client.view.NewsHomeView;
 import com.owb.playhelp.client.view.FriendsHomeView;
 import com.owb.playhelp.client.view.RadioHomeView;
 import com.owb.playhelp.client.view.ContactHomeView;
+import com.owb.playhelp.client.view.UserBadgeView;
 import com.owb.playhelp.client.view.chapter.ChapterHomeView;
 import com.owb.playhelp.client.view.friend.FriendHomeView;
 import com.owb.playhelp.client.view.ngo.NgoHomeView;
@@ -66,6 +68,8 @@ import com.owb.playhelp.client.view.orphanage.OrphanageHomeView;
 import com.owb.playhelp.client.view.project.ProjectHomeView;
 import com.owb.playhelp.client.view.project.ProjectMainView;
 import com.owb.playhelp.client.view.UserPreferenceEditView;
+import com.owb.playhelp.client.event.ShowWebHomeEvent;
+import com.owb.playhelp.client.event.ShowWebHomeEventHandler;
 import com.owb.playhelp.client.event.MainViewEvent;
 import com.owb.playhelp.client.event.MainViewEventHandler;
 import com.owb.playhelp.client.event.LoginEvent;
@@ -127,7 +131,9 @@ public class PathGuide implements ValueChangeHandler<String>  {
 	Presenter presenter = null;
 
 	private String lastView = "0";
+	private String lasWebView = "0";
 	private Geocoder geocoder;
+	private boolean showsWeb = false;
 	
 	
 	public PathGuide(LoginServiceAsync loginService, UserServiceAsync userService, NgoServiceAsync ngoService, OrphanageServiceAsync orphanageService, 
@@ -151,6 +157,13 @@ public class PathGuide implements ValueChangeHandler<String>  {
 		projectGuide.go();
 		
 		History.addValueChangeHandler(this);
+		thePath.addHandler(ShowWebHomeEvent.TYPE, new ShowWebHomeEventHandler(){
+			public void onShowWebHomeRequest(ShowWebHomeEvent event){
+				History.newItem("web");
+				// I should user History.newItem(lastView); to return to the last view
+				// before clicking preference link. But I am not sure how to handle this yet
+			}
+		});
 		thePath.addHandler(PreferencesEditEvent.TYPE, new PreferencesEditEventHandler(){
 			public void onEditPreference(PreferencesEditEvent event){
 				History.newItem("edituser");
@@ -362,6 +375,23 @@ public class PathGuide implements ValueChangeHandler<String>  {
 		String token = event.getValue();
 		if (token != null) {
 			Presenter presenter = null;
+			if (token.contains("web")) {
+				if (!showsWeb){
+					/*
+					WebMenuPresenter webMenuPresenter = new WebMenuPresenter(loginService, thePath, new WebMenuView());
+					webMenuPresenter.go(Owb.get().getActionPanel().getProfilePanel());	
+					*/
+					showsWeb = true;
+				}
+				return;
+	        } else {
+				if (showsWeb){
+					UserBadgePresenter userBadgePresenter = new UserBadgePresenter(loginService, thePath, new UserBadgeView());
+					userBadgePresenter.go(Owb.get().getActionPanel().getProfilePanel());	
+					showsWeb = false;
+				}
+	        	    	  
+	        }
 			if (token.equals("edituser")) {
 				//Owb.get().getMainTitle().setText("User Preferences");
 				presenter = new UserPreferenceEditPresenter(currentUser, userService, thePath, new UserPreferenceEditView());

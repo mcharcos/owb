@@ -16,6 +16,7 @@ import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.user.client.Window;
 import com.owb.playhelp.client.resources.Resources;
+import com.owb.playhelp.client.event.ShowWebHomeEvent;
 import com.owb.playhelp.client.event.NewsHomeEvent;
 import com.owb.playhelp.client.event.MainHomeEvent;
 import com.owb.playhelp.client.event.FriendsHomeEvent;
@@ -27,12 +28,9 @@ import com.owb.playhelp.client.presenter.MainMenuPresenter.Display;
 public class TopCenterPanelPresenter implements Presenter {
 	public interface Display {
 		Widget asWidget();
-		public Image getEmailPanel();
 		public Image getNewsPanel();
 		public Image getWorldPanel();
 		public Image getFriendPanel();
-		public Image getBlogPanel();
-		public Image getRadioPanel();
 		public Image getOwbPanel();
 	}
 
@@ -45,7 +43,8 @@ public class TopCenterPanelPresenter implements Presenter {
 		this.display = display;
 	}
 	public void bind() {
-		  this.display.getEmailPanel().addMouseOverHandler(new MouseOverHandler(){
+		/*  
+		this.display.getEmailPanel().addMouseOverHandler(new MouseOverHandler(){
 			  public void onMouseOver(MouseOverEvent event){
 				  display.getEmailPanel().setResource(Resources.INSTANCE.emailSelLogo());
 			  }
@@ -60,14 +59,15 @@ public class TopCenterPanelPresenter implements Presenter {
 					 eventBus.fireEvent(new ContactHomeEvent());
 				 }
 			  });
+		  */
 		  this.display.getNewsPanel().addMouseOverHandler(new MouseOverHandler(){
 			  public void onMouseOver(MouseOverEvent event){
-				  display.getNewsPanel().setResource(Resources.INSTANCE.newsSelLogo());
+				  display.getNewsPanel().setResource(Resources.INSTANCE.newsSelLogo2());
 			  }
 		  });
 		  this.display.getNewsPanel().addMouseOutHandler(new MouseOutHandler(){
 			  public void onMouseOut(MouseOutEvent event){
-				  display.getNewsPanel().setResource(Resources.INSTANCE.newsLogo());
+				  display.getNewsPanel().setResource(Resources.INSTANCE.newsLogo2());
 			  }
 		  });
 		  this.display.getNewsPanel().addClickHandler(new ClickHandler(){
@@ -77,12 +77,12 @@ public class TopCenterPanelPresenter implements Presenter {
 		  });
 		  this.display.getWorldPanel().addMouseOverHandler(new MouseOverHandler(){
 			  public void onMouseOver(MouseOverEvent event){
-				  display.getWorldPanel().setResource(Resources.INSTANCE.worldSelLogo());
+				  display.getWorldPanel().setResource(Resources.INSTANCE.worldSelLogo2());
 			  }
 		  });
 		  this.display.getWorldPanel().addMouseOutHandler(new MouseOutHandler(){
 			  public void onMouseOut(MouseOutEvent event){
-				  display.getWorldPanel().setResource(Resources.INSTANCE.worldLogo());
+				  display.getWorldPanel().setResource(Resources.INSTANCE.worldLogo2());
 			  }
 		  });
 		  this.display.getWorldPanel().addClickHandler(new ClickHandler(){
@@ -92,12 +92,12 @@ public class TopCenterPanelPresenter implements Presenter {
 			  });
 		  this.display.getFriendPanel().addMouseOverHandler(new MouseOverHandler(){
 			  public void onMouseOver(MouseOverEvent event){
-				  display.getFriendPanel().setResource(Resources.INSTANCE.friendSelLogo());
+				  display.getFriendPanel().setResource(Resources.INSTANCE.friendSelLogo2());
 			  }
 		  });
 		  this.display.getFriendPanel().addMouseOutHandler(new MouseOutHandler(){
 			  public void onMouseOut(MouseOutEvent event){
-				  display.getFriendPanel().setResource(Resources.INSTANCE.friendLogo());
+				  display.getFriendPanel().setResource(Resources.INSTANCE.friendLogo2());
 			  }
 		  });
 		  this.display.getFriendPanel().addClickHandler(new ClickHandler(){
@@ -105,6 +105,7 @@ public class TopCenterPanelPresenter implements Presenter {
 					 eventBus.fireEvent(new FriendsHomeEvent());
 				 }
 			  });
+		  /*
 		  this.display.getBlogPanel().addMouseOverHandler(new MouseOverHandler(){
 			  public void onMouseOver(MouseOverEvent event){
 				  display.getBlogPanel().setResource(Resources.INSTANCE.blogSelLogo());
@@ -130,9 +131,12 @@ public class TopCenterPanelPresenter implements Presenter {
 					 eventBus.fireEvent(new RadioHomeEvent());
 				 }
 			  });
+		  */
 		  this.display.getOwbPanel().addClickHandler(new ClickHandler(){
 				 public void onClick(ClickEvent event){
-					 Window.Location.assign("http://www.orphanagewithoutborders.org");
+					 //Window.Location.assign("http://www.orphanagewithoutborders.org");
+					 //eventBus.fireEvent(new MainHomeEvent());
+				     eventBus.fireEvent(new ShowWebHomeEvent());
 				 }
 			  });
 	}

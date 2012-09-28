@@ -12,7 +12,9 @@ import com.google.gwt.user.client.ui.HasText;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 
-public class LeftPanel extends Composite {
+import com.owb.playhelp.client.presenter.LeftPanelPresenter;
+
+public class LeftPanel extends Composite implements LeftPanelPresenter.Display {
 
 	private static LeftPanelUiBinder uiBinder = GWT
 			.create(LeftPanelUiBinder.class);

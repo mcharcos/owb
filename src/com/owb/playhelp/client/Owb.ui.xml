@@ -12,20 +12,30 @@
             gwt-image: 'backall'; 
 			position: absolute;  
          }  
+         .horizontalCenterStyle{
+			width: 100%;
+            background-color:white;
+		}
+         .horizontalTopStyle{
+			width: 100%;
+			height: 50px;
+            background-color:white;
+		}
+
 	</ui:style>
 	
-	<g:DockLayoutPanel unit='EM' styleName='{style.backgroundall}'>
+	<g:DockLayoutPanel unit='EM' styleName='{style.horizontalCenterStyle}'> 
 	
-		<g:west size='20.0'>
+		<g:west size='22'>
             <app:LeftPanel ui:field='actionPanel' />
 		</g:west>
 
 		<g:center>
-			<g:HTMLPanel styleName='{style.boxPadding}'>
+			<g:HTMLPanel>
 				<!-- <app:CenterPanel ui:field='centerPanel' /> -->
-				<g:HorizontalPanel ui:field='topCenterPanel' />
-				<g:HorizontalPanel ui:field='barPanel' />
-				<g:ScrollPanel ui:field='centerPanel' />
+				<g:HorizontalPanel ui:field='topCenterPanel' styleName='{style.horizontalTopStyle}' />
+				<g:HorizontalPanel ui:field='barPanel' styleName='{style.horizontalCenterStyle}' />
+				<g:ScrollPanel ui:field='centerPanel' styleName='{style.horizontalCenterStyle}' />
 			</g:HTMLPanel>
 		</g:center>
 		

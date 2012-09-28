@@ -318,5 +318,8 @@ public class Owb implements EntryPoint {
 	public ScrollPanel getMainPanel() {
 		return centerPanel;
 	}
+	public LeftPanel getActionPanel() {
+		return actionPanel;
+	}
 	
 }
