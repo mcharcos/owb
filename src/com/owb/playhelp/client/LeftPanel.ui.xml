@@ -13,24 +13,25 @@
 		}
 		.profileContainer {
 			float: right;
-			margin-top: 5px; 
-			width: 180px;
+			margin-top: 0px; 
+			height: 92px;
 			horizontalAlignment: "ALIGN_RIGHT";
 		}
 		.menuContainer {
 			float: right;
 			margin-top: 0px; 
 			height: 92px;
-			horizontalAlignment: "ALIGN_RIGHT";
+			width: 100%;
+			horizontalAlignment: "ALIGN_LEFT";
 		}
 		.backgroundall {  
 	        background-color: #c5f935;
          }  
 	</ui:style>
 	<g:HTMLPanel styleName='{style.backgroundall}'>
-	    <g:Image styleName='{style.menuContainer}' resource='{res.nameLeftLogo}' />
+	    <g:Image styleName='{style.profileContainer}' resource='{res.nameLeftLogo}' />
 		<g:VerticalPanel ui:field='profilePanel' />
+		<g:VerticalPanel styleName='{style.menuContainer}' ui:field='menuPanel'/>
 		<g:VerticalPanel ui:field='testPanel' height='150px'/>
-		<g:VerticalPanel ui:field='menuPanel'/>
 	</g:HTMLPanel>
 </ui:UiBinder> 

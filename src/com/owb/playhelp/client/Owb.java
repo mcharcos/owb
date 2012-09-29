@@ -10,15 +10,16 @@ import com.owb.playhelp.client.presenter.UserBadgePresenter;
 import com.owb.playhelp.client.presenter.UserKarmaPresenter;
 import com.owb.playhelp.client.presenter.SelectionMenuPresenter;
 import com.owb.playhelp.client.presenter.MainMenuPresenter;
-import com.owb.playhelp.client.presenter.CenterPanelPresenter;
 import com.owb.playhelp.client.presenter.TopCenterPanelPresenter;
 import com.owb.playhelp.client.presenter.ngo.NgoMapMarkerInfoPresenter;
+import com.owb.playhelp.client.presenter.web.WebMenuPresenter;
 import com.owb.playhelp.client.view.LoggedOutView;
 import com.owb.playhelp.client.view.UserBadgeView;
 import com.owb.playhelp.client.view.UserKarmaView;
 import com.owb.playhelp.client.view.SelectionMenuView;
 import com.owb.playhelp.client.view.MainMenuView;
 import com.owb.playhelp.client.view.ngo.NgoMapMarkerInfoView;
+import com.owb.playhelp.client.view.web.WebMenuView;
 import com.owb.playhelp.client.helper.RPCCall;
 import com.owb.playhelp.shared.UserProfileInfo;
 import com.owb.playhelp.client.HeaderPanel;
@@ -124,7 +125,7 @@ public class Owb implements EntryPoint {
 	private UserKarmaPresenter userKarmaPresenter = null;
 	//private SelectionMenuPresenter selectionMenuPresenter = null;
 	private MainMenuPresenter selectionMenuPresenter = null;
-	private CenterPanelPresenter centerPanelPresenter = null;
+	private WebMenuPresenter webMenuPresenter = null;
 	private TopCenterPanelPresenter topCenterPanelPresenter = null;
 	
 	/**
@@ -255,9 +256,12 @@ public class Owb implements EntryPoint {
 	  
 	  userBadgePresenter = new UserBadgePresenter(loginService, thePath, new UserBadgeView());
 	  userBadgePresenter.go(actionPanel.getProfilePanel());
+
+	  webMenuPresenter = new WebMenuPresenter(currentUser,thePath, new WebMenuView());
+	  webMenuPresenter.go(actionPanel.getMenuPanel());
 	  
-	  userKarmaPresenter = new UserKarmaPresenter(currentUser, thePath, new UserKarmaView());
-	  userKarmaPresenter.go(actionPanel.getMenuPanel());
+	  //userKarmaPresenter = new UserKarmaPresenter(currentUser, thePath, new UserKarmaView());
+	  //userKarmaPresenter.go(actionPanel.getMenuPanel());
 
 	  //selectionMenuPresenter = new SelectionMenuPresenter(currentUser, thePath, new SelectionMenuView());
 	  //selectionMenuPresenter.go(actionPanel.getMenuPanel());
@@ -267,8 +271,6 @@ public class Owb implements EntryPoint {
 	  topCenterPanelPresenter = new TopCenterPanelPresenter(thePath, new TopCenterPanel());
 	  topCenterPanelPresenter.go(topCenterPanel);
 	  
-	  centerPanelPresenter = new CenterPanelPresenter(currentUser,thePath, new CenterPanel());
-	  centerPanelPresenter.go(barPanel);
 	  
 	  }
 		

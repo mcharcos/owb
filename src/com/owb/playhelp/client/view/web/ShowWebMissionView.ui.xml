@@ -1,0 +1,20 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+		.important {
+			font-weight: bold;
+		}
+	</ui:style>
+	<g:HTMLPanel>
+		<font color='#9152a0'><b>	
+			<h1>Mission statement: </h1>
+			Orphanage Without Borders is a non-profit organization whose mission is to improve the life of children living in orphanages and abandoned children. Our goal is to create a network of organizations that work together to provide children with the acceptable standards of life such as education, health, hygiene, discipline, affection, responsibility, hope of future, shelter, nutrition, clean water, joy and safety. We aim to apply these standards universally, meaning that they will be independent of the nationality, religion, culture, race political opinion or social class of the children or orphanage location.
+			<h1>Goals of the application:</h1>
+		    <UL TYPE="SQUARE">
+			<li>Facilitate the links between organizations and individuals that work in improving specific standards of child lives in order to improve the efficiency of the help by collaborating.</li>
+			<li>Engage people to be informed about the status of the situation and the efforts set to improve it as well as to connect to the problem and actively participate.</li>
+			</UL>
+		</b></font>
+	</g:HTMLPanel>
+</ui:UiBinder> 

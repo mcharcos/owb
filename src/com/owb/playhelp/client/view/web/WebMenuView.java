@@ -9,21 +9,78 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HasText;
+import com.google.gwt.user.client.ui.MenuBar;
+import com.google.gwt.user.client.ui.MenuItem;
+import com.google.gwt.user.client.ui.VerticalPanel;
+import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.Widget;
 
-public class WebMenuView extends Composite implements HasText {
+import com.owb.playhelp.client.presenter.web.WebMenuPresenter;
 
-	private static WebMenuViewUiBinder uiBinder = GWT
-			.create(WebMenuViewUiBinder.class);
 
-	interface WebMenuViewUiBinder extends UiBinder<Widget, WebMenuView> {
+public class WebMenuView extends Composite implements WebMenuPresenter.Display {
+
+	private static CenterPanelUiBinder uiBinder = GWT
+			.create(CenterPanelUiBinder.class);
+
+	interface CenterPanelUiBinder extends UiBinder<Widget, WebMenuView> {
 	}
 
 	public WebMenuView() {
 		initWidget(uiBinder.createAndBindUi(this));
+		//mainMenu.setStyleName(".gwt-MenuBar");
+	}
+	
+	public Widget asWidget(){
+		//mainMenu.setStyleName(".gwt-MenuBar");
+		return this;
 	}
 
-	public WebMenuView(String firstName) {
-		initWidget(uiBinder.createAndBindUi(this));
-	}
+	/*
+	@UiField
+	  HorizontalPanel barPanel;*/
+	
+	@UiField
+	MenuBar mainMenu;
+	@UiField
+	MenuItem addNgoItem;
+	@UiField
+	MenuItem addOrphanageItem;
+	@UiField
+	MenuItem missionItem, goalsItem, differentItem, probsolItem, teamItem;
+	@UiField
+	MenuItem joinusItem;
+
+	/*
+	@Override
+	public HorizontalPanel getBarPanel() {
+		  return barPanel;
+		}*/
+	@Override
+	public MenuItem getAddNgoItem() {
+		  return addNgoItem;
+		}
+	@Override
+	public MenuItem getAddOrphanageItem() {
+		  return addOrphanageItem;
+		}
+	public MenuItem getMissionItem() {
+		  return missionItem;
+		}
+	public MenuItem getGoalsItem() {
+		  return goalsItem;
+		}
+	public MenuItem getDifferentItem() {
+		  return differentItem;
+		}
+	public MenuItem getProblemSolutionItem() {
+		  return probsolItem;
+		}
+	public MenuItem getTeamItem() {
+		  return teamItem;
+		}
+	public MenuItem getJoinusItem() {
+		  return joinusItem;
+		}
 }

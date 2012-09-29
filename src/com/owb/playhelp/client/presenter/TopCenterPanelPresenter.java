@@ -16,7 +16,6 @@ import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.user.client.Window;
 import com.owb.playhelp.client.resources.Resources;
-import com.owb.playhelp.client.event.ShowWebHomeEvent;
 import com.owb.playhelp.client.event.NewsHomeEvent;
 import com.owb.playhelp.client.event.MainHomeEvent;
 import com.owb.playhelp.client.event.FriendsHomeEvent;
@@ -132,13 +131,6 @@ public class TopCenterPanelPresenter implements Presenter {
 				 }
 			  });
 		  */
-		  this.display.getOwbPanel().addClickHandler(new ClickHandler(){
-				 public void onClick(ClickEvent event){
-					 //Window.Location.assign("http://www.orphanagewithoutborders.org");
-					 //eventBus.fireEvent(new MainHomeEvent());
-				     eventBus.fireEvent(new ShowWebHomeEvent());
-				 }
-			  });
 	}
 
 	public void go(final HasWidgets container) {

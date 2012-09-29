@@ -1,0 +1,23 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+		.important {
+			font-weight: bold;
+		}
+	</ui:style>
+	<g:HTMLPanel>
+		<font color='#9152a0'><b>
+	    We UNITE the efforts of many different nonprofit organizations, volunteers, charities, and resource providers, and FOCUS their actions on helping improve orphanages anywhere in the world. We do RESEARCH on the current status of an orphanage to ASSESS the quality of care that it offers. There are a number of guidelines that we check to make this evaluation. The results determine which resources or help we need to PROVIDE to help them strengthen their quality of care. Orphanages that give superior quality of care to their children qualify for financial support and resources to EXPAND their reach, and home, to more orphans.
+		
+		<br></br>
+		Want to hear more?
+		<br></br>
+		<UL TYPE="SQUARE">
+			<LI>Like some other nonprofit organizations, we have satellite chapters, which are groups of volunteers based in different locations. They help us reach out into different communities and care for orphanages in as many places as possible.</LI> 
+			<LI>In order to maintain the highest standards of care in the orphanages that we support, and also for the peace of mind of our donors, and the donors of our affiliate nonprofit organizations, OWB chapter members visit their assigned orphanages on a regular basis.</LI>
+			<LI>Many people like to help because it simply feels good! However, many other people have not had the opportunity to experience that good feeling yet, and we want to pull them into this too. How? Well, one of the ideas we are currently developing is an interactive game where anyone can help in their own way. That's right, a game. Interested? Subscribe to our email list and be notified as soon as it is released.</LI>
+		</UL>
+		</b></font>
+	</g:HTMLPanel>
+</ui:UiBinder> 

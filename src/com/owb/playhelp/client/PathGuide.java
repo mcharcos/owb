@@ -68,8 +68,14 @@ import com.owb.playhelp.client.view.orphanage.OrphanageHomeView;
 import com.owb.playhelp.client.view.project.ProjectHomeView;
 import com.owb.playhelp.client.view.project.ProjectMainView;
 import com.owb.playhelp.client.view.UserPreferenceEditView;
-import com.owb.playhelp.client.event.ShowWebHomeEvent;
-import com.owb.playhelp.client.event.ShowWebHomeEventHandler;
+import com.owb.playhelp.client.view.web.ShowWebMissionView;
+import com.owb.playhelp.client.view.web.ShowWebGoalsView;
+import com.owb.playhelp.client.view.web.ShowWebDifferentView;
+import com.owb.playhelp.client.view.web.ShowWebProblemsSolutionsView;
+import com.owb.playhelp.client.view.web.ShowWebTeamView;
+import com.owb.playhelp.client.view.web.ShowWebJoinView;
+import com.owb.playhelp.client.event.web.ShowWebEvent;
+import com.owb.playhelp.client.event.web.ShowWebEventHandler;
 import com.owb.playhelp.client.event.MainViewEvent;
 import com.owb.playhelp.client.event.MainViewEventHandler;
 import com.owb.playhelp.client.event.LoginEvent;
@@ -131,9 +137,7 @@ public class PathGuide implements ValueChangeHandler<String>  {
 	Presenter presenter = null;
 
 	private String lastView = "0";
-	private String lasWebView = "0";
 	private Geocoder geocoder;
-	private boolean showsWeb = false;
 	
 	
 	public PathGuide(LoginServiceAsync loginService, UserServiceAsync userService, NgoServiceAsync ngoService, OrphanageServiceAsync orphanageService, 
@@ -157,9 +161,9 @@ public class PathGuide implements ValueChangeHandler<String>  {
 		projectGuide.go();
 		
 		History.addValueChangeHandler(this);
-		thePath.addHandler(ShowWebHomeEvent.TYPE, new ShowWebHomeEventHandler(){
-			public void onShowWebHomeRequest(ShowWebHomeEvent event){
-				History.newItem("web");
+		thePath.addHandler(ShowWebEvent.TYPE, new ShowWebEventHandler(){
+			public void onShowWeb(ShowWebEvent event){
+				History.newItem("web"+event.getPage());
 				// I should user History.newItem(lastView); to return to the last view
 				// before clicking preference link. But I am not sure how to handle this yet
 			}
@@ -375,23 +379,42 @@ public class PathGuide implements ValueChangeHandler<String>  {
 		String token = event.getValue();
 		if (token != null) {
 			Presenter presenter = null;
+			if (token.equals("0")) token = "map";
 			if (token.contains("web")) {
-				if (!showsWeb){
-					/*
-					WebMenuPresenter webMenuPresenter = new WebMenuPresenter(loginService, thePath, new WebMenuView());
-					webMenuPresenter.go(Owb.get().getActionPanel().getProfilePanel());	
-					*/
-					showsWeb = true;
-				}
+				Owb.get().getMainPanel().clear();
+				if (token.equals("webmission")) {
+					Owb.get().getMainPanel().add((new ShowWebMissionView()).asWidget());
+		        return;
+		        } 
+				Owb.get().getMainPanel().clear();
+				if (token.equals("webgoals")) {
+					Owb.get().getMainPanel().add((new ShowWebGoalsView()).asWidget());
+		        return;
+		        } 
+				Owb.get().getMainPanel().clear();
+				if (token.equals("webdifferent")) {
+					Owb.get().getMainPanel().add((new ShowWebDifferentView()).asWidget());
+		        return;
+		        } 
+				Owb.get().getMainPanel().clear();
+				if (token.equals("webproblemsolution")) {
+					Owb.get().getMainPanel().add((new ShowWebProblemsSolutionsView()).asWidget());
+		        return;
+		        } 
+				Owb.get().getMainPanel().clear();
+				if (token.equals("webteam")) {
+					Owb.get().getMainPanel().add((new ShowWebTeamView()).asWidget());
+		        return;
+		        }
+				Owb.get().getMainPanel().clear();
+				if (token.equals("webjoinus")) {
+					Owb.get().getMainPanel().add((new ShowWebJoinView()).asWidget());
+		        return;
+		        }
+				
+				
 				return;
-	        } else {
-				if (showsWeb){
-					UserBadgePresenter userBadgePresenter = new UserBadgePresenter(loginService, thePath, new UserBadgeView());
-					userBadgePresenter.go(Owb.get().getActionPanel().getProfilePanel());	
-					showsWeb = false;
-				}
-	        	    	  
-	        }
+	        } 
 			if (token.equals("edituser")) {
 				//Owb.get().getMainTitle().setText("User Preferences");
 				presenter = new UserPreferenceEditPresenter(currentUser, userService, thePath, new UserPreferenceEditView());
@@ -429,12 +452,6 @@ public class PathGuide implements ValueChangeHandler<String>  {
 	        return;
 	      } 
 			if (token.equals("news")) {
-				//Owb.get().getMainTitle().setText("Welcome To Karmagotchi");
-				presenter = new NewsHomePresenter(currentUser,thePath,new NewsHomeView());
-				presenter.go(Owb.get().getMainPanel());
-	        return;
-	      } 
-			if (token.equals("0")) {
 				//Owb.get().getMainTitle().setText("Welcome To Karmagotchi");
 				presenter = new NewsHomePresenter(currentUser,thePath,new NewsHomeView());
 				presenter.go(Owb.get().getMainPanel());

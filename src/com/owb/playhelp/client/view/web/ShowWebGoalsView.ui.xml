@@ -1,0 +1,24 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+		.important {
+			font-weight: bold;
+		}
+	</ui:style>
+	<g:HTMLPanel>
+		<font color='#9152a0'><b>
+	    Orphanage Without Borders is the result of many years of pondering one question:
+  		<br></br><br></br>
+		How can we really help orphans around the world in a sustainable way?
+  		<br></br><br></br>
+		In June of 2011, after countless conversations, ideas, and prayers, three of us decided that it was time to put our ideas into action. We drafted our ideas and started meeting regularly with other people in the Silicon Valley who shared our passion of helping orphan children.
+  		<br></br><br></br>
+		Seeing that more people were genuinely interested in improving these children's lives was very motivating to us, so we began contacting, and volunteering for, other nonprofits in the Bay Area targeting orphan children.
+  		<br></br><br></br>
+		We wrote a detailed document about our organization and created this website. Our next steps will be to continue building our network, identify orphanages that need our help, and apply for 501(c)3 status.
+  		<br></br><br></br>
+		As you can see, we are still in an early stage. Join us and be a part of the creation of this organization!		    
+		</b></font>
+	</g:HTMLPanel>
+</ui:UiBinder> 

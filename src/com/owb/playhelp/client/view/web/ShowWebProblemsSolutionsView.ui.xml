@@ -1,0 +1,36 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+		.important {
+			font-weight: bold;
+		}
+	</ui:style>
+	<g:HTMLPanel>
+		<font color='#9152a0'><b>
+		    Imagine a child. This child lives in a home where the food is scarce and always the same, where the bedroom, bathroom, kitchen and clothes are normally dirty, and where no one gives them affection or attention. Then, you realize that this child is an orphan and has no family to help them or defend them. The only hope for this child? To survive to a certain age when they can become independent. But all the other children who have grown up in this orphanage and left, have only been greeted with grim destinies.
+  			<br></br><br></br>
+			Now imagine the 132 million orphan children out there. Only 10% of them even have a place to stay.
+  			<br></br><br></br>
+			Diseases, conflicts, poverty and natural disasters. These are some of the reasons why a child may be left with no place to call home.
+  			<br></br><br></br>
+			Disease. The number of AIDS orphans is a striking 70,000 orphans per year...well, this is only in South Africa. Around the world, AIDS orphans likely carry the human immunodeficiency virus and are doomed to die during their childhood. Moreover, disabled and sick children are often rejected by their societies.
+  			<br></br><br></br>
+			War. During the last decade, Afghanistan has produced 1.5 million orphans. In addition, many of them have become handicapped and psychologically traumatised as a result of war (UNICEF's The State of World's Children 1996).
+  			<br></br><br></br>
+			Poverty. The truth is that most children living in orphanages have not lost their parents. However, their desperate families simply cannot afford to raise a child and feel forced to place them in an orphanage in order to give them an opportunity to have an education, food, and clothing. In fact, an average of 80% of the children in orphanages have parents.
+  			<br></br><br></br>
+			Natural disasters. People in the USA adopted more than 1000 children from Haiti after the devastating earthquake in the island. In Japan it is estimated that 1400 children lost one parent (Time World July, 10 2011).
+  			<br></br><br></br>
+			These factors not only produce more orphan children, but they also aggravate the circumstances within orphanages that already struggle with hard economic or political situations. In many cases, two or more of these factors are combined (for example, the high number of AIDS orphans and extreme poverty in South Africa), making the quality of life in orphanages far below the expected standards for any human being.
+  			<br></br><br></br>
+			Extreme poverty and other situations affect the resources that an orphanage can provide, resulting in unsanitary environments filled with violence and bullying scenes. In some instances, babies are left in their cribs to cry alone all day long and children are left attached to their beds or neglected by the untrained and dissatisfied staff working as caregivers. Sadly, it is common for these children to have limited care and attention and a hopeless future. The situation worsens as the children grow older because their probabilities of being adopted diminish. Because of their childhood experiences, their emotional development is also limited. Many times, these children are doomed to prostitution, thievery, begging, or violence.
+  			<br></br><br></br>
+			Societies in poor countries where abandoned and orphan children are common often blame them for crimes and see these children as a social infection. This attitude does nothing to help these children and youth to overcome their situation. The reality is that orphan children did not choose their condition, but they are condemned to a lonely life due to the short resources dedicated to their development as human beings. These children are part of the future of their communities and deserve an opportunity to succeed in life. For this reason, it is very important to place them within a nurturing environment where they receive love, education, healthcare, discipline and hope.
+  			<br></br><br></br>
+			Motivated by the sad picture of the conditions of children in orphanages and homeless children, people around the world have created organizations to help specific orphanages, to help people volunteer in orphanages or to improve specific aspects of one or more orphanages. Numerous organizations are working hard to improve the conditions of children, especially orphan children. However, sometimes their funding and resources are limited and only a few orphans can really benefit from their care. We want to help strengthen the work that these wonderful organizations do.
+  			<br></br><br></br>
+			Our goal as an independent nonprofit is to unite the efforts of existing organizations and help them focus their work to help the orphanages that have the highest need of the specific resources that their organization provides. We want to be able to say that the children living in the orphanages that are affiliated with us have a decent life, with hope, access to healthcare and education, nutrition, safety, and other important aspects to a child's development. We want to help improve the conditions in the orphanages that do not offer good care, and we want to reinforce the work of the good orphanages by helping them expand their home and welcome more homeless children. The guarantee that an orphanage is providing good care to these children should also encourage potential donors to choose their charitable actions wisely.		    
+		</b></font>
+	</g:HTMLPanel>
+</ui:UiBinder> 

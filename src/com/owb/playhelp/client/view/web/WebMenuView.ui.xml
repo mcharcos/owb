@@ -1,18 +1,111 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
-	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" 
+	xmlns:app='urn:import:com.owb.playhelp.client'
+	xmlns:owb='urn:import:com.owb.playhelp.client.view'>
 	<ui:style>
-		.important {
+		.titleMenu {
 			font-weight: bold;
+			text-align					:  	center;
+			color						:	red;
+		    font-size                   :   x-large;
+            font-family                 :   sans-serif, 'Comic Sans MS';
+			font-style					:	italic;
 		}
+
+		.gwt-MenuBar
+		{
+		    margin                      :   0 auto;
+		    background-color            :   #c5f935;
+		    padding                     :   0px;
+		    width    					: 	100%;
+			text-align					:  	center;
+			font-style					:	italic;
+		}
+		.gwt-MenuBar table
+		{
+		    background-color            :   #c5f935;
+			border						:	0px;
+		}
+		.gwt-MenuBar .gwt-MenuItem .gwt-MenuBar
+		{
+		    margin                      :   0 auto;
+		    background-color            :   #c5f935;
+		    padding                     :   0px;
+		    width    					: 	100%;
+			text-align					:  	center;
+			font-style					:	italic;
+		}
+		.gwt-MenuBar .gwt-MenuItem .gwt-MenuBar table
+		{
+		    background-color            :   #c5f935;
+			border						:	0px;
+		}
+		.gwt-MenuBar .gwt-MenuItem
+		{
+		
+		    cursor                      :   hand;
+		    cursor                      :   pointer;
+		
+		    font-size                   :   x-large;
+			height						:	50px;
+            font-family                 :   'Comic Sans MS';
+            font-weight 				:	bold;
+		    background-color            :   #c5f935;
+		    padding                     :   0px;
+			text-color					:	red;
+			text-shadow					: 	none;
+		}
+		.gwt-MenuBar .gwt-MenuItem-selected
+		{
+		    background-color            :   #c5f935;
+		    font-size                   :   x-large;
+			font-color					:	red;
+		}
+		.backgroundall {  
+	        background-color: #c5f935;
+         }  
 	</ui:style>
+	
+	<!--
+	
+	Another example of how to use the menubar style
+.v-menubar {
+text-align: center;
+background: transparent;
+border: none;
+color: white;
+text-shadow: none;
+font-size: 16px;
+}
+.system .v-menubar-menuitem-system-menu.v-menubar-menuitem-selected {
+background: url(images/bluebar-bg-selected.png) no-repeat 50% 100%;
+}
+-->
 	<g:HTMLPanel>
-		Join the OWB Network
-		Are you interested in Volunteering with OWB?
-		What Makes Us Different?
-		History
-		Why?
-		Orphanage Guidelines
-		The People Behind OWB
+		<table>
+		<tr>
+		    <div class='{style.titleMenu}'>About Us</div>
+		</tr> 
+		<tr>
+	  		<div class='{style.gwt-MenuBar}'>
+	  		<g:MenuBar ui:field='mainMenu' vertical="true">
+				<g:MenuItem ui:field='missionItem'>Mission</g:MenuItem>
+				<g:MenuItem ui:field='goalsItem'>Goals</g:MenuItem>
+				<g:MenuItem ui:field='differentItem'>Are we Different?</g:MenuItem>
+				<g:MenuItem ui:field='probsolItem'>Problems and Solitions</g:MenuItem>
+				<g:MenuItem ui:field='teamItem'>The Team</g:MenuItem>
+				<g:MenuItem ui:field='joinusItem'>Join Us</g:MenuItem>
+				    
+				<g:MenuItem ui:field='joinItem'>Join Network
+			         <g:MenuBar vertical="true">
+      					<g:MenuItem ui:field='addNgoItem'>As Organization</g:MenuItem>
+      					<g:MenuItem ui:field='addOrphanageItem'>As Orphanage</g:MenuItem>
+     				</g:MenuBar>
+			    </g:MenuItem>
+	 		 </g:MenuBar>
+	 		 </div>
+	    </tr>
+		</table>
 	</g:HTMLPanel>
 </ui:UiBinder> 

@@ -1,0 +1,21 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+		.important {
+			font-weight: bold;
+		}
+	</ui:style>
+	<g:HTMLPanel>
+       
+		<font color='#9152a0'><b>
+	    We are happy that you have found our website!
+ 		<br></br><br></br>
+		We created this space to communicate to the world what we are about...what we want, what we do, and our progress. Please, explore the tabs on the left to find out more about this new organization that looks out for orphans around the world!
+  		<br></br><br></br>
+		If you have any feedback for us, regarding our site, ideas or approaches, or if you'd like to get involved, we would love to hear from you! Our email is owb@orphanagewithoutborders.org.
+  		<br></br><br></br>
+		Thank you, and have a good day!!
+		</b></font>
+	</g:HTMLPanel>
+</ui:UiBinder> 
