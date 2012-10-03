@@ -56,6 +56,7 @@ public class ShowDetailsNgoPresenter implements Presenter {
 		ListReportView getFollowersField();
 		ListReportView getAbuseReportField();
 	    ListReportView getAdminReportField();
+	    ListReportView getNgoReportField();
 	}
 
 	private final SimpleEventBus eventBus;
@@ -108,6 +109,7 @@ public class ShowDetailsNgoPresenter implements Presenter {
 		this.display.getFollowersField().setData(ngo.getFollowerList());
 		this.display.getAbuseReportField().setData(ngo.getAbuseReportList());
 		this.display.getAdminReportField().setData(ngo.getAdminReportList());
+		this.display.getNgoReportField().setData(ngo.getNgoReportList());
 	}
 	
 	

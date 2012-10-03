@@ -68,8 +68,8 @@ public class ShowDetailsNgoView extends PopupPanel implements ShowDetailsNgoPres
 		  this.followersField.getAddNewLink().setText("Follow");
 		  this.abuseReportField.getTitleReportField().setText("Abuse Reports");
 		  this.abuseReportField.getAddNewLink().setText("Report Abuse");
-		  this.adminReportField.getTitleReportField().setText("Members");
-		  this.adminReportField.getAddNewLink().setText("Add Member");
+		  this.adminReportField.getTitleReportField().setText("Administrator Reports");
+		  this.adminReportField.getAddNewLink().setText("Confirm");
 		  this.ngoReportField.getTitleReportField().setText("NGO Reports");
 		  this.ngoReportField.getAddNewLink().setText("Add report");
 	  }
@@ -138,6 +138,10 @@ public class ShowDetailsNgoView extends PopupPanel implements ShowDetailsNgoPres
 	  @Override
 	  public ListReportView getAdminReportField(){
 		  return adminReportField;
+	  }
+	  @Override
+	  public ListReportView getNgoReportField(){
+		  return ngoReportField;
 	  }
 
 

@@ -80,7 +80,11 @@ public interface Resources extends ClientBundle {
     
 	@Source("propertyButton.png")
 	ImageResource propertyButton();
-    
+
+	// Progress bar
+	@Source("progressbar1.gif")
+	ImageResource progressBar();
+	
     // Map images
     @Source("NgoMapIcon2.gif")
     ImageResource ngoMapIcon();

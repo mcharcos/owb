@@ -5,6 +5,7 @@ package com.owb.playhelp.client;
 
 
 import com.owb.playhelp.client.event.LoginEvent;
+import com.owb.playhelp.client.presenter.BusyIndicatorPresenter;
 import com.owb.playhelp.client.presenter.LoggedOutPresenter;
 import com.owb.playhelp.client.presenter.UserBadgePresenter;
 import com.owb.playhelp.client.presenter.UserKarmaPresenter;
@@ -13,6 +14,7 @@ import com.owb.playhelp.client.presenter.MainMenuPresenter;
 import com.owb.playhelp.client.presenter.TopCenterPanelPresenter;
 import com.owb.playhelp.client.presenter.ngo.NgoMapMarkerInfoPresenter;
 import com.owb.playhelp.client.presenter.web.WebMenuPresenter;
+import com.owb.playhelp.client.view.BusyIndicatorView;
 import com.owb.playhelp.client.view.LoggedOutView;
 import com.owb.playhelp.client.view.UserBadgeView;
 import com.owb.playhelp.client.view.UserKarmaView;
@@ -135,6 +137,7 @@ public class Owb implements EntryPoint {
 	 *  - binder: not sure yet
 	 */
 	private SimpleEventBus thePath = new SimpleEventBus();
+	BusyIndicatorPresenter busyIndicator = new BusyIndicatorPresenter(thePath, new BusyIndicatorView());
 	private static final OwbUiBinder binder = GWT.create(OwbUiBinder.class);
 	
 	/**
