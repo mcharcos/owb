@@ -23,7 +23,7 @@ body {
 	float: right;
 }
 
-.addFriendBox {
+.addListBox {
     float: right;
     padding: 8px 4px;
 }
@@ -53,6 +53,7 @@ body {
 	margin: 10px 0 0 10px;
 	background-color: white;
 	border: 2px solid #5693d6;
+	width:200px;
 }
 
 .formTitle {
@@ -114,7 +115,7 @@ body {
 }
 
 .formwrapper{ /*field row DIV (includes two columns- Styled label column and 'thefield' column)*/
-	width: 550px; /*width of form rows*/
+	width: 100%; /*width of form rows*/
 	overflow: hidden;
 	padding: 5px 0;
 }

@@ -51,10 +51,10 @@ public class ShowDetailsNgoPresenter implements Presenter {
 	    Label getPhoneField();
 		Label getEmailField();
 		Label getWebField();
-		Label getMembersField();
-	    Label getMembersReqField();
-	    Label getFollowersField();
-	    Label getAbuseReportField();
+		ListReportView getMembersField();
+		ListReportView getMembersReqField();
+		ListReportView getFollowersField();
+		ListReportView getAbuseReportField();
 	    ListReportView getAdminReportField();
 	}
 
@@ -103,10 +103,10 @@ public class ShowDetailsNgoPresenter implements Presenter {
 		this.display.getWebField().setText(this.ngo.getWebsite());
 		
 		// Now add the list of members, followers,...
-		this.display.getMembersField().setText(this.getMemberListField(ngo));
-		this.display.getMembersReqField().setText(this.getMemberReqListField(ngo));
-		this.display.getFollowersField().setText(this.getFollowerListField(ngo));
-		this.display.getAbuseReportField().setText(this.getAbuseReportListField(ngo));
+		this.display.getMembersField().setData(ngo.getMemberList());
+		this.display.getMembersReqField().setData(ngo.getMemberReqList());
+		this.display.getFollowersField().setData(ngo.getFollowerList());
+		this.display.getAbuseReportField().setData(ngo.getAbuseReportList());
 		this.display.getAdminReportField().setData(ngo.getAdminReportList());
 	}
 	

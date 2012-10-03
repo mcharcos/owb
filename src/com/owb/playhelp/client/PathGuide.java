@@ -239,7 +239,7 @@ public class PathGuide implements ValueChangeHandler<String>  {
 		});
 		thePath.addHandler(ShowPopupDetailsNgoEvent.TYPE, new ShowPopupDetailsNgoEventHandler(){
 			public void onShowPopupDetailsNgo(ShowPopupDetailsNgoEvent event){
-				ShowDetailsNgoPresenter showDetailsNgoPresenter = new ShowDetailsNgoPresenter(event.getNgo(),currentUser, ngoService, thePath,new ShowDetailsNgoView(event.getClickPoint()));
+				ShowDetailsNgoPresenter showDetailsNgoPresenter = new ShowDetailsNgoPresenter(event.getNgo(),currentUser, ngoService, thePath,new ShowDetailsNgoView());
 				showDetailsNgoPresenter.go(Owb.get().getMainPanel());
 			}
 		});

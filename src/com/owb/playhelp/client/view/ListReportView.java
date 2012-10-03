@@ -33,6 +33,7 @@ public class ListReportView extends Composite implements ListReportPresenter.Dis
 
 	public ListReportView() {
 		initWidget(uiBinder.createAndBindUi(this));
+		this.addNew.setVisible(false);
 	}
 
 	@UiField Label loadingLabel,titleReportField;
@@ -43,9 +44,15 @@ public class ListReportView extends Composite implements ListReportPresenter.Dis
     Hyperlink addNew;
 
     private List<String> deselectedNames = new ArrayList<String>();
-    
-	public ListReportView(String firstName) {
-		initWidget(uiBinder.createAndBindUi(this));
+    	
+	public ListReportView(String title) {
+		this();
+		this.titleReportField.setText(title);
+	}
+	public ListReportView(String title, String addNewTitle) {
+		this(title);
+		this.addNew.setText(addNewTitle);
+		this.addNew.setVisible(true);
 	}
 	 
 	@Override
@@ -56,10 +63,14 @@ public class ListReportView extends Composite implements ListReportPresenter.Dis
 	  public Label getLoadingLabel(){
 		  return loadingLabel;
 	  }
+	@Override
+	  public Hyperlink getAddNewLink(){
+		  return addNew;
+	  }
 	
 	@Override
 	  public void setData(List<String> data) {
-		
+		displayElments(data);
 	}
 	
 	private void displayElments(List<String> elements) {
@@ -70,6 +81,9 @@ public class ListReportView extends Composite implements ListReportPresenter.Dis
 
 	    if (elements == null || elements.size() == 0) {
 	      loadingLabel.setText("Empty.");
+	      loadingLabel.setVisible(false);
+	      listTable.setVisible(false);
+	      titleReportField.setText("No "+titleReportField.getText());
 	      return;
 	    }
 	    

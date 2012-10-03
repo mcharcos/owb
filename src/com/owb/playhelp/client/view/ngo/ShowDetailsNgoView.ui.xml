@@ -3,80 +3,85 @@
     xmlns:app='urn:import:com.owb.playhelp.client.view'
 	xmlns:g="urn:import:com.google.gwt.user.client.ui">
 	<ui:style src="../../resources/GlobalStyles.css" >
+		.backgroundall { 
+				width: 100%; 	
+				height: 100%; 
+				background-color: #24f341; 
+				height: "500px";
+	    		width:"800px";
+				}
 	</ui:style>
-	<g:HTMLPanel>
+	<g:HTMLPanel styleName="{style.backgroundall}">
 			<div class="{style.formTitle}">NGO Information</div>
+			<div class="{style.formwrapper}">
+				<div class="{style.formlabel}">
+					<g:Label >Name</g:Label>
+				</div>
+				<div class="{style.formfield}">
+					<g:Label ui:field='nameField'></g:Label>
+				</div>
+			</div>
+			<div class="{style.formwrapper}">
+				<div class="{style.formlabel}">
+					<g:Label >Description</g:Label>
+				</div>
+				<div class="{style.formfield}">
+					<g:Label ui:field='descField'></g:Label>
+				</div>
+			</div>
+			<div class="{style.formwrapper}">
+				<div class="{style.formlabel}">
+					<g:Label >Address</g:Label>
+				</div>
+				<div class="{style.formfield}">
+					<g:Label ui:field='addressField'></g:Label>
+				</div>
+			</div>
+			<div class="{style.formwrapper}">
+				<div class="{style.formlabel}">
+					<g:Label >Phone</g:Label>
+				</div>
+				<div class="{style.formfield}">
+					<g:Label ui:field='phoneField'/>
+				</div>
+			</div>
+			<div class="{style.formwrapper}">
+				<div class="{style.formlabel}">
+					<g:Label >Email</g:Label>
+				</div>
+				<div class="{style.formfield}">
+					<g:Label ui:field='emailField'/>
+				</div>
+			</div>
+			<div class="{style.formwrapper}">
+				<div class="{style.formlabel}">
+					<g:Label >Website</g:Label>
+				</div>
+				<div class="{style.formfield}">
+					<g:Label ui:field='webField'/>
+				</div>
+			</div>
 			<table>
 				<tr>
-					<td>Name:</td>
-					<td>
-						<g:Label ui:field='nameField'>YOUR ORGANIZATION NAME</g:Label>
+					<td width='150px'>
+						<app:ListReportView ui:field='membersField'/>
+					</td>
+					<td width='150px'>
+						<app:ListReportView ui:field='membersReqField'/>
+					</td>
+					<td width='150px'>
+						<app:ListReportView ui:field='followersField'/>
 					</td>
 				</tr>
 				<tr>
-					<td>Description:</td>
-					<td>
-						<g:Label ui:field='descField'>Write a brief description of your organization</g:Label>
-					</td>
-				</tr>
-				<tr>
-					<td>Address:</td>
-					<td>
-						<g:Label ui:field='addressField'>ADDRESS OF YOUR ORGANIZATION</g:Label>
-					</td>
-				</tr>
-				<tr>
-					<td>Phone:</td>
-					<td>
-						<g:Label ui:field='phoneField'>COTANCT PHONE OF YOUR ORGANIZATION</g:Label>
-					</td>
-				</tr>
-				<tr>
-					<td>Email:</td>
-					<td>
-						<g:Label ui:field='emailField'>ORGANIZATIONCONTACTEMAIL@YOURURLORGANIZATION.org</g:Label>
-					</td>
-				</tr>
-				<tr>
-					<td>Website:</td>
-					<td>
-						<g:Label ui:field='webField'>http://www.YOURURLORGANIZATION.org/</g:Label>
-					</td>
-				</tr>
-				<tr>
-					<td>Members:</td>
-					<td>
-						<g:Label ui:field='membersField'>No members</g:Label>
-					</td>
-				</tr>
-				<tr>
-					<td>Member Requests:</td>
-					<td>
-						<g:Label ui:field='membersReqField'>No members</g:Label>
-					</td>
-				</tr>
-				<tr>
-					<td>Followers:</td>
-					<td>
-						<g:Label ui:field='followersField'>No followers</g:Label>
-					</td>
-				</tr>
-				<tr>
-					<td>Abuse Reports:</td>
-					<td>
-						<g:Label ui:field='abuseReportField'>No abuse report</g:Label>
-					</td>
-				</tr>
-				<tr>
-					<td>NGO Reports:</td>
-					<td>
-						<g:Label ui:field='ngoReportField'>No NGO report</g:Label>
-					</td>
-				</tr>
-				<tr>
-					<td>Admin Report:</td>
 					<td>
 						<app:ListReportView ui:field='adminReportField'/>
+					</td>
+					<td>
+						<app:ListReportView ui:field='abuseReportField'/>
+					</td>
+					<td>
+						<app:ListReportView ui:field='ngoReportField'/>
 					</td>
 				</tr>
 			</table>
