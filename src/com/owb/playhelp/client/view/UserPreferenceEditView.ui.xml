@@ -13,7 +13,7 @@
         }
 	</ui:style>
 	<g:HTMLPanel><div class='{style.formContainer}'>
-			<div class="{style.formTitle}">Friend Information</div>
+			<div class="{style.formTitle}">User Information</div>
 			<table>
 				<tr>
 					<td>Name:</td>
@@ -30,13 +30,14 @@
 				<tr>
 					<td>Picture Profile:</td>
 					<td>
-						<g:Image styleName='{style.profilePicture}' ui:field='profilePicture' width="92px" height="45px" altText="Profile Picture" />
+						<g:Image styleName='{style.profilePicture}' ui:field='profilePicture' width="92px" height="45px" altText="No picture" />
 					</td>
 					<td>
 						 <!-- <up:MultiUploader type="LABEL" ui:field="uploader" 
                           styleName="{style.myup}" maximumFiles="2" avoidRepeatFiles="true" validExtensions="mmm, ooo"/>
 						
 						<up:MultiUploader ui:field="uploaderField"/> -->
+						
 						<g:FormPanel ui:field="formPanel">
 						<g:FileUpload name="profilePictureElement" ui:field="uploaderField"/>
 						</g:FormPanel>
