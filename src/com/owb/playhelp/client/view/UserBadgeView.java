@@ -24,18 +24,6 @@ public class UserBadgeView extends Composite implements UserBadgePresenter.Displ
 
 	@UiField
 	Image profilePicture;
-	@UiField
-	Label userNameLabel;
-	@UiField
-	Label userEmailLabel;
-	@UiField
-	Label userTypeLabel;
-	@UiField
-	VerticalPanel karmaPanel;
-	@UiField
-	Anchor preferences;
-	@UiField
-	Anchor loginout;
 	
 	private static UserBadgeViewUiBinder uiBinder = GWT
 			.create(UserBadgeViewUiBinder.class);
@@ -53,40 +41,14 @@ public class UserBadgeView extends Composite implements UserBadgePresenter.Displ
 	}
 
 	@Override
-	public HasClickHandlers getPreferencesLink() {
-	  return preferences;
-	}
-	@Override
-	public Anchor getPreferencesText() {
-	  return preferences;
-	}
-	@Override
-	public HasClickHandlers getLogoutLink() {
-	  return loginout;
-	}
-	@Override
-	public Anchor getLogoutText() {
-	  return loginout;
-	}
-	@Override
-	public HasText getUserNameLabel() {
-	  return userNameLabel;
-	}
-	@Override
-	public HasText getUserEmailLabel() {
-	  return userEmailLabel;
-	}
-	@Override
-	public HasText getUserTypeLabel() {
-	  return userTypeLabel;
-	}
-	@Override
 	public Image getProfilePictureFrame() {
 	  return profilePicture;
 	}
+	
+	/*
 	@Override
 	public VerticalPanel getKarmaPanel(){
 		return karmaPanel;
-	}
+	}*/
 	
 }

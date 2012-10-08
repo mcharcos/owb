@@ -38,15 +38,7 @@ import com.owb.playhelp.client.resources.Resources;
 
 public class UserBadgePresenter implements Presenter{
 	  public interface Display {
-			VerticalPanel getKarmaPanel();
-			HasClickHandlers getPreferencesLink();
-			Anchor getPreferencesText();
-			HasClickHandlers getLogoutLink();
-			Anchor getLogoutText();
 			Image getProfilePictureFrame();
-			HasText getUserNameLabel();
-			HasText getUserEmailLabel();
-			HasText getUserTypeLabel();
 		    Widget asWidget();
 		  }
 
@@ -65,39 +57,6 @@ public class UserBadgePresenter implements Presenter{
 	  
 	  public void bind(){		  
 		  createUI();
-		  this.display.getLogoutLink().addClickHandler(new ClickHandler(){
-			  public void onClick(ClickEvent event){
-				  doLoginout();
-			  }
-		  });
-		  
-		  this.display.getPreferencesLink().addClickHandler(new ClickHandler(){
-			  public void onClick(ClickEvent event){
-				  eventBus.fireEvent(new PreferencesEditEvent());
-			  }
-		  });
-		  
-		  eventBus.addHandler(LoginEvent.TYPE, new LoginEventHandler(){
-			  @Override public void onLogin(LoginEvent event){
-				  currentUser = event.getUser();
-				  createUI();
-			  }
-		  });
-
-		  eventBus.addHandler(LogoutEvent.TYPE, new LogoutEventHandler(){
-			  @Override public void onLogout(LogoutEvent event){
-				  GWT.log("UserBadgePresenter:: logout");
-				  currentUser = null;
-				  createUI();
-			  }
-		  });
-			
-		  eventBus.addHandler(UserPreferenceUpdateEvent.TYPE, new UserPreferenceUpdateEventHandler(){
-				public void onUserPreferenceUpdate(UserPreferenceUpdateEvent event){
-					currentUser = event.getUpdatedUser();
-					createUI();
-				}
-			});
 		  
 		  // Listen to login events so we update the info of the user in this panel
 	  }
@@ -155,22 +114,10 @@ public class UserBadgePresenter implements Presenter{
 			  return;
 		  }
 		  UserBadgePresenter.this.display.getProfilePictureFrame().setResource(Resources.INSTANCE.sampleProfilePicture());
-		  UserBadgePresenter.this.display.getLogoutText().setText("Logout");
-		  UserBadgePresenter.this.display.getPreferencesText().setText("Preferences");
-		  UserBadgePresenter.this.display.getPreferencesText().setEnabled(true);
-		  UserBadgePresenter.this.display.getUserNameLabel().setText(currentUser.getName());
-		  UserBadgePresenter.this.display.getUserTypeLabel().setText(currentUser.getUserType());
-		  UserBadgePresenter.this.display.getUserEmailLabel().setText(currentUser.getEmailAddress());
 		  // change text of loginout link to "logout"		  
 	  }
 	  private void userLoggedout(){		  
 		  UserBadgePresenter.this.display.getProfilePictureFrame().setResource(Resources.INSTANCE.loggedoutPicture());
-		  UserBadgePresenter.this.display.getLogoutText().setText("Login");
-		  UserBadgePresenter.this.display.getPreferencesText().setText("");
-		  UserBadgePresenter.this.display.getPreferencesText().setEnabled(false);
-		  UserBadgePresenter.this.display.getUserNameLabel().setText("");
-		  UserBadgePresenter.this.display.getUserTypeLabel().setText("");
-		  UserBadgePresenter.this.display.getUserEmailLabel().setText("");
 		  // change text of loginout link to "login"		  
 	  }	  
 	  
