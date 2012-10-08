@@ -10,7 +10,6 @@ import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.Widget;
 
-import com.owb.playhelp.client.event.MainViewEvent;
 
 public class LoggedOutPresenter implements Presenter {
 	public interface Display {
@@ -29,7 +28,7 @@ public class LoggedOutPresenter implements Presenter {
 	public void bind() {
 		  this.display.getButton().addClickHandler(new ClickHandler(){
 			  public void onClick(ClickEvent event){
-				  eventBus.fireEvent(new MainViewEvent());
+				  //eventBus.fireEvent(new MainViewEvent());
 			  }
 		  });
 		

@@ -4,29 +4,16 @@
 package com.owb.playhelp.client;
 
 
-import com.owb.playhelp.client.event.LoginEvent;
+import com.owb.playhelp.client.event.user.LoginEvent;
 import com.owb.playhelp.client.presenter.BusyIndicatorPresenter;
-import com.owb.playhelp.client.presenter.LoggedOutPresenter;
 import com.owb.playhelp.client.presenter.UserBadgePresenter;
-import com.owb.playhelp.client.presenter.UserKarmaPresenter;
-import com.owb.playhelp.client.presenter.SelectionMenuPresenter;
-import com.owb.playhelp.client.presenter.MainMenuPresenter;
 import com.owb.playhelp.client.presenter.TopCenterPanelPresenter;
-import com.owb.playhelp.client.presenter.ngo.NgoMapMarkerInfoPresenter;
 import com.owb.playhelp.client.presenter.web.WebMenuPresenter;
 import com.owb.playhelp.client.view.BusyIndicatorView;
-import com.owb.playhelp.client.view.LoggedOutView;
 import com.owb.playhelp.client.view.UserBadgeView;
-import com.owb.playhelp.client.view.UserKarmaView;
-import com.owb.playhelp.client.view.SelectionMenuView;
-import com.owb.playhelp.client.view.MainMenuView;
-import com.owb.playhelp.client.view.ngo.NgoMapMarkerInfoView;
 import com.owb.playhelp.client.view.web.WebMenuView;
 import com.owb.playhelp.client.helper.RPCCall;
 import com.owb.playhelp.shared.UserProfileInfo;
-import com.owb.playhelp.client.HeaderPanel;
-import com.owb.playhelp.shared.FieldVerifier;
-import com.owb.playhelp.shared.ngo.NgoInfo;
 import com.owb.playhelp.client.service.LoginService;
 import com.owb.playhelp.client.service.LoginServiceAsync;
 import com.owb.playhelp.client.service.UserService;
@@ -37,45 +24,52 @@ import com.owb.playhelp.client.service.orphanage.OrphanageService;
 import com.owb.playhelp.client.service.orphanage.OrphanageServiceAsync;
 import com.owb.playhelp.client.service.project.ProjectService;
 import com.owb.playhelp.client.service.project.ProjectServiceAsync;
-import com.owb.playhelp.client.channel.Channel;
-import com.owb.playhelp.client.channel.ChannelFactory;
-import com.owb.playhelp.client.channel.SocketListener;
-import com.owb.playhelp.client.event.project.ProjectAvailableEvent;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.RunAsyncCallback;
 import com.google.gwt.dom.client.Document;
-import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.event.dom.client.KeyCodes;
-import com.google.gwt.event.dom.client.KeyUpEvent;
-import com.google.gwt.event.dom.client.KeyUpHandler;
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.google.gwt.user.client.rpc.SerializationException;
 import com.google.gwt.user.client.rpc.SerializationStreamFactory;
-import com.google.gwt.user.client.rpc.SerializationStreamReader;
-import com.google.gwt.user.client.ui.Button;
-import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.DockLayoutPanel;
-import com.google.gwt.user.client.ui.HTML;
-import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootLayoutPanel;
-import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.ScrollPanel;
-import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.HorizontalPanel;
-import com.google.gwt.maps.client.Maps;
 
 
 
 /**
  * Entry point classes define <code>onModuleLoad()</code>.
+ * Owb is the main class that will create:
+ * 		- The genereal UiBinder
+ * 		- The different panels of the application: 
+ * 			+ actionPanel: Contains the user badge and the menu of the webpage
+ * 			+ topCenterPanel: Main bar at the top of the page with a few menu items and the logo
+ * 			+ centerPanel: Main area where the pages will be shown
+ * 			+ statusPanel: Area on the right that we can use to show specific information about things
+ * 							happening in the centerPanel, general information, adds, ...
+ * 
+ * Three presenters are created by Owb and associated to the different panels
+ * 		- userBadgePresenter that handles the information of the user
+ * 		- webMenuPresenter that handles the menu to navigate to the different web pages
+ * 		- topCenterPanelPresenter that handles the top of the page
+ * One presenter is not associated to any panel. The busyIndicator presenter will handle the 
+ * indicator when the system is waiting for something
+ * 
+ * Owb also record the current user profile that will be passed when creating the presenters. The current 
+ * user is set using the LoginService class. A LoginService instance is created here. Owb also creates
+ * an instance of the event buse (SimpleEventBus class). 
+ * 
+ * In addition, Owb is in charge of creating the application controler and the services associated
+ * to the different functionalities including users, organizations, orphanages, projects,... These are 
+ * created by the private class initiateOWB which is called each time a user is logged in and the 
+ * appropriate view is requested.
+ * 
  */
 public class Owb implements EntryPoint {
     
@@ -115,7 +109,6 @@ public class Owb implements EntryPoint {
 	 */
 	@UiField LeftPanel actionPanel;
 	@UiField HorizontalPanel topCenterPanel;
-	@UiField HorizontalPanel barPanel;
 	@UiField ScrollPanel centerPanel;
 	@UiField VerticalPanel statusPanel;
 
@@ -125,9 +118,6 @@ public class Owb implements EntryPoint {
 	
 	// Definition of presenters
 	private UserBadgePresenter userBadgePresenter = null;
-	private UserKarmaPresenter userKarmaPresenter = null;
-	//private SelectionMenuPresenter selectionMenuPresenter = null;
-	private MainMenuPresenter selectionMenuPresenter = null;
 	private WebMenuPresenter webMenuPresenter = null;
 	private TopCenterPanelPresenter topCenterPanelPresenter = null;
 	
@@ -164,21 +154,6 @@ public class Owb implements EntryPoint {
 	public void onModuleLoad() {
 		singleton = this;
 		
-		 /*
-		    * Asynchronously loads the Maps API.
-		    *
-		    * The first parameter should be a valid Maps API Key to deploy this
-		    * application on a public server, but a blank key will work for an
-		    * application served from localhost.
-		   */
-		   //Maps.loadMapsApi("", "2", false, new Runnable() {
-		   //   public void run() {
-		   //	   }
-		   // });
-
-		
-		//doSuperUser();
-		
 		// set the title of the browser window
 		if (Document.get() != null) {
 			Document.get().setTitle("Orphanage Without Borders"); // TODO move it to properties file
@@ -186,7 +161,7 @@ public class Owb implements EntryPoint {
 		showCurrentUserView();
 	}
 
-
+	/*
 	public void doSuperUser() {
 	  new RPCCall<Void>() {
 	    @Override protected void callService(AsyncCallback<Void> cb) {
@@ -202,16 +177,20 @@ public class Owb implements EntryPoint {
 	      Window.alert("Error Creating super user --- " + caught.getMessage());
 	    }
 	  }.retry(3);
-	}
+	} */
 	
+	/*
 	public void loggedOutView(){
 		  rootLayout = RootLayoutPanel.get();
 		  rootLayout.clear();
 		  LoggedOutPresenter loggedOutPresenter = new LoggedOutPresenter(thePath,new LoggedOutView());
 		  loggedOutPresenter.go(rootLayout);
-	}
+	}*/
 	
-	public void showCurrentUserView() {
+	/**
+	 * Check the current user and call the downloadCode to show the corresponding view
+	 */
+	private void showCurrentUserView() {
 	  new RPCCall<UserProfileInfo>() {
 	    @Override protected void callService(AsyncCallback<UserProfileInfo> cb) {
 		  // the call returns a generic guest user if no logged in
@@ -229,6 +208,10 @@ public class Owb implements EntryPoint {
 	  }.retry(3);
 	}
 	
+	/**
+	 * Retrieve the code and if user exists (currentUser!=null) it shows the view
+	 * of the user and fire and event to say that the user is logged in
+	 */
 	private void downloadCode(){
 		GWT.runAsync(new RunAsyncCallback() {
 		      @Override public void onFailure(Throwable reason) {
@@ -242,10 +225,10 @@ public class Owb implements EntryPoint {
 		    });
 	}
 	
-	private void createCurrentUserView() {
-	  //rootLayout = RootLayoutPanel.get();
-	  //rootLayout.clear();
-	  
+	/**
+	 * Clean the window and set the main layout. Then, it calls initiateOWB to initiate the views.
+	 */
+	private void createCurrentUserView() {	  
 	  DockLayoutPanel outer = binder.createAndBindUi(this);
 	  rootLayout = RootLayoutPanel.get();
 	  rootLayout.clear();
@@ -254,12 +237,18 @@ public class Owb implements EntryPoint {
 	  initiateOWB();
 	}
 	
+	/**
+	 * Creates the services for user, ngo, orphanages and projects. The main application controler is
+	 * created for these services. This method also creates the user badge presenter in the actionPanel,
+	 * the web menu presenter in the action panel and the top center panel presenter associated to 
+	 * topCenterPanel which is the main area for showing information.
+	 */
 	private void initiateOWB() {
 	  UserServiceAsync userService = GWT.create(UserService.class);
 	  NgoServiceAsync ngoService = GWT.create(NgoService.class);
 	  OrphanageServiceAsync orphanageService = GWT.create(OrphanageService.class);
 	  ProjectServiceAsync projectService = GWT.create(ProjectService.class);
-	  PathGuide guide = new PathGuide(loginService, userService, ngoService, orphanageService, projectService, thePath, currentUser);
+	  PathGuide guide = new PathGuide(userService, ngoService, orphanageService, projectService, thePath, currentUser);
 	  guide.go();
 	  
 	  
@@ -268,67 +257,44 @@ public class Owb implements EntryPoint {
 
 	  webMenuPresenter = new WebMenuPresenter(currentUser,thePath, new WebMenuView());
 	  webMenuPresenter.go(actionPanel.getMenuPanel());
-	  
-	  //userKarmaPresenter = new UserKarmaPresenter(currentUser, thePath, new UserKarmaView());
-	  //userKarmaPresenter.go(actionPanel.getMenuPanel());
-
-	  //selectionMenuPresenter = new SelectionMenuPresenter(currentUser, thePath, new SelectionMenuView());
-	  //selectionMenuPresenter.go(actionPanel.getMenuPanel());
-	  //selectionMenuPresenter = new MainMenuPresenter(currentUser, thePath, new MainMenuView());
-	  //selectionMenuPresenter.go(actionPanel.getTestPanel());
 
 	  topCenterPanelPresenter = new TopCenterPanelPresenter(thePath, new TopCenterPanel());
 	  topCenterPanelPresenter.go(topCenterPanel);
 	  
 	  
 	  }
-		
-	private void startChannel(){
-		String channelUser = currentUser.getChannel();
-		// Leave routine if no channel returned
-		if (channelUser == null) return;
-		GWT.log("The channel of the current ("+ channelUser +") user is opening...");
-		Channel channel = ChannelFactory.createChannel(channelUser);
-		channel.open(new SocketListener(){
-			public void onOpen(){
-				GWT.log("Channel onOpen()");
-			}
-			public void onMessage(String info){
-				try {
-			          SerializationStreamReader reader = pushServiceStreamFactory.createStreamReader(info);
-			          Type infoType = (Type) reader.readObject();
-			          switch(infoType){
-			          case NEW_CONTENT_AVAILABLE:
-					      GWT.log("Pushed message received: NEW_CONTENT_AVAILABLE");
-					      thePath.fireEvent(new ProjectAvailableEvent());
-					      break;
-
-					    case TEXT_MESSAGE:
-					      GWT.log("Pushed message received: TEXT_MESSAGE: " + infoType);
-					      break;
-
-					    default:
-					      Window.alert("Unknown message type: " + infoType);		
-			          }
-			        } catch (SerializationException e) {
-			          throw new RuntimeException("Unable to deserialize " + info, e);
-			        }
-			}
-		});
-	}
 	
+	/**
+	 * Returns the event bus that will be listen by the presenters. There is only one single event 
+	 * bus in this application that is created by the Entry point class.
+	 * 
+	 * @return Event bus
+	 */
 	public SimpleEventBus getThePath(){
 		return thePath;
 	}
 	
-	void setUser(UserProfileInfo currentUser){
+	/*
+	 * Set the user profile
+	 */
+	private void setUser(UserProfileInfo currentUser){
 		this.currentUser = currentUser;
 	}
 	
-    // These functions will return the main panels
+	/**
+	 * Returns the central panel where all the views will be shown
+	 * @return main panel 
+	 */
 	public ScrollPanel getMainPanel() {
 		return centerPanel;
 	}
+	
+	/**
+	 * Returns the left panel where the information about the user, the character and the main menu
+	 * will be set
+	 * 
+	 * @return Action Panel
+	 */
 	public LeftPanel getActionPanel() {
 		return actionPanel;
 	}
