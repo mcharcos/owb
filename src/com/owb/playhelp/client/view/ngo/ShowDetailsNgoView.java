@@ -10,6 +10,7 @@ import com.google.gwt.uibinder.client.UiTemplate;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.HasValue;
+import com.google.gwt.user.client.ui.Hyperlink;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Composite;
@@ -28,26 +29,51 @@ public class ShowDetailsNgoView extends PopupPanel implements ShowDetailsNgoPres
 	  }
 
 	  private static final Binder binder = GWT.create(Binder.class);
+	
 	  
 	public ShowDetailsNgoView() {
 	    super(true);
 	    add(binder.createAndBindUi(this));
+	    startView();
 		//initWidget(uiBinder.createAndBindUi(this));
+	    setPopupPosition(285, 60);
+	    setHeight("500px");
+	    setWidth("800px");
+	    //this.setStyleName("backgroundall");
+	    //this.center();
+	    //this.center();
+	    show();
 	}
 	
 	public ShowDetailsNgoView(ClickPoint location) {
 	    super(true);
 	    add(binder.createAndBindUi(this));
+	    startView();
 	    setPopupPosition(location.getLeft(), location.getTop());
 	    show();
 	}
 	
 	@UiField Label nameField,descField,addressField,phoneField,emailField,webField;
-	@UiField Label membersField,membersReqField,followersField,abuseReportField;
-	@UiField ListReportView adminReportField;
+	@UiField ListReportView membersReqField,followersField,abuseReportField;
+	@UiField ListReportView membersField,adminReportField,ngoReportField;
 	@UiField
 	Anchor okBut;
 
+	  private void startView(){
+		  this.membersField.getTitleReportField().setText("Members");
+		  this.membersField.getAddNewLink().setText("Add Member");
+		  this.membersReqField.getTitleReportField().setText("Member Requests");
+		  this.membersReqField.getAddNewLink().setText("Join Request");
+		  this.followersField.getTitleReportField().setText("Followers");
+		  this.followersField.getAddNewLink().setText("Follow");
+		  this.abuseReportField.getTitleReportField().setText("Abuse Reports");
+		  this.abuseReportField.getAddNewLink().setText("Report Abuse");
+		  this.adminReportField.getTitleReportField().setText("Administrator Reports");
+		  this.adminReportField.getAddNewLink().setText("Confirm");
+		  this.ngoReportField.getTitleReportField().setText("NGO Reports");
+		  this.ngoReportField.getAddNewLink().setText("Add report");
+	  }
+	  
 	  @Override
 	  public Widget asWidget() {
 	    return this;
@@ -94,24 +120,28 @@ public class ShowDetailsNgoView extends PopupPanel implements ShowDetailsNgoPres
 	  }
 	  
 	  @Override
-	  public Label getMembersField(){
+	  public ListReportView getMembersField(){
 		  return membersField;
 	  }
 	  @Override
-	  public Label getMembersReqField(){
+	  public ListReportView getMembersReqField(){
 		  return membersReqField;
 	  }
 	  @Override
-	  public Label getFollowersField(){
+	  public ListReportView getFollowersField(){
 		  return followersField;
 	  }
 	  @Override
-	  public Label getAbuseReportField(){
+	  public ListReportView getAbuseReportField(){
 		  return abuseReportField;
 	  }
 	  @Override
 	  public ListReportView getAdminReportField(){
 		  return adminReportField;
+	  }
+	  @Override
+	  public ListReportView getNgoReportField(){
+		  return ngoReportField;
 	  }
 
 

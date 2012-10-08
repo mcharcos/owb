@@ -20,9 +20,9 @@ import com.google.gwt.user.client.ui.HasText;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.Widget;
 
-import com.owb.playhelp.client.event.LoginEvent;
-import com.owb.playhelp.client.event.LoginEventHandler;
 import com.owb.playhelp.client.event.project.ProjectUpdateEvent;
+import com.owb.playhelp.client.event.user.LoginEvent;
+import com.owb.playhelp.client.event.user.LoginEventHandler;
 import com.owb.playhelp.client.helper.RPCCall;
 import com.owb.playhelp.client.presenter.Presenter;
 import com.owb.playhelp.client.service.ContributionServiceAsync;

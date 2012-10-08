@@ -12,13 +12,13 @@
 	</ui:style>
 	<g:HTMLPanel>
 		<div class='{style.contentColumn}'>
-			<div class='{style.addFriendBox}'>
+			<div class='{style.addListBox}'>
 				<g:Hyperlink styleName='{style.addElementListLink}' ui:field='addNew'>+add</g:Hyperlink>
 			</div>
 			<div class="{style.titleBar}">
 		    	<g:Label ui:field='titleReportField'>Report</g:Label>
 		    </div>
-			<g:Label ui:field='loadingLabel' styleName='{style.loading}'>Loading...</g:Label>
+			<g:Label ui:field='loadingLabel' styleName='{style.loading}'>None</g:Label>
 			<g:FlexTable ui:field='listTable' />
 		</div>
 	</g:HTMLPanel>

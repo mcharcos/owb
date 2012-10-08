@@ -30,6 +30,9 @@ public class WebMenuView extends Composite implements WebMenuPresenter.Display {
 	public WebMenuView() {
 		initWidget(uiBinder.createAndBindUi(this));
 		//mainMenu.setStyleName(".gwt-MenuBar");
+		// insert a separator
+		mainMenu.insertSeparator(5);
+
 	}
 	
 	public Widget asWidget(){

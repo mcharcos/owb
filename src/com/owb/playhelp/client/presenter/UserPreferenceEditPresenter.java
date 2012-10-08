@@ -15,6 +15,7 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.FileUpload;
 import com.google.gwt.user.client.ui.FormPanel;
 import com.google.gwt.user.client.ui.HasValue;
+import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.HasText;
@@ -82,6 +83,8 @@ public class UserPreferenceEditPresenter implements Presenter {
 				  doSave();
 			  }
 		  });
+		
+		/*
 		this.display.getUploadFile().addAttachHandler(new Handler() {
 			public void onAttachOrDetach(AttachEvent event) {
 				// Show new picture in the frame.
@@ -92,21 +95,23 @@ public class UserPreferenceEditPresenter implements Presenter {
 				//    myButton.setEnabled(false);
 				//else if(chooser.isAttached()==true && myButton.isEnabled()==false)
 				//    myButton.setEnabled(true);
-				} });
+				} });*/
+		
+		
 		// Add an event handler to the form.
-		/*
 		this.display.getFormPanel().addSubmitHandler(new FormPanel.SubmitHandler() {
 		    public void onSubmit(FormPanel.SubmitEvent event) {
 		    	// we do not need this because the name is created by the server.
 		    	// it could be something like user_uniqueId+datestamp
 		    // This event is fired just before the form is submitted. We can
 			// take this opportunity to perform validation.
-			//if (tb.getText().length() == 0) {
-			//    Window.alert("The text box must not be empty");
-			//    event.cancel();
-			//}
+			/*
+		    	if (display.getTextBox().getText().length() == 0) {
+			    Window.alert("The text box must not be empty");
+			    event.cancel();
+			}*/
 		    }
-		});*/
+		});
 
 		this.display.getFormPanel().addSubmitCompleteHandler(new FormPanel.SubmitCompleteHandler() {
 		    public void onSubmitComplete(FormPanel.SubmitCompleteEvent event) {
@@ -135,6 +140,8 @@ public class UserPreferenceEditPresenter implements Presenter {
 		UserPreferenceEditPresenter.this.display.getFormPanel().setEncoding(FormPanel.ENCODING_MULTIPART);
 		UserPreferenceEditPresenter.this.display.getFormPanel().setMethod(FormPanel.METHOD_POST);
 
+		// Set the form for uploading picture
+		
 		
 		bind();
 	}

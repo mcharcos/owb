@@ -16,6 +16,9 @@ import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HasText;
 import com.google.gwt.user.client.ui.Widget;
+import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.VerticalPanel;
+import com.google.gwt.user.client.ui.ListBox;
 
 import com.owb.playhelp.client.presenter.UserPreferenceEditPresenter;
 
@@ -38,14 +41,20 @@ public class UserPreferenceEditView extends Composite implements UserPreferenceE
 	TextBox nameField, emailField;
 	@UiField
 	Image profilePicture;
+	
+	private static final String UPLOAD_ACTION_URL = GWT.getModuleBaseURL() + "upload";
 	@UiField
 	FileUpload uploaderField;
 	@UiField
 	FormPanel formPanel;
-	
 
 	@Override
 	public Widget asWidget() {
+		formPanel.setAction(UPLOAD_ACTION_URL);
+		formPanel.setEncoding(FormPanel.ENCODING_MULTIPART);
+		formPanel.setMethod(FormPanel.METHOD_POST);
+				
+		uploaderField.setName("uploadFormElement");
 		return this;
 	}
 
@@ -78,6 +87,5 @@ public class UserPreferenceEditView extends Composite implements UserPreferenceE
 	public FormPanel getFormPanel(){
 		return formPanel;
 	}
-	
 
 }

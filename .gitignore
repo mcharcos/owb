@@ -7,5 +7,9 @@ war/WEB-INF/deploy/
 war/WEB-INF/classes/
 war/WEB-INF/appengine-generated/
 war/WEB-INF/lib
+<<<<<<< HEAD
 .settings/
 gwt-unitCache/
+=======
+gwt-unitCache/
+>>>>>>> 8a6e0d9001ff3e5a19f274e97c10419781565ccb

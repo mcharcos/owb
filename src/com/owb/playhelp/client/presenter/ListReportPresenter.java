@@ -10,6 +10,7 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
+import com.google.gwt.user.client.ui.Hyperlink;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Image;
@@ -29,6 +30,7 @@ public class ListReportPresenter implements Presenter {
 		Widget asWidget();
 		Label getTitleReportField();
 		Label getLoadingLabel();
+		Hyperlink getAddNewLink();
 		void setData(List<String> data);
 		List<Integer> getSelectedRows();
 	}

@@ -19,12 +19,12 @@ import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.Widget;
 
 import com.owb.playhelp.client.Owb;
-import com.owb.playhelp.client.event.PreferencesEditEvent;
-import com.owb.playhelp.client.event.LoginEvent;
-import com.owb.playhelp.client.event.LoginEventHandler;
-import com.owb.playhelp.client.event.LogoutEvent;
-import com.owb.playhelp.client.event.LogoutEventHandler;
 import com.owb.playhelp.client.event.project.ProjectUpdateEvent;
+import com.owb.playhelp.client.event.user.LoginEvent;
+import com.owb.playhelp.client.event.user.LoginEventHandler;
+import com.owb.playhelp.client.event.user.LogoutEvent;
+import com.owb.playhelp.client.event.user.LogoutEventHandler;
+import com.owb.playhelp.client.event.user.PreferencesEditEvent;
 import com.owb.playhelp.client.event.user.UserPreferenceUpdateEvent;
 import com.owb.playhelp.client.event.user.UserPreferenceUpdateEventHandler;
 import com.owb.playhelp.client.helper.RPCCall;

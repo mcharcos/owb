@@ -18,55 +18,31 @@ import com.owb.playhelp.shared.ngo.NgoInfo;
 import com.owb.playhelp.client.presenter.Presenter;
 import com.owb.playhelp.client.presenter.MainHomePresenter;
 import com.owb.playhelp.client.presenter.NewsHomePresenter;
-import com.owb.playhelp.client.presenter.FriendsHomePresenter;
 import com.owb.playhelp.client.presenter.RadioHomePresenter;
 import com.owb.playhelp.client.presenter.ContactHomePresenter;
-import com.owb.playhelp.client.presenter.ChapterHomePresenter;
-import com.owb.playhelp.client.presenter.FriendHomePresenter;
-import com.owb.playhelp.client.presenter.NgoHomePresenter;
-import com.owb.playhelp.client.presenter.OrphanageHomePresenter;
-import com.owb.playhelp.client.presenter.UserBadgePresenter;
-import com.owb.playhelp.client.presenter.project.ProjectHomePresenter;
-import com.owb.playhelp.client.presenter.project.ProjectMainPresenter;
 import com.owb.playhelp.client.presenter.UserPreferenceEditPresenter;
+import com.owb.playhelp.client.presenter.friend.FriendsHomePresenter;
 import com.owb.playhelp.client.presenter.ngo.AddNgoPresenter;
 import com.owb.playhelp.client.presenter.ngo.ReportAbuseNgoPresenter;
 import com.owb.playhelp.client.presenter.ngo.ShowDetailsNgoPresenter;
 import com.owb.playhelp.client.presenter.orphanage.AddOrphanagePresenter;
 import com.owb.playhelp.client.presenter.orphanage.AddOrphanageStatusPresenter;
 import com.owb.playhelp.client.presenter.project.AddProjectPresenter;
-import com.owb.playhelp.client.presenter.project.AddProjectStatusPresenter;
-import com.owb.playhelp.client.service.project.ProjectService;
 import com.owb.playhelp.client.service.project.ProjectServiceAsync;
-import com.owb.playhelp.client.service.ContributionService;
-import com.owb.playhelp.client.service.ContributionServiceAsync;
-import com.owb.playhelp.client.service.LoginService;
-import com.owb.playhelp.client.service.LoginServiceAsync;
-import com.owb.playhelp.client.service.UserService;
 import com.owb.playhelp.client.service.UserServiceAsync;
-import com.owb.playhelp.client.service.ngo.NgoService;
 import com.owb.playhelp.client.service.ngo.NgoServiceAsync;
-import com.owb.playhelp.client.service.orphanage.OrphanageService;
 import com.owb.playhelp.client.service.orphanage.OrphanageServiceAsync;
 import com.owb.playhelp.client.view.MainHomeView;
 import com.owb.playhelp.client.view.NewsHomeView;
 import com.owb.playhelp.client.view.FriendsHomeView;
 import com.owb.playhelp.client.view.RadioHomeView;
 import com.owb.playhelp.client.view.ContactHomeView;
-import com.owb.playhelp.client.view.UserBadgeView;
-import com.owb.playhelp.client.view.chapter.ChapterHomeView;
-import com.owb.playhelp.client.view.friend.FriendHomeView;
-import com.owb.playhelp.client.view.ngo.NgoHomeView;
 import com.owb.playhelp.client.view.ngo.AddNgoView;
 import com.owb.playhelp.client.view.ngo.ReportAbuseNgoView;
 import com.owb.playhelp.client.view.ngo.ShowDetailsNgoView;
 import com.owb.playhelp.client.view.orphanage.AddOrphanageView;
 import com.owb.playhelp.client.view.orphanage.AddOrphanageStatusView;
 import com.owb.playhelp.client.view.project.AddProjectView;
-import com.owb.playhelp.client.view.project.AddProjectStatusView;
-import com.owb.playhelp.client.view.orphanage.OrphanageHomeView;
-import com.owb.playhelp.client.view.project.ProjectHomeView;
-import com.owb.playhelp.client.view.project.ProjectMainView;
 import com.owb.playhelp.client.view.UserPreferenceEditView;
 import com.owb.playhelp.client.view.web.ShowWebMissionView;
 import com.owb.playhelp.client.view.web.ShowWebGoalsView;
@@ -76,37 +52,20 @@ import com.owb.playhelp.client.view.web.ShowWebTeamView;
 import com.owb.playhelp.client.view.web.ShowWebJoinView;
 import com.owb.playhelp.client.event.web.ShowWebEvent;
 import com.owb.playhelp.client.event.web.ShowWebEventHandler;
-import com.owb.playhelp.client.event.MainViewEvent;
-import com.owb.playhelp.client.event.MainViewEventHandler;
-import com.owb.playhelp.client.event.LoginEvent;
-import com.owb.playhelp.client.event.LoginEventHandler;
-import com.owb.playhelp.client.event.LogoutEvent;
-import com.owb.playhelp.client.event.LogoutEventHandler;
-import com.owb.playhelp.client.event.MainHomeEvent;
-import com.owb.playhelp.client.event.MainHomeEventHandler;
 import com.owb.playhelp.client.event.NewsHomeEvent;
 import com.owb.playhelp.client.event.NewsHomeEventHandler;
-import com.owb.playhelp.client.event.FriendsHomeEvent;
-import com.owb.playhelp.client.event.FriendsHomeEventHandler;
-import com.owb.playhelp.client.event.RadioHomeEvent;
-import com.owb.playhelp.client.event.RadioHomeEventHandler;
 import com.owb.playhelp.client.event.ContactHomeEvent;
 import com.owb.playhelp.client.event.ContactHomeEventHandler;
-import com.owb.playhelp.client.event.ChapterHomeEvent;
-import com.owb.playhelp.client.event.ChapterHomeEventHandler;
-import com.owb.playhelp.client.event.FriendHomeEvent;
-import com.owb.playhelp.client.event.FriendHomeEventHandler;
-import com.owb.playhelp.client.event.NgoHomeEvent;
-import com.owb.playhelp.client.event.NgoHomeEventHandler;
-import com.owb.playhelp.client.event.OrphanageHomeEvent;
-import com.owb.playhelp.client.event.OrphanageHomeEventHandler;
-import com.owb.playhelp.client.event.PreferencesEditEvent;
-import com.owb.playhelp.client.event.PreferencesEditEventHandler;
+import com.owb.playhelp.client.event.user.PreferencesEditEvent;
+import com.owb.playhelp.client.event.user.PreferencesEditEventHandler;
 import com.owb.playhelp.client.event.user.UserPreferenceUpdateEvent;
 import com.owb.playhelp.client.event.user.UserPreferenceUpdateEventHandler;
 import com.owb.playhelp.client.event.user.UserPreferenceEditCancelEvent;
 import com.owb.playhelp.client.event.user.UserPreferenceEditCancelEventHandler;
-import com.owb.playhelp.client.event.ngo.NgoUpdateEvent;
+import com.owb.playhelp.client.event.friend.FriendsHomeEvent;
+import com.owb.playhelp.client.event.friend.FriendsHomeEventHandler;
+import com.owb.playhelp.client.event.map.MainHomeEvent;
+import com.owb.playhelp.client.event.map.MainHomeEventHandler;
 import com.owb.playhelp.client.event.ngo.ShowPopupAddNgoEvent;
 import com.owb.playhelp.client.event.ngo.ShowPopupAddNgoEventHandler;
 import com.owb.playhelp.client.event.ngo.ShowPopupDetailsNgoEventHandler;
@@ -115,7 +74,6 @@ import com.owb.playhelp.client.event.ngo.ShowPopupReportAbuseNgoEventHandler;
 import com.owb.playhelp.client.event.ngo.NgoRemoveEvent;
 import com.owb.playhelp.client.event.ngo.NgoRemoveEventHandler;
 import com.owb.playhelp.client.event.ngo.ShowPopupDetailsNgoEvent;
-import com.owb.playhelp.client.event.ngo.ShowPopupDetailsNgoEventHandler;
 import com.owb.playhelp.client.event.orphanage.ShowPopupAddOrphanageEvent;
 import com.owb.playhelp.client.event.orphanage.ShowPopupAddOrphanageEventHandler;
 import com.owb.playhelp.client.event.orphanage.ShowPopupAddOrphanageStatusEvent;
@@ -124,7 +82,21 @@ import com.owb.playhelp.client.event.project.ShowPopupAddProjectEvent;
 import com.owb.playhelp.client.event.project.ShowPopupAddProjectEventHandler;
 import com.owb.playhelp.client.helper.RPCCall;
 
-
+/**
+ * 
+ * @author Miguel Charcos Llorens
+ * 
+ * PathGuide is the application controler. It manages the different views in the central panel and allows
+ * the users to go back to the previous page when pressing the back page button. The PathGuide class 
+ * has the different services as attributes. The services are defined when creating an instance of the
+ * class. They are passed as input variables by the Owb class. These are used to create presenters that
+ * need these services to handle the views and connect to the back end. The current user is also passed
+ * by the Owb class. For instance, a new PathGuide instance is created for each user. The current user
+ * is used by PathGuide to manage actions that require to be logged in and also to create presenters.
+ * 
+ * The PathGuide class mainly listen to events and shows the presenter that correspond to specific events.
+ *
+ */
 public class PathGuide implements ValueChangeHandler<String>  {
 	private final SimpleEventBus thePath;
 	private final UserProfileInfo currentUser;
@@ -133,16 +105,15 @@ public class PathGuide implements ValueChangeHandler<String>  {
 	private final OrphanageServiceAsync orphanageService;
 	private final ProjectServiceAsync projectService;
 	private final UserServiceAsync userService;
-	private final LoginServiceAsync loginService;
 	Presenter presenter = null;
 
 	private String lastView = "0";
-	private Geocoder geocoder;
+	
+	private Geocoder geocoder;  // TODO It seems that geocoder is always null here. Check it is changed by one of the presenters and remove it if not.
 	
 	
-	public PathGuide(LoginServiceAsync loginService, UserServiceAsync userService, NgoServiceAsync ngoService, OrphanageServiceAsync orphanageService, 
+	public PathGuide(UserServiceAsync userService, NgoServiceAsync ngoService, OrphanageServiceAsync orphanageService, 
 			ProjectServiceAsync projectService, SimpleEventBus thePath, UserProfileInfo currentUser){
-		this.loginService = loginService;
 		this.userService = userService;
 		this.ngoService = ngoService;
 		this.orphanageService = orphanageService;
@@ -156,9 +127,9 @@ public class PathGuide implements ValueChangeHandler<String>  {
 	private void bind(){
 		
 		//ProjectServiceAsync projectService = GWT.create(ProjectService.class);
-		ContributionServiceAsync contributionService = GWT.create(ContributionService.class);
-		ProjectGuide projectGuide = new ProjectGuide(projectService, contributionService, thePath, currentUser);
-		projectGuide.go();
+		//ContributionServiceAsync contributionService = GWT.create(ContributionService.class);
+		//ProjectGuide projectGuide = new ProjectGuide(projectService, contributionService, thePath, currentUser);
+		//projectGuide.go();
 		
 		History.addValueChangeHandler(this);
 		thePath.addHandler(ShowWebEvent.TYPE, new ShowWebEventHandler(){
@@ -205,41 +176,15 @@ public class PathGuide implements ValueChangeHandler<String>  {
 				History.newItem("friends");
 			}
 		});
-		thePath.addHandler(RadioHomeEvent.TYPE, new RadioHomeEventHandler(){
-			public void onRadioHome(RadioHomeEvent event){
-				lastView = "radio";
-				History.newItem("radio");
-			}
-		});
 		thePath.addHandler(ContactHomeEvent.TYPE, new ContactHomeEventHandler(){
 			public void onContactHome(ContactHomeEvent event){
 				lastView = "contactus";
 				History.newItem("contactus");
 			}
 		});
-		thePath.addHandler(ChapterHomeEvent.TYPE, new ChapterHomeEventHandler(){
-			public void onChapterHomeRequest(ChapterHomeEvent event){
-				History.newItem("chphome");
-			}
-		});
-		thePath.addHandler(FriendHomeEvent.TYPE, new FriendHomeEventHandler(){
-			public void onFriendHomeRequest(FriendHomeEvent event){
-				History.newItem("frdhome");
-			}
-		});
-		thePath.addHandler(NgoHomeEvent.TYPE, new NgoHomeEventHandler(){
-			public void onNgoHomeRequest(NgoHomeEvent event){
-				History.newItem("ngohome");
-			}
-		});
-		thePath.addHandler(OrphanageHomeEvent.TYPE, new OrphanageHomeEventHandler(){
-			public void onOrphanageHomeRequest(OrphanageHomeEvent event){
-				History.newItem("orphome");
-			}
-		});
 		thePath.addHandler(ShowPopupDetailsNgoEvent.TYPE, new ShowPopupDetailsNgoEventHandler(){
 			public void onShowPopupDetailsNgo(ShowPopupDetailsNgoEvent event){
-				ShowDetailsNgoPresenter showDetailsNgoPresenter = new ShowDetailsNgoPresenter(event.getNgo(),currentUser, ngoService, thePath,new ShowDetailsNgoView(event.getClickPoint()));
+				ShowDetailsNgoPresenter showDetailsNgoPresenter = new ShowDetailsNgoPresenter(event.getNgo(),currentUser, ngoService, thePath,new ShowDetailsNgoView());
 				showDetailsNgoPresenter.go(Owb.get().getMainPanel());
 			}
 		});
@@ -358,13 +303,6 @@ public class PathGuide implements ValueChangeHandler<String>  {
 				History.newItem("loginout");
 			}
 		});*/
-		/*
-		thePath.addHandler(MainViewEvent.TYPE, new MainViewEventHandler(){
-			public void onMainView(MainViewEvent event){
-				GWT.log("PathGuide: MainView event received");
-				History.newItem("restart");
-			}
-		});*/
 	}
 	
 	public void go() {
@@ -375,6 +313,11 @@ public class PathGuide implements ValueChangeHandler<String>  {
 		  }
 	}
 	
+	/**
+	 * This method will create presenters depending on the value of the input event. The input event
+	 * happens when the fireCurrentHistoryState is fired. This happens after a new item is added
+	 * to the history by the bind method. 
+	 */
 	public void onValueChange(ValueChangeEvent<String> event) {
 		String token = event.getValue();
 		if (token != null) {
@@ -419,30 +362,6 @@ public class PathGuide implements ValueChangeHandler<String>  {
 				//Owb.get().getMainTitle().setText("User Preferences");
 				presenter = new UserPreferenceEditPresenter(currentUser, userService, thePath, new UserPreferenceEditView());
 				presenter.go(Owb.get().getMainPanel());	
-	        return;
-	      } 
-			if (token.equals("orphome")) {
-				//Owb.get().getMainTitle().setText("Orphanage View");
-				presenter = new OrphanageHomePresenter(currentUser,thePath,new OrphanageHomeView());
-				presenter.go(Owb.get().getMainPanel());
-	        return;
-	      } 
-			if (token.equals("ngohome")) {
-				//Owb.get().getMainTitle().setText("NGO View");
-				presenter = new NgoHomePresenter(currentUser,thePath,new NgoHomeView());
-				presenter.go(Owb.get().getMainPanel());
-	        return;
-	      } 
-			if (token.equals("frdhome")) {
-				//Owb.get().getMainTitle().setText("Friend View");
-				presenter = new FriendHomePresenter(currentUser,thePath,new FriendHomeView());
-				presenter.go(Owb.get().getMainPanel());
-	        return;
-	      } 
-			if (token.equals("chphome")) {
-				//Owb.get().getMainTitle().setText("Chapter View");
-				presenter = new ChapterHomePresenter(currentUser,thePath,new ChapterHomeView());
-				presenter.go(Owb.get().getMainPanel());
 	        return;
 	      } 
 			if (token.equals("map")) {
