@@ -22,7 +22,7 @@ import com.owb.playhelp.client.event.ngo.ShowPopupAddNgoEvent;
 import com.owb.playhelp.client.event.orphanage.ShowPopupAddOrphanageEvent;
 import com.owb.playhelp.client.event.project.ProjectAddEvent;
 import com.owb.playhelp.client.presenter.Presenter;
-import com.owb.playhelp.client.presenter.MainHomePresenter.Display;
+import com.owb.playhelp.client.presenter.map.MainHomePresenter.Display;
 import com.owb.playhelp.shared.UserProfileInfo;
 import com.owb.playhelp.client.helper.ClickPoint;
 

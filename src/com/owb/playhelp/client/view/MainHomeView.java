@@ -14,7 +14,7 @@ import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.maps.client.MapWidget; 
 
 
-import com.owb.playhelp.client.presenter.MainHomePresenter;
+import com.owb.playhelp.client.presenter.map.MainHomePresenter;
 
 public class MainHomeView extends Composite implements MainHomePresenter.Display {
 

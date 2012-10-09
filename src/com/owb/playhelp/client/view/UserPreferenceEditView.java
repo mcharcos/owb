@@ -20,7 +20,7 @@ import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.ListBox;
 
-import com.owb.playhelp.client.presenter.UserPreferenceEditPresenter;
+import com.owb.playhelp.client.presenter.user.UserPreferenceEditPresenter;
 
 public class UserPreferenceEditView extends Composite implements UserPreferenceEditPresenter.Display {
 
