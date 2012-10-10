@@ -5,7 +5,6 @@ package com.owb.playhelp.client.service.orphanage;
 import java.util.ArrayList;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.owb.playhelp.shared.exceptions.NoUserException;
 import com.owb.playhelp.shared.orphanage.OrphanageInfo;
 
 public interface OrphanageServiceAsync {

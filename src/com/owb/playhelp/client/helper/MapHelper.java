@@ -12,7 +12,6 @@ import com.google.gwt.maps.client.InfoWindowContent;
 import com.google.gwt.user.client.ui.HasWidgets;
 
 import com.google.gwt.user.client.Timer;
-import com.google.gwt.user.client.Window;
 
 import com.owb.playhelp.shared.ngo.NgoInfo;
 
@@ -105,7 +104,7 @@ final public class MapHelper {
 	}
 	
 	public void setMarker(LatLng point){
-		InfoWindow info = map.getInfoWindow();
+		//InfoWindow info = map.getInfoWindow();
 		Marker marker = new Marker(point);
 		map.addOverlay(marker);
         //info.open(marker, new InfoWindowContent(""));
@@ -128,7 +127,7 @@ final public class MapHelper {
 
 	public LatLng getPoint(final String address) {
 		
-		final InfoWindow info = map.getInfoWindow();
+		//final InfoWindow info = map.getInfoWindow();
 		LatLng point = null;
 		
 		geocoder.getLatLng(address, new LatLngCallback() {

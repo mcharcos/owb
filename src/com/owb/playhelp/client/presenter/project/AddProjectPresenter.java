@@ -11,30 +11,19 @@ import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.HasValue;
-import com.google.gwt.user.client.ui.VerticalPanel;
-import com.google.gwt.user.client.ui.Image;
-import com.google.gwt.user.client.ui.HasText;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.Widget;
-import com.google.gwt.user.client.ui.Anchor;
 
-import com.google.gwt.maps.client.Maps; 
-import com.google.gwt.maps.client.geom.LatLng; 
 import com.google.gwt.maps.client.geocode.Geocoder;
-import com.google.gwt.maps.client.geocode.LatLngCallback;
-import com.google.gwt.user.client.Timer;
 
 import com.owb.playhelp.client.event.project.ProjectUpdateEvent;
 import com.owb.playhelp.client.event.project.ShowPopupAddProjectStatusEvent;
 import com.owb.playhelp.client.helper.RPCCall;
 import com.owb.playhelp.client.helper.ClickPoint;
-import com.owb.playhelp.client.service.LoginServiceAsync;
 import com.owb.playhelp.client.service.project.ProjectServiceAsync;
-import com.owb.playhelp.shared.ChapterInfo;
 import com.owb.playhelp.shared.UserProfileInfo;
 import com.owb.playhelp.shared.project.ProjectInfo;
 import com.owb.playhelp.client.presenter.Presenter;
-import com.owb.playhelp.client.helper.MapHelper;
 
 public class AddProjectPresenter implements Presenter {
 	public interface Display {
@@ -51,24 +40,18 @@ public class AddProjectPresenter implements Presenter {
 	private final Display display;
 	private ProjectInfo project;
 
-	private UserProfileInfo currentUser;
 	private final ProjectServiceAsync projectService;
 	
-	private boolean isApiLoaded;
-	private final Geocoder geocoder;
-
-	public AddProjectPresenter(UserProfileInfo currentUser, ProjectServiceAsync projectService,
-			SimpleEventBus eventBus, Geocoder geocoder, Display display) {
-		this.currentUser = currentUser;
+	public AddProjectPresenter(ProjectServiceAsync projectService,
+			SimpleEventBus eventBus, Display display) {
 		this.projectService = projectService;
 		this.eventBus = eventBus;
-		this.geocoder = geocoder;
 		this.display = display;
 		this.project = null;
 	}
 	public AddProjectPresenter(ProjectInfo project, UserProfileInfo currentUser, ProjectServiceAsync projectService,
 			SimpleEventBus eventBus, Geocoder geocoder, Display display) {
-		this(currentUser, projectService, eventBus, geocoder, display);
+		this(projectService, eventBus, display);
 		this.project = project;
 	}
 
@@ -108,11 +91,7 @@ public class AddProjectPresenter implements Presenter {
 		this.display.getWebField().setValue(this.project.getWebsite());
 	}
 	  
-	  private void updateProject() {
-		  
-		  double lat = -1.0;
-		  double lng = -1.0;
-		  
+	  private void updateProject() {		  
           if (project == null){
 			  project = new ProjectInfo(display.getNameField().getValue().trim(),
 					  	display.getDescField().getValue().trim(),

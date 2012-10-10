@@ -14,10 +14,8 @@ import com.google.gwt.user.client.ui.Widget;
 import com.owb.playhelp.client.event.orphanage.OrphanageUpdateEvent;
 import com.owb.playhelp.client.helper.RPCCall;
 import com.owb.playhelp.client.presenter.Presenter;
-import com.owb.playhelp.client.presenter.orphanage.AddOrphanagePresenter.Display;
 import com.owb.playhelp.client.service.orphanage.OrphanageServiceAsync;
 import com.owb.playhelp.shared.StandardInfo;
-import com.owb.playhelp.shared.UserProfileInfo;
 import com.owb.playhelp.shared.orphanage.OrphanageInfo;
 
 public class AddProjectStatusPresenter implements Presenter{

@@ -6,7 +6,6 @@ package com.owb.playhelp.client.presenter.project;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.HasClickHandlers;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -14,8 +13,6 @@ import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.HorizontalPanel;
-import com.google.gwt.user.client.ui.Image;
-import com.google.gwt.user.client.ui.HasText;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.Widget;
 
@@ -27,7 +24,6 @@ import com.owb.playhelp.client.presenter.Presenter;
 import com.owb.playhelp.client.presenter.project.ProjectInfoPresenter;
 import com.owb.playhelp.client.view.project.ProjectInfoView;
 import com.owb.playhelp.client.service.ContributionServiceAsync;
-import com.owb.playhelp.client.service.LoginServiceAsync;
 import com.owb.playhelp.client.service.project.ProjectServiceAsync;
 import com.owb.playhelp.shared.UserProfileInfo;
 import com.owb.playhelp.shared.project.ProjectInfo;
@@ -101,7 +97,7 @@ public class ProjectSearchPresenter implements Presenter {
 	    ProjectInfoPresenter projectInfoPresenter = null;
 	    HorizontalPanel pContainer = null;
 	    for (ProjectInfo p : projectList) {
-	    	projectInfoPresenter = new ProjectInfoPresenter(p, currentUser, projectService, contributionService,
+	    	projectInfoPresenter = new ProjectInfoPresenter(p, currentUser, contributionService,
 	    			eventBus, new ProjectInfoView());
 	    	pContainer = new HorizontalPanel();
 	    	list.add(pContainer);

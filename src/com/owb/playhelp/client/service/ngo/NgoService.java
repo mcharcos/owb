@@ -7,9 +7,7 @@ import java.util.ArrayList;
 
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
-import com.owb.playhelp.shared.exceptions.NoUserException;
 import com.owb.playhelp.shared.ngo.NgoInfo;
-import com.owb.playhelp.shared.ngo.NgoItemInfo;
 
 @RemoteServiceRelativePath("ngoService")
 public interface NgoService extends RemoteService {

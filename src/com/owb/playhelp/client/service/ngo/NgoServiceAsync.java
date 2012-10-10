@@ -5,9 +5,7 @@ package com.owb.playhelp.client.service.ngo;
 import java.util.ArrayList;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.owb.playhelp.shared.exceptions.NoUserException;
 import com.owb.playhelp.shared.ngo.NgoInfo;
-import com.owb.playhelp.shared.ngo.NgoItemInfo;
 
 public interface NgoServiceAsync {
 	void requestMemberNgo(NgoInfo ngoInfo, AsyncCallback<NgoInfo> callback);

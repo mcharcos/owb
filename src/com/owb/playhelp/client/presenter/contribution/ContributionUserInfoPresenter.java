@@ -73,7 +73,7 @@ public class ContributionUserInfoPresenter implements Presenter {
 		  this.display.getDetailLink().addClickHandler(new ClickHandler(){
 			  public void onClick(ClickEvent event){
 				  if (currentUser != null){
-					  ContributionUserDetailPresenter userContributePresenter = new ContributionUserDetailPresenter(currentUser, currentContribution, contributionService,  eventBus, new ContributionUserDetailView());
+					  ContributionUserDetailPresenter userContributePresenter = new ContributionUserDetailPresenter(new ContributionUserDetailView());
 					  //projectContributePresenter.go();  
 				  } 
 			  }

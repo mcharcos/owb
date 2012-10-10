@@ -11,30 +11,16 @@ import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.HasValue;
-import com.google.gwt.user.client.ui.VerticalPanel;
-import com.google.gwt.user.client.ui.Image;
-import com.google.gwt.user.client.ui.HasText;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.Widget;
-import com.google.gwt.user.client.ui.Anchor;
-
-import com.google.gwt.maps.client.Maps; 
-import com.google.gwt.maps.client.geom.LatLng; 
-import com.google.gwt.maps.client.geocode.Geocoder;
-import com.google.gwt.maps.client.geocode.LatLngCallback;
-import com.google.gwt.user.client.Timer;
 
 import com.owb.playhelp.client.event.orphanage.OrphanageUpdateEvent;
 import com.owb.playhelp.client.event.orphanage.ShowPopupAddOrphanageStatusEvent;
 import com.owb.playhelp.client.helper.RPCCall;
 import com.owb.playhelp.client.helper.ClickPoint;
-import com.owb.playhelp.client.service.LoginServiceAsync;
 import com.owb.playhelp.client.service.orphanage.OrphanageServiceAsync;
-import com.owb.playhelp.shared.ChapterInfo;
-import com.owb.playhelp.shared.UserProfileInfo;
 import com.owb.playhelp.shared.orphanage.OrphanageInfo;
 import com.owb.playhelp.client.presenter.Presenter;
-import com.owb.playhelp.client.helper.MapHelper;
 
 public class AddOrphanagePresenter implements Presenter {
 	public interface Display {
@@ -54,26 +40,18 @@ public class AddOrphanagePresenter implements Presenter {
 	private final Display display;
 	private OrphanageInfo orphanage;
 
-	private UserProfileInfo currentUser;
 	private final OrphanageServiceAsync orphanageService;
 	
-	private String address;
-	private double lat,lng;
-	private boolean isApiLoaded;
-	private final Geocoder geocoder;
-
-	public AddOrphanagePresenter(UserProfileInfo currentUser, OrphanageServiceAsync orphanageService,
-			SimpleEventBus eventBus, Geocoder geocoder, Display display) {
-		this.currentUser = currentUser;
+	public AddOrphanagePresenter(OrphanageServiceAsync orphanageService,
+			SimpleEventBus eventBus, Display display) {
 		this.orphanageService = orphanageService;
 		this.eventBus = eventBus;
-		this.geocoder = geocoder;
 		this.display = display;
 		this.orphanage = null;
 	}
-	public AddOrphanagePresenter(OrphanageInfo orphanage, UserProfileInfo currentUser, OrphanageServiceAsync orphanageService,
-			SimpleEventBus eventBus, Geocoder geocoder, Display display) {
-		this(currentUser, orphanageService, eventBus, geocoder, display);
+	public AddOrphanagePresenter(OrphanageInfo orphanage, OrphanageServiceAsync orphanageService,
+			SimpleEventBus eventBus, Display display) {
+		this(orphanageService, eventBus, display);
 		this.orphanage = orphanage;
 	}
 
@@ -157,81 +135,6 @@ public class AddOrphanagePresenter implements Presenter {
 	        Window.alert("Error retrieving project...");
 	      }
 	    }.retry(3);
-	  }
-	  
-	  // Some how dhit does not work
-	  private void SolveAddress(){
-	        geocoder.getLatLng(address, new LatLngCallback() {
-	  	      public void onFailure() {
-	  	    	  Window.alert(address + " cannot be resolved"); 
-	  	      }
-
-	  	      public void onSuccess(LatLng point) {
-	  	    	lat = point.getLatitude();
-	  	    	lng = point.getLongitude();
-	  	    	isApiLoaded = true;
-	  	    	Window.alert("Latitude: "+lat+", Longitude: "+lng);
-	  	      }
-	  	    });
-
-			try{
-				Timer apiLoadedTimer = new Timer() {
-					@Override
-					public void run() {
-						if (isApiLoaded) {
-							cancel();
-						}
-						
-					}
-				};
-				apiLoadedTimer.scheduleRepeating(3000);
-				Window.alert("Time out!!");
-			}// end try
-		    catch (Exception e) {
-		        e.printStackTrace();
-		        Window.alert("Time out: "+address + " cannot be resolved"); 
-		      } 
-	  }
-	  private void SolveAddress2(){
-		  isApiLoaded = false;
-			Maps.loadMapsApi(MapHelper.MapKEY, "2", false, new Runnable() {
-				   public void run() { 
-					   Geocoder geocoder = new Geocoder();
-					   //this.lat = map.getPoint(this).getLatitude();
-					   //this.lng = map.getPoint(this).getLongitude();
-				        //isApiLoaded = true;
-				        geocoder.getLatLng(address, new LatLngCallback() {
-				  	      public void onFailure() {
-				  	    	  Window.alert(address + " cannot be resolved"); 
-				  	      }
-
-				  	      public void onSuccess(LatLng point) {
-				  	    	lat = point.getLatitude();
-				  	    	lng = point.getLongitude();
-				  	    	isApiLoaded = true;
-				  	    	Window.alert("Latitude: "+lat+", Longitude: "+lng);
-				  	      }
-				  	    });
-				   }
-			    });
-
-			try{
-				Timer apiLoadedTimer = new Timer() {
-					@Override
-					public void run() {
-						if (isApiLoaded) {
-							cancel();
-						}
-						
-					}
-				};
-				apiLoadedTimer.scheduleRepeating(3000);
-				Window.alert("Time out!!");
-			}// end try
-		    catch (Exception e) {
-		        e.printStackTrace();
-		        Window.alert("Time out: "+address + " cannot be resolved"); 
-		      } 
 	  }
 
 }

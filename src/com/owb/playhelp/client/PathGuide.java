@@ -31,17 +31,17 @@ import com.owb.playhelp.client.service.project.ProjectServiceAsync;
 import com.owb.playhelp.client.service.UserServiceAsync;
 import com.owb.playhelp.client.service.ngo.NgoServiceAsync;
 import com.owb.playhelp.client.service.orphanage.OrphanageServiceAsync;
-import com.owb.playhelp.client.view.MainHomeView;
-import com.owb.playhelp.client.view.NewsHomeView;
-import com.owb.playhelp.client.view.FriendsHomeView;
 import com.owb.playhelp.client.view.ContactHomeView;
+import com.owb.playhelp.client.view.friend.FriendsHomeView;
+import com.owb.playhelp.client.view.map.MainHomeView;
+import com.owb.playhelp.client.view.news.NewsHomeView;
 import com.owb.playhelp.client.view.ngo.AddNgoView;
 import com.owb.playhelp.client.view.ngo.ReportAbuseNgoView;
 import com.owb.playhelp.client.view.ngo.ShowDetailsNgoView;
 import com.owb.playhelp.client.view.orphanage.AddOrphanageView;
 import com.owb.playhelp.client.view.orphanage.AddOrphanageStatusView;
 import com.owb.playhelp.client.view.project.AddProjectView;
-import com.owb.playhelp.client.view.UserPreferenceEditView;
+import com.owb.playhelp.client.view.user.UserPreferenceEditView;
 import com.owb.playhelp.client.view.web.ShowWebMissionView;
 import com.owb.playhelp.client.view.web.ShowWebGoalsView;
 import com.owb.playhelp.client.view.web.ShowWebDifferentView;
@@ -193,7 +193,7 @@ public class PathGuide implements ValueChangeHandler<String>  {
 					return;
 				}
 
-				ReportAbuseNgoPresenter reportNgoPresenter = new ReportAbuseNgoPresenter(event.getNgo(), currentUser, ngoService,thePath,new ReportAbuseNgoView(event.getClickPoint()));
+				ReportAbuseNgoPresenter reportNgoPresenter = new ReportAbuseNgoPresenter(event.getNgo(), ngoService,thePath,new ReportAbuseNgoView(event.getClickPoint()));
 				reportNgoPresenter.go(Owb.get().getMainPanel());
 			}
 		});
@@ -209,7 +209,7 @@ public class PathGuide implements ValueChangeHandler<String>  {
 						return;
 					}
 				}
-				AddNgoPresenter addNgoPresenter = new AddNgoPresenter(event.getNgo(), currentUser, ngoService,thePath,geocoder,new AddNgoView(event.getClickPoint()));
+				AddNgoPresenter addNgoPresenter = new AddNgoPresenter(event.getNgo(), ngoService,thePath,new AddNgoView(event.getClickPoint()));
 		        addNgoPresenter.go(Owb.get().getMainPanel());
 			}
 		});
@@ -225,7 +225,7 @@ public class PathGuide implements ValueChangeHandler<String>  {
 						return;
 					}
 				}
-				AddOrphanagePresenter addOrphanagePresenter = new AddOrphanagePresenter(event.getOrphanage(), currentUser, orphanageService,thePath,geocoder,new AddOrphanageView(event.getClickPoint()));
+				AddOrphanagePresenter addOrphanagePresenter = new AddOrphanagePresenter(event.getOrphanage(), orphanageService,thePath,new AddOrphanageView(event.getClickPoint()));
 				addOrphanagePresenter.go(Owb.get().getMainPanel());
 			}
 		});
@@ -382,7 +382,7 @@ public class PathGuide implements ValueChangeHandler<String>  {
 	      } 
 			if (token.equals("contactus")) {
 				//Owb.get().getMainTitle().setText("Welcome To Karmagotchi");
-				presenter = new ContactHomePresenter(currentUser,thePath,new ContactHomeView());
+				presenter = new ContactHomePresenter(new ContactHomeView());
 				presenter.go(Owb.get().getMainPanel());
 	        return;
 	      } 

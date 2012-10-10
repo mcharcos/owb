@@ -10,7 +10,7 @@ import com.owb.playhelp.client.presenter.TopCenterPanelPresenter;
 import com.owb.playhelp.client.presenter.user.UserBadgePresenter;
 import com.owb.playhelp.client.presenter.web.WebMenuPresenter;
 import com.owb.playhelp.client.view.BusyIndicatorView;
-import com.owb.playhelp.client.view.UserBadgeView;
+import com.owb.playhelp.client.view.user.UserBadgeView;
 import com.owb.playhelp.client.view.web.WebMenuView;
 import com.owb.playhelp.client.helper.RPCCall;
 import com.owb.playhelp.shared.UserProfileInfo;
@@ -97,7 +97,7 @@ public class Owb implements EntryPoint {
 	 * The message displayed to the user when the server cannot be reached or
 	 * returns an error.
 	 */
-	private static final String SERVER_ERROR = "An error occurred while "
+	public static final String SERVER_ERROR = "An error occurred while "
 			+ "attempting to contact the server. Please check your network "
 			+ "connection and try again.";
 
@@ -255,7 +255,7 @@ public class Owb implements EntryPoint {
 	  userBadgePresenter = new UserBadgePresenter(loginService, thePath, new UserBadgeView());
 	  userBadgePresenter.go(actionPanel.getProfilePanel());
 
-	  webMenuPresenter = new WebMenuPresenter(currentUser,thePath, new WebMenuView());
+	  webMenuPresenter = new WebMenuPresenter(thePath, new WebMenuView());
 	  webMenuPresenter.go(actionPanel.getMenuPanel());
 
 	  topCenterPanelPresenter = new TopCenterPanelPresenter(thePath, new TopCenterPanel());

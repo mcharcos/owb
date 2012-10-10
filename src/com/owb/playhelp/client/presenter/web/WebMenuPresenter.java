@@ -1,29 +1,14 @@
 package com.owb.playhelp.client.presenter.web;
 
-import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.SimpleEventBus;
-import com.google.gwt.maps.client.InfoWindowContent;
-import com.google.gwt.maps.client.MapWidget;
-import com.google.gwt.maps.client.Maps;
-import com.google.gwt.maps.client.control.LargeMapControl;
-import com.google.gwt.maps.client.geom.LatLng;
-import com.google.gwt.maps.client.overlay.Marker;
 import com.google.gwt.user.client.Command;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.HasWidgets;
-import com.google.gwt.user.client.ui.MenuBar;
 import com.google.gwt.user.client.ui.MenuItem;
-import com.google.gwt.user.client.ui.ScrollPanel;
-import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.owb.playhelp.client.event.web.ShowWebEvent;
 import com.owb.playhelp.client.event.ngo.ShowPopupAddNgoEvent;
 import com.owb.playhelp.client.event.orphanage.ShowPopupAddOrphanageEvent;
-import com.owb.playhelp.client.event.project.ProjectAddEvent;
 import com.owb.playhelp.client.presenter.Presenter;
-import com.owb.playhelp.client.presenter.map.MainHomePresenter.Display;
-import com.owb.playhelp.shared.UserProfileInfo;
 import com.owb.playhelp.client.helper.ClickPoint;
 
 
@@ -44,12 +29,7 @@ public class WebMenuPresenter  implements Presenter {
 	private final SimpleEventBus eventBus;
 	private final Display display;
 
-	private UserProfileInfo currentUser;
-
-
-	public WebMenuPresenter(UserProfileInfo currentUser,
-			SimpleEventBus eventBus, Display display) {
-		this.currentUser = currentUser;
+	public WebMenuPresenter(SimpleEventBus eventBus, Display display) {
 		this.eventBus = eventBus;
 		this.display = display;
 		

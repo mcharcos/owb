@@ -5,10 +5,6 @@ package com.owb.playhelp.client.presenter.map;
 
 import java.util.ArrayList;
 
-import com.google.gwt.core.client.GWT;
-import com.google.gwt.event.dom.client.HasClickHandlers;
-import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.shared.SimpleEventBus;
 
 import com.google.gwt.maps.client.event.MarkerClickHandler;
@@ -23,8 +19,6 @@ import com.google.gwt.maps.client.overlay.MarkerOptions;
 import com.google.gwt.maps.client.geocode.Geocoder;
 import com.google.gwt.maps.client.geocode.LatLngCallback;
 import com.google.gwt.maps.client.InfoWindow;
-import com.google.gwt.maps.client.InfoWindowContent;
-import com.google.gwt.user.client.Timer;
 import com.google.gwt.maps.client.geom.Size;
 
 
@@ -33,8 +27,6 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
-import com.google.gwt.user.client.ui.Image;
-import com.google.gwt.user.client.ui.HasText;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.Widget;
 
@@ -43,13 +35,11 @@ import com.owb.playhelp.client.event.ngo.NgoUpdateEventHandler;
 import com.owb.playhelp.client.event.orphanage.OrphanageUpdateEvent;
 import com.owb.playhelp.client.event.orphanage.OrphanageUpdateEventHandler;
 import com.owb.playhelp.client.helper.RPCCall;
-import com.owb.playhelp.client.service.LoginServiceAsync;
 import com.owb.playhelp.client.service.ngo.NgoServiceAsync;
 import com.owb.playhelp.client.service.orphanage.OrphanageServiceAsync;
 import com.owb.playhelp.shared.UserProfileInfo;
 import com.owb.playhelp.shared.ngo.NgoInfo;
 import com.owb.playhelp.shared.orphanage.OrphanageInfo;
-import com.owb.playhelp.shared.project.ProjectInfo;
 import com.owb.playhelp.client.helper.MapHelper;
 import com.owb.playhelp.client.resources.Resources;
 import com.owb.playhelp.client.view.ngo.NgoMapMarkerInfoView;
@@ -81,7 +71,7 @@ public class MainHomePresenter implements Presenter {
 	private Geocoder geocoder = null; //new Geocoder();
 	//Geocoder geocoder=new Geocoder();
 	
-	private MapHelper mapHelper = null;
+	//private MapHelper mapHelper = null;
 
 
 	public MainHomePresenter(UserProfileInfo currentUser, NgoServiceAsync ngoService, OrphanageServiceAsync orphanageService,
@@ -95,7 +85,7 @@ public class MainHomePresenter implements Presenter {
 		//LatLng cawkerCity = LatLng.newInstance(39.509, -98.434); 
         //this.map = new MapWidget(cawkerCity, 2); 
 		//mapHelper = new MapHelper(display.getMapPanel());
-		mapHelper = new MapHelper();
+		//mapHelper = new MapHelper();
 	}
 
 	public void bind() {
@@ -318,7 +308,7 @@ public class MainHomePresenter implements Presenter {
 		
 		//Window.alert(orphanage.getName()+" => "+orphanage.getUniqueId());
 		final InfoWindow info = map.getInfoWindow();
-		OrphanageMapMarkerInfoPresenter markPresenter = new OrphanageMapMarkerInfoPresenter(this.currentUser, this.eventBus, orphanage, new OrphanageMapMarkerInfoView());
+		OrphanageMapMarkerInfoPresenter markPresenter = new OrphanageMapMarkerInfoPresenter(this.eventBus, orphanage, new OrphanageMapMarkerInfoView());
 		VerticalPanel container = new VerticalPanel();
 		markPresenter.go(container);
 		final InfoWindowContent infoContent = new InfoWindowContent(container);
