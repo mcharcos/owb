@@ -15,9 +15,9 @@ import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Widget;
 import com.owb.playhelp.client.resources.Resources;
-import com.owb.playhelp.client.event.NewsHomeEvent;
 import com.owb.playhelp.client.event.friend.FriendsHomeEvent;
 import com.owb.playhelp.client.event.map.MainHomeEvent;
+import com.owb.playhelp.client.event.news.NewsHomeEvent;
 
 public class TopCenterPanelPresenter implements Presenter {
 	public interface Display {

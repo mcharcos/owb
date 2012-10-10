@@ -10,7 +10,7 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HasText;
 import com.google.gwt.user.client.ui.Widget;
-import com.owb.playhelp.client.presenter.ContactHomePresenter;
+import com.owb.playhelp.client.presenter.web.ContactHomePresenter;
 
 public class ContactHomeView extends Composite implements ContactHomePresenter.Display {
 

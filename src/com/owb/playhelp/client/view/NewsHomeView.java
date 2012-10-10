@@ -11,7 +11,7 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HasText;
 import com.google.gwt.user.client.ui.Widget;
 
-import com.owb.playhelp.client.presenter.NewsHomePresenter;
+import com.owb.playhelp.client.presenter.news.NewsHomePresenter;
 
 public class NewsHomeView extends Composite implements NewsHomePresenter.Display {
 

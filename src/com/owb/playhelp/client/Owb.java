@@ -6,9 +6,9 @@ package com.owb.playhelp.client;
 
 import com.owb.playhelp.client.event.user.LoginEvent;
 import com.owb.playhelp.client.presenter.BusyIndicatorPresenter;
-import com.owb.playhelp.client.presenter.UserBadgePresenter;
 import com.owb.playhelp.client.presenter.TopCenterPanelPresenter;
 import com.owb.playhelp.client.presenter.user.UserSettingPresenter;
+import com.owb.playhelp.client.presenter.user.UserBadgePresenter;
 import com.owb.playhelp.client.presenter.web.WebMenuPresenter;
 import com.owb.playhelp.client.view.BusyIndicatorView;
 import com.owb.playhelp.client.view.UserBadgeView;

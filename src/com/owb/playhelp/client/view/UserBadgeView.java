@@ -18,7 +18,7 @@ import com.google.gwt.user.client.ui.HasText;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
 
-import com.owb.playhelp.client.presenter.UserBadgePresenter;
+import com.owb.playhelp.client.presenter.user.UserBadgePresenter;
 
 public class UserBadgeView extends Composite implements UserBadgePresenter.Display {
 
