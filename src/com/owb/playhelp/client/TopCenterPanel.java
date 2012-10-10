@@ -6,6 +6,7 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Widget;
+import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.owb.playhelp.client.presenter.TopCenterPanelPresenter;
 
 /**
@@ -33,6 +34,8 @@ public class TopCenterPanel extends Composite implements TopCenterPanelPresenter
 	Image friendPanel;
 	@UiField
 	Image owbPanel;
+	@UiField
+	HorizontalPanel userSettings;
 	
 	public TopCenterPanel() {
 		initWidget(uiBinder.createAndBindUi(this));
@@ -51,6 +54,9 @@ public class TopCenterPanel extends Composite implements TopCenterPanelPresenter
 	    return newsPanel;
 	}
 
+	public HorizontalPanel getUserSettings(){
+		return userSettings;
+	}
 	/**
 	 * Get the field of the image containing the map icon
 	 * 

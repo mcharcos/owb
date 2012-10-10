@@ -11,6 +11,7 @@ import com.google.gwt.event.dom.client.MouseOutEvent;
 import com.google.gwt.event.dom.client.MouseOutHandler;
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.user.client.ui.HasWidgets;
+import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Widget;
 import com.owb.playhelp.client.resources.Resources;
@@ -25,6 +26,7 @@ public class TopCenterPanelPresenter implements Presenter {
 		public Image getWorldPanel();
 		public Image getFriendPanel();
 		public Image getOwbPanel();
+		public HorizontalPanel getUserSettings();
 	}
 
 	private final SimpleEventBus eventBus;

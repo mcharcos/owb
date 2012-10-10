@@ -8,9 +8,11 @@ import com.owb.playhelp.client.event.user.LoginEvent;
 import com.owb.playhelp.client.presenter.BusyIndicatorPresenter;
 import com.owb.playhelp.client.presenter.UserBadgePresenter;
 import com.owb.playhelp.client.presenter.TopCenterPanelPresenter;
+import com.owb.playhelp.client.presenter.user.UserSettingPresenter;
 import com.owb.playhelp.client.presenter.web.WebMenuPresenter;
 import com.owb.playhelp.client.view.BusyIndicatorView;
 import com.owb.playhelp.client.view.UserBadgeView;
+import com.owb.playhelp.client.view.user.UserSettingView;
 import com.owb.playhelp.client.view.web.WebMenuView;
 import com.owb.playhelp.client.helper.RPCCall;
 import com.owb.playhelp.shared.UserProfileInfo;
@@ -120,6 +122,7 @@ public class Owb implements EntryPoint {
 	private UserBadgePresenter userBadgePresenter = null;
 	private WebMenuPresenter webMenuPresenter = null;
 	private TopCenterPanelPresenter topCenterPanelPresenter = null;
+	private UserSettingPresenter userSettingsPresenter = null;
 	
 	/**
 	 * Define variables:
@@ -258,9 +261,12 @@ public class Owb implements EntryPoint {
 	  webMenuPresenter = new WebMenuPresenter(currentUser,thePath, new WebMenuView());
 	  webMenuPresenter.go(actionPanel.getMenuPanel());
 
-	  topCenterPanelPresenter = new TopCenterPanelPresenter(thePath, new TopCenterPanel());
+	  TopCenterPanel tcpanel = new TopCenterPanel();
+	  topCenterPanelPresenter = new TopCenterPanelPresenter(thePath, tcpanel);
 	  topCenterPanelPresenter.go(topCenterPanel);
 	  
+	  userSettingsPresenter = new UserSettingPresenter(loginService,thePath, new UserSettingView());
+	  userSettingsPresenter.go(tcpanel.getUserSettings());
 	  
 	  }
 	
