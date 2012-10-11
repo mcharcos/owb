@@ -3,30 +3,18 @@
  */
 package com.owb.playhelp.client.presenter.contribution;
 
-import com.google.gwt.core.client.GWT;
-import com.google.gwt.event.dom.client.HasClickHandlers;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.shared.SimpleEventBus;
-import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.VerticalPanel;
-import com.google.gwt.user.client.ui.Image;
-import com.google.gwt.user.client.ui.HasText;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.Widget;
 
-import com.owb.playhelp.client.Owb;
-import com.owb.playhelp.client.event.LoginEvent;
-import com.owb.playhelp.client.event.LoginEventHandler;
-import com.owb.playhelp.client.event.project.ProjectHomeEvent;
-import com.owb.playhelp.client.event.project.ProjectContributeEvent;
-import com.owb.playhelp.client.helper.RPCCall;
+import com.owb.playhelp.client.event.user.LoginEvent;
+import com.owb.playhelp.client.event.user.LoginEventHandler;
 import com.owb.playhelp.client.view.contribution.ContributionUserDetailView;
-import com.owb.playhelp.client.service.LoginServiceAsync;
 import com.owb.playhelp.client.service.project.ProjectServiceAsync;
 import com.owb.playhelp.client.service.ContributionServiceAsync;
 import com.owb.playhelp.client.presenter.Presenter;
@@ -73,7 +61,7 @@ public class ContributionUserInfoPresenter implements Presenter {
 		  this.display.getDetailLink().addClickHandler(new ClickHandler(){
 			  public void onClick(ClickEvent event){
 				  if (currentUser != null){
-					  ContributionUserDetailPresenter userContributePresenter = new ContributionUserDetailPresenter(currentUser, currentContribution, contributionService,  eventBus, new ContributionUserDetailView());
+					  ContributionUserDetailPresenter userContributePresenter = new ContributionUserDetailPresenter(new ContributionUserDetailView());
 					  //projectContributePresenter.go();  
 				  } 
 			  }

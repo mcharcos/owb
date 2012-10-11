@@ -6,8 +6,8 @@ public class MouseClick {
 	private int button; //0=left, 1=middle, 2=right
 	
 	public MouseClick(int x, int y){
-		this.x1 = x1;
-		this.y1 = y1;
+		this.x1 = x;
+		this.y1 = y;
 		this.button = 0;
 	}
 	public MouseClick(int x, int y, int button){

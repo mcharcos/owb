@@ -2,7 +2,6 @@ package com.owb.playhelp.server;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 import java.util.logging.Logger;
 
 import javax.jdo.JDOCanRetryException;
@@ -15,11 +14,14 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.owb.playhelp.client.service.orphanage.OrphanageService;
 import com.owb.playhelp.server.domain.UserProfile;
 import com.owb.playhelp.server.domain.orphanage.Orphanage;
-import com.owb.playhelp.shared.exceptions.NoUserException;
 import com.owb.playhelp.shared.orphanage.OrphanageInfo;
 
 public class OrphanageServiceImpl extends RemoteServiceServlet implements OrphanageService {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6040792375246657307L;
 	private static Logger logger = Logger.getLogger(OrphanageServiceImpl.class.getName());
 	public final static String CHANNEL_ID = "channel_id";
 	private static final int NUM_RETRIES = 5;
@@ -88,9 +90,10 @@ public class OrphanageServiceImpl extends RemoteServiceServlet implements Orphan
 	}
 	
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public ArrayList<OrphanageInfo> getOrphanageList(){
-		ArrayList<OrphanageInfo> orphanageList = new ArrayList<OrphanageInfo>();
+		//ArrayList<OrphanageInfo> orphanageList = new ArrayList<OrphanageInfo>();
 		
 		PersistenceManager pm = PMFactory.getNonTxnPm();
 		UserProfile user = LoginHelper.getLoggedUser(getThreadLocalRequest().getSession(), pm);
@@ -100,9 +103,7 @@ public class OrphanageServiceImpl extends RemoteServiceServlet implements Orphan
 
 		pm = PMFactory.getNonTxnPm();
 		try{
-			String qstring = null;
 			Query dq = null;
-			qstring = "";
 			
 			dq = pm.newQuery("select id from " + Orphanage.class.getName());			
 			List<Long> foundIdOrphanages;
@@ -193,6 +194,7 @@ public class OrphanageServiceImpl extends RemoteServiceServlet implements Orphan
 	    }
 	}
 	
+	/*
 	private Orphanage addOrphanage(OrphanageInfo orphanageInfo){
 		PersistenceManager pm = PMFactory.getTxnPm();
 		Orphanage orphanage = null;
@@ -217,6 +219,7 @@ public class OrphanageServiceImpl extends RemoteServiceServlet implements Orphan
 		}
 		return orphanage;
 	}
+	*/
 
 	/*
 	@Override

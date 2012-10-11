@@ -11,29 +11,14 @@ import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.HasValue;
-import com.google.gwt.user.client.ui.VerticalPanel;
-import com.google.gwt.user.client.ui.Image;
-import com.google.gwt.user.client.ui.HasText;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.Widget;
-import com.google.gwt.user.client.ui.Anchor;
-
-import com.google.gwt.maps.client.Maps; 
-import com.google.gwt.maps.client.geom.LatLng; 
-import com.google.gwt.maps.client.geocode.Geocoder;
-import com.google.gwt.maps.client.geocode.LatLngCallback;
-import com.google.gwt.user.client.Timer;
 
 import com.owb.playhelp.client.event.ngo.NgoUpdateEvent;
 import com.owb.playhelp.client.helper.RPCCall;
-import com.owb.playhelp.client.service.LoginServiceAsync;
 import com.owb.playhelp.client.service.ngo.NgoServiceAsync;
-import com.owb.playhelp.shared.ChapterInfo;
-import com.owb.playhelp.shared.orphanage.OrphanageInfo;
-import com.owb.playhelp.shared.UserProfileInfo;
 import com.owb.playhelp.shared.ngo.NgoInfo;
 import com.owb.playhelp.client.presenter.Presenter;
-import com.owb.playhelp.client.helper.MapHelper;
 
 public class AddNgoPresenter implements Presenter {
 	public interface Display {
@@ -53,26 +38,27 @@ public class AddNgoPresenter implements Presenter {
 	private final Display display;
 	private NgoInfo ngo;
 
-	private UserProfileInfo currentUser;
+	//private UserProfileInfo currentUser;
 	private final NgoServiceAsync ngoService;
 	
+	/*
 	private String address;
 	private double lat,lng;
 	private boolean isApiLoaded;
-	private final Geocoder geocoder;
+	private final Geocoder geocoder;*/
 
-	public AddNgoPresenter(UserProfileInfo currentUser, NgoServiceAsync ngoService,
-			SimpleEventBus eventBus, Geocoder geocoder, Display display) {
-		this.currentUser = currentUser;
+	public AddNgoPresenter(NgoServiceAsync ngoService,
+			SimpleEventBus eventBus, Display display) {
+		//this.currentUser = currentUser;
 		this.ngoService = ngoService;
 		this.eventBus = eventBus;
-		this.geocoder = geocoder;
+		//this.geocoder = geocoder;
 		this.display = display;
 		this.ngo = null;
 	}
-	public AddNgoPresenter(NgoInfo ngo, UserProfileInfo currentUser, NgoServiceAsync ngoService,
-			SimpleEventBus eventBus, Geocoder geocoder, Display display) {
-		this(currentUser, ngoService, eventBus, geocoder, display);
+	public AddNgoPresenter(NgoInfo ngo, NgoServiceAsync ngoService,
+			SimpleEventBus eventBus, Display display) {
+		this(ngoService, eventBus, display);
 		this.ngo = ngo;
 	}
 
@@ -149,6 +135,7 @@ public class AddNgoPresenter implements Presenter {
 	  }
 	  
 	  // Some how dhit does not work
+	  /*
 	  private void SolveAddress(){
 	        geocoder.getLatLng(address, new LatLngCallback() {
 	  	      public void onFailure() {
@@ -223,4 +210,5 @@ public class AddNgoPresenter implements Presenter {
 		      } 
 	  }
 
+	  */
 }

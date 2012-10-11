@@ -5,7 +5,6 @@ package com.owb.playhelp.client.service;
 import java.util.ArrayList;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.owb.playhelp.shared.UserProfileInfo;
 import com.owb.playhelp.shared.ContributionInfo;
 
 public interface ContributionServiceAsync {

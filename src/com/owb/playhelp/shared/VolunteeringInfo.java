@@ -1,8 +1,7 @@
 package com.owb.playhelp.shared;
 
-import java.util.HashSet;
-import java.util.Set;
 
+@SuppressWarnings("serial")
 public class VolunteeringInfo extends ResourceInfo{
 	
 	private int numVolunteers = 0;

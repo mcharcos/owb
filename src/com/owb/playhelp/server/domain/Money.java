@@ -4,7 +4,6 @@
 package com.owb.playhelp.server.domain;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import javax.jdo.annotations.Extension;
 import javax.jdo.annotations.IdGeneratorStrategy;

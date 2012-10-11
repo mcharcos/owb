@@ -6,13 +6,8 @@ package com.owb.playhelp.shared.project;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.Date;
 
 import com.owb.playhelp.shared.StandardInfo;
-import com.owb.playhelp.shared.ResourceInfo;
-import com.owb.playhelp.shared.ChapterInfo;
-import com.owb.playhelp.shared.orphanage.OrphanageInfo;
-import com.owb.playhelp.shared.ngo.NgoInfo;
 
 @SuppressWarnings("serial") public class ProjectInfo implements Serializable {
 
@@ -28,7 +23,9 @@ import com.owb.playhelp.shared.ngo.NgoInfo;
 	private String orphanage = "";
 	
 	// projects and needs are managed through their uniqueId key.
+	@SuppressWarnings("unused")
 	private Set<String> needs = new HashSet<String>();
+	@SuppressWarnings("unused")
 	private Set<String> contributions = new HashSet<String>();
 
 	public ProjectInfo() {

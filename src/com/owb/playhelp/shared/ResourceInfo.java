@@ -67,7 +67,7 @@ import java.util.Date;
 	public void setDescription(String description){
 		this.description = description;
 	}
-	public void setStartDate(Date starDate){
+	public void setStartDate(Date startDate){
 		this.startDate = startDate;
 	}
 	public void setEndDate(Date endDate){

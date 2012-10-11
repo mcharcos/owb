@@ -5,6 +5,7 @@ package com.owb.playhelp.shared;
 
 import java.io.Serializable;
 
+@SuppressWarnings("serial")
 public class UserProfileInfo implements Serializable  {
 	
 	private String id;

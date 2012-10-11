@@ -19,15 +19,12 @@ import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
-import javax.jdo.annotations.Element;
 
 import com.owb.playhelp.server.PMFactory;
 import com.owb.playhelp.server.utils.Utils;
 import com.owb.playhelp.server.utils.cache.CacheSupport;
 import com.owb.playhelp.server.utils.cache.Cacheable;
 import com.owb.playhelp.server.domain.ngo.Ngo;
-import com.owb.playhelp.server.domain.ngo.NgoItem;
-import com.owb.playhelp.server.domain.project.Project;
 import com.owb.playhelp.shared.project.ProjectInfo;
 import com.owb.playhelp.shared.UserProfileInfo;
 import com.owb.playhelp.shared.ngo.NgoInfo;
@@ -234,24 +231,22 @@ public class UserProfile implements Serializable, Cacheable  {
 	  }
 	// Retrieve the user from the database if it already exist or
 	  // create a new account if it is the first loggin
-	  public static void createSuperUser() {
+	  @SuppressWarnings("unused")
+	public static void createSuperUser() {
 
 	    PersistenceManager pm = PMFactory.getTxnPm();
 	    Transaction tx = null;
-	    UserProfile oneResult = null, detached = null;
-
-	    String uniqueId = "test100@gmail.com";
 
 	    Query q = pm.newQuery(UserProfile.class, "uniqueId == :uniqueId");
 	    q.setUnique(true);
 	    
 
         UserProfile superUser = new UserProfile();
-        OrphanageItem orphanage = new OrphanageItem();
-        NgoItem ngo = new NgoItem();
-        ProjectInfo project = new ProjectInfo();
-        ChapterItem chapter = new ChapterItem();
-        FriendItem friend = new FriendItem();
+        //OrphanageItem orphanage = new OrphanageItem();
+        //NgoItem ngo = new NgoItem();
+        //ProjectInfo project = new ProjectInfo();
+        //ChapterItem chapter = new ChapterItem();
+        //FriendItem friend = new FriendItem();
         /*
         superUser.addOrphanage(orphanage);
         superUser.addNgo(ngo);
@@ -369,9 +364,11 @@ public class UserProfile implements Serializable, Cacheable  {
 	  }
 	  */
 
+	  /*
 	  public void addChapter(ChapterItem chapter){
 		  chapters.add(chapter.getUniqueId());
 	  }
+	  */
 	  public Set<String> getChapters(){
 		  // retrieve the chapters with the corresponding UniqueIds
 		  return chapters;

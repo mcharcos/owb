@@ -13,4 +13,9 @@ import java.io.Serializable;
 
 public class FeedNews implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1707570674689107567L;
+
 }

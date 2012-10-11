@@ -4,9 +4,7 @@
 package com.owb.playhelp.client.event.project;
 
 import com.google.gwt.event.shared.GwtEvent;
-import com.owb.playhelp.client.helper.MouseClick;
 import com.owb.playhelp.shared.ResourceInfo;
-import com.owb.playhelp.shared.VolunteeringInfo;
 
 public class ProjectNeedAddEvent extends GwtEvent<ProjectNeedAddEventHandler>{
 	public static Type<ProjectNeedAddEventHandler> TYPE = new Type<ProjectNeedAddEventHandler>();

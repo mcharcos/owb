@@ -4,41 +4,20 @@
 package com.owb.playhelp.client.presenter.ngo;
 
 import java.util.List;
-import java.util.Set;
 
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.HasClickHandlers;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.shared.SimpleEventBus;
-import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.google.gwt.user.client.ui.HasValue;
 import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.VerticalPanel;
-import com.google.gwt.user.client.ui.Image;
-import com.google.gwt.user.client.ui.HasText;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.Widget;
-import com.google.gwt.user.client.ui.Anchor;
 
-import com.google.gwt.maps.client.Maps; 
-import com.google.gwt.maps.client.geom.LatLng; 
-import com.google.gwt.maps.client.geocode.Geocoder;
-import com.google.gwt.maps.client.geocode.LatLngCallback;
-import com.google.gwt.user.client.Timer;
-
-import com.owb.playhelp.client.event.ngo.NgoUpdateEvent;
-import com.owb.playhelp.client.helper.RPCCall;
-import com.owb.playhelp.client.service.LoginServiceAsync;
 import com.owb.playhelp.client.service.ngo.NgoServiceAsync;
 import com.owb.playhelp.client.view.ListReportView;
-import com.owb.playhelp.shared.ChapterInfo;
-import com.owb.playhelp.shared.orphanage.OrphanageInfo;
 import com.owb.playhelp.shared.UserProfileInfo;
 import com.owb.playhelp.shared.ngo.NgoInfo;
 import com.owb.playhelp.client.presenter.Presenter;
-import com.owb.playhelp.client.helper.MapHelper;
 
 public class ShowDetailsNgoPresenter implements Presenter {
 	public interface Display {
@@ -51,11 +30,12 @@ public class ShowDetailsNgoPresenter implements Presenter {
 	    Label getPhoneField();
 		Label getEmailField();
 		Label getWebField();
-		Label getMembersField();
-	    Label getMembersReqField();
-	    Label getFollowersField();
-	    Label getAbuseReportField();
+		ListReportView getMembersField();
+		ListReportView getMembersReqField();
+		ListReportView getFollowersField();
+		ListReportView getAbuseReportField();
 	    ListReportView getAdminReportField();
+	    ListReportView getNgoReportField();
 	}
 
 	private final SimpleEventBus eventBus;
@@ -103,11 +83,12 @@ public class ShowDetailsNgoPresenter implements Presenter {
 		this.display.getWebField().setText(this.ngo.getWebsite());
 		
 		// Now add the list of members, followers,...
-		this.display.getMembersField().setText(this.getMemberListField(ngo));
-		this.display.getMembersReqField().setText(this.getMemberReqListField(ngo));
-		this.display.getFollowersField().setText(this.getFollowerListField(ngo));
-		this.display.getAbuseReportField().setText(this.getAbuseReportListField(ngo));
+		this.display.getMembersField().setData(ngo.getMemberList());
+		this.display.getMembersReqField().setData(ngo.getMemberReqList());
+		this.display.getFollowersField().setData(ngo.getFollowerList());
+		this.display.getAbuseReportField().setData(ngo.getAbuseReportList());
 		this.display.getAdminReportField().setData(ngo.getAdminReportList());
+		this.display.getNgoReportField().setData(ngo.getNgoReportList());
 	}
 	
 	

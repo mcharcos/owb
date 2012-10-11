@@ -1,11 +1,9 @@
 package com.owb.playhelp.server.domain;
 
 import java.io.Serializable;
-import java.util.List;
 import java.util.Date;
 import java.util.logging.Logger;
 
-import javax.jdo.annotations.Element;
 import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.PersistenceCapable;
@@ -21,7 +19,6 @@ import com.owb.playhelp.server.utils.cache.Cacheable;
 import com.owb.playhelp.shared.UserProfileInfo;
 import com.owb.playhelp.shared.ContributionInfo;
 import com.owb.playhelp.shared.project.ProjectInfo;
-import com.owb.playhelp.server.LoginHelper;
 import com.owb.playhelp.server.PMFactory;
 import com.owb.playhelp.server.domain.project.Project;
 

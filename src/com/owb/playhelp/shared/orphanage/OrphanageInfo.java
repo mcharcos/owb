@@ -4,12 +4,6 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.google.gwt.maps.client.Maps;
-import com.google.gwt.maps.client.geocode.Geocoder;
-import com.google.gwt.maps.client.geocode.LatLngCallback;
-import com.google.gwt.maps.client.geom.LatLng;
-import com.google.gwt.user.client.Timer;
-import com.owb.playhelp.client.helper.MapHelper;
 import com.owb.playhelp.shared.StandardInfo;
 
 @SuppressWarnings("serial") public class OrphanageInfo implements Serializable {
@@ -29,7 +23,6 @@ import com.owb.playhelp.shared.StandardInfo;
 	private boolean follower;
 	private Set<String> ngoNames = new HashSet<String>();
 
-	private boolean isApiLoaded;
 	
 	public OrphanageInfo() {
 
@@ -45,8 +38,6 @@ import com.owb.playhelp.shared.StandardInfo;
 	public OrphanageInfo(String name, String description,String addr, double lat, double lng) {
 		this(name,description);
 		this.address = addr;
-		
-		isApiLoaded = false;
 
 		this.lat = lat;
 		this.lng = lng;

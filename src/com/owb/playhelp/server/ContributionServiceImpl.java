@@ -6,8 +6,6 @@ package com.owb.playhelp.server;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
-import java.util.logging.Logger;
 import javax.jdo.PersistenceManager;
 import javax.jdo.JDOCanRetryException;
 import javax.jdo.Query;
@@ -17,15 +15,13 @@ import com.owb.playhelp.server.domain.UserProfile;
 import com.owb.playhelp.server.domain.Contribution;
 import com.owb.playhelp.client.service.ContributionService;
 import com.owb.playhelp.shared.ContributionInfo;
-import com.owb.playhelp.shared.UserProfileInfo;
-import com.owb.playhelp.shared.exceptions.NoUserException;
 
 @SuppressWarnings("serial")
 public class ContributionServiceImpl extends RemoteServiceServlet implements ContributionService {
 
-	private static Logger logger = Logger.getLogger(ContributionServiceImpl.class.getName());
+	//private static Logger logger = Logger.getLogger(ContributionServiceImpl.class.getName());
 	public final static String CHANNEL_ID = "channel_id";
-	private static final int NUM_RETRIES = 5;
+	//private static final int NUM_RETRIES = 5;
 	
 	@Override
 	public ContributionInfo addContribution(ContributionInfo contributionInfo){
@@ -53,6 +49,7 @@ public class ContributionServiceImpl extends RemoteServiceServlet implements Con
 		return contribution.toInfo();
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override 
 	public ArrayList<ContributionInfo> getUserContribution(){
 		

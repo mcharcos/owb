@@ -34,7 +34,7 @@
 			<g:HTMLPanel>
 				<!-- <app:CenterPanel ui:field='centerPanel' /> -->
 				<g:HorizontalPanel ui:field='topCenterPanel' styleName='{style.horizontalTopStyle}' />
-				<g:HorizontalPanel ui:field='barPanel' styleName='{style.horizontalCenterStyle}' />
+				<!-- <g:HorizontalPanel ui:field='barPanel' styleName='{style.horizontalCenterStyle}' />  -->
 				<g:ScrollPanel ui:field='centerPanel' styleName='{style.horizontalCenterStyle}' />
 			</g:HTMLPanel>
 		</g:center>

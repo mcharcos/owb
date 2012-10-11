@@ -9,8 +9,6 @@ import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
-import com.owb.playhelp.server.domain.Standard;
-import com.owb.playhelp.server.domain.orphanage.Orphanage;
 
 @SuppressWarnings("serial") 
 @PersistenceCapable(identityType = IdentityType.APPLICATION, detachable="true")
@@ -25,7 +23,6 @@ public class ProjectStandard implements Serializable  {
     @Extension(vendorName="datanucleus", key="gae.encoded-pk", value="true")
     private String id;   
 
-   @SuppressWarnings("unused")
    @Persistent(mappedBy = "status")
    private Project project;
    

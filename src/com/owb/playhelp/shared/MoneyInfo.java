@@ -2,6 +2,10 @@ package com.owb.playhelp.shared;
 
 public class MoneyInfo extends ResourceInfo {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8884305447979703998L;
 	private double amount;
 	
 

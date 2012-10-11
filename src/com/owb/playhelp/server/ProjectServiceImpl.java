@@ -13,16 +13,12 @@ import javax.jdo.JDOUserException;
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 import javax.jdo.Transaction;
-import javax.servlet.http.HttpSession;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.owb.playhelp.server.PMFactory;
 import com.owb.playhelp.server.LoginHelper;
-import com.owb.playhelp.server.utils.cache.CacheSupport;
 import com.owb.playhelp.server.domain.UserProfile;
-import com.owb.playhelp.server.domain.orphanage.Orphanage;
 import com.owb.playhelp.server.domain.project.Project;
-import com.owb.playhelp.server.domain.project.ProjectItem;
 import com.owb.playhelp.client.service.project.ProjectService;
 import com.owb.playhelp.shared.exceptions.NoUserException;
 import com.owb.playhelp.shared.project.ProjectInfo;
@@ -91,17 +87,18 @@ public class ProjectServiceImpl extends RemoteServiceServlet implements ProjectS
 		      if (user == null)
 		        return null;
 		      
-		      Set<ProjectItem> projects = null;
+		      //Set<ProjectItem> projects = null;
 		      Set<String> projIds = user.getProjects();
 		      
 		      for (String pi: projIds){
 		    	  
 		      }
 		      
+		      /*
 		      if (projects == null) return null;
 		      for (ProjectItem project:projects){
 		    	  projectInfoList.add(project.toInfo());
-		      }
+		      }*/
 		}// end try
 	    finally {
 	        pm.close();

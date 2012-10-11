@@ -43,6 +43,7 @@ import javax.servlet.http.HttpServletRequest;
 import com.google.appengine.api.labs.taskqueue.QueueFailureException;
 
 
+@SuppressWarnings("deprecation")
 public class Utils {
         
     private static final Logger log = Logger.getLogger( Utils.class.getName() );

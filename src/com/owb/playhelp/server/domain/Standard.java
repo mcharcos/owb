@@ -2,17 +2,15 @@ package com.owb.playhelp.server.domain;
 
 import java.io.Serializable;
 
-import javax.jdo.annotations.Extension;
-import javax.jdo.annotations.IdGeneratorStrategy;
-import javax.jdo.annotations.IdentityType;
-import javax.jdo.annotations.PersistenceCapable;
-import javax.jdo.annotations.Persistent;
-import javax.jdo.annotations.PrimaryKey;
 
 import com.owb.playhelp.shared.StandardInfo;
  
 public class Standard implements Serializable  {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2023204547641864687L;
 	private float health;
 	private float education;
 	private float nutrition;

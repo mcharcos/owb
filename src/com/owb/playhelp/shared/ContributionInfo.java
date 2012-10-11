@@ -7,7 +7,6 @@ import com.owb.playhelp.shared.project.ProjectInfo;
 @SuppressWarnings("serial")
 public class ContributionInfo implements Serializable {
 
-	private String id;
 	private ProjectInfo project;
 	private UserProfileInfo contribUser;
 	private Date creationDate;

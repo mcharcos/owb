@@ -14,7 +14,6 @@ import javax.jdo.Query;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.owb.playhelp.server.LoginHelper;
 import com.owb.playhelp.server.PMFactory;
-import com.owb.playhelp.server.PMFactory;
 import com.owb.playhelp.server.domain.UserProfile;
 import com.owb.playhelp.server.utils.ServletHelper;
 import com.owb.playhelp.server.utils.ServletUtils;
@@ -82,9 +81,7 @@ public class LoginHelper extends RemoteServiceServlet {
 		    		newUser.setLastLoginOn(new Date());
 		    		try{
 		    			tx.commit();
-		    			String aux1 = String.valueOf(newUser.getId());
 		    			session.setAttribute("userId",String.valueOf(newUser.getId()));
-		    			String aux2 = (String) session.getAttribute("userId");
 		    			session.setAttribute("loggedin",true);
 		    			break;
 		    		} catch (JDOCanRetryException e1) {

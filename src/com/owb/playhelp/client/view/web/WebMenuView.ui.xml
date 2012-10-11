@@ -3,6 +3,9 @@
 	xmlns:g="urn:import:com.google.gwt.user.client.ui" 
 	xmlns:app='urn:import:com.owb.playhelp.client'
 	xmlns:owb='urn:import:com.owb.playhelp.client.view'>
+	
+    <ui:with field='res' type='com.owb.playhelp.client.resources.Resources'/>
+    
 	<ui:style>
 		.titleMenu {
 			font-weight: bold;
@@ -16,7 +19,6 @@
 		.gwt-MenuBar
 		{
 		    margin                      :   0 auto;
-		    background-color            :   #c5f935;
 		    padding                     :   0px;
 		    width    					: 	100%;
 			text-align					:  	center;
@@ -90,17 +92,17 @@ background: url(images/bluebar-bg-selected.png) no-repeat 50% 100%;
 		<tr>
 	  		<div class='{style.gwt-MenuBar}'>
 	  		<g:MenuBar ui:field='mainMenu' vertical="true">
-				<g:MenuItem ui:field='missionItem'>Mission</g:MenuItem>
-				<g:MenuItem ui:field='goalsItem'>Goals</g:MenuItem>
-				<g:MenuItem ui:field='differentItem'>Are we Different?</g:MenuItem>
-				<g:MenuItem ui:field='probsolItem'>Problems and Solitions</g:MenuItem>
-				<g:MenuItem ui:field='teamItem'>The Team</g:MenuItem>
-				<g:MenuItem ui:field='joinusItem'>Join Us</g:MenuItem>
-				    
-				<g:MenuItem ui:field='joinItem'>Join Network
+				<g:MenuItem ui:field='missionItem'><font color="#ab0fc8"><b><i><big>Mission</big></i></b></font></g:MenuItem>
+				<g:MenuItem ui:field='goalsItem'><font color="#ab0fc8"><b><i><big>Goals</big></i></b></font></g:MenuItem>
+				<g:MenuItem ui:field='differentItem'><font color="#ab0fc8"><b><i><big>Are we Different?</big></i></b></font></g:MenuItem>
+				<g:MenuItem ui:field='probsolItem'><font color="#ab0fc8"><b><i><big>Problems and Solitions</big></i></b></font></g:MenuItem>
+				<g:MenuItem ui:field='teamItem'><font color="#ab0fc8"><b><i><big>The Team</big></i></b></font></g:MenuItem>
+				<g:MenuItem ui:field='joinusItem'><font color="#ab0fc8"><b><i><big>Join Us</big></i></b></font></g:MenuItem>
+				<g:MenuItem ui:field='joinItem'>
+				    <font color="#ab0fc8"><b><i><big>Join Network</big></i></b></font>
 			         <g:MenuBar vertical="true">
-      					<g:MenuItem ui:field='addNgoItem'>As Organization</g:MenuItem>
-      					<g:MenuItem ui:field='addOrphanageItem'>As Orphanage</g:MenuItem>
+      					<g:MenuItem ui:field='addNgoItem'><font color="#ab0fc8"><b><i><big>As Organization</big></i></b></font></g:MenuItem>
+      					<g:MenuItem ui:field='addOrphanageItem'><font color="#ab0fc8"><b><i><big>As Orphanage</big></i></b></font></g:MenuItem>
      				</g:MenuBar>
 			    </g:MenuItem>
 	 		 </g:MenuBar>

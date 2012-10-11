@@ -17,14 +17,17 @@ import java.util.List;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileItemFactory;
-import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 
 public class FileUploadServlet extends HttpServlet {
 
-    private static final String UPLOAD_DIRECTORY = "/home/mcharcos/testowb/";
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -7051474454638826257L;
+	private static final String UPLOAD_DIRECTORY = "/home/mcharcos/testowb/";
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -47,6 +50,7 @@ public class FileUploadServlet extends HttpServlet {
 
 	    // Parse the request
 	    try {
+		@SuppressWarnings("unchecked")
 		List<FileItem> items = upload.parseRequest(req);
 		for (FileItem item : items) {
 		    // process only file upload - discard other form item types

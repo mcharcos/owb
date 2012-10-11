@@ -2,7 +2,6 @@ package com.owb.playhelp.server;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 import java.util.logging.Logger;
 
 import javax.jdo.JDOCanRetryException;
@@ -16,13 +15,14 @@ import com.owb.playhelp.client.service.ngo.NgoService;
 import com.owb.playhelp.server.domain.ConfirmationBadge;
 import com.owb.playhelp.server.domain.UserProfile;
 import com.owb.playhelp.server.domain.ngo.Ngo;
-import com.owb.playhelp.server.domain.ngo.NgoItem;
-import com.owb.playhelp.shared.exceptions.NoUserException;
 import com.owb.playhelp.shared.ngo.NgoInfo;
-import com.owb.playhelp.shared.ngo.NgoItemInfo;
 
 public class NgoServiceImpl extends RemoteServiceServlet implements NgoService {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2351679826873531508L;
 	private static Logger logger = Logger.getLogger(NgoServiceImpl.class.getName());
 	public final static String CHANNEL_ID = "channel_id";
 	private static final int NUM_RETRIES = 5;
@@ -280,9 +280,10 @@ public class NgoServiceImpl extends RemoteServiceServlet implements NgoService {
 		//return Ngo.toInfo(addedNgo);
 	}
     
+	@SuppressWarnings("unchecked")
 	@Override
 	public ArrayList<NgoInfo> getNgoList(){
-		ArrayList<NgoInfo> ngoList = new ArrayList<NgoInfo>();
+		//ArrayList<NgoInfo> ngoList = new ArrayList<NgoInfo>();
 		
 		PersistenceManager pm = PMFactory.getNonTxnPm();
 		UserProfile user = LoginHelper.getLoggedUser(getThreadLocalRequest().getSession(), pm);
@@ -292,9 +293,7 @@ public class NgoServiceImpl extends RemoteServiceServlet implements NgoService {
 
 		pm = PMFactory.getNonTxnPm();
 		try{
-			String qstring = null;
 			Query dq = null;
-			qstring = "";
 			
 			dq = pm.newQuery("select id from " + Ngo.class.getName());			
 			List<Long> foundIdNgos;
@@ -394,6 +393,7 @@ public class NgoServiceImpl extends RemoteServiceServlet implements NgoService {
 	    }
 	}
 	
+	/*
 	private Ngo addNgo(NgoInfo ngoInfo){
 		PersistenceManager pm = PMFactory.getTxnPm();
 		Ngo ngo = null;
@@ -417,7 +417,7 @@ public class NgoServiceImpl extends RemoteServiceServlet implements NgoService {
 			pm.close();
 		}
 		return ngo;
-	}
+	}*/
 
 	/*
 	@Override

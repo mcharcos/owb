@@ -4,7 +4,6 @@
 package com.owb.playhelp.server.domain.orphanage;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
@@ -21,12 +20,9 @@ import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
-import com.owb.playhelp.server.LoginHelper;
 import com.owb.playhelp.server.domain.ConfirmationBadge;
 import com.owb.playhelp.server.domain.Standard;
-import com.owb.playhelp.server.domain.UserProfile;
 import com.owb.playhelp.server.PMFactory;
-import com.owb.playhelp.server.domain.UserProfile;
 import com.owb.playhelp.shared.StandardInfo;
 import com.owb.playhelp.server.utils.Utils;
 import com.owb.playhelp.server.utils.cache.CacheSupport;
