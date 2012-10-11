@@ -63,9 +63,9 @@
 		    	<g:Image ui:field='profilePicture' width="92px" height="150px" resource='{res.owbLogo}' altText="Profile Picture"/>
 		    </td>
 		    <td class="adyacent">
-		      4 Projects <br/>
+		      <!-- 4 Projects <br/>
 		      5 Children <br/>
-		      $650 <br/>
+		      $650 <br/>  -->
 		    </td>
 		</tr>
       </table>

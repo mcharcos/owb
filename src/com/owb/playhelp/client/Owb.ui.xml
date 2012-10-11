@@ -43,6 +43,7 @@
             <g:VerticalPanel ui:field='statusPanel' />
 		</g:east>
 		
+		<!-- 
 		<g:south size="3">
 			<g:HTMLPanel styleName='{style.footerPanel}'>
 				<div>
@@ -54,6 +55,7 @@
 				</div>
 			</g:HTMLPanel>
 		</g:south>
+		 -->
 
 	</g:DockLayoutPanel>
 	

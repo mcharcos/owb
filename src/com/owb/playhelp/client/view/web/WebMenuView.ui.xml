@@ -50,7 +50,7 @@
 		    cursor                      :   pointer;
 		
 		    font-size                   :   x-large;
-			height						:	50px;
+			height						:	35px;
             font-family                 :   'Comic Sans MS';
             font-weight 				:	bold;
 		    background-color            :   #c5f935;

@@ -21,7 +21,6 @@
 			float: right;
 			margin-top: 0px; 
 			height: 92px;
-			width: 100%;
 			horizontalAlignment: "ALIGN_LEFT";
 		}
 		.backgroundall {  

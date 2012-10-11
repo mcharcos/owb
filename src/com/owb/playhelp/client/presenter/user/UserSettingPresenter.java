@@ -101,9 +101,11 @@ public class UserSettingPresenter implements Presenter {
 		  if (currentUser == null){
 			  // log in
 			  Window.Location.assign("/logingoogle");
+			  //eventBus.fireEvent(new LoginEvent(currentUser));
 		  } else {
 			  // log out
 			  doLogout();
+			  //eventBus.fireEvent(new LogoutEvent());
 		  }
 		  //Owb.get().showCurrentUserView();
 			  
