@@ -63,6 +63,7 @@
 		    	<g:Image ui:field='profilePicture' width="92px" height="150px" resource='{res.owbLogo}' altText="Profile Picture"/>
 		    </td>
 		    <td class="adyacent">
+		      <g:Image ui:field='socialIcons' width="100px" height="30px" resource='{res.socialIcons}' altText="Social Icons" />
 		      <!-- 4 Projects <br/>
 		      5 Children <br/>
 		      $650 <br/>  -->

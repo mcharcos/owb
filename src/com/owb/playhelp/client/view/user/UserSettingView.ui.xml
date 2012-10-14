@@ -11,17 +11,16 @@
 		.username {
 			text-align: left;
 		}
+		.backgroundall {  
+	        background-color: #b414d8;
+			height                      :   60px;
+         }  
 	</ui:style>
-	<g:HTMLPanel>
+	<g:HTMLPanel  styleName='{style.backgroundall}'>
 	  <table width="2">
 		<tr>
 		    <td colspan="2">
 		    	<g:Label styleName='{style.username}' ui:field='userNameLabel'>Loading Name...</g:Label>
-		    </td>
-		</tr>
-		<tr>
-		    <td colspan="2">
-		    	<g:Label styleName='{style.username}' ui:field='userEmailLabel'>Loading Email...</g:Label>
 		    </td>
 		</tr>
 		<tr>
@@ -38,10 +37,8 @@
 			</td>
 		</tr>
 		<tr>
-		    <td>
-		    	<g:Image ui:field='socialIcons' width="100px" height="30px" resource='{res.socialIcons}' altText="Social Icons" />
-		    </td>
-		    <td class="adyacent">
+		    <td colspan="2">
+		    	<g:Label styleName='{style.username}' ui:field='userEmailLabel'>Loading Email...</g:Label>
 		    </td>
 		</tr>
       </table>
