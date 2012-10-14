@@ -12,6 +12,14 @@ import com.owb.playhelp.client.event.RPCInEventHandler;
 import com.owb.playhelp.client.event.RPCOutEvent;
 import com.owb.playhelp.client.event.RPCOutEventHandler;
 
+/**
+ * 
+ * @author Miguel Charcos Llorens
+ * This class is in charge of showing a waiting indicator to the user when the
+ * server is busy. It shows the view defined by Display=BusyIndicatorView when 
+ * there is a RPCIn event and hide it when there is a RPCOut.
+ *
+ */
 public class BusyIndicatorPresenter implements Presenter {
 	public interface Display {
 	    void show();
@@ -30,7 +38,7 @@ public class BusyIndicatorPresenter implements Presenter {
 		bind();
 	}
 
-	public void bind() {
+	private void bind() {
 	    eventBus.addHandler(RPCInEvent.TYPE, new RPCInEventHandler() {
 	      @Override
 	      public void onRPCIn(RPCInEvent event) {

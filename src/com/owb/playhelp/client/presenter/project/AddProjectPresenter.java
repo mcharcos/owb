@@ -50,7 +50,7 @@ public class AddProjectPresenter implements Presenter {
 		this.project = null;
 	}
 	public AddProjectPresenter(ProjectInfo project, UserProfileInfo currentUser, ProjectServiceAsync projectService,
-			SimpleEventBus eventBus, Geocoder geocoder, Display display) {
+			SimpleEventBus eventBus, Display display) {
 		this(projectService, eventBus, display);
 		this.project = project;
 	}

@@ -7,6 +7,12 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.Widget;
 
+/**
+ * 
+ * @author Miguel Charcos Llorens
+ * This class manages the left panel view. There is not event handling currently implemented.
+ *
+ */
 public class LeftPanelPresenter implements Presenter {
 	public interface Display {
 		Widget asWidget();

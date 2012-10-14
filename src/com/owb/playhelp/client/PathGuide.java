@@ -8,7 +8,6 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.event.shared.SimpleEventBus;
-import com.google.gwt.maps.client.geocode.Geocoder;
 import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
@@ -96,19 +95,40 @@ import com.owb.playhelp.client.helper.RPCCall;
  *
  */
 public class PathGuide implements ValueChangeHandler<String>  {
+	
+	/*
+	 * This is the event bus to which we will be listening to. The Owb main entry point
+	 * pass the event bus that presenters use when they are created
+	 */
 	private final SimpleEventBus thePath;
+	
+	/*
+	 * We store the current user because some visualization depnds on the user.
+	 * For instance, the user settings won't be the same when the user is logged out
+	 * or when there is a specific user since the view shows the name of the user 
+	 */
 	private final UserProfileInfo currentUser;
 	
+	/*
+	 * Services for Ngo, Orphanages, projects and users are defined below
+	 */
 	private final NgoServiceAsync ngoService;
 	private final OrphanageServiceAsync orphanageService;
 	private final ProjectServiceAsync projectService;
 	private final UserServiceAsync userService;
+	
+	/*
+	 * the Presenter instance will be used when creating new presenters
+	 * We use the generic class since we can create different types of presenters
+	 */
 	Presenter presenter = null;
 
+	/* 
+	 * We store the last view so we can go back to the previous view if required
+	 * This happens specially when there is a form for users or organizations to update
+	 * the information and we want to go back to where the user previously was.
+	 */
 	private String lastView = "0";
-	
-	private Geocoder geocoder;  // TODO It seems that geocoder is always null here. Check it is changed by one of the presenters and remove it if not.
-	
 	
 	public PathGuide(UserServiceAsync userService, NgoServiceAsync ngoService, OrphanageServiceAsync orphanageService, 
 			ProjectServiceAsync projectService, SimpleEventBus thePath, UserProfileInfo currentUser){
@@ -118,10 +138,13 @@ public class PathGuide implements ValueChangeHandler<String>  {
 		this.projectService = projectService;
 		this.thePath = thePath;
 		this.currentUser = currentUser;
-		this.geocoder = null;
 		bind();
 	}
 	
+	/*
+	 * Listen to the events happening in the main bus and add a new element in the history
+	 * OnValueChange manage the view when there is a change on the history.
+	 */
 	private void bind(){
 		
 		//ProjectServiceAsync projectService = GWT.create(ProjectService.class);
@@ -129,6 +152,11 @@ public class PathGuide implements ValueChangeHandler<String>  {
 		//ProjectGuide projectGuide = new ProjectGuide(projectService, contributionService, thePath, currentUser);
 		//projectGuide.go();
 		
+		/*
+		 * Handle events related to the web menu The history is updated with "web" plus the
+		 * web page name that was requested. OnValueChange method manage what view 
+		 * is selected depending on the name that is added to the history.
+		 */
 		History.addValueChangeHandler(this);
 		thePath.addHandler(ShowWebEvent.TYPE, new ShowWebEventHandler(){
 			public void onShowWeb(ShowWebEvent event){
@@ -137,55 +165,92 @@ public class PathGuide implements ValueChangeHandler<String>  {
 				// before clicking preference link. But I am not sure how to handle this yet
 			}
 		});
+		
+		/*
+		 * Edit user request
+		 */
 		thePath.addHandler(PreferencesEditEvent.TYPE, new PreferencesEditEventHandler(){
 			public void onEditPreference(PreferencesEditEvent event){
 				History.newItem("edituser");
 			}
 		});
+		
+		/*
+		 * User preferences were updated and we want to return to previous view.
+		 */
 		thePath.addHandler(UserPreferenceUpdateEvent.TYPE, new UserPreferenceUpdateEventHandler(){
 			public void onUserPreferenceUpdate(UserPreferenceUpdateEvent event){
 				History.newItem(lastView);
-				// I should user History.newItem(lastView); to return to the last view
-				// before clicking preference link. But I am not sure how to handle this yet
 			}
 		});
+		
+
+		/*
+		 * User preference editing was cancelled and we want to return to previous view.
+		 */
 		thePath.addHandler(UserPreferenceEditCancelEvent.TYPE, new UserPreferenceEditCancelEventHandler(){
 			public void onUserPreferenceEditCancel(UserPreferenceEditCancelEvent event){
 				History.newItem(lastView);
-				// I should user History.newItem(lastView); to return to the last view
-				// before clicking preference link. But I am not sure how to handle this yet
 			}
 		});
+		
+		/*
+		 * The user requested to see the main page of the news. 
+		 */
 		thePath.addHandler(NewsHomeEvent.TYPE, new NewsHomeEventHandler(){
 			public void onNewsHome(NewsHomeEvent event){
 				lastView = "news";
 				History.newItem("news");
 			}
 		});
+		
+		/*
+		 * The user requested to see the map view
+		 */
 		thePath.addHandler(MainHomeEvent.TYPE, new MainHomeEventHandler(){
 			public void onMainHomeRequest(MainHomeEvent event){
 				lastView = "map";
 				History.newItem("map");
 			}
 		});
+		
+		/*
+		 * The user requested to see the friend view
+		 */
 		thePath.addHandler(FriendsHomeEvent.TYPE, new FriendsHomeEventHandler(){
 			public void onFriendsHome(FriendsHomeEvent event){
 				lastView = "friends";
 				History.newItem("friends");
 			}
 		});
+		
+		/*
+		 * The user requested to see the view about our contact information
+		 * I think this should be included on the left bar menu and therefore
+		 * the handler would go away since it would be handled with ShowWebEvent 
+		 */
 		thePath.addHandler(ContactHomeEvent.TYPE, new ContactHomeEventHandler(){
 			public void onContactHome(ContactHomeEvent event){
 				lastView = "contactus";
 				History.newItem("contactus");
 			}
 		});
+		
+		/*
+		 * Listen to requests of pop-up view containing the details of the ngo
+		 */
 		thePath.addHandler(ShowPopupDetailsNgoEvent.TYPE, new ShowPopupDetailsNgoEventHandler(){
 			public void onShowPopupDetailsNgo(ShowPopupDetailsNgoEvent event){
 				ShowDetailsNgoPresenter showDetailsNgoPresenter = new ShowDetailsNgoPresenter(event.getNgo(),currentUser, ngoService, thePath,new ShowDetailsNgoView());
 				showDetailsNgoPresenter.go(Owb.get().getMainPanel());
 			}
 		});
+		
+		/*
+		 * Listen to request for writing a report of abouse about the organization.
+		 * It will show a popup window where the user can enters the information
+		 * about the abuse.
+		 */
 		thePath.addHandler(ShowPopupReportAbuseNgoEvent.TYPE, new ShowPopupReportAbuseNgoEventHandler(){
 			public void onShowPopupReportAbuseNgo(ShowPopupReportAbuseNgoEvent event){
 				if (currentUser == null){
@@ -197,6 +262,11 @@ public class PathGuide implements ValueChangeHandler<String>  {
 				reportNgoPresenter.go(Owb.get().getMainPanel());
 			}
 		});
+		
+		/*
+		 * Listen to an event requesting starting an organization. It will show a popup 
+		 * window where the user can enter the information of the organization.
+		 */
 		thePath.addHandler(ShowPopupAddNgoEvent.TYPE, new ShowPopupAddNgoEventHandler(){
 			public void onShowPopupAddNgo(ShowPopupAddNgoEvent event){
 				if (currentUser == null){
@@ -213,6 +283,12 @@ public class PathGuide implements ValueChangeHandler<String>  {
 		        addNgoPresenter.go(Owb.get().getMainPanel());
 			}
 		});
+		
+
+		/*
+		 * Listen to an event requesting starting an orphanage. It will show a popup 
+		 * window where the user can enter the information of the orphanage.
+		 */
 		thePath.addHandler(ShowPopupAddOrphanageEvent.TYPE, new ShowPopupAddOrphanageEventHandler(){
 			public void onShowPopupAddOrphanage(ShowPopupAddOrphanageEvent event){
 				if (currentUser == null){
@@ -229,6 +305,11 @@ public class PathGuide implements ValueChangeHandler<String>  {
 				addOrphanagePresenter.go(Owb.get().getMainPanel());
 			}
 		});
+		
+		/*
+		 * Listen to events requesting a view for entering the needs of the orphanage
+		 * The view will be set in a popup panel.
+		 */
 		thePath.addHandler(ShowPopupAddOrphanageStatusEvent.TYPE, new ShowPopupAddOrphanageStatusEventHandler(){
 			public void onShowPopupAddOrphanageStatus(ShowPopupAddOrphanageStatusEvent event){
 				if (currentUser == null){
@@ -245,6 +326,11 @@ public class PathGuide implements ValueChangeHandler<String>  {
 				addOrphanageStatusPresenter.go(Owb.get().getMainPanel());
 			}
 		});
+		
+		/*
+		 * Listen to event requesting adding a project. A popup panel appears to allow the
+		 * user to enter the information of the project.
+		 */
 		thePath.addHandler(ShowPopupAddProjectEvent.TYPE, new ShowPopupAddProjectEventHandler(){
 			public void onShowPopupAddProject(ShowPopupAddProjectEvent event){
 				if (currentUser == null){
@@ -257,10 +343,17 @@ public class PathGuide implements ValueChangeHandler<String>  {
 						return;
 					}
 				}
-				AddProjectPresenter addProjectPresenter = new AddProjectPresenter(event.getProject(), currentUser, projectService,thePath,geocoder,new AddProjectView(event.getClickPoint()));
+				AddProjectPresenter addProjectPresenter = new AddProjectPresenter(event.getProject(), currentUser, projectService,thePath,new AddProjectView(event.getClickPoint()));
 				addProjectPresenter.go(Owb.get().getMainPanel());
 			}
 		});
+		
+		/*
+		 * Listen to an event requesting removing an organization. I am not sure why
+		 * this is here instead of inside the presenter that has the remove button
+		 * The main advantage would be to handle in a single place the removal if 
+		 * there are more than one way to remove an organization (which there will be for sure)
+		 */
 		thePath.addHandler(NgoRemoveEvent.TYPE, new NgoRemoveEventHandler(){
 			public void onNgoRemove(NgoRemoveEvent event){
 				if (currentUser == null){
@@ -303,6 +396,9 @@ public class PathGuide implements ValueChangeHandler<String>  {
 		});*/
 	}
 	
+	/**
+	 * This method will fire the event of the state of the history
+	 */
 	public void go() {
 		if ("".equals(History.getToken())) {
 		    History.newItem("news");

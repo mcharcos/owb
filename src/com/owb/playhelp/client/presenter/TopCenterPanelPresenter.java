@@ -19,6 +19,14 @@ import com.owb.playhelp.client.event.friend.FriendsHomeEvent;
 import com.owb.playhelp.client.event.map.MainHomeEvent;
 import com.owb.playhelp.client.event.news.NewsHomeEvent;
 
+/**
+ * 
+ * @author Miguel Charcos Llorens
+ * This class manage the view of the top bane that contains the icon and the main views
+ * which are map, news and friends. It handles clicks of the icon representing this views
+ * and visualization of different icons when the mouse pass over each icon.
+ *
+ */
 public class TopCenterPanelPresenter implements Presenter {
 	public interface Display {
 		Widget asWidget();
