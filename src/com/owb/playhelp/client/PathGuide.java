@@ -17,6 +17,7 @@ import com.owb.playhelp.shared.ngo.NgoInfo;
 import com.owb.playhelp.client.presenter.Presenter;
 import com.owb.playhelp.client.presenter.friend.FriendsHomePresenter;
 import com.owb.playhelp.client.presenter.map.MainHomePresenter;
+import com.owb.playhelp.client.presenter.map.MapMenuPresenter;
 import com.owb.playhelp.client.presenter.news.NewsHomePresenter;
 import com.owb.playhelp.client.presenter.ngo.AddNgoPresenter;
 import com.owb.playhelp.client.presenter.ngo.ReportAbuseNgoPresenter;
@@ -26,6 +27,7 @@ import com.owb.playhelp.client.presenter.orphanage.AddOrphanageStatusPresenter;
 import com.owb.playhelp.client.presenter.project.AddProjectPresenter;
 import com.owb.playhelp.client.presenter.user.UserPreferenceEditPresenter;
 import com.owb.playhelp.client.presenter.web.ContactHomePresenter;
+import com.owb.playhelp.client.presenter.web.WebMenuPresenter;
 import com.owb.playhelp.client.service.project.ProjectServiceAsync;
 import com.owb.playhelp.client.service.UserServiceAsync;
 import com.owb.playhelp.client.service.ngo.NgoServiceAsync;
@@ -33,6 +35,7 @@ import com.owb.playhelp.client.service.orphanage.OrphanageServiceAsync;
 import com.owb.playhelp.client.view.ContactHomeView;
 import com.owb.playhelp.client.view.friend.FriendsHomeView;
 import com.owb.playhelp.client.view.map.MainHomeView;
+import com.owb.playhelp.client.view.map.MapMenuView;
 import com.owb.playhelp.client.view.news.NewsHomeView;
 import com.owb.playhelp.client.view.ngo.AddNgoView;
 import com.owb.playhelp.client.view.ngo.ReportAbuseNgoView;
@@ -41,12 +44,23 @@ import com.owb.playhelp.client.view.orphanage.AddOrphanageView;
 import com.owb.playhelp.client.view.orphanage.AddOrphanageStatusView;
 import com.owb.playhelp.client.view.project.AddProjectView;
 import com.owb.playhelp.client.view.user.UserPreferenceEditView;
-import com.owb.playhelp.client.view.web.ShowWebMissionView;
-import com.owb.playhelp.client.view.web.ShowWebGoalsView;
-import com.owb.playhelp.client.view.web.ShowWebDifferentView;
-import com.owb.playhelp.client.view.web.ShowWebProblemsSolutionsView;
-import com.owb.playhelp.client.view.web.ShowWebTeamView;
-import com.owb.playhelp.client.view.web.ShowWebJoinView;
+import com.owb.playhelp.client.view.web.WebAboutUsView;
+import com.owb.playhelp.client.view.web.WebContactUsView;
+import com.owb.playhelp.client.view.web.WebContextView;
+import com.owb.playhelp.client.view.web.WebHomeView;
+import com.owb.playhelp.client.view.web.WebHowChildrenView;
+import com.owb.playhelp.client.view.web.WebHowDoWeHelpView;
+import com.owb.playhelp.client.view.web.WebHowIndividualsView;
+import com.owb.playhelp.client.view.web.WebHowOrganizationsView;
+import com.owb.playhelp.client.view.web.WebHowProjectsView;
+import com.owb.playhelp.client.view.web.WebJoinNetworkView;
+import com.owb.playhelp.client.view.web.WebJoinOWBView;
+import com.owb.playhelp.client.view.web.WebMenuView;
+import com.owb.playhelp.client.view.web.WebOurMissionView;
+import com.owb.playhelp.client.view.web.WebOurViewView;
+import com.owb.playhelp.client.view.web.WebTheTeamView;
+import com.owb.playhelp.client.view.web.WebVolunteerOpportunitiesView;
+import com.owb.playhelp.client.view.web.WebWhatDoWeDoView;
 import com.owb.playhelp.client.event.web.ContactHomeEvent;
 import com.owb.playhelp.client.event.web.ContactHomeEventHandler;
 import com.owb.playhelp.client.event.web.ShowWebEvent;
@@ -71,10 +85,14 @@ import com.owb.playhelp.client.event.ngo.ShowPopupReportAbuseNgoEventHandler;
 import com.owb.playhelp.client.event.ngo.NgoRemoveEvent;
 import com.owb.playhelp.client.event.ngo.NgoRemoveEventHandler;
 import com.owb.playhelp.client.event.ngo.ShowPopupDetailsNgoEvent;
+import com.owb.playhelp.client.event.orphanage.AddOrphanageUpdateEvent;
+import com.owb.playhelp.client.event.orphanage.AddOrphanageUpdateEventHandler;
 import com.owb.playhelp.client.event.orphanage.ShowPopupAddOrphanageEvent;
 import com.owb.playhelp.client.event.orphanage.ShowPopupAddOrphanageEventHandler;
 import com.owb.playhelp.client.event.orphanage.ShowPopupAddOrphanageStatusEvent;
 import com.owb.playhelp.client.event.orphanage.ShowPopupAddOrphanageStatusEventHandler;
+import com.owb.playhelp.client.event.orphanage.AddOrphanageCancelEvent;
+import com.owb.playhelp.client.event.orphanage.AddOrphanageCancelEventHandler;
 import com.owb.playhelp.client.event.project.ShowPopupAddProjectEvent;
 import com.owb.playhelp.client.event.project.ShowPopupAddProjectEventHandler;
 import com.owb.playhelp.client.helper.RPCCall;
@@ -147,11 +165,6 @@ public class PathGuide implements ValueChangeHandler<String>  {
 	 */
 	private void bind(){
 		
-		//ProjectServiceAsync projectService = GWT.create(ProjectService.class);
-		//ContributionServiceAsync contributionService = GWT.create(ContributionService.class);
-		//ProjectGuide projectGuide = new ProjectGuide(projectService, contributionService, thePath, currentUser);
-		//projectGuide.go();
-		
 		/*
 		 * Handle events related to the web menu The history is updated with "web" plus the
 		 * web page name that was requested. OnValueChange method manage what view 
@@ -171,6 +184,7 @@ public class PathGuide implements ValueChangeHandler<String>  {
 		 */
 		thePath.addHandler(PreferencesEditEvent.TYPE, new PreferencesEditEventHandler(){
 			public void onEditPreference(PreferencesEditEvent event){
+				lastView = History.getToken();
 				History.newItem("edituser");
 			}
 		});
@@ -199,8 +213,8 @@ public class PathGuide implements ValueChangeHandler<String>  {
 		 */
 		thePath.addHandler(NewsHomeEvent.TYPE, new NewsHomeEventHandler(){
 			public void onNewsHome(NewsHomeEvent event){
-				lastView = "news";
-				History.newItem("news");
+				lastView = History.getToken();
+				History.newItem("webgethomeItem");
 			}
 		});
 		
@@ -209,7 +223,7 @@ public class PathGuide implements ValueChangeHandler<String>  {
 		 */
 		thePath.addHandler(MainHomeEvent.TYPE, new MainHomeEventHandler(){
 			public void onMainHomeRequest(MainHomeEvent event){
-				lastView = "map";
+				lastView = History.getToken();
 				History.newItem("map");
 			}
 		});
@@ -219,7 +233,7 @@ public class PathGuide implements ValueChangeHandler<String>  {
 		 */
 		thePath.addHandler(FriendsHomeEvent.TYPE, new FriendsHomeEventHandler(){
 			public void onFriendsHome(FriendsHomeEvent event){
-				lastView = "friends";
+				lastView = History.getToken();
 				History.newItem("friends");
 			}
 		});
@@ -231,7 +245,7 @@ public class PathGuide implements ValueChangeHandler<String>  {
 		 */
 		thePath.addHandler(ContactHomeEvent.TYPE, new ContactHomeEventHandler(){
 			public void onContactHome(ContactHomeEvent event){
-				lastView = "contactus";
+				lastView = History.getToken();
 				History.newItem("contactus");
 			}
 		});
@@ -279,15 +293,17 @@ public class PathGuide implements ValueChangeHandler<String>  {
 						return;
 					}
 				}
-				AddNgoPresenter addNgoPresenter = new AddNgoPresenter(event.getNgo(), ngoService,thePath,new AddNgoView(event.getClickPoint()));
+				lastView = History.getToken();
+				History.newItem("addNgo");
+				AddNgoPresenter addNgoPresenter = new AddNgoPresenter(event.getNgo(), ngoService,thePath,new AddNgoView());
 		        addNgoPresenter.go(Owb.get().getMainPanel());
 			}
 		});
 		
 
 		/*
-		 * Listen to an event requesting starting an orphanage. It will show a popup 
-		 * window where the user can enter the information of the orphanage.
+		 * Listen to an event requesting starting an orphanage. It will show in the main panel 
+		 * where the user can enter the information of the orphanage.
 		 */
 		thePath.addHandler(ShowPopupAddOrphanageEvent.TYPE, new ShowPopupAddOrphanageEventHandler(){
 			public void onShowPopupAddOrphanage(ShowPopupAddOrphanageEvent event){
@@ -301,14 +317,34 @@ public class PathGuide implements ValueChangeHandler<String>  {
 						return;
 					}
 				}
-				AddOrphanagePresenter addOrphanagePresenter = new AddOrphanagePresenter(event.getOrphanage(), orphanageService,thePath,new AddOrphanageView(event.getClickPoint()));
+				lastView = History.getToken();
+				History.newItem("addOrphanage");
+				AddOrphanagePresenter addOrphanagePresenter = new AddOrphanagePresenter(event.getOrphanage(), orphanageService,thePath,new AddOrphanageView());
 				addOrphanagePresenter.go(Owb.get().getMainPanel());
+			}
+		});
+
+		/*
+		 * Listen to an event cancelling the creation of an orphanage or ngo
+		 */
+		thePath.addHandler(AddOrphanageCancelEvent.TYPE, new AddOrphanageCancelEventHandler(){
+			public void onAddOrphanageCancel(AddOrphanageCancelEvent event){
+				History.newItem(lastView);
+			}
+		});
+		
+		/*
+		 * Listen to an event saving during the creation of an orphanage or ngo
+		 */
+		thePath.addHandler(AddOrphanageUpdateEvent.TYPE, new AddOrphanageUpdateEventHandler(){
+			public void onAddOrphanageUpdate(AddOrphanageUpdateEvent event){
+				History.newItem(lastView);
 			}
 		});
 		
 		/*
 		 * Listen to events requesting a view for entering the needs of the orphanage
-		 * The view will be set in a popup panel.
+		 * The view will be set in the main panel
 		 */
 		thePath.addHandler(ShowPopupAddOrphanageStatusEvent.TYPE, new ShowPopupAddOrphanageStatusEventHandler(){
 			public void onShowPopupAddOrphanageStatus(ShowPopupAddOrphanageStatusEvent event){
@@ -322,13 +358,14 @@ public class PathGuide implements ValueChangeHandler<String>  {
 						return;
 					}
 				}
-				AddOrphanageStatusPresenter addOrphanageStatusPresenter = new AddOrphanageStatusPresenter(event.getOrphanage(), orphanageService,thePath,new AddOrphanageStatusView(event.getClickPoint()));
+				History.newItem("addOrphanageStatus");
+				AddOrphanageStatusPresenter addOrphanageStatusPresenter = new AddOrphanageStatusPresenter(event.getOrphanage(), orphanageService,thePath,new AddOrphanageStatusView());
 				addOrphanageStatusPresenter.go(Owb.get().getMainPanel());
 			}
 		});
 		
 		/*
-		 * Listen to event requesting adding a project. A popup panel appears to allow the
+		 * Listen to event requesting adding a project. A panel appears in the main panel to allow the
 		 * user to enter the information of the project.
 		 */
 		thePath.addHandler(ShowPopupAddProjectEvent.TYPE, new ShowPopupAddProjectEventHandler(){
@@ -401,7 +438,7 @@ public class PathGuide implements ValueChangeHandler<String>  {
 	 */
 	public void go() {
 		if ("".equals(History.getToken())) {
-		    History.newItem("news");
+		    History.newItem("webgethomeItem");
 		  } else {
 		    History.fireCurrentHistoryState();
 		  }
@@ -416,40 +453,133 @@ public class PathGuide implements ValueChangeHandler<String>  {
 		String token = event.getValue();
 		if (token != null) {
 			Presenter presenter = null;
-			if (token.equals("0")) token = "map";
+			if (token.equals("0")) token = "webgethomeItem";
 			if (token.contains("web")) {
-				Owb.get().getMainPanel().clear();
-				if (token.equals("webmission")) {
-					Owb.get().getMainPanel().add((new ShowWebMissionView()).asWidget());
-		        return;
-		        } 
-				Owb.get().getMainPanel().clear();
-				if (token.equals("webgoals")) {
-					Owb.get().getMainPanel().add((new ShowWebGoalsView()).asWidget());
-		        return;
-		        } 
-				Owb.get().getMainPanel().clear();
-				if (token.equals("webdifferent")) {
-					Owb.get().getMainPanel().add((new ShowWebDifferentView()).asWidget());
-		        return;
-		        } 
-				Owb.get().getMainPanel().clear();
-				if (token.equals("webproblemsolution")) {
-					Owb.get().getMainPanel().add((new ShowWebProblemsSolutionsView()).asWidget());
-		        return;
-		        } 
-				Owb.get().getMainPanel().clear();
-				if (token.equals("webteam")) {
-					Owb.get().getMainPanel().add((new ShowWebTeamView()).asWidget());
-		        return;
-		        }
-				Owb.get().getMainPanel().clear();
-				if (token.equals("webjoinus")) {
-					Owb.get().getMainPanel().add((new ShowWebJoinView()).asWidget());
-		        return;
-		        }
+				//Owb.get().setWebMenu();
+				WebMenuPresenter webMenuPresenter = new WebMenuPresenter(thePath, new WebMenuView());
+				webMenuPresenter.go(Owb.get().getBarPanel());
 				
-				
+				Owb.get().getMainPanel().clear();
+				if (token.equals("webgethomeItem")) {
+					(Owb.get().getMainPanel()).add((new WebHomeView()).asWidget());
+		        return;
+		        } 
+				if (token.equals("webgetaboutUsItem")) {
+					Owb.get().getMainPanel().add((new WebAboutUsView()).asWidget());
+		        return;
+		        } 
+				if (token.equals("webgetcontextItem")) {
+					(Owb.get().getMainPanel()).add((new WebContextView()).asWidget());
+		        return;
+		        } 
+				if (token.equals("webgetourMissionItem")) {
+					Owb.get().getMainPanel().add((new WebOurMissionView()).asWidget());
+		        return;
+		        } 
+				if (token.equals("webgetourViewItem")) {
+					Owb.get().getMainPanel().add((new WebOurViewView()).asWidget());
+		        return;
+		        } 
+				if (token.equals("webgetvolunteerOpportunitiesItem")) {
+					Owb.get().getMainPanel().add((new WebVolunteerOpportunitiesView()).asWidget());
+		        return;
+		        } 
+				if (token.equals("webgetwhatDoWeDoItem")) {
+					Owb.get().getMainPanel().add((new WebWhatDoWeDoView()).asWidget());
+		        return;
+		        } 
+				if (token.equals("webgethealthItem")) {
+					Owb.get().getMainPanel().add((new WebWhatDoWeDoView()).asWidget());
+		        return;
+		        } 
+				if (token.equals("webgeteducationItem")) {
+					Owb.get().getMainPanel().add((new WebWhatDoWeDoView()).asWidget());
+		        return;
+		        } 
+				if (token.equals("webgetfoodItem")) {
+					Owb.get().getMainPanel().add((new WebWhatDoWeDoView()).asWidget());
+		        return;
+		        } 
+				if (token.equals("webgetshelterItem")) {
+					Owb.get().getMainPanel().add((new WebWhatDoWeDoView()).asWidget());
+		        return;
+		        } 
+				if (token.equals("webgetclothingItem")) {
+					Owb.get().getMainPanel().add((new WebWhatDoWeDoView()).asWidget());
+		        return;
+		        } 
+				if (token.equals("webgethygieneItem")) {
+					Owb.get().getMainPanel().add((new WebWhatDoWeDoView()).asWidget());
+		        return;
+		        } 
+				if (token.equals("webgetjoyItem")) {
+					Owb.get().getMainPanel().add((new WebWhatDoWeDoView()).asWidget());
+		        return;
+		        } 
+				if (token.equals("webgethopeOfFutureItem")) {
+					Owb.get().getMainPanel().add((new WebWhatDoWeDoView()).asWidget());
+		        return;
+		        } 
+				if (token.equals("webgetloveItem")) {
+					Owb.get().getMainPanel().add((new WebWhatDoWeDoView()).asWidget());
+		        return;
+		        } 
+				if (token.equals("webgetresponsabilitiesItem")) {
+					Owb.get().getMainPanel().add((new WebWhatDoWeDoView()).asWidget());
+		        return;
+		        } 
+				if (token.equals("webgetsafetyItem")) {
+					Owb.get().getMainPanel().add((new WebWhatDoWeDoView()).asWidget());
+		        return;
+		        } 
+				if (token.equals("webgetguidanceItem")) {
+					Owb.get().getMainPanel().add((new WebWhatDoWeDoView()).asWidget());
+		        return;
+		        } 
+				if (token.equals("webgetcompassionateEnvironementItem")) {
+					Owb.get().getMainPanel().add((new WebWhatDoWeDoView()).asWidget());
+		        return;
+		        } 
+				if (token.equals("webgetdisciplineItem")) {
+					Owb.get().getMainPanel().add((new WebWhatDoWeDoView()).asWidget());
+		        return;
+		        } 
+				if (token.equals("webgethowDoWeHelpItem")) {
+					Owb.get().getMainPanel().add((new WebHowDoWeHelpView()).asWidget());
+		        return;
+		        } 
+				if (token.equals("webgethowChildrentem")) {
+					Owb.get().getMainPanel().add((new WebHowChildrenView()).asWidget());
+		        return;
+		        } 
+				if (token.equals("webgethowProjectsItem")) {
+					Owb.get().getMainPanel().add((new WebHowProjectsView()).asWidget());
+		        return;
+		        } 
+				if (token.equals("webgethowOrganizationsItem")) {
+					Owb.get().getMainPanel().add((new WebHowOrganizationsView()).asWidget());
+		        return;
+		        } 
+				if (token.equals("webgethowIndividualsItem")) {
+					Owb.get().getMainPanel().add((new WebHowIndividualsView()).asWidget());
+		        return;
+		        } 
+				if (token.equals("webgetcontactUsItem")) {
+					Owb.get().getMainPanel().add((new WebContactUsView()).asWidget());
+		        return;
+		        } 
+				if (token.equals("webgettheTeamItem")) {
+					Owb.get().getMainPanel().add((new WebTheTeamView()).asWidget());
+		        return;
+		        } 
+				if (token.equals("webgetjoinOWBItem")) {
+					Owb.get().getMainPanel().add((new WebJoinOWBView()).asWidget());
+		        return;
+		        } 
+				if (token.equals("webgetjoinNetworkItem")) {
+					Owb.get().getMainPanel().add((new WebJoinNetworkView()).asWidget());
+		        return;
+		        } 
 				return;
 	        } 
 			if (token.equals("edituser")) {
@@ -459,25 +589,26 @@ public class PathGuide implements ValueChangeHandler<String>  {
 	        return;
 	      } 
 			if (token.equals("map")) {
-				//Owb.get().getMainTitle().setText("Welcome To Karmagotchi");
+				MapMenuPresenter mapMenuPresenter = new MapMenuPresenter(thePath, new MapMenuView());
+				mapMenuPresenter.go(Owb.get().getBarPanel());
 				presenter = new MainHomePresenter(currentUser,ngoService,orphanageService,thePath,new MainHomeView());
 				presenter.go(Owb.get().getMainPanel());
 	        return;
 	      } 
 			if (token.equals("news")) {
-				//Owb.get().getMainTitle().setText("Welcome To Karmagotchi");
+				Owb.get().getBarPanel().clear();
 				presenter = new NewsHomePresenter(currentUser,thePath,new NewsHomeView());
 				presenter.go(Owb.get().getMainPanel());
 	        return;
 	      } 
 			if (token.equals("friends")) {
-				//Owb.get().getMainTitle().setText("Welcome To Karmagotchi");
+				Owb.get().getBarPanel().clear();
 				presenter = new FriendsHomePresenter(currentUser,thePath,new FriendsHomeView());
 				presenter.go(Owb.get().getMainPanel());
 	        return;
 	      } 
 			if (token.equals("contactus")) {
-				//Owb.get().getMainTitle().setText("Welcome To Karmagotchi");
+				Owb.get().getBarPanel().clear();
 				presenter = new ContactHomePresenter(new ContactHomeView());
 				presenter.go(Owb.get().getMainPanel());
 	        return;

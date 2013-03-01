@@ -14,6 +14,7 @@ import com.google.gwt.user.client.ui.HasValue;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.Widget;
 
+import com.owb.playhelp.client.event.orphanage.AddOrphanageCancelEvent;
 import com.owb.playhelp.client.event.orphanage.OrphanageUpdateEvent;
 import com.owb.playhelp.client.event.orphanage.ShowPopupAddOrphanageStatusEvent;
 import com.owb.playhelp.client.helper.RPCCall;
@@ -25,7 +26,6 @@ import com.owb.playhelp.client.presenter.Presenter;
 public class AddOrphanagePresenter implements Presenter {
 	public interface Display {
 		Widget asWidget();
-	    void hide();
 	    HasClickHandlers getSaveBut();
 	    HasClickHandlers getCancelBut();
 		HasValue<String> getNameField();
@@ -60,7 +60,6 @@ public class AddOrphanagePresenter implements Presenter {
 	        public void onClick(ClickEvent event) {
 	        	updateOrphanage();
 	        	if (orphanage.getStandard() == null){
-	        		display.hide();
 	        		
 	        		// We activate member so we can edit the status when we call the event
 	        		orphanage.activateMember();
@@ -74,7 +73,7 @@ public class AddOrphanagePresenter implements Presenter {
 	      });
 	    this.display.getCancelBut().addClickHandler(new ClickHandler() {
 	        public void onClick(ClickEvent event) {
-	          display.hide();
+	        	eventBus.fireEvent(new AddOrphanageCancelEvent());
 	        }
 	      });
 	    
@@ -82,6 +81,8 @@ public class AddOrphanagePresenter implements Presenter {
 
 	  @Override
 	public void go(final HasWidgets container) {
+		container.clear();
+		container.add(display.asWidget());
 		bind();
 		
 		if (orphanage == null) return;
@@ -125,7 +126,6 @@ public class AddOrphanagePresenter implements Presenter {
 
 	      @Override
 	      public void onSuccess(OrphanageInfo result) {
-	    	  display.hide();
 	        GWT.log("OrphanageAddPresenter: Firing OrphanageUpdateEvent");
 	        eventBus.fireEvent(new OrphanageUpdateEvent(result)); 
 	      }

@@ -18,16 +18,11 @@
 	</ui:style>
 	<g:HTMLPanel  styleName='{style.backgroundall}'>
 	  <table width="2">
-		<tr>
+		<!-- <tr>
 		    <td colspan="2">
 		    	<g:Label styleName='{style.username}' ui:field='userNameLabel'>Loading Name...</g:Label>
 		    </td>
-		</tr>
-		<tr>
-		    <td colspan="2">
-		    	<g:Label styleName='{style.username}' ui:field='userTypeLabel'>Loading Type...</g:Label>
-		    </td>
-		</tr>
+		</tr> -->
 		<tr>
 		    <td>
 				<g:Anchor href='javascript:;' ui:field='loginout'>login</g:Anchor>
@@ -36,11 +31,16 @@
 		 		<g:Anchor href='javascript:;' ui:field='preferences'>preferences</g:Anchor>
 			</td>
 		</tr>
-		<tr>
+		<!-- <tr>
 		    <td colspan="2">
 		    	<g:Label styleName='{style.username}' ui:field='userEmailLabel'>Loading Email...</g:Label>
 		    </td>
 		</tr>
+		<tr>
+		    <td colspan="2">
+		    	<g:Label styleName='{style.username}' ui:field='userTypeLabel'>Loading Type...</g:Label>
+		    </td>
+		</tr> -->
       </table>
 	</g:HTMLPanel>
 </ui:UiBinder> 

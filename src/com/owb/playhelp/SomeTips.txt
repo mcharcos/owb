@@ -9,6 +9,9 @@ Make sure to clean your project afterwards.
 
 This is one of the little gotchas that come in handy when you start playing with the Google Application Engine. You'll find yourself persisting objects into the datastore then changing the JDO object model for your persistable entities ending up with a obsolete data that'll make your app crash all over the place.
 
+Command line:
+db.delete(db.Query())
+
 ---------------------------------------------------------------------------
 I did a lot the following error at the beginning and is related with the services...
 

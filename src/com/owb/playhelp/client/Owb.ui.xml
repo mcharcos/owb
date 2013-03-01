@@ -12,8 +12,14 @@
             gwt-image: 'backall'; 
 			position: absolute;  
          }  
+         .panelStyle{
+			width: 100%;
+			height:100%;
+            background-color:white;
+		}
          .horizontalCenterStyle{
 			width: 100%;
+			height:80%;
             background-color:white;
 		}
          .horizontalTopStyle{
@@ -21,38 +27,54 @@
 			height: 50px;
             background-color:white;
 		}
+         .horizontalBarStyle{
+			width: 700px;
+			height: 25px;
+            background-color:red;
+		}
+         .footerPanel{
+			width: 90%;
+			height: 100%;
+            background-color:white;
+            text-align:right;
+		}
+         .junkTest{
+			width: 100%;
+			height: 100%;
+            background-color:white;
+            text-align:left;
+		}
 
 	</ui:style>
 	
-	<g:DockLayoutPanel unit='EM' styleName='{style.horizontalCenterStyle}'> 
+	<g:DockLayoutPanel unit='EM' styleName='{style.panelStyle}'> 
 	
+		
+		<g:east size='1'>
+            <g:VerticalPanel ui:field='statusPanel' styleName='{style.junkTest}'/>
+		</g:east>
+		
 		<g:west size='22'>
             <app:LeftPanel ui:field='actionPanel' />
 		</g:west>
 
-		<g:center>
+		<g:center size='60'>
 			<g:HTMLPanel>
 				<!-- <app:CenterPanel ui:field='centerPanel' /> -->
 				<g:HorizontalPanel ui:field='topCenterPanel' styleName='{style.horizontalTopStyle}' />
-				<!-- <g:HorizontalPanel ui:field='barPanel' styleName='{style.horizontalCenterStyle}' />  -->
+				<g:HorizontalPanel ui:field='barPanel' styleName='{style.horizontalBarStyle}' /> 
 				<g:ScrollPanel ui:field='centerPanel' styleName='{style.horizontalCenterStyle}' />
 			</g:HTMLPanel>
 		</g:center>
 		
-		<g:east size='20'>
-            <g:VerticalPanel ui:field='statusPanel' />
-		</g:east>
-		
 		<!-- 
-		<g:south size="3">
+		<g:south size="5">
 			<g:HTMLPanel styleName='{style.footerPanel}'>
-				<div>
 					<a href="#">Contact us</a>
 					|
 					<a href="#">Privacy</a>
 					|
 					<a href="#">About</a>
-				</div>
 			</g:HTMLPanel>
 		</g:south>
 		 -->

@@ -8,7 +8,7 @@ import com.google.gwt.event.shared.GwtEvent;
 public class ShowWebEvent extends GwtEvent<ShowWebEventHandler>{
 	public static Type<ShowWebEventHandler> TYPE = new Type<ShowWebEventHandler>();
 	
-	private String page = "mission";
+	private String page = "gethomeItem";
 	
 	public ShowWebEvent(String page){
 		this.page = page;

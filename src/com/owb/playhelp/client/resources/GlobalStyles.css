@@ -114,7 +114,7 @@ body {
 	background-color: #f9f184;
 }
 
-.formwrapper{ /*field row DIV (includes two columns- Styled label column and 'thefield' column)*/
+.formwrapper{ /*field row DIV (includes two columns- Styled label column and 'the field' column)*/
 	width: 100%; /*width of form rows*/
 	overflow: hidden;
 	padding: 5px 0;

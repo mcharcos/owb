@@ -27,17 +27,18 @@
 						<g:TextBox ui:field='emailField' />
 					</td>
 				</tr>
+				<!-- 
 				<tr>
 					<td>Picture Profile:</td>
 					<td>
 						<g:Image styleName='{style.profilePicture}' ui:field='profilePicture' width="92px" height="45px" altText="No picture" />
 					</td>
-					<td>
+					<td> -->
 						 <!-- <up:MultiUploader type="LABEL" ui:field="uploader" 
                           styleName="{style.myup}" maximumFiles="2" avoidRepeatFiles="true" validExtensions="mmm, ooo"/>
 						
 						<up:MultiUploader ui:field="uploaderField"/> -->
-						
+						<!-- 
 						<g:FormPanel ui:field="formPanel">
 						<g:FileUpload name="profilePictureElement" ui:field="uploaderField"/>
 						</g:FormPanel>
@@ -45,7 +46,7 @@
 					<td>
 						<g:FlowPanel ui:field="pictureFrame"/>
 					</td>
-				</tr>
+				</tr> -->
 				<!--  Add there links to facebook and other social networks  -->
 			</table>
 			<hr/>

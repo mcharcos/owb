@@ -1,0 +1,21 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+		.important {
+			font-weight: bold;
+		}
+		.description{
+	        color:#9152a0;
+	        margin: 30px;
+	   }
+	</ui:style>
+	<g:HTMLPanel>
+	   <div class="{style.description}">
+	    <h1>HOW DO WE HELP INDIVIDUALS?</h1>
+		Individuals that want to help children in need have here the opportunity to inspire organizations with
+		their ideas of how we can make the efforts more efficient and to support the organizations by organizing 
+		local efforts in their communities.
+		</div>
+	</g:HTMLPanel>
+</ui:UiBinder> 

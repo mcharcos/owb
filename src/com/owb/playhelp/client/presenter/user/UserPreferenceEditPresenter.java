@@ -10,10 +10,10 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.google.gwt.user.client.ui.FileUpload;
-import com.google.gwt.user.client.ui.FormPanel;
+//import com.google.gwt.user.client.ui.FileUpload;
+//import com.google.gwt.user.client.ui.FormPanel;
 import com.google.gwt.user.client.ui.HasValue;
-import com.google.gwt.user.client.ui.Image;
+//import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.Widget;
 
@@ -27,13 +27,13 @@ import com.owb.playhelp.client.event.user.UserPreferenceEditCancelEvent;
 public class UserPreferenceEditPresenter implements Presenter {
 	public interface Display {
 		Widget asWidget();
-		public Image getProfilePictureFrame();
+		//public Image getProfilePictureFrame();
 		public HasValue<String> getNameLabel();
 		public HasValue<String> getEmailLabel();
 		public HasClickHandlers getCancelButton();
 		public HasClickHandlers getSaveButton();
-		public FileUpload getUploadFile();
-		public FormPanel getFormPanel();
+		//public FileUpload getUploadFile();
+		//public FormPanel getFormPanel();
 	}
 
 	private final SimpleEventBus eventBus;
@@ -50,11 +50,11 @@ public class UserPreferenceEditPresenter implements Presenter {
 	}
 
 	public void bind() {
-		this.display.getProfilePictureFrame().addClickHandler(new ClickHandler(){
+		/*this.display.getProfilePictureFrame().addClickHandler(new ClickHandler(){
 			  public void onClick(ClickEvent event){
 				  // browse for picture
 			  }
-		  });
+		  });*/
 		this.display.getCancelButton().addClickHandler(new ClickHandler(){
 			  public void onClick(ClickEvent event){
 				  // cancel operation
@@ -67,7 +67,7 @@ public class UserPreferenceEditPresenter implements Presenter {
 				  // Upload image
 				  // I wonder if I don't have to add other elements here before
 				  // submitting so we can find the file with a specific name
-				  display.getFormPanel().submit();
+				  //display.getFormPanel().submit();
 				  
 				  // Somehow we need to store it in the data base
 				  // May be we could create an object that submit the form
@@ -93,17 +93,12 @@ public class UserPreferenceEditPresenter implements Presenter {
 		
 		
 		// Add an event handler to the form.
-		this.display.getFormPanel().addSubmitHandler(new FormPanel.SubmitHandler() {
+		/*this.display.getFormPanel().addSubmitHandler(new FormPanel.SubmitHandler() {
 		    public void onSubmit(FormPanel.SubmitEvent event) {
 		    	// we do not need this because the name is created by the server.
 		    	// it could be something like user_uniqueId+datestamp
 		    // This event is fired just before the form is submitted. We can
 			// take this opportunity to perform validation.
-			/*
-		    	if (display.getTextBox().getText().length() == 0) {
-			    Window.alert("The text box must not be empty");
-			    event.cancel();
-			}*/
 		    }
 		});
 
@@ -115,7 +110,7 @@ public class UserPreferenceEditPresenter implements Presenter {
 			// documentation for further explanation).
 			Window.alert(event.getResults());
 		    }
-		});
+		});*/
 	}
 
 	public void go(final HasWidgets container) {
@@ -130,9 +125,9 @@ public class UserPreferenceEditPresenter implements Presenter {
 		
 		// Because we're going to add a FileUpload widget, we'll need to set the
 	    // form to use the POST method, and multipart MIME encoding.
-		UserPreferenceEditPresenter.this.display.getFormPanel().setAction(GWT.getModuleBaseURL()+"upload");
-		UserPreferenceEditPresenter.this.display.getFormPanel().setEncoding(FormPanel.ENCODING_MULTIPART);
-		UserPreferenceEditPresenter.this.display.getFormPanel().setMethod(FormPanel.METHOD_POST);
+		//UserPreferenceEditPresenter.this.display.getFormPanel().setAction(GWT.getModuleBaseURL()+"upload");
+		//UserPreferenceEditPresenter.this.display.getFormPanel().setEncoding(FormPanel.ENCODING_MULTIPART);
+		//UserPreferenceEditPresenter.this.display.getFormPanel().setMethod(FormPanel.METHOD_POST);
 
 		// Set the form for uploading picture
 		

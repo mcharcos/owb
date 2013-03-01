@@ -8,12 +8,8 @@ import com.owb.playhelp.client.event.user.LoginEvent;
 import com.owb.playhelp.client.presenter.BusyIndicatorPresenter;
 import com.owb.playhelp.client.presenter.TopCenterPanelPresenter;
 import com.owb.playhelp.client.presenter.user.UserSettingPresenter;
-import com.owb.playhelp.client.presenter.user.UserBadgePresenter;
-import com.owb.playhelp.client.presenter.web.WebMenuPresenter;
 import com.owb.playhelp.client.view.BusyIndicatorView;
-import com.owb.playhelp.client.view.user.UserBadgeView;
 import com.owb.playhelp.client.view.user.UserSettingView;
-import com.owb.playhelp.client.view.web.WebMenuView;
 import com.owb.playhelp.client.helper.RPCCall;
 import com.owb.playhelp.shared.UserProfileInfo;
 import com.owb.playhelp.client.service.LoginService;
@@ -110,7 +106,7 @@ public class Owb implements EntryPoint {
 	 * Layout the window with three frameworks
 	 */
 	@UiField LeftPanel actionPanel;
-	@UiField HorizontalPanel topCenterPanel;
+	@UiField HorizontalPanel topCenterPanel, barPanel;
 	@UiField ScrollPanel centerPanel;
 	@UiField VerticalPanel statusPanel;
 
@@ -119,8 +115,9 @@ public class Owb implements EntryPoint {
 	private UserProfileInfo currentUser;
 	
 	// Definition of presenters
-	private UserBadgePresenter userBadgePresenter = null;
-	private WebMenuPresenter webMenuPresenter = null;
+	//private UserBadgePresenter userBadgePresenter = null;
+	//private WebMenuPresenter webMenuPresenter = null;
+	//private MapMenuPresenter mapMenuPresenter = null;
 	private TopCenterPanelPresenter topCenterPanelPresenter = null;
 	private UserSettingPresenter userSettingsPresenter = null;
 	
@@ -255,11 +252,11 @@ public class Owb implements EntryPoint {
 	  guide.go();
 	  
 	  
-	  userBadgePresenter = new UserBadgePresenter(loginService, thePath, new UserBadgeView());
-	  userBadgePresenter.go(actionPanel.getProfilePanel());
+	  //userBadgePresenter = new UserBadgePresenter(loginService, thePath, new UserBadgeView());
+	  //userBadgePresenter.go(actionPanel.getProfilePanel());
 
-	  webMenuPresenter = new WebMenuPresenter(thePath, new WebMenuView());
-	  webMenuPresenter.go(actionPanel.getMenuPanel());
+	  //webMenuPresenter = new WebMenuPresenter(thePath, new WebMenuView());
+	  //mapMenuPresenter = new MapMenuPresenter(thePath, new MapMenuView());
 
 	  TopCenterPanel tcpanel = new TopCenterPanel();
 	  topCenterPanelPresenter = new TopCenterPanelPresenter(thePath, tcpanel);
@@ -296,6 +293,14 @@ public class Owb implements EntryPoint {
 	}
 	
 	/**
+	 * Returns the panel where we will set the tabs
+	 * @return main panel 
+	 */
+	public HorizontalPanel getBarPanel() {
+		return barPanel;
+	}
+	
+	/**
 	 * Returns the left panel where the information about the user, the character and the main menu
 	 * will be set
 	 * 
@@ -304,5 +309,6 @@ public class Owb implements EntryPoint {
 	public LeftPanel getActionPanel() {
 		return actionPanel;
 	}
+	
 	
 }

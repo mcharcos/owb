@@ -8,8 +8,314 @@
 		.important {
 			font-weight: bold;
 		}
+		.description{
+	        color:#9152a0;
+	        margin: 30px;
+	   }
 	</ui:style>
 	<g:HTMLPanel>
-	   <g:Image resource='{res.NewsHomePanel}' />
+	   <!-- <g:Image resource='{res.NewsHomePanel}' /> -->
+	   
+	   <div class="{style.description}">
+	    <h1>ABOUT US</h1>
+	    Orphanage Without Borders is a volunteer organization aiming to create an impact in the life
+	    of children. Our purpose is to facilitate connections between orphanages and projects
+	    helping children in order to respond to their needs. We intend to use the existing resources
+	    and the power of organizations that already exist to help in specific areas. We believe
+	    that collaboration is the key to improve the life of depracated children and that the knowledge 
+	    of existing resources is an enourmous asset to make help more efficient.<br></br>
+	    <br></br><br></br>
+	    
+	    <h1>DESCRIPTION</h1>
+	    Abandoned children are a vulnerable population who experience a difficult life. 
+	    The population includes orphan children living in the streets as well as children hosted 
+	    in orphanages because either they do not have a family or their families are unable to 
+	    provide them care due to extreme poverty or other reasons. The number of abandoned 
+	    children is increasing worldwide especially in countries striked by <b>poverty</b>, 
+	    <b>conflicts</b>, <b>diseases</b> and <b>disasters</b> where the mortality increases
+	    as well as their chances of becoming orphans. <br></br>
+	    <br></br><br></br>
+	    
+	    <b>Poverty</b> is the main reason of having a high number of the children in orphanages. 
+	    Most of the children in orphanages have not lost their parents but their families do 
+	    not afford to raise them. For example, many children born during Ceausescu’s 
+	    anti-abortion law were placed in orphanages. According to the Save the Children reports, 
+	    an average of 80% of the children in orphanages are put in orphanages due to poverty. 
+	    In Ghana, Indonesia and countries in eastern Europe this percentage is even higher: 90%.<br></br>
+	    <br></br><br></br>
+	    
+	    Countries involved in <b>war</b> also have a high number of orphans such as Afghanistan that 
+	    has one and half million orphans. Based on Unicef report, “During the last decade, 
+	    2 million children worldwide have been killed as a result of war, four to five million 
+	    children have been disabled, 12 million have been left homeless, more than one million 
+	    orphaned or separated from their parents, and approximately ten million children have 
+	    been psychologically traumatized as a result of war (UNICEF's The State of World's 
+	    Children 1996)”.<br></br>
+	    <br></br><br></br>
+	    
+	    Epidemic <b>diseases</b> such as HIV are another reason for the increased number of orphans 
+	    who in addition are likely to host these diseases. For instance, South Africa, with the 
+	    rate of 70,000 a year, has the highest number of orphans with HIV whose parents have 
+	    died due to AIDS (Time World June 01 2011). In addition, disease outbreaks that happen 
+	    in war countries are difficult to eradicate. For example, polio re-emerged in 2005 in 
+	    Angola after the civil war and vaccination campaigns were difficult (especially in the 
+	    countryside) to pursue when the infrastructures were destroyed.<br></br>
+	    <br></br><br></br>
+	    
+	    Finally, <b>natural or human made disasters</b> increase the number of orphans. For instance, 
+	    in Japan and Haiti, a huge number of children lost their parents due to earthquakes. 
+	    It is estimated that 1400 children lost at least one parent, around 200 children lost 
+	    both earthquake in Japan (Time World July, 10 2011.) and U.S. adopteted 1000 children 
+	    from Haiti. The effects of natural disasters are commonly stronger in poor countries 
+	    and increase the chances of diseases. <br></br>
+	    <br></br><br></br>
+	    
+	    <h1>OUR DREAM</h1>
+	    We envision to certify that projects in our network work toward providing children
+	    the quality of life. It is important for the children to reach 
+	    a minimum standard in each area in order to allow them to grow and build 
+	    their future as deserve by any human being. We provide support in the areas of health, 
+	    education, food, shelter, clothing, hygiene, joy, hope of future, love, responsibilities, 
+	    safety, guidance, compassionate atmosphere and discipline. Projects of the OWB network 
+	    engage to follow the standards of these areas as follow:
+
+  		<UL TYPE="SQUARE">
+  			<li><b>Health</b>: It provides medical care when children suffer of disease or get hurt. 
+  			    It also teach the children the importance of a healthy diet and physical exercise. 
+  			    For instance, physical exercise should be encouraged and frequently practiced allowing children 
+  			    to develop their favorite sport in the limits of availability.</li>
+    		<li><b>Education</b>: It encourages children to go to the school and provides guidance with 
+    		    homework and questions about intellectual, emotional or any other doubt during their childhood. 
+    		    As most of the parents would do for their children, it should aim to help them 
+    		    so they have good scores and over all learn the basic knowledge to survive in their society.</li>
+    		<li><b>Food</b>: It provides three healthy meals a day or at least the average nutrients 
+    		    and food of the population in its country. Variety and international menus are 
+    		    encourage even though we understand that most of the times the situation is not 
+    		    easy.</li>
+    		<li><b>Shelter</b>: It hosts the children inside a protected shelter. Likely, the place would be a safe 
+    		    building but in emergency situations such a disasters or extreme poverty the place 
+    		    could be more temporary homes protecting the children. The place should contain 
+    		    different areas for playing, doing homework, cooking and sleeping. These areas 
+    		    should have the minimum material and space to perform the associated task. 
+    		    For example, the bedroom should contain mattresses or any other furniture 
+    		    appropriate to the country providing a good rest to the children.</li>
+    		<li><b>Clothing</b>: It provides cloths to the children for daily life, school and 
+    		    special occasions. It is responsible of changing their cloths and/or shoes at 
+    		    least once a week and keeping them clean. It also teach the children how to take 
+    		    care of their own cloths and look.</li>
+    		<li><b>Hygiene</b>: It has a bathroom with shower, sink and toilet that must be clean 
+    		    at any time. It also has a place to clean cloths. It is essential that all areas 
+    		    are clean including mattresses, rooms and kitchen. As an 
+    		    educational exercise it should encourage children to participate in 
+    		    daily cleaning tasks. This mustn’t me done as a way to reduce expenses for 
+    		    cleaning purposes but as good parents do with their own children to teach them 
+    		    the sense of responsibility and community</li>
+    		<li><b>Joy</b>: It reserves time for the children to play alone and in group. 
+    		    It encourages social games and good relationship between children to increase 
+    		    the sense of family. The games should happen in an safe environment with the 
+    		    surveillance of an appropriate number of adults which are encouraged to participate 
+    		    and cheer them. The games should be adapted in order to make all children 
+    		    participating independently of personal issues such diseases or handicaps.</li>
+    		<li><b>Hope of future</b>: It encourages the children to envision their future and 
+    		    professions. It helps them providing the education and guidance to allow them 
+    		    achieve their dreams. It also has a plan for all the children independently of 
+    		    their dreams for after their childhood. All children must have a way 
+    		    out of thieving, begging or being completely abandoned when they become adults.</li>
+    		<li><b>Love</b>: Its staff or external adults should provide the sense of care as a 
+    		    parent would do with their own children. The children should feel every day that 
+    		    they can count on someone that spend part of their time with them. It provides 
+    		    the love to overcome the impact of not having their parents close and a reference 
+    		    for them to be able to love others. It should supply staff or external 
+    		    people and should train care givers to overcome the extensive work of the 
+    		    shelter in order to provide enough love to the children.</li>
+    		<li><b>Responsibilities</b>: It should make the children involved with the daily tasks
+    		    as a way of teaching the sense of responsibility and social 
+    		    obligations. These tasks are intended to make the children feel part of a big 
+    		    family by being willing to improve their conditions and the place. Responsibilities 
+    		    include cleaning and taking care of their younger sister and brothers.</li>
+    		<li><b>Safety</b>: It should guaranty that all activities happen in a safe environment 
+    		    exempt of accidents, fights, abuse any bulling. Safety include conducts between 
+    		    children and with respect to the staff and outsider volunteers. It should avoid 
+    		    dangerous situations like cutting objects or neglected places or situations and 
+    		    provide a plan for caring of the children in case of accidents. It 
+    		    must be like a refuge to children from the outside world. Any discrimination, 
+    		    sexual and physical abuse of any kind must not be tolerated.</li>
+    		<li><b>Guidance</b>: It should provide a mentor or people that can advice the children 
+    		    while they are growing. These people should pay close attention to how they conduct, 
+    		    encouraging them to do the right things by being an example. These people could be 
+    		    staff or outside volunteers. All the conditions of health, safety, 
+    		    responsibilities, shelter, food, hygiene, joy,  compassionate environment, 
+    		    guidance and discipline also apply to the staff and volunteers.</li>
+    		<li><b>Compassionate environment</b>: It should build a compassionate environment 
+    		    between the children and with respect to the staff and volunteers. In addition, 
+    		    helping others is an important teaching from life since it helps to overcome our 
+    		    egos. This is part of many religion and society rules. Children must participate 
+    		    in outside volunteer opportunities and have a volunteering project that will 
+    		    reinforce the community feeling part of their own big family.</li>
+    		<li><b>Discipline</b>: Discipline is a required part for a human to live in any society. 
+    		    Rules must be clear and oriented according to the standards. 
+                Children should have guidance during play and education moments. They must have 
+                an external authority that make them follow the rules without any abuse or hard 
+                authority. We assume that it is the responsibility of the care takers that all 
+                these points are follow. Of course, it could happen that the children do not 
+                contribute or feel enthusiastic about their responsibilities in particular when 
+                there is a long history of bad habits.</li>
+	    </UL>
+	    <br></br>
+
+	    <h1>OUR VIEW</h1>
+	    Our ultimate goal is to being able to provide the minimum standards for each of the
+	    different areas for orphans and abandoned children all around the world. 
+	    For this purpose, we believe that we have also responsibilities toward orphanages, 
+	    donors, organizations and volunteers participating to this ambitious project. 
+	    Therefore, it is also part of our goals building a good relationship within these four 
+	    partners, make communication clear and develop common respect. Our goals include the 
+	    need to provide this environment in order to empower our efforts toward helping the 
+	    conditions of children.
+
+  		<UL TYPE="SQUARE">
+  			<li><b>Union</b>: Many efforts exist around the world providing good support in 
+  			       different areas. We engage to coordinate these efforts and 
+  			       provide an infrastructure allowing these different organizations close 
+  			       collaboration. We will also provide a common gate for organizations and 
+  			       individuals willing to help the cause.</li>
+    		<li><b>Recycle Efforts</b>: We are responsible of using the current efforts for 
+    		       helping orphan and abandoned children to reach resources including funding, 
+    		       volunteers and training. We do not intend to create a new organization 
+    		       helping directly to the cause but helping to bring forward the work of those 
+    		       organizations that are already involved directly with the orphanages or other 
+    		       activities helping children. We engage to empower their efforts.</li>
+    		<li><b>Clear Communication</b>:  We are responsible of surveying the projects and 
+    		       facilitating the communication between the organizations and individuals 
+    		       through our network contributing to helping children. Information about 
+    		       the status and needs of the projects will be frequent and clear. This will 
+    		       guaranty that the standards of each project are follow and people know at 
+    		       any time the status of their investments. Also, our infrastructure will 
+    		       facilitate the people providing resources such as money or time to decide in 
+    		       what specific project and activity they want to help. For example, donors 
+    		       should be able to decide  to the detail of funding to a health activity 
+    		       such as buying new drugs for an orphanage.</li>
+    		<li><b>Learning from Experience</b>: We aim to create an infrastructure allowing 
+    		       projects to learn from previous and current projects. Therefore, non-confidential 
+    		       information have to be available and organized to increase the efficiency of 
+    		       the projects. We engage to provide tools to the collaborators of each project 
+    		       in order to share information and avoiding repeating the same efforts.</li>
+    		<li><b>Facilitate Help</b>: We engage to build an infrastructure were people can 
+    		       easily provide their help. This will be perform by taking advantage of the 
+    		       current technological advances and bringing them to the organizations, 
+    		       individuals and orphanages. In addition, we will facilitate volunteer 
+    		       opportunities with a minimum expenses. </li>
+    		<li><b>Community Involvement</b>: This experience should be not only a way to improve 
+    		       the quality of life of orphan children but also an example to all involved people 
+    		       as donors, volunteers and staff. We can learn the basic 
+    		       and good principles by focusing on children that have much to teach us and 
+    		       paying attention to the important needs of a human being. We engage to involve 
+    		       the children in project and to provide feedback of their opinions and feelings 
+    		       to the community.</li>
+    		<li><b>General Involvement</b>: We aim to involve as many people as possible to help 
+    		       to the cause. For this purpose, it is also part of our involvement to bring the 
+    		       problem of orphan and abandoned children needs to the community. We engage to broadcast the need for 
+    		       helping these children and provide tasks to the community helping for the cause 
+    		       and adapted to each group we are trying to reach to such as schools. 
+    		       Thus, outreach is part of our goals.</li>
+    		<li><b>Contributor Recognition</b>: Social recognition is an important source of 
+    		       motivation for contributors. We will provide an infrastructure that will 
+    		       facilitate social network recognition and awards to volunteers, donors, 
+    		       organizations and orphanages for their contribution or their good work and 
+    		       participation. </li>
+		</UL>
+		<br></br>
+		
+	    <h1>OUR WAY</h1>
+	    Orphanage Without Borders provides a common portal for organization and individuals to 
+	    unify their efforts and facilitate contributions to the cause of abandoned children. This site 
+	    allows projects of our network to inform about the specific needs for reaching the 
+	    acceptable standards of child's lifes. They are also able to create the necessary projects that will walk 
+	    them through the path to follow the standards. Through our portal, individuals and 
+	    organizations know about child's needs, projects and their status. 
+	    This information is critical for participants that are able to decide 
+	    in detail how their contribution is used and know how their volunteer actions will make 
+	    a difference. It is also important for nonprofits willing to help to the cause in their 
+	    specific area. Therefore, our portal creates a network connecting orphanages with 
+	    organizations, individuals and nonprofits with different expertise. A collaborative 
+	    environment results in a more efficient support and increases the confidence of people 
+	    participating to the cause. In addition, we hope our portal will be a site to share 
+	    knowledge that allows new projects to learn from previous experience. Moreover, it will 
+	    be a practical source of information for volunteers and organizations. We intend to use 
+	    the resources in each area provided by existing organizations to support existing 
+	    projects. However, Orphanage Without Borders will provide training, supervision and 
+	    <br></br><br></br>
+			    
+	    Our organization provides the technoligical tools, consultancy and expertise to support 
+	    activities toward these goals in each of these areas. Our portalis a visual 
+	    development solution for organizations and projects to increase contributions from 
+	    individuals and support improving the standards of life of children around the world 
+	    by addressing the current issues:
+
+  		<UL TYPE="SQUARE">
+  			<li>Joining efforts and resources to take advantage of previous experiences</li>
+  			<li>Motivating collaboration against competition</li>
+  			<li>Informing more contributors about the status of the projects</li>
+  			<li>Allowing contributors to make decision on how their help is used</li>
+  			<li>Rewarding contributors to motivate more collaboration</li>
+  			<li>Creating a strong network of resources working together on the common objective of improving the life quality of orphaned and abandoned children.</li>
+  			<li>Creating a network of volunteers, motivate people to participate in the program and facilitate their experience</li>
+  			<li>Improving the relationship and links between donors, non-profit organizations and volunteers.</li>
+  			<li>Increasing the help to orphaned and abandoned children</li>
+  			<li>Increasing the flow of information about the cause</li>
+  			<li>Visually representing the status and the resources for everyone who wants to change the situation.</li>
+		</UL>
+		<br></br><br></br>
+	    
+		<h1>HOW TO HELP</h1>
+  		There are different ways to get involved with the cause:
+  		<UL TYPE="SQUARE">
+  			<li>
+  			You are an organization devoted to help improving the standards of 
+  			one or more of the areas we defined of children's life. Join our network as an 
+  			organization" and add your organization to the network
+  			for sharing your ideas and projects as well as learning from other organizations.
+  			</li>
+  			<li>
+  			You are an orphanage, a group or an individual that you daily interact with abandoned
+  			or orphaned children trying to improve their lifes. By joining our network you
+  			can share the needs you have with organizations and individuals that can contribute
+  			by creating projects to respond to your needs or supporting your efforts.
+  			</li>
+  			<li>
+			You are an individual that want to make a difference in children's life and help
+			the existing efforts either financially or by volunteering. You can search the
+			current opportunities and needs around the world by navigating to our map view 
+			and looking for the needs and projects helping the cause.
+			</li>
+			<li>
+			You want to know more about the situation of the cause, the current needs and raise
+			awareness. You can be informed on a daily news of the situation, search for specific 
+			information, meet people that are involved in the cause and share your ideas
+			and the information about the cause in social medias. 
+			</li>
+			<li>
+			You want to be directly involved and develop further our project trying 
+			to facilitate collaboration between organizations and individuals involved in the
+			cause of helping orphans and abandoned children. You can join our research team
+			in charge of hunting organizations that are part of the cause or organizations that
+			may be able to help the cause by providing help in a specific area. We also 
+			identify groups of children around the world that need help and do not had the opportunity
+			yet of being in touch with the right people. Please, drop us an email and tell 
+			us what is your interest and how you would like to help.
+			</li>
+			<li>
+			You are a programmer or a graphical designer willing to help improving our tool facilitating
+			the collaboration. You may want to improve our front end or the design of our front end. 
+			Our code is an open source because we think that collaboration goes beyond this cause.
+			In fact, we hope that other causes benefit of this project to accelerate help in other fields.
+			Our source is at https://github.com/mcharcos/owb.git. Follow our project and let
+			us know if you feel like contributing in some way. 
+			</li>
+  		</UL>
+  		<br></br><br></br>
+  		<br></br><br></br>
+  		<br></br><br></br>
+		</div>
 	</g:HTMLPanel>
 </ui:UiBinder> 

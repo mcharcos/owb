@@ -4,7 +4,7 @@
 	xmlns:gm="urn:import:com.google.gwt.maps.client">
 	<ui:style>
 		.mapStyle {
-			width:       "600px";
+			width:       "100%";
 			height:      "600px";
 		}
 		.titlePanStyle {

@@ -24,12 +24,13 @@ public class UserSettingView extends Composite implements UserSettingPresenter.D
 		initWidget(uiBinder.createAndBindUi(this));
 	}
 
+	/*
 	@UiField
 	Label userNameLabel;
 	@UiField
 	Label userEmailLabel;
 	@UiField
-	Label userTypeLabel;
+	Label userTypeLabel;*/
 	@UiField
 	Anchor preferences;
 	@UiField
@@ -56,6 +57,7 @@ public class UserSettingView extends Composite implements UserSettingPresenter.D
 	public Anchor getLogoutText() {
 	  return loginout;
 	}
+	/*
 	@Override
 	public HasText getUserNameLabel() {
 	  return userNameLabel;
@@ -68,6 +70,7 @@ public class UserSettingView extends Composite implements UserSettingPresenter.D
 	public HasText getUserTypeLabel() {
 	  return userTypeLabel;
 	}
+	*/
 
 
 }

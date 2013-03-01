@@ -8,10 +8,9 @@
     
 	<ui:style>
 		.titleMenu {
-			font-weight: bold;
+			font-weight					:	bold;
 			text-align					:  	center;
 			color						:	red;
-		    font-size                   :   x-large;
             font-family                 :   sans-serif, 'Comic Sans MS';
 			font-style					:	italic;
 		}
@@ -26,7 +25,6 @@
 		}
 		.gwt-MenuBar table
 		{
-		    background-color            :   #c5f935;
 			border						:	0px;
 		}
 		.gwt-MenuBar .gwt-MenuItem .gwt-MenuBar
@@ -49,8 +47,9 @@
 		    cursor                      :   hand;
 		    cursor                      :   pointer;
 		
-		    font-size                   :   x-large;
+		    font-size                   :   medium;
 			height						:	35px;
+			width						:	20px;
             font-family                 :   'Comic Sans MS';
             font-weight 				:	bold;
 		    background-color            :   #c5f935;
@@ -61,7 +60,7 @@
 		.gwt-MenuBar .gwt-MenuItem-selected
 		{
 		    background-color            :   #c5f935;
-		    font-size                   :   x-large;
+		    font-size                   :   medium;
 			font-color					:	red;
 		}
 		.backgroundall {  
@@ -87,24 +86,51 @@ background: url(images/bluebar-bg-selected.png) no-repeat 50% 100%;
 	<g:HTMLPanel>
 		<table>
 		<tr>
-		    <div class='{style.titleMenu}'>About Us</div>
-		</tr> 
-		<tr>
 	  		<div class='{style.gwt-MenuBar}'>
-	  		<g:MenuBar ui:field='mainMenu' vertical="true">
-				<g:MenuItem ui:field='missionItem'><font color="#ab0fc8"><b><i><big>Mission</big></i></b></font></g:MenuItem>
-				<g:MenuItem ui:field='goalsItem'><font color="#ab0fc8"><b><i><big>Goals</big></i></b></font></g:MenuItem>
-				<g:MenuItem ui:field='differentItem'><font color="#ab0fc8"><b><i><big>Are we Different?</big></i></b></font></g:MenuItem>
-				<g:MenuItem ui:field='probsolItem'><font color="#ab0fc8"><b><i><big>Problems and Solitions</big></i></b></font></g:MenuItem>
-				<g:MenuItem ui:field='teamItem'><font color="#ab0fc8"><b><i><big>The Team</big></i></b></font></g:MenuItem>
-				<g:MenuItem ui:field='joinusItem'><font color="#ab0fc8"><b><i><big>Join Us</big></i></b></font></g:MenuItem>
-				<g:MenuItem ui:field='joinItem'>
-				    <font color="#ab0fc8"><b><i><big>Join Network</big></i></b></font>
-			         <g:MenuBar vertical="true">
-      					<g:MenuItem ui:field='addNgoItem'><font color="#ab0fc8"><b><i><big>As Organization</big></i></b></font></g:MenuItem>
-      					<g:MenuItem ui:field='addOrphanageItem'><font color="#ab0fc8"><b><i><big>As Orphanage</big></i></b></font></g:MenuItem>
+	  		<g:MenuBar ui:field='mainMenu' vertical="false">
+				<g:MenuItem ui:field='homeItem'><font color="#ab0fc8"><b><i>Home</i></b></font></g:MenuItem>
+				<g:MenuItem ui:field='aboutUsItem'><font color="#ab0fc8"><b><i>About_Us</i></b></font>
+				    <g:MenuBar vertical="true">
+      					<g:MenuItem ui:field='contextItem'><font color="#ab0fc8"><b><i>Context</i></b></font></g:MenuItem>
+      					<g:MenuItem ui:field='ourMissionItem'><font color="#ab0fc8"><b><i>Our_Mission</i></b></font></g:MenuItem>
+      					<g:MenuItem ui:field='ourViewItem'><font color="#ab0fc8"><b><i>Our_View</i></b></font></g:MenuItem>
+      					<g:MenuItem ui:field='volunteerOpportunitiesItem'><font color="#ab0fc8"><b><i>Volunteer_Opportunities</i></b></font></g:MenuItem>
      				</g:MenuBar>
-			    </g:MenuItem>
+				</g:MenuItem>
+				<g:MenuItem ui:field='whatDoWeDoItem'><font color="#ab0fc8"><b><i>What_do_we_do?</i></b></font>
+				    <g:MenuBar vertical="true">
+      					<g:MenuItem ui:field='healthItem'><font color="#ab0fc8"><b><i>Health</i></b></font></g:MenuItem>
+      					<g:MenuItem ui:field='educationItem'><font color="#ab0fc8"><b><i>Education</i></b></font></g:MenuItem>
+      					<g:MenuItem ui:field='foodItem'><font color="#ab0fc8"><b><i>Food</i></b></font></g:MenuItem>
+      					<g:MenuItem ui:field='shelterItem'><font color="#ab0fc8"><b><i>Shelter</i></b></font></g:MenuItem>
+      					<g:MenuItem ui:field='clothingItem'><font color="#ab0fc8"><b><i>Clothing</i></b></font></g:MenuItem>
+      					<g:MenuItem ui:field='hygieneItem'><font color="#ab0fc8"><b><i>Hygiene</i></b></font></g:MenuItem>
+      					<g:MenuItem ui:field='joyItem'><font color="#ab0fc8"><b><i>Joy</i></b></font></g:MenuItem>
+      					<g:MenuItem ui:field='hopeOfFutureItem'><font color="#ab0fc8"><b><i>Hope of Future</i></b></font></g:MenuItem>
+      					<g:MenuItem ui:field='loveItem'><font color="#ab0fc8"><b><i>Love</i></b></font></g:MenuItem>
+      					<g:MenuItem ui:field='responsabilitiesItem'><font color="#ab0fc8"><b><i>Responsabilities</i></b></font></g:MenuItem>
+      					<g:MenuItem ui:field='safetyItem'><font color="#ab0fc8"><b><i>Safety</i></b></font></g:MenuItem>
+      					<g:MenuItem ui:field='guidanceItem'><font color="#ab0fc8"><b><i>Guidance</i></b></font></g:MenuItem>
+      					<g:MenuItem ui:field='compassionateEnvironementItem'><font color="#ab0fc8"><b><i>Compassionate Environment</i></b></font></g:MenuItem>
+      					<g:MenuItem ui:field='disciplineItem'><font color="#ab0fc8"><b><i>Discipline</i></b></font></g:MenuItem>
+     				</g:MenuBar>
+				</g:MenuItem>
+				<g:MenuItem ui:field='howDoWeHelpItem'><font color="#ab0fc8"><b><i>How_do_we_help?</i></b></font>
+				    <g:MenuBar vertical="true">
+      					<g:MenuItem ui:field='howChildrenItem'><font color="#ab0fc8"><b><i>Children</i></b></font></g:MenuItem>
+      					<g:MenuItem ui:field='howProjectsItem'><font color="#ab0fc8"><b><i>Projects</i></b></font></g:MenuItem>
+      					<g:MenuItem ui:field='howOrganizationsItem'><font color="#ab0fc8"><b><i>Organizations</i></b></font></g:MenuItem>
+      					<g:MenuItem ui:field='howIndividualsItem'><font color="#ab0fc8"><b><i>Individuals</i></b></font></g:MenuItem>
+     				</g:MenuBar>
+				</g:MenuItem>
+				<g:MenuItem ui:field='contactUsItem'><font color="#ab0fc8"><b><i>Contact_Us</i></b></font>
+				    <g:MenuBar vertical="true">
+      					<g:MenuItem ui:field='theTeamItem'><font color="#ab0fc8"><b><i>The Team</i></b></font></g:MenuItem>
+      					<g:MenuItem ui:field='joinOWBItem'><font color="#ab0fc8"><b><i>Join OWB</i></b></font></g:MenuItem>
+      					<g:MenuItem ui:field='joinNetworkItem'><font color="#ab0fc8"><b><i>Join Our Network</i></b></font></g:MenuItem>
+      					<g:MenuItem ui:field='shareProjectItem'><font color="#ab0fc8"><b><i>Share Your Project Needs</i></b></font></g:MenuItem>
+     				</g:MenuBar>
+	 		 	</g:MenuItem>
 	 		 </g:MenuBar>
 	 		 </div>
 	    </tr>

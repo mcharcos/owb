@@ -5,10 +5,10 @@ import com.google.gwt.event.dom.client.HasClickHandlers;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Button;
-import com.google.gwt.user.client.ui.FileUpload;
-import com.google.gwt.user.client.ui.FormPanel;
+//import com.google.gwt.user.client.ui.FileUpload;
+//import com.google.gwt.user.client.ui.FormPanel;
 import com.google.gwt.user.client.ui.HasValue;
-import com.google.gwt.user.client.ui.Image;
+//import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
@@ -32,29 +32,30 @@ public class UserPreferenceEditView extends Composite implements UserPreferenceE
 	Button cancelButton, saveButton;  //, pictureButton;
 	@UiField
 	TextBox nameField, emailField;
-	@UiField
-	Image profilePicture;
+	//@UiField
+	//Image profilePicture;
 	
 	private static final String UPLOAD_ACTION_URL = GWT.getModuleBaseURL() + "upload";
-	@UiField
-	FileUpload uploaderField;
-	@UiField
-	FormPanel formPanel;
+	//@UiField
+	//FileUpload uploaderField;
+	//@UiField
+	//FormPanel formPanel;
 
 	@Override
 	public Widget asWidget() {
-		formPanel.setAction(UPLOAD_ACTION_URL);
+		/*formPanel.setAction(UPLOAD_ACTION_URL);
 		formPanel.setEncoding(FormPanel.ENCODING_MULTIPART);
 		formPanel.setMethod(FormPanel.METHOD_POST);
 				
-		uploaderField.setName("uploadFormElement");
+		uploaderField.setName("uploadFormElement");*/
 		return this;
 	}
 
+	/*
 	@Override
 	public Image getProfilePictureFrame() {
 		return profilePicture;
-	}
+	}*/
 	@Override
 	public HasValue<String> getNameLabel() {
 	  return nameField;
@@ -71,6 +72,7 @@ public class UserPreferenceEditView extends Composite implements UserPreferenceE
 	public HasClickHandlers getSaveButton() {
 	  return saveButton;
 	}
+	/*
 	@Override
 	public FileUpload getUploadFile() {
 		return uploaderField;
@@ -79,6 +81,6 @@ public class UserPreferenceEditView extends Composite implements UserPreferenceE
 	@Override
 	public FormPanel getFormPanel(){
 		return formPanel;
-	}
+	}*/
 
 }

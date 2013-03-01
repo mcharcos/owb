@@ -2,7 +2,6 @@ package com.owb.playhelp.client;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
-import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
@@ -28,12 +27,13 @@ public class LeftPanel extends Composite implements LeftPanelPresenter.Display {
 		initWidget(uiBinder.createAndBindUi(this));
 	}
 
-	@UiField
-	  VerticalPanel profilePanel;
-	@UiField
-	  VerticalPanel testPanel;
-	@UiField
-	  VerticalPanel menuPanel;
+	
+	//@UiField
+	  VerticalPanel profilePanel=null;
+	//@UiField
+	  VerticalPanel testPanel=null;
+	//@UiField
+	  VerticalPanel menuPanel=null;
 
 	/**
 	 * Returns the panel containing the user profile information

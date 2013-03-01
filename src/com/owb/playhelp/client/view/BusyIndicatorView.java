@@ -19,7 +19,7 @@ public class BusyIndicatorView extends PopupPanel implements BusyIndicatorPresen
     //setAnimationEnabled(false);
     //this.center();
     //this.center();
-    setPopupPosition(550, 350);
+    setPopupPosition(550, 150);
     add(icon);
   }
 

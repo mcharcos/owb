@@ -15,6 +15,8 @@ import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.Widget;
 
 import com.owb.playhelp.client.event.ngo.NgoUpdateEvent;
+import com.owb.playhelp.client.event.orphanage.AddOrphanageCancelEvent;
+import com.owb.playhelp.client.event.orphanage.AddOrphanageUpdateEvent;
 import com.owb.playhelp.client.helper.RPCCall;
 import com.owb.playhelp.client.service.ngo.NgoServiceAsync;
 import com.owb.playhelp.shared.ngo.NgoInfo;
@@ -23,7 +25,6 @@ import com.owb.playhelp.client.presenter.Presenter;
 public class AddNgoPresenter implements Presenter {
 	public interface Display {
 		Widget asWidget();
-	    void hide();
 	    HasClickHandlers getSaveBut();
 	    HasClickHandlers getCancelBut();
 		HasValue<String> getNameField();
@@ -67,11 +68,12 @@ public class AddNgoPresenter implements Presenter {
 	        public void onClick(ClickEvent event) {
 	        	updateNgo();
 	        	doSave();
+	        	eventBus.fireEvent(new AddOrphanageUpdateEvent());
 	        }
 	      });
 	    this.display.getCancelBut().addClickHandler(new ClickHandler() {
 	        public void onClick(ClickEvent event) {
-	          display.hide();
+	        	eventBus.fireEvent(new AddOrphanageCancelEvent());
 	        }
 	      });
 	    
@@ -79,6 +81,8 @@ public class AddNgoPresenter implements Presenter {
 
 	  @Override
 	public void go(final HasWidgets container) {
+		container.clear();
+		container.add(display.asWidget());
 		bind();
 		
 		if (ngo == null) return;
@@ -122,7 +126,6 @@ public class AddNgoPresenter implements Presenter {
 
 	      @Override
 	      public void onSuccess(NgoInfo result) {
-	    	  display.hide();
 	        GWT.log("NgoAddPresenter: Firing NgoUpdateEvent");
 	        eventBus.fireEvent(new NgoUpdateEvent(result)); 
 	      }

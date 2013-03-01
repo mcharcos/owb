@@ -1,0 +1,22 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+		.important {
+			font-weight: bold;
+		}
+		.description{
+	        color:#9152a0;
+	        margin: 30px;
+	   }
+	</ui:style>
+	<g:HTMLPanel>
+	   <div class="{style.description}">
+	    <h1>HOW DO WE HELP ORGANIZATIONS?</h1>
+		We create a community that can that can inspire the way you work <br></br>
+		We create a network of other organizations that support your current projects <br></br>
+		We find and document the needs around the world <br></br>
+		We find and document the way other projects has been performed and how other organizations work <br></br>
+		</div>
+	</g:HTMLPanel>
+</ui:UiBinder> 

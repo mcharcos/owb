@@ -33,9 +33,9 @@ public class UserSettingPresenter implements Presenter {
 			Anchor getPreferencesText();
 			HasClickHandlers getLogoutLink();
 			Anchor getLogoutText();
-			HasText getUserNameLabel();
-			HasText getUserEmailLabel();
-			HasText getUserTypeLabel();
+			//HasText getUserNameLabel();
+			//HasText getUserEmailLabel();
+			//HasText getUserTypeLabel();
 		    Widget asWidget();
 		  }
 
@@ -146,24 +146,25 @@ public class UserSettingPresenter implements Presenter {
 		  UserSettingPresenter.this.display.getLogoutText().setText("Logout");
 		  UserSettingPresenter.this.display.getPreferencesText().setText("Preferences");
 		  UserSettingPresenter.this.display.getPreferencesText().setEnabled(true);
-		  UserSettingPresenter.this.display.getUserNameLabel().setText(currentUser.getName());
-		  UserSettingPresenter.this.display.getUserTypeLabel().setText(currentUser.getUserType());
-		  UserSettingPresenter.this.display.getUserEmailLabel().setText(currentUser.getEmailAddress());
+		  //UserSettingPresenter.this.display.getUserNameLabel().setText(currentUser.getName());
+		  //UserSettingPresenter.this.display.getUserTypeLabel().setText(currentUser.getUserType());
+		  //UserSettingPresenter.this.display.getUserEmailLabel().setText(currentUser.getEmailAddress());
 		  // change text of loginout link to "logout"		  
 	  }
 	  private void userLoggedout(){		  
 		  UserSettingPresenter.this.display.getLogoutText().setText("Login");
 		  UserSettingPresenter.this.display.getPreferencesText().setText("");
 		  UserSettingPresenter.this.display.getPreferencesText().setEnabled(false);
-		  UserSettingPresenter.this.display.getUserNameLabel().setText("");
-		  UserSettingPresenter.this.display.getUserTypeLabel().setText("");
-		  UserSettingPresenter.this.display.getUserEmailLabel().setText("");
+		  //UserSettingPresenter.this.display.getUserNameLabel().setText("");
+		  //UserSettingPresenter.this.display.getUserTypeLabel().setText("");
+		  //UserSettingPresenter.this.display.getUserEmailLabel().setText("");
 		  // change text of loginout link to "login"		  
 	  }	  
 	  
 	  public void go(final HasWidgets container){
 		  container.clear();
 		  container.add(display.asWidget());
+		  createUI();
 		  bind();
 	  }
 

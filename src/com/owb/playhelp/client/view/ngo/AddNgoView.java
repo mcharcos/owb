@@ -10,29 +10,20 @@ import com.google.gwt.user.client.ui.HasValue;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.Widget;
-import com.owb.playhelp.client.helper.ClickPoint;
+import com.google.gwt.user.client.ui.Composite;
 import com.owb.playhelp.client.presenter.ngo.AddNgoPresenter;
-import com.google.gwt.user.client.ui.PopupPanel;
 
-public class AddNgoView extends PopupPanel implements AddNgoPresenter.Display {
+public class AddNgoView extends Composite implements AddNgoPresenter.Display {
 
-	  @UiTemplate("AddNgoView.ui.xml")
-	  interface Binder extends UiBinder<Widget, AddNgoView> {
-	  }
 
-	  private static final Binder binder = GWT.create(Binder.class);
-	  
-	public AddNgoView() {
-	    super(true);
-	    add(binder.createAndBindUi(this));
-		//initWidget(uiBinder.createAndBindUi(this));
+	private static AddNgoViewUiBinder uiBinder = GWT
+			.create(AddNgoViewUiBinder.class);
+
+	interface AddNgoViewUiBinder extends UiBinder<Widget, AddNgoView> {
 	}
-	
-	public AddNgoView(ClickPoint location) {
-	    super(true);
-	    add(binder.createAndBindUi(this));
-	    setPopupPosition(location.getLeft(), location.getTop());
-	    show();
+
+	public AddNgoView() {
+		initWidget(uiBinder.createAndBindUi(this));
 	}
 	
 	@UiField TextBox nameField,descField,addressField,phoneField,emailField,webField;
@@ -44,11 +35,6 @@ public class AddNgoView extends PopupPanel implements AddNgoPresenter.Display {
 	  @Override
 	  public Widget asWidget() {
 	    return this;
-	  }
-
-	  @Override
-	  public void hide() {
-	    super.hide();
 	  }
 
 	  public void go(HasWidgets container) {
