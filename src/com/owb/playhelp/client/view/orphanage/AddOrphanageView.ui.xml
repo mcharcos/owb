@@ -10,7 +10,7 @@
 					<g:Label >Name:</g:Label>
 				</div>
 				<div class="{style.formfield}">
-					<g:TextBox ui:field='nameField' width="25em">Your organization name</g:TextBox>
+					<g:TextBox ui:field='nameField' width="25em">Your orphanage name</g:TextBox>
 				</div>
 			</div>
 			<div class="{style.formwrapper}">
@@ -18,7 +18,7 @@
 					<g:Label >Description:</g:Label>
 				</div>
 				<div class="{style.formfield}">
-					<g:TextArea ui:field='descField' width="25em" height="25em">Write a brief description of your organization</g:TextArea>
+					<g:TextArea ui:field='descField' width="25em" height="25em">Write a brief description of your orphanage</g:TextArea>
 				</div>
 			</div>
 			<div class="{style.formwrapper}">
@@ -26,7 +26,7 @@
 					<g:Label >Address:</g:Label>
 				</div>
 				<div class="{style.formfield}">
-					<g:TextBox ui:field='addressField' width="25em">Address of your organization</g:TextBox>
+					<g:TextBox ui:field='addressField' width="25em">Address of your orphanage</g:TextBox>
 				</div>
 			</div>
 			<div class="{style.formwrapper}">

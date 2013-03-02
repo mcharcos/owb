@@ -1,0 +1,22 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+		.important {
+			font-weight: bold;
+		}
+		.description{
+	        color:#9152a0;
+	        margin: 30px;
+	   }
+	</ui:style>
+	<g:HTMLPanel>
+	   <div class="{style.description}">
+	    <h1>CLOTHING</h1>
+		It provides cloths to the children for daily life, school and 
+    		    special occasions. It is responsible of changing their cloths and/or shoes at 
+    		    least once a week and keeping them clean. It also teach the children how to take 
+    		    care of their own cloths and look.
+		</div>
+	</g:HTMLPanel>
+</ui:UiBinder> 

@@ -1,0 +1,22 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+		.important {
+			font-weight: bold;
+		}
+		.description{
+	        color:#9152a0;
+	        margin: 30px;
+	   }
+	</ui:style>
+	<g:HTMLPanel>
+	   <div class="{style.description}">
+	    <h1>HEALTH</h1>
+		It provides medical care when children suffer of disease or get hurt. 
+  			    It also teach the children the importance of a healthy diet and physical exercise. 
+  			    For instance, physical exercise should be encouraged and frequently practiced allowing children 
+  			    to develop their favorite sport in the limits of availability.
+		</div>
+	</g:HTMLPanel>
+</ui:UiBinder> 

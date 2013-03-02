@@ -7,6 +7,7 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiTemplate;
 import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.HasValue;
+import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.Widget;
@@ -26,7 +27,8 @@ public class AddNgoView extends Composite implements AddNgoPresenter.Display {
 		initWidget(uiBinder.createAndBindUi(this));
 	}
 	
-	@UiField TextBox nameField,descField,addressField,phoneField,emailField,webField;
+	@UiField TextBox nameField,addressField,phoneField,emailField,webField;
+	@UiField TextArea descField;
 	@UiField
 	Anchor saveBut;
 	@UiField

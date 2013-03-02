@@ -5,32 +5,119 @@
 	</ui:style>
 	<g:HTMLPanel>
 			<div class="{style.formTitle}">Orphanage Status</div>
-			<table>
-				<tr>
-					<td></td>
-					<td>
-						<g:Label ui:field='nameField'>Orphanage Name</g:Label>
-					</td>
-				</tr>
-				<tr>
-					<td>Health (%):</td>
-					<td>
-						<g:TextBox ui:field='healthField'>100</g:TextBox>
-					</td>
-				</tr>
-				<tr>
-					<td>Education (%):</td>
-					<td>
-						<g:TextBox ui:field='educationField'>100</g:TextBox>
-					</td>
-				</tr>
-				<tr>
-					<td>Nutrition (%):</td>
-					<td>
-						<g:TextBox ui:field='nutritionField'>100</g:TextBox>
-					</td>
-				</tr>
-			</table>
+			<g:Label ui:field='nameField'>Orphanage Name</g:Label>
+			<div class="{style.formwrapper}">
+				<div class="{style.formlabel}">
+					<g:Label> Health (%)</g:Label>
+				</div>
+				<div class="{style.formfield}">
+					<g:TextBox ui:field='healthField' width="25em">100</g:TextBox>
+				</div>
+			</div>
+			<div class="{style.formwrapper}">
+				<div class="{style.formlabel}">
+					<g:Label> Education (%)</g:Label>
+				</div>
+				<div class="{style.formfield}">
+					<g:TextBox ui:field='educationField' width="25em">100</g:TextBox>
+				</div>
+			</div>
+			<div class="{style.formwrapper}">
+				<div class="{style.formlabel}">
+					<g:Label> Food (%)</g:Label>
+				</div>
+				<div class="{style.formfield}">
+					<g:TextBox ui:field='foodField' width="25em">100</g:TextBox>
+				</div>
+			</div>
+			<div class="{style.formwrapper}">
+				<div class="{style.formlabel}">
+					<g:Label> Shelter (%)</g:Label>
+				</div>
+				<div class="{style.formfield}">
+					<g:TextBox ui:field='shelterField' width="25em">100</g:TextBox>
+				</div>
+			</div>
+			<div class="{style.formwrapper}">
+				<div class="{style.formlabel}">
+					<g:Label> Clothing (%)</g:Label>
+				</div>
+				<div class="{style.formfield}">
+					<g:TextBox ui:field='clothingField' width="25em">100</g:TextBox>
+				</div>
+			</div>
+			<div class="{style.formwrapper}">
+				<div class="{style.formlabel}">
+					<g:Label> Hygiene (%)</g:Label>
+				</div>
+				<div class="{style.formfield}">
+					<g:TextBox ui:field='hygieneField' width="25em">100</g:TextBox>
+				</div>
+			</div>
+			<div class="{style.formwrapper}">
+				<div class="{style.formlabel}">
+					<g:Label> Nutrition (%)</g:Label>
+				</div>
+				<div class="{style.formfield}">
+					<g:TextBox ui:field='joyField' width="25em">100</g:TextBox>
+				</div>
+			</div>
+			<div class="{style.formwrapper}">
+				<div class="{style.formlabel}">
+					<g:Label> Hope of Future (%)</g:Label>
+				</div>
+				<div class="{style.formfield}">
+					<g:TextBox ui:field='hopeField' width="25em">100</g:TextBox>
+				</div>
+			</div>
+			<div class="{style.formwrapper}">
+				<div class="{style.formlabel}">
+					<g:Label> Love (%)</g:Label>
+				</div>
+				<div class="{style.formfield}">
+					<g:TextBox ui:field='loveField' width="25em">100</g:TextBox>
+				</div>
+			</div>
+			<div class="{style.formwrapper}">
+				<div class="{style.formlabel}">
+					<g:Label> Responsabilities (%)</g:Label>
+				</div>
+				<div class="{style.formfield}">
+					<g:TextBox ui:field='responsabilitiesField' width="25em">100</g:TextBox>
+				</div>
+			</div>
+			<div class="{style.formwrapper}">
+				<div class="{style.formlabel}">
+					<g:Label> Safety (%)</g:Label>
+				</div>
+				<div class="{style.formfield}">
+					<g:TextBox ui:field='safetyField' width="25em">100</g:TextBox>
+				</div>
+			</div>
+			<div class="{style.formwrapper}">
+				<div class="{style.formlabel}">
+					<g:Label> Guidance (%)</g:Label>
+				</div>
+				<div class="{style.formfield}">
+					<g:TextBox ui:field='guidanceField' width="25em">100</g:TextBox>
+				</div>
+			</div>
+			<div class="{style.formwrapper}">
+				<div class="{style.formlabel}">
+					<g:Label> Compassionate Environement (%)</g:Label>
+				</div>
+				<div class="{style.formfield}">
+					<g:TextBox ui:field='compassionateField' width="25em">100</g:TextBox>
+				</div>
+			</div>
+			<div class="{style.formwrapper}">
+				<div class="{style.formlabel}">
+					<g:Label> Discipline (%)</g:Label>
+				</div>
+				<div class="{style.formfield}">
+					<g:TextBox ui:field='disciplineField' width="25em">100</g:TextBox>
+				</div>
+			</div>
 		<div class='{style.button}'>
 			<g:Anchor href='javascript:;' ui:field='saveBut'>Save</g:Anchor>
 			<g:Anchor href='javascript:;' ui:field='cancelBut'>Cancel</g:Anchor>

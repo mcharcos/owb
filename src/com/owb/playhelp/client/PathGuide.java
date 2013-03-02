@@ -60,7 +60,21 @@ import com.owb.playhelp.client.view.web.WebOurMissionView;
 import com.owb.playhelp.client.view.web.WebOurViewView;
 import com.owb.playhelp.client.view.web.WebTheTeamView;
 import com.owb.playhelp.client.view.web.WebVolunteerOpportunitiesView;
-import com.owb.playhelp.client.view.web.WebWhatDoWeDoView;
+import com.owb.playhelp.client.view.web.whatdowedo.WebWhatClothingView;
+import com.owb.playhelp.client.view.web.whatdowedo.WebWhatCompassionateView;
+import com.owb.playhelp.client.view.web.whatdowedo.WebWhatDisciplineView;
+import com.owb.playhelp.client.view.web.whatdowedo.WebWhatDoWeDoView;
+import com.owb.playhelp.client.view.web.whatdowedo.WebWhatEducationView;
+import com.owb.playhelp.client.view.web.whatdowedo.WebWhatFoodView;
+import com.owb.playhelp.client.view.web.whatdowedo.WebWhatGuidanceView;
+import com.owb.playhelp.client.view.web.whatdowedo.WebWhatHealthView;
+import com.owb.playhelp.client.view.web.whatdowedo.WebWhatHopeOfFutureView;
+import com.owb.playhelp.client.view.web.whatdowedo.WebWhatHygieneView;
+import com.owb.playhelp.client.view.web.whatdowedo.WebWhatJoyView;
+import com.owb.playhelp.client.view.web.whatdowedo.WebWhatLoveView;
+import com.owb.playhelp.client.view.web.whatdowedo.WebWhatResponsabilitiesView;
+import com.owb.playhelp.client.view.web.whatdowedo.WebWhatSafetyView;
+import com.owb.playhelp.client.view.web.whatdowedo.WebWhatShelterView;
 import com.owb.playhelp.client.event.web.ContactHomeEvent;
 import com.owb.playhelp.client.event.web.ContactHomeEventHandler;
 import com.owb.playhelp.client.event.web.ShowWebEvent;
@@ -489,59 +503,59 @@ public class PathGuide implements ValueChangeHandler<String>  {
 		        return;
 		        } 
 				if (token.equals("webgethealthItem")) {
-					Owb.get().getMainPanel().add((new WebWhatDoWeDoView()).asWidget());
+					Owb.get().getMainPanel().add((new WebWhatHealthView()).asWidget());
 		        return;
 		        } 
 				if (token.equals("webgeteducationItem")) {
-					Owb.get().getMainPanel().add((new WebWhatDoWeDoView()).asWidget());
+					Owb.get().getMainPanel().add((new WebWhatEducationView()).asWidget());
 		        return;
 		        } 
 				if (token.equals("webgetfoodItem")) {
-					Owb.get().getMainPanel().add((new WebWhatDoWeDoView()).asWidget());
+					Owb.get().getMainPanel().add((new WebWhatFoodView()).asWidget());
 		        return;
 		        } 
 				if (token.equals("webgetshelterItem")) {
-					Owb.get().getMainPanel().add((new WebWhatDoWeDoView()).asWidget());
+					Owb.get().getMainPanel().add((new WebWhatShelterView()).asWidget());
 		        return;
 		        } 
 				if (token.equals("webgetclothingItem")) {
-					Owb.get().getMainPanel().add((new WebWhatDoWeDoView()).asWidget());
+					Owb.get().getMainPanel().add((new WebWhatClothingView()).asWidget());
 		        return;
 		        } 
 				if (token.equals("webgethygieneItem")) {
-					Owb.get().getMainPanel().add((new WebWhatDoWeDoView()).asWidget());
+					Owb.get().getMainPanel().add((new WebWhatHygieneView()).asWidget());
 		        return;
 		        } 
 				if (token.equals("webgetjoyItem")) {
-					Owb.get().getMainPanel().add((new WebWhatDoWeDoView()).asWidget());
+					Owb.get().getMainPanel().add((new WebWhatJoyView()).asWidget());
 		        return;
 		        } 
 				if (token.equals("webgethopeOfFutureItem")) {
-					Owb.get().getMainPanel().add((new WebWhatDoWeDoView()).asWidget());
+					Owb.get().getMainPanel().add((new WebWhatHopeOfFutureView()).asWidget());
 		        return;
 		        } 
 				if (token.equals("webgetloveItem")) {
-					Owb.get().getMainPanel().add((new WebWhatDoWeDoView()).asWidget());
+					Owb.get().getMainPanel().add((new WebWhatLoveView()).asWidget());
 		        return;
 		        } 
 				if (token.equals("webgetresponsabilitiesItem")) {
-					Owb.get().getMainPanel().add((new WebWhatDoWeDoView()).asWidget());
+					Owb.get().getMainPanel().add((new WebWhatResponsabilitiesView()).asWidget());
 		        return;
 		        } 
 				if (token.equals("webgetsafetyItem")) {
-					Owb.get().getMainPanel().add((new WebWhatDoWeDoView()).asWidget());
+					Owb.get().getMainPanel().add((new WebWhatSafetyView()).asWidget());
 		        return;
 		        } 
 				if (token.equals("webgetguidanceItem")) {
-					Owb.get().getMainPanel().add((new WebWhatDoWeDoView()).asWidget());
+					Owb.get().getMainPanel().add((new WebWhatGuidanceView()).asWidget());
 		        return;
 		        } 
 				if (token.equals("webgetcompassionateEnvironementItem")) {
-					Owb.get().getMainPanel().add((new WebWhatDoWeDoView()).asWidget());
+					Owb.get().getMainPanel().add((new WebWhatCompassionateView()).asWidget());
 		        return;
 		        } 
 				if (token.equals("webgetdisciplineItem")) {
-					Owb.get().getMainPanel().add((new WebWhatDoWeDoView()).asWidget());
+					Owb.get().getMainPanel().add((new WebWhatDisciplineView()).asWidget());
 		        return;
 		        } 
 				if (token.equals("webgethowDoWeHelpItem")) {

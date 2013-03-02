@@ -28,7 +28,8 @@ public class AddOrphanageStatusView extends Composite implements AddOrphanageSta
 	
 
 	@UiField Label nameField;
-	@UiField TextBox healthField,educationField,nutritionField;
+	@UiField TextBox healthField,educationField,foodField,shelterField,clothingField,hygieneField,joyField;
+	@UiField TextBox hopeField,loveField,responsabilitiesField,safetyField,guidanceField,compassionateField,disciplineField;
 	@UiField
 	Anchor saveBut;
 	@UiField
@@ -67,8 +68,8 @@ public class AddOrphanageStatusView extends Composite implements AddOrphanageSta
 		  return educationField;
 	  }
 	  @Override
-	  public HasValue<String> getNutritionField(){
-		  return nutritionField;
+	  public HasValue<String> getFoodField(){
+		  return foodField;
 	  }
 
 }

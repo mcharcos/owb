@@ -4,45 +4,55 @@
 	<ui:style src="../../resources/GlobalStyles.css" >
 	</ui:style>
 	<g:HTMLPanel>
-			<div class="{style.formTitle}">NGO Information</div>
-			<table>
-				<tr>
-					<td>Name:</td>
-					<td>
-						<g:TextBox ui:field='nameField'>YOUR ORGANIZATION NAME</g:TextBox>
-					</td>
-				</tr>
-				<tr>
-					<td>Description:</td>
-					<td>
-						<g:TextBox ui:field='descField'>Write a brief description of your organization</g:TextBox>
-					</td>
-				</tr>
-				<tr>
-					<td>Address:</td>
-					<td>
-						<g:TextBox ui:field='addressField'>ADDRESS OF YOUR ORGANIZATION</g:TextBox>
-					</td>
-				</tr>
-				<tr>
-					<td>Phone:</td>
-					<td>
-						<g:TextBox ui:field='phoneField'>COTANCT PHONE OF YOUR ORGANIZATION</g:TextBox>
-					</td>
-				</tr>
-				<tr>
-					<td>Email:</td>
-					<td>
-						<g:TextBox ui:field='emailField'>ORGANIZATIONCONTACTEMAIL@YOURURLORGANIZATION.org</g:TextBox>
-					</td>
-				</tr>
-				<tr>
-					<td>Website:</td>
-					<td>
-						<g:TextBox ui:field='webField'>http://www.YOURURLORGANIZATION.org/</g:TextBox>
-					</td>
-				</tr>
-			</table>
+	        <div class="{style.formTitle}">Organization Information</div>
+			<div class="{style.formwrapper}">
+				<div class="{style.formlabel}">
+					<g:Label >Name</g:Label>
+				</div>
+				<div class="{style.formfield}">
+					<g:TextBox ui:field='nameField' width="25em">YOUR ORGANIZATION NAME</g:TextBox>
+				</div>
+			</div>
+			<div class="{style.formwrapper}">
+				<div class="{style.formlabel}">
+					<g:Label >Description:</g:Label>
+				</div>
+				<div class="{style.formfield}">
+					<g:TextArea ui:field='descField' width="25em" height="25em">Write a brief description of your organization</g:TextArea>
+				</div>
+			</div>
+			<div class="{style.formwrapper}">
+				<div class="{style.formlabel}">
+					<g:Label >Address</g:Label>
+				</div>
+				<div class="{style.formfield}">
+					<g:TextBox ui:field='addressField' width="25em">ADDRESS OF YOUR ORGANIZATION</g:TextBox>
+				</div>
+			</div>
+			<div class="{style.formwrapper}">
+				<div class="{style.formlabel}">
+					<g:Label >Phone</g:Label>
+				</div>
+				<div class="{style.formfield}">
+					<g:TextBox ui:field='phoneField' width="25em">COTANCT PHONE OF YOUR ORGANIZATION</g:TextBox>
+				</div>
+			</div>
+			<div class="{style.formwrapper}">
+				<div class="{style.formlabel}">
+					<g:Label >Email</g:Label>
+				</div>
+				<div class="{style.formfield}">
+					<g:TextBox ui:field='emailField' width="25em">ORGANIZATIONCONTACTEMAIL@YOURURLORGANIZATION.org</g:TextBox>
+				</div>
+			</div>
+			<div class="{style.formwrapper}">
+				<div class="{style.formlabel}">
+					<g:Label >Website</g:Label>
+				</div>
+				<div class="{style.formfield}">
+					<g:TextBox ui:field='webField' width="25em">http://www.YOURURLORGANIZATION.org/</g:TextBox>
+				</div>
+			</div>
 		<div class='{style.button}'>
 			<g:Anchor href='javascript:;' ui:field='saveBut'>Save</g:Anchor>
 			<g:Anchor href='javascript:;' ui:field='cancelBut'>Cancel</g:Anchor>

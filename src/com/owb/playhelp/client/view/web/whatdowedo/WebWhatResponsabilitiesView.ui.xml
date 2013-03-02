@@ -1,0 +1,23 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+		.important {
+			font-weight: bold;
+		}
+		.description{
+	        color:#9152a0;
+	        margin: 30px;
+	   }
+	</ui:style>
+	<g:HTMLPanel>
+	   <div class="{style.description}">
+	    <h1>RESPONSABILITIES</h1>
+		It should make the children involved with the daily tasks
+    		    as a way of teaching the sense of responsibility and social 
+    		    obligations. These tasks are intended to make the children feel part of a big 
+    		    family by being willing to improve their conditions and the place. Responsibilities 
+    		    include cleaning and taking care of their younger sister and brothers.
+		</div>
+	</g:HTMLPanel>
+</ui:UiBinder> 

@@ -28,7 +28,7 @@ public class AddOrphanageStatusPresenter implements Presenter{
 		Label getNameField();
 		HasValue<String> getHealthField();
 		HasValue<String> getEducationField();
-		HasValue<String> getNutritionField();
+		HasValue<String> getFoodField();
 	}
 
 	private final SimpleEventBus eventBus;
@@ -72,7 +72,7 @@ public class AddOrphanageStatusPresenter implements Presenter{
 		if (status!=null){
 			this.display.getHealthField().setValue(String.valueOf(status.getHealth()));
 			this.display.getEducationField().setValue(String.valueOf(status.getEducation()));
-			this.display.getNutritionField().setValue(String.valueOf(status.getNutrition()));
+			this.display.getFoodField().setValue(String.valueOf(status.getNutrition()));
 		}
 	}
 
@@ -81,7 +81,7 @@ public class AddOrphanageStatusPresenter implements Presenter{
 		  StandardInfo status = new StandardInfo();
 		  status.setHealth(Float.valueOf(this.display.getHealthField().getValue()));
 		  status.setEducation(Float.valueOf(this.display.getEducationField().getValue()));
-		  status.setNutrition(Float.valueOf(this.display.getNutritionField().getValue()));
+		  status.setNutrition(Float.valueOf(this.display.getFoodField().getValue()));
 		  
 		  this.orphanage.setStandard(status);
 

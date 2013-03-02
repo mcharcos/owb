@@ -1,0 +1,23 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+		.important {
+			font-weight: bold;
+		}
+		.description{
+	        color:#9152a0;
+	        margin: 30px;
+	   }
+	</ui:style>
+	<g:HTMLPanel>
+	   <div class="{style.description}">
+	    <h1>HOPE OF FUTURE</h1>
+		It encourages the children to envision their future and 
+    		    professions. It helps them providing the education and guidance to allow them 
+    		    achieve their dreams. It also has a plan for all the children independently of 
+    		    their dreams for after their childhood. All children must have a way 
+    		    out of thieving, begging or being completely abandoned when they become adults.
+		</div>
+	</g:HTMLPanel>
+</ui:UiBinder> 

@@ -1,0 +1,25 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+		.important {
+			font-weight: bold;
+		}
+		.description{
+	        color:#9152a0;
+	        margin: 30px;
+	   }
+	</ui:style>
+	<g:HTMLPanel>
+	   <div class="{style.description}">
+	    <h1>SAFETY</h1>
+		It should guaranty that all activities happen in a safe environment 
+    		    exempt of accidents, fights, abuse any bulling. Safety include conducts between 
+    		    children and with respect to the staff and outsider volunteers. It should avoid 
+    		    dangerous situations like cutting objects or neglected places or situations and 
+    		    provide a plan for caring of the children in case of accidents. It 
+    		    must be like a refuge to children from the outside world. Any discrimination, 
+    		    sexual and physical abuse of any kind must not be tolerated.
+		</div>
+	</g:HTMLPanel>
+</ui:UiBinder> 

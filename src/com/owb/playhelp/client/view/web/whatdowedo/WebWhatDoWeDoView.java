@@ -1,4 +1,4 @@
-package com.owb.playhelp.client.view.web;
+package com.owb.playhelp.client.view.web.whatdowedo;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -21,10 +21,6 @@ public class WebWhatDoWeDoView extends Composite implements HasText {
 	}
 
 	public WebWhatDoWeDoView() {
-		initWidget(uiBinder.createAndBindUi(this));
-	}
-
-	public WebWhatDoWeDoView(String firstName) {
 		initWidget(uiBinder.createAndBindUi(this));
 	}
 

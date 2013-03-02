@@ -1,0 +1,25 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+		.important {
+			font-weight: bold;
+		}
+		.description{
+	        color:#9152a0;
+	        margin: 30px;
+	   }
+	</ui:style>
+	<g:HTMLPanel>
+	   <div class="{style.description}">
+	    <h1>LOVE</h1>
+		Its staff or external adults should provide the sense of care as a 
+    		    parent would do with their own children. The children should feel every day that 
+    		    they can count on someone that spend part of their time with them. It provides 
+    		    the love to overcome the impact of not having their parents close and a reference 
+    		    for them to be able to love others. It should supply staff or external 
+    		    people and should train care givers to overcome the extensive work of the 
+    		    shelter in order to provide enough love to the children.
+		</div>
+	</g:HTMLPanel>
+</ui:UiBinder> 

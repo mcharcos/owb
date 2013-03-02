@@ -1,0 +1,25 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+		.important {
+			font-weight: bold;
+		}
+		.description{
+	        color:#9152a0;
+	        margin: 30px;
+	   }
+	</ui:style>
+	<g:HTMLPanel>
+	   <div class="{style.description}">
+	    <h1>HYGIENE</h1>
+		It has a bathroom with shower, sink and toilet that must be clean 
+    		    at any time. It also has a place to clean cloths. It is essential that all areas 
+    		    are clean including mattresses, rooms and kitchen. As an 
+    		    educational exercise it should encourage children to participate in 
+    		    daily cleaning tasks. This mustn’t me done as a way to reduce expenses for 
+    		    cleaning purposes but as good parents do with their own children to teach them 
+    		    the sense of responsibility and community.
+		</div>
+	</g:HTMLPanel>
+</ui:UiBinder> 

@@ -1,0 +1,24 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+		.important {
+			font-weight: bold;
+		}
+		.description{
+	        color:#9152a0;
+	        margin: 30px;
+	   }
+	</ui:style>
+	<g:HTMLPanel>
+	   <div class="{style.description}">
+	    <h1>COMPASSIONATE ENVIRONMENT</h1>
+		It should build a compassionate environment 
+    		    between the children and with respect to the staff and volunteers. In addition, 
+    		    helping others is an important teaching from life since it helps to overcome our 
+    		    egos. This is part of many religion and society rules. Children must participate 
+    		    in outside volunteer opportunities and have a volunteering project that will 
+    		    reinforce the community feeling part of their own big family.
+		</div>
+	</g:HTMLPanel>
+</ui:UiBinder> 
