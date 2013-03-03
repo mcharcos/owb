@@ -1,7 +1,6 @@
 package com.owb.playhelp.client.view.orphanage;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.event.dom.client.HasClickHandlers;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Anchor;
@@ -70,19 +69,19 @@ public class OrphanageMapMarkerInfoView extends Composite implements OrphanageMa
 		  return removeBut;
 		}
 		@Override
-		public HasClickHandlers getReportBut(){
+		public Anchor getReportBut(){
 		  return reportBut;
 		}
 		@Override
-		public HasClickHandlers getFollowBut(){
+		public Anchor getFollowBut(){
 		  return followBut;
 		}
 		@Override
-		public HasClickHandlers getFulldescBut(){
+		public Anchor getFulldescBut(){
 		  return fulldescBut;
 		}
 		@Override
-		public HasClickHandlers getAddprojBut(){
+		public Anchor getAddprojBut(){
 		  return addprojBut;
 		}
 

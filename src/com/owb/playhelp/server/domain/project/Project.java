@@ -49,8 +49,10 @@ public class Project implements Serializable, Cacheable {
 	@Persistent
 	private String website;
 	
+	/*
 	@Persistent(dependent = "true")
 	private ProjectStandard status;
+	*/
 
 	@Persistent
 	private Date creationDate;
@@ -58,6 +60,7 @@ public class Project implements Serializable, Cacheable {
 	@Persistent
 	private String uniqueId;
 	
+	/*
 	@Persistent
 	private String confirmationBadge;
 
@@ -69,6 +72,7 @@ public class Project implements Serializable, Cacheable {
 
 	@Persistent
 	private Set<String> ngos = new HashSet<String>();
+	*/
 
 	//@Persistent(mappedBy = "pNews")
 	//@Element(dependent = "true")
@@ -80,7 +84,7 @@ public class Project implements Serializable, Cacheable {
 
 
 	public Project(){
-		this.status = new ProjectStandard();
+		//this.status = new ProjectStandard();
 		if (this.getUniqueId() == null) {
 			UUID uuid = UUID.randomUUID();
 			this.uniqueId = uuid.toString();  //this.getEmail();
@@ -183,15 +187,15 @@ public class Project implements Serializable, Cacheable {
 
 	
 	public boolean isMember(String userUniqueId){
-		return members.contains(userUniqueId);
+		return true; //members.contains(userUniqueId);
 	}
 	
 	public boolean isFollower(String userUniqueId){
-		return followers.contains(userUniqueId);
+		return true; //followers.contains(userUniqueId);
 	}
 	
 	public boolean isNgo(String ngoUniqueId){
-		return ngos.contains(ngoUniqueId);
+		return true;  //ngos.contains(ngoUniqueId);
 	}
 		
 	public void setName(String name) {
@@ -236,6 +240,7 @@ public class Project implements Serializable, Cacheable {
 	}
 
 
+	/*
 	public ProjectStandard getStandard() {
 		return this.status;
 	}
@@ -251,7 +256,9 @@ public class Project implements Serializable, Cacheable {
 		this.status.setEducation(status.getEducation());
 		this.status.setNutrition(status.getNutrition());
 	}
+	*/
 	
+	/*
 	public void addMember(String member){
 		// Check if the member exist
 		if (members.contains(member)) return;
@@ -287,6 +294,7 @@ public class Project implements Serializable, Cacheable {
 	public Set<String> getNgos(){
 		return ngos;
 	}
+	*/
 	
 	
 }

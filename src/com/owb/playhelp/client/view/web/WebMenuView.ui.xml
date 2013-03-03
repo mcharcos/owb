@@ -115,7 +115,7 @@ background: url(images/bluebar-bg-selected.png) no-repeat 50% 100%;
       					<g:MenuItem ui:field='disciplineItem'><font color="#ab0fc8"><b><i>Discipline</i></b></font></g:MenuItem>
      				</g:MenuBar>
 				</g:MenuItem>
-				<g:MenuItem ui:field='howDoWeHelpItem'><font color="#ab0fc8"><b><i>How_do_we_work_with?</i></b></font>
+				<g:MenuItem ui:field='howDoWeHelpItem'><font color="#ab0fc8"><b><i>Who_do_we_work_with?</i></b></font>
 				    <g:MenuBar vertical="true">
       					<g:MenuItem ui:field='howChildrenItem'><font color="#ab0fc8"><b><i>Children</i></b></font></g:MenuItem>
       					<g:MenuItem ui:field='howProjectsItem'><font color="#ab0fc8"><b><i>Projects</i></b></font></g:MenuItem>

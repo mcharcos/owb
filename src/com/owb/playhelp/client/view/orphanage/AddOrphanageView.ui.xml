@@ -54,7 +54,7 @@
 				</div>
 			</div>
 		<div class='{style.button}'>
-			<g:Anchor href='javascript:;' ui:field='saveBut'>Continue</g:Anchor>
+			<g:Anchor href='javascript:;' ui:field='saveBut'>Save</g:Anchor>
 			<g:Anchor href='javascript:;' ui:field='cancelBut'>Cancel</g:Anchor>
 		</div>
 		<div ui:field='nameDiv' />

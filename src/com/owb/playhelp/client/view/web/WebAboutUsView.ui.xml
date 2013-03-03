@@ -5,8 +5,13 @@
 		.important {
 			font-weight: bold;
 		}
+		.description{
+	        color:#9152a0;
+	        margin: 30px;
+	   }
 	</ui:style>
 	<g:HTMLPanel>
+	   <div class="{style.description}">
 	    <h1>ABOUT US</h1>
 	    Orphanage Without Borders is a volunteer organization aiming to create an impact in the life
 	    of children. Our purpose is to facilitate connections between orphanages and projects
@@ -14,6 +19,6 @@
 	    and the power of organizations that already exist to help in specific areas. We believe
 	    that collaboration is the key to improve the life of depracated children and that the knowledge 
 	    of existing resources is an enourmous asset to make help more efficient.<br></br>
-	
+		</div>
 	</g:HTMLPanel>
 </ui:UiBinder> 

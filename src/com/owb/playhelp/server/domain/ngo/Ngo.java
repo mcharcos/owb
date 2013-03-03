@@ -82,6 +82,7 @@ public class Ngo implements Serializable, Cacheable {
 	@Persistent
 	private String uniqueId;
 	
+	/*
 	@Persistent
 	private String confirmationBadge;
 
@@ -93,6 +94,7 @@ public class Ngo implements Serializable, Cacheable {
 
 	@Persistent
 	private Set<String> followers = new HashSet<String>();
+	*/
 
 	//@Persistent(mappedBy = "userPrefs")
 	//@Element(dependent = "true")
@@ -121,7 +123,7 @@ public class Ngo implements Serializable, Cacheable {
 		this.setPhone(ngoInfo.getPhone());
 		this.setEmail(ngoInfo.getEmail());
 		this.setWebsite(ngoInfo.getWebsite());
-		if (ngoInfo.getUniqueId() != null) this.setUniqueId(ngoInfo.getUniqueId());
+		//if (ngoInfo.getUniqueId() != null) this.setUniqueId(ngoInfo.getUniqueId());
 		
 	}
 
@@ -165,6 +167,7 @@ public class Ngo implements Serializable, Cacheable {
 		oInfo.setConfirm(false);
 		
 		// Fill the information about members, followers,...
+		/*
 		List<String> nameList = new ArrayList<String>();
 		if (o.getMembers() != null){
 			for(String m:o.getMembers()){
@@ -188,6 +191,7 @@ public class Ngo implements Serializable, Cacheable {
 			}
 		} 
 		oInfo.setFollowerList(nameList);
+		*/
 		
 		return oInfo;
 	}
@@ -233,8 +237,8 @@ public class Ngo implements Serializable, Cacheable {
 	    Query q = pm.newQuery(Ngo.class, "uniqueId == :uniqueId");
 	    q.setUnique(true);
 	
-	    boolean persistConfirmationBadge = false;
-	    ConfirmationBadge confB = null;
+	    //boolean persistConfirmationBadge = false;
+	    //ConfirmationBadge confB = null;
 	    // perform the query and creation under transactional control,
 	    // to prevent another process from creating an acct with the same id.
 	    try {
@@ -247,8 +251,10 @@ public class Ngo implements Serializable, Cacheable {
 	          detached = pm.detachCopy(oneResult);
 	        } else {
 	          log.info("Ngo " + uniqueId + " does not exist, creating...");
+	          /*
 	          confB = new ConfirmationBadge(ngo);
 	          persistConfirmationBadge = true;
+	          */
 	          pm.makePersistent(ngo);
 	          detached = pm.detachCopy(ngo);
 	        }
@@ -283,10 +289,11 @@ public class Ngo implements Serializable, Cacheable {
 	      q.closeAll();
 	    }
 	    
+	    /*
 	    if (persistConfirmationBadge) {
 	    	//ConfirmationBadge newConfB = ConfirmationBadge.findOrCreateNgo(confB);
 	    	ConfirmationBadge.findOrCreateNgo(confB);
-	    }
+	    }*/
 	    return detached;
 	  }
 	
@@ -323,7 +330,7 @@ public class Ngo implements Serializable, Cacheable {
 	   * @return  true if member or false if not.
 	   */
 	public boolean isMember(String userUniqueId){
-		return members.contains(userUniqueId);
+		return true; //members.contains(userUniqueId);
 	}
 
 	  /**
@@ -333,7 +340,7 @@ public class Ngo implements Serializable, Cacheable {
 	   * @return  true if follower or false if not.
 	   */
 	public boolean isFollower(String userUniqueId){
-		return followers.contains(userUniqueId);
+		return true; //followers.contains(userUniqueId);
 	}
 
 	  /**
@@ -343,7 +350,7 @@ public class Ngo implements Serializable, Cacheable {
 	   * @return  true if confirmed or false if not.
 	   */
 	public boolean isConfirmed(String userId, Ngo ngo){
-		return this.getConfirmationBadge().isConfirmed(userId, ngo);
+		return true;  //this.getConfirmationBadge().isConfirmed(userId, ngo);
 	}
 
 	  /**
@@ -353,7 +360,7 @@ public class Ngo implements Serializable, Cacheable {
 	   * @return  true if validated or false if not.
 	   */
 	public boolean isValid(){
-		return this.getConfirmationBadge().isValid();
+		return true;  //this.getConfirmationBadge().isValid();
 	}
 
 	  /**
@@ -495,9 +502,10 @@ public class Ngo implements Serializable, Cacheable {
 	   * @param  
 	   * @return  Id of confirmation badge of NGO
 	   */
+	/*
 	public String getConfirmationBadgeId(){
 		return confirmationBadge;
-	}
+	}*/
 
 	  /**
 	   * Get the list of members that are in the list request.
@@ -505,9 +513,10 @@ public class Ngo implements Serializable, Cacheable {
 	   * @param  
 	   * @return  List of unique Ids of member request list
 	   */
+	/*
 	public Set<String> getMemberRequests(){
 		return memberRequests;
-	}
+	}*/
 
 	  /**
 	   * Get the list of members that are in the list request.
@@ -515,9 +524,10 @@ public class Ngo implements Serializable, Cacheable {
 	   * @param  
 	   * @return  List of unique Ids of member request list
 	   */
+	/*
 	public Set<String> getMembers(){
 		return members;
-	}
+	}*/
 	
 	  /**
 	   * Get the list of followers.
@@ -525,9 +535,10 @@ public class Ngo implements Serializable, Cacheable {
 	   * @param  
 	   * @return  List of unique Ids of followers
 	   */
+	/*
 	public Set<String> getFollowers(){
 		return followers;
-	}
+	}*/
 	
 	  /**
 	   * Set the Name of the NGO.
@@ -625,9 +636,10 @@ public class Ngo implements Serializable, Cacheable {
 	   * @param  UniqueId of NGO confirmation badge
 	   * @return  
 	   */
+	/*
 	public void setConfirmationBadge(String uniqueId){
 		this.confirmationBadge = uniqueId;
-	}
+	}*/
 
 	  /**
 	   * Set unique id of the NGO. 
@@ -635,9 +647,10 @@ public class Ngo implements Serializable, Cacheable {
 	   * @param  UniqueId of NGO 
 	   * @return  
 	   */
+	/*
 	public void setUniqueId(String uniqueId) {
 		this.uniqueId = uniqueId;
-	}
+	}*/
 
 	  /**
 	   * Used when a user want to be part of the members of the NGO. The user will be added to the 
@@ -646,13 +659,14 @@ public class Ngo implements Serializable, Cacheable {
 	   * @param  UniqueId of the user requesting membership 
 	   * @return  
 	   */
+	/*
 	public void requestMember(String member){
 		// Check if the member exist
 		if (memberRequests.contains(member)) return;
 		
 		// Add it if it does not
 		memberRequests.add(member);
-	}
+	}*/
 
 	  /**
 	   * Used to add a member to the NGO. The user will be added to the member list of the object.
@@ -662,13 +676,14 @@ public class Ngo implements Serializable, Cacheable {
 	   * @param  UniqueId of the user added as a member.
 	   * @return  
 	   */
+	/*
 	public void addMember(String member){
 		// Check if the member exist
 		if (members.contains(member)) return;
 		
 		// Add it if it does not
 		members.add(member);
-	}
+	}*/
 
 	  /**
 	   * Used to add as follower of the NGO. 
@@ -676,11 +691,12 @@ public class Ngo implements Serializable, Cacheable {
 	   * @param  UniqueId of the user added as a follower.
 	   * @return  
 	   */
+	/*
 	public void addFollowers(String follower){
 		// Check if the member exist
 		if (followers.contains(follower)) return;
 		
 		// Add it if it does not
 		followers.add(follower);
-	}
+	}*/
 }

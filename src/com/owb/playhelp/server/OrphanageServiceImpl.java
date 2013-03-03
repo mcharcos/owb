@@ -40,9 +40,11 @@ public class OrphanageServiceImpl extends RemoteServiceServlet implements Orphan
 	    pm = PMFactory.getTxnPm();
 		String userUniqueId = user.getUniqueId();
 		
+		/*
 	    if (orphanage.getMembers().size() == 0){
 	    	orphanage.addMember(userUniqueId);
 	    }
+	    */
 		
 	    if (!orphanage.isMember(userUniqueId)) return null;
 	    

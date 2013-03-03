@@ -15,6 +15,7 @@ import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.Widget;
 
 import com.owb.playhelp.client.event.orphanage.AddOrphanageCancelEvent;
+import com.owb.playhelp.client.event.orphanage.AddOrphanageUpdateEvent;
 import com.owb.playhelp.client.event.orphanage.OrphanageUpdateEvent;
 import com.owb.playhelp.client.event.orphanage.ShowPopupAddOrphanageStatusEvent;
 import com.owb.playhelp.client.helper.RPCCall;
@@ -59,15 +60,17 @@ public class AddOrphanagePresenter implements Presenter {
 	    this.display.getSaveBut().addClickHandler(new ClickHandler() {
 	        public void onClick(ClickEvent event) {
 	        	updateOrphanage();
+	        	/*
 	        	if (orphanage.getStandard() == null){
 	        		
 	        		// We activate member so we can edit the status when we call the event
 	        		orphanage.activateMember();
 	        		
 	        		GWT.log("OrphanageAddPresenter: Firing ShowPopupAddOrphanageStatusEvent");
-	    	        eventBus.fireEvent(new ShowPopupAddOrphanageStatusEvent(new ClickPoint(100,100),orphanage)); 
+	    	        eventBus.fireEvent(new ShowPopupAddOrphanageStatusEvent(new ClickPoint(100,100),orphanage));
 	    	        return;
-	        	}
+	        	}*/
+        		eventBus.fireEvent(new AddOrphanageUpdateEvent());
 	        	doSave();
 	        }
 	      });

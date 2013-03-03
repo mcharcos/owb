@@ -13,7 +13,15 @@
 	<g:HTMLPanel>
 	   <div class="{style.description}">
 	    <h1>HOW DO WE HELP PROJECTS?</h1>
-		We Represent you and find help and funding
+		Projects that were started by individuals, small groups and large organizations in order to helping children 
+		are the main bone to improve their life. Specific projects devoted to help in one of the areas we identified
+		in our proect are at the forefront of our work. We represent them to finding resources, connecting to other organizations or
+		find other people in different parts of the world that can support them with ideas, resources or raising awareness. We 
+		promote creation of small projects helping children and find resources for them or stimulate help in developed countries.
+        Through our network of organizations or within our community we find advice on how to proceed with projects, find resources
+        or be more efficient. If you think you have a project join us as a project by clicking on 
+        "Contact Us>>Share Your Project Needs".<br></br>
+        <br></br>
 		</div>
 	</g:HTMLPanel>
 </ui:UiBinder> 

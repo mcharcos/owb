@@ -32,10 +32,10 @@ public class OrphanageMapMarkerInfoPresenter implements Presenter {
 		public HasText getOrphanageEmail();
 		public Anchor getEditBut();
 		public Anchor getRemoveBut();
-		public HasClickHandlers getReportBut();
-		public HasClickHandlers getFollowBut();
-		public HasClickHandlers getFulldescBut();
-		public HasClickHandlers getAddprojBut();
+		public Anchor getReportBut();
+		public Anchor getFollowBut();
+		public Anchor getFulldescBut();
+		public Anchor getAddprojBut();
 	}
 
 	private final SimpleEventBus eventBus;
@@ -88,10 +88,14 @@ public class OrphanageMapMarkerInfoPresenter implements Presenter {
 		display.getOrphanagePhone().setText(Orphanage.getPhone());
 		display.getOrphanageEmail().setText(Orphanage.getEmail());
 		
-		if (!Orphanage.getMember()) {
+		//if (!Orphanage.getMember()) {
 			display.getEditBut().setVisible(false);
 			display.getRemoveBut().setVisible(false);
-		}
+			display.getReportBut().setVisible(false);
+			display.getFollowBut().setVisible(false);
+			display.getFulldescBut().setVisible(false);
+			display.getAddprojBut().setVisible(false);
+		//}
 		bind();
 	}
 

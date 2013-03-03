@@ -45,6 +45,7 @@ public class NgoMapMarkerInfoPresenter implements Presenter {
 		public Anchor getReportBut();
 		public Anchor getJoinBut();
 		public Anchor getFollowBut();
+		Anchor getRecommendBut();
 		public Anchor getConfirmBut();
 		public Anchor getFulldescBut();
 	}
@@ -142,7 +143,18 @@ public class NgoMapMarkerInfoPresenter implements Presenter {
 	private void updateNgo(NgoInfo newNgo){
 		ngo.setAdminReportList(newNgo.getAdminReportList());
 	}
-	
+
+	private void hideButtons(){
+
+		display.getEditBut().setVisible(false);
+		display.getRemoveBut().setVisible(false);
+		display.getJoinBut().setVisible(false);
+		display.getConfirmBut().setVisible(false);
+		display.getFollowBut().setVisible(false);
+		display.getReportBut().setVisible(false);
+		display.getRecommendBut().setVisible(false);
+		display.getFulldescBut().setVisible(false);
+	}
 	private void updateButtons(){
 
 		if(!ngo.getValid()){
@@ -194,7 +206,8 @@ public class NgoMapMarkerInfoPresenter implements Presenter {
 		display.getNgoPhone().setText(ngo.getPhone());
 		display.getNgoEmail().setText(ngo.getEmail());
 		
-		updateButtons();
+		//updateButtons();
+		hideButtons();
 		
 		bind();
 	}

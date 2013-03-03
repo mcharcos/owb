@@ -28,7 +28,7 @@ public class NgoMapMarkerInfoView extends Composite implements NgoMapMarkerInfoP
 	@UiField
 	HTMLPanel mainPanel;
 	@UiField
-	Anchor editBut, removeBut, reportBut, joinBut, followBut, confirmBut, fulldescBut;
+	Anchor editBut, removeBut, reportBut, joinBut, followBut, recommendBut, confirmBut, fulldescBut;
 
 	  @Override
 	public Widget asWidget(){
@@ -84,6 +84,10 @@ public class NgoMapMarkerInfoView extends Composite implements NgoMapMarkerInfoP
 		@Override
 		public Anchor getFollowBut(){
 		  return followBut;
+		}
+		@Override
+		public Anchor getRecommendBut(){
+		  return recommendBut;
 		}
 		@Override
 		public Anchor getConfirmBut(){

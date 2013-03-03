@@ -61,17 +61,20 @@ public class Orphanage implements Serializable, Cacheable {
 	@Persistent
 	private String website;
 	
+	/*
 	@Persistent(dependent = "true")
 	private Standard status;
+	*/
 
 	@Persistent
 	private String uniqueId;
 	
-	@Persistent
-	private String confirmationBadge;
+	//@Persistent
+	//private String confirmationBadge;
 
 	// Members and followers must be individuals 
 	// Individuals could add organizations that they are register to
+	/*
 	@Persistent
 	private Set<String> members = new HashSet<String>();
 
@@ -80,9 +83,10 @@ public class Orphanage implements Serializable, Cacheable {
 
 	@Persistent
 	private Set<String> ngos = new HashSet<String>();
+	*/
 
 	public Orphanage() {
-		this.status = new Standard();
+		//this.status = new Standard();
 		if (this.getUniqueId() == null) {
 			UUID uuid = UUID.randomUUID();
 			this.uniqueId = uuid.toString();  //this.getEmail();
@@ -100,7 +104,7 @@ public class Orphanage implements Serializable, Cacheable {
 		this.setEmail(OrphanageInfo.getEmail());
 		this.setWebsite(OrphanageInfo.getWebsite());
 		this.setUniqueId(OrphanageInfo.getUniqueId());
-		this.status.fromInfo(OrphanageInfo.getStandard());
+		//this.status.fromInfo(OrphanageInfo.getStandard());
 		
 		if (this.getUniqueId() == null) {
 			this.uniqueId = this.getEmail();
@@ -132,11 +136,13 @@ public class Orphanage implements Serializable, Cacheable {
 		OrphanageInfo oInfo = new OrphanageInfo(o.getName(), o.getDescription(), o.getAddress(),o.getLatitude(),o.getLongitude(),o.getPhone(), o.getEmail(), o.getWebsite());
 		oInfo.setUniqueId(o.getUniqueId());
 		
+		/*
 		Standard status = new Standard();
 		status.setHealth(o.getStandard().getHealth());
 		status.setEducation(o.getStandard().getEducation());
 		status.setNutrition(o.getStandard().getNutrition());
 		oInfo.setStandard(status.toInfo());
+		*/
 		//oInfo.setPoint(o.getLatitude(),o.getLongitude());
 		oInfo.deactivateMember();
 		oInfo.deactivateFollower();
@@ -225,15 +231,15 @@ public class Orphanage implements Serializable, Cacheable {
 	  }
 	
 	public boolean isMember(String userUniqueId){
-		return members.contains(userUniqueId);
+		return true;  //members.contains(userUniqueId);
 	}
 	
 	public boolean isFollower(String userUniqueId){
-		return followers.contains(userUniqueId);
+		return true;  //followers.contains(userUniqueId);
 	}
 	
 	public boolean isNgo(String ngoUniqueId){
-		return ngos.contains(ngoUniqueId);
+		return true;  //ngos.contains(ngoUniqueId);
 	}
 	  
 	public void addToCache() {
@@ -316,6 +322,7 @@ public class Orphanage implements Serializable, Cacheable {
 		return uniqueId;
 	}
 	
+	/*
 	public Standard getStandard() {
 		return this.status;
 	}
@@ -331,7 +338,9 @@ public class Orphanage implements Serializable, Cacheable {
 		this.status.setEducation(status.getEducation());
 		this.status.setNutrition(status.getNutrition());
 	}
+	*/
 	
+	/*
 	public void addMember(String member){
 		// Check if the member exist
 		if (members.contains(member)) return;
@@ -367,4 +376,5 @@ public class Orphanage implements Serializable, Cacheable {
 	public Set<String> getNgos(){
 		return ngos;
 	}
+	*/
 }

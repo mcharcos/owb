@@ -5,7 +5,11 @@
 	</ui:style>
 	<g:HTMLPanel>
 			<div class="{style.formTitle}">Orphanage Status</div>
-			<g:Label ui:field='nameField'>Orphanage Name</g:Label>
+			<div class="{style.formwrapper}">
+				<div class="{style.formlabel}">
+					<g:Label ui:field='nameField'> Orphanage Name</g:Label>
+				</div>
+			</div>
 			<div class="{style.formwrapper}">
 				<div class="{style.formlabel}">
 					<g:Label> Health (%)</g:Label>

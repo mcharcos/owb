@@ -41,13 +41,14 @@ public class NgoServiceImpl extends RemoteServiceServlet implements NgoService {
 	    pm = PMFactory.getTxnPm();
 		String userUniqueId = user.getUniqueId();
 		
+		/*
 	    if (ngo.getMembers().size() == 0){
 			ngo.addMember(userUniqueId);
-	    }
+	    }*/
 		
 	    if (ngo.isMember(userUniqueId)) return null;
 	    
-	    ngo.requestMember(userUniqueId);
+	    //ngo.requestMember(userUniqueId);
 	    
 		try {
 			for (int i = 0; i < NUM_RETRIES; i++){
@@ -108,9 +109,10 @@ public class NgoServiceImpl extends RemoteServiceServlet implements NgoService {
 	    pm = PMFactory.getTxnPm();
 		String userUniqueId = user.getUniqueId();
 		
+		/*
 	    if (ngo.getMembers().size() == 0){
 			ngo.addMember(userUniqueId);
-	    }
+	    }*/
 		
 	    if (!ngo.isMember(userUniqueId)) return null;
 	    

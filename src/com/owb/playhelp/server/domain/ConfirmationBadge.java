@@ -100,11 +100,12 @@ public class ConfirmationBadge implements Serializable, Cacheable  {
 		this();
 		this.elementType = ConfirmationBadge.NGO;
 		this.element = ngo.getUniqueId();
+		/*
 		if (ngo.getConfirmationBadgeId() == null){
 			ngo.setConfirmationBadge(this.uniqueId);
 		} else {
 			this.uniqueId = ngo.getConfirmationBadgeId();
-		}
+		}*/
 			
 	}
 	
@@ -209,7 +210,7 @@ public class ConfirmationBadge implements Serializable, Cacheable  {
 	    Transaction tx = null;
 	    ConfirmationBadge oneResult = null, detached = null;
 	
-	    String uniqueId = ngo.getConfirmationBadgeId();
+	    String uniqueId = null; //ngo.getConfirmationBadgeId();
 	
 	    Query q = pm.newQuery(ConfirmationBadge.class, "uniqueId == :uniqueId");
 	    q.setUnique(true);

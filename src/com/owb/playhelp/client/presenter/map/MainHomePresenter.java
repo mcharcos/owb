@@ -331,7 +331,7 @@ public class MainHomePresenter implements Presenter {
 			    	  icon.setImageURL(Resources.INSTANCE.orphanageMapIcon().getURL());
 			    	  icon.setIconSize(Size.newInstance(30, 30));
 			    	  markerOptions.setIcon(icon);
-					  markerOptions.setTitle("Ngo");  
+					  markerOptions.setTitle("Orphanage");  
 					   
 			    	  final Marker marker = new Marker(LatLng.newInstance(orphanage.getLatitude(),orphanage.getLongitude()),markerOptions);
 			    	  marker.addMarkerClickHandler(new MarkerClickHandler() {
