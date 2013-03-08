@@ -1,7 +1,10 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
 	xmlns:g="urn:import:com.google.gwt.user.client.ui">
-	<ui:style>
+	
+    <ui:with field='res' type='com.owb.playhelp.client.resources.Resources'/>
+    
+	<ui:style src="../../../resources/GlobalStyles.css">
 		.important {
 			font-weight: bold;
 		}
@@ -13,7 +16,12 @@
 	<g:HTMLPanel>
 	   <div class="{style.description}">
 	    <h1>DISCIPLINE</h1>
-		Discipline is a required part for a human to live in any society. 
+			<div class="{style.descwrapper}">
+				<div class="{style.descpic}">
+					<g:Image url='{res.disciplineWebPic.getSafeUri.asString}' pixelSize="300,300"/>
+				</div>
+				<div class="{style.desclabel}">
+				Discipline is a required part for a human to live in any society. 
     		    Rules must be clear and oriented according to the standards. 
                 Children should have guidance during play and education moments. They must have 
                 an external authority that make them follow the rules without any abuse or hard 
@@ -21,6 +29,8 @@
                 these points are follow. Of course, it could happen that the children do not 
                 contribute or feel enthusiastic about their responsibilities in particular when 
                 there is a long history of bad habits.
+                </div>
+            </div>
 		</div>
 	</g:HTMLPanel>
 </ui:UiBinder> 

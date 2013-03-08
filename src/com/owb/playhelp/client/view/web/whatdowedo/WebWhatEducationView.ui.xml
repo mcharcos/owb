@@ -1,7 +1,10 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
 	xmlns:g="urn:import:com.google.gwt.user.client.ui">
-	<ui:style>
+	
+    <ui:with field='res' type='com.owb.playhelp.client.resources.Resources'/>
+    
+	<ui:style src="../../../resources/GlobalStyles.css">
 		.important {
 			font-weight: bold;
 		}
@@ -13,10 +16,19 @@
 	<g:HTMLPanel>
 	   <div class="{style.description}">
 	    <h1>EDUCATION</h1>
-		It encourages children to go to the school and provides guidance with 
+			<div class="{style.descwrapper}">
+				<div class="{style.descpic}">
+					<g:Image url='{res.educationWebPic.getSafeUri.asString}' pixelSize="300,300"/>
+				</div>
+				<div class="{style.desclabel}">
+				We support projects that create the right environement and provide the resources necessary to 
+				educate abandoned and orphan children. We understand the importance of encouraging children to go 
+				to the school and provide guidance with 
     		    homework and questions about intellectual, emotional or any other doubt during their childhood. 
-    		    As most of the parents would do for their children, it should aim to help them 
-    		    so they have good scores and over all learn the basic knowledge to survive in their society.
+    		    As most of the parents would do for their children, we should create the environment and the resources
+    		    aiming to motivate them to having good scores and over all learn the basic knowledge to survive in their society.
+    		    </div>
+			</div>
 		</div>
 	</g:HTMLPanel>
 </ui:UiBinder> 

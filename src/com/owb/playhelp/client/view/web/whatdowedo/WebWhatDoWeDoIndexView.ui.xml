@@ -1,0 +1,231 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	
+    <ui:with field='res' type='com.owb.playhelp.client.resources.Resources'/>
+    
+	<ui:style src="../../../resources/GlobalStyles.css">
+		.important {
+			font-weight: bold;
+		}
+		.description{
+	        color:#9152a0;
+	        margin: 30px;
+	   }
+	</ui:style>
+	<g:HTMLPanel>
+		
+			<table width="100%" align="center">
+   		 			<tr>
+   		 				<td>
+							<table width="100" border="1px solid red" align="center">
+							    <tr>
+							    	<td align="center">
+									<g:Image url='{res.healthWebPic.getSafeUri.asString}' pixelSize="50,50"/>
+									</td>
+								</tr>
+								<tr>
+									<td align="center">
+									Health
+									</td>
+				    		    </tr>
+				    		 </table>
+   		 				</td>
+   		 				<td>
+							<table width="100" border="1px solid red" align="center">
+							    <tr>
+							    	<td align="center">
+									<g:Image url='{res.educationWebPic.getSafeUri.asString}' pixelSize="50,50"/>
+									</td>
+								</tr>
+								<tr>
+									<td align="center">
+									Education
+									</td>
+				    		    </tr>
+				    		 </table>
+   		 				</td>
+   		 			</tr>
+   		 			<tr>
+   		 				<td>
+							<table width="100" border="1px solid red" align="center">
+							    <tr>
+							    	<td align="center">
+									<g:Image url='{res.foodWebPic.getSafeUri.asString}' pixelSize="50,50"/>
+									</td>
+								</tr>
+								<tr>
+									<td align="center">
+									Food
+									</td>
+				    		    </tr>
+				    		 </table>
+   		 				</td>
+   		 				<td>
+							<table width="100" border="1px solid red" align="center">
+							    <tr>
+							    	<td align="center">
+									<g:Image url='{res.shelterWebPic.getSafeUri.asString}' pixelSize="50,50"/>
+									</td>
+								</tr>
+								<tr>
+									<td align="center">
+									Shelter
+									</td>
+				    		    </tr>
+				    		 </table>
+   		 				</td>
+   		 			</tr>
+   		 			<tr>
+   		 				<td>
+							<table width="100" border="1px solid red" align="center">
+							    <tr>
+							    	<td align="center">
+									<g:Image url='{res.clothingWebPic.getSafeUri.asString}' pixelSize="50,50"/>
+									</td>
+								</tr>
+								<tr>
+									<td align="center">
+									Clothing
+									</td>
+				    		    </tr>
+				    		 </table>
+   		 				</td>
+   		 				<td>
+							<table width="100" border="1px solid red" align="center">
+							    <tr>
+							    	<td align="center">
+									<g:Image url='{res.hygieneWebPic.getSafeUri.asString}' pixelSize="50,50"/>
+									</td>
+								</tr>
+								<tr>
+									<td align="center">
+									Hygiene
+									</td>
+				    		    </tr>
+				    		 </table>
+   		 				</td>
+   		 			</tr>
+   		 			<tr>
+   		 				<td>
+							<table width="100" border="1px solid red" align="center">
+							    <tr>
+							    	<td align="center">
+									<g:Image url='{res.joyWebPic.getSafeUri.asString}' pixelSize="50,50"/>
+									</td>
+								</tr>
+								<tr>
+									<td align="center">
+									Joy
+									</td>
+				    		    </tr>
+				    		 </table>
+   		 				</td>
+   		 				<td>
+							<table width="100" border="1px solid red" align="center">
+							    <tr>
+							    	<td align="center">
+									<g:Image url='{res.hopeoffutureWebPic.getSafeUri.asString}' pixelSize="50,50"/>
+									</td>
+								</tr>
+								<tr>
+									<td align="center">
+									Hope of Future
+									</td>
+				    		    </tr>
+				    		 </table>
+   		 				</td>
+   		 			</tr>
+   		 			<tr>
+   		 				<td>
+							<table width="100" border="1px solid red" align="center">
+							    <tr>
+							    	<td align="center">
+									<g:Image url='{res.loveWebPic.getSafeUri.asString}' pixelSize="50,50"/>
+									</td>
+								</tr>
+								<tr>
+									<td align="center">
+									Love
+									</td>
+				    		    </tr>
+				    		 </table>
+   		 				</td>
+   		 				<td>
+							<table width="100" border="1px solid red" align="center">
+							    <tr>
+							    	<td align="center">
+									<g:Image url='{res.responsabilitiesWebPic.getSafeUri.asString}' pixelSize="50,50"/>
+									</td>
+								</tr>
+								<tr>
+									<td align="center">
+									Responsabilities
+									</td>
+				    		    </tr>
+				    		 </table>
+   		 				</td>
+   		 			</tr>
+   		 			<tr>
+   		 				<td>
+							<table width="100" border="1px solid red" align="center">
+							    <tr>
+							    	<td align="center">
+									<g:Image url='{res.safetyWebPic.getSafeUri.asString}' pixelSize="50,50"/>
+									</td>
+								</tr>
+								<tr>
+									<td align="center">
+									Safety
+									</td>
+				    		    </tr>
+				    		 </table>
+   		 				</td>
+   		 				<td>
+							<table width="100" border="1px solid red" align="center">
+							    <tr>
+							    	<td align="center">
+									<g:Image url='{res.guidanceWebPic.getSafeUri.asString}' pixelSize="50,50"/>
+									</td>
+								</tr>
+								<tr>
+									<td align="center">
+									Guidance
+									</td>
+				    		    </tr>
+				    		 </table>
+   		 				</td>
+   		 			</tr>
+   		 			<tr>
+   		 				<td>
+							<table width="100" border="1px solid red" align="center">
+							    <tr>
+							    	<td align="center">
+									<g:Image url='{res.compassionateWebPic.getSafeUri.asString}' pixelSize="50,50"/>
+									</td>
+								</tr>
+								<tr>
+									<td align="center">
+									Compassionate Environment
+									</td>
+				    		    </tr>
+				    		 </table>
+   		 				</td>
+   		 				<td>
+							<table width="100" border="1px solid red" align="center">
+							    <tr>
+							    	<td align="center">
+									<g:Image url='{res.disciplineWebPic.getSafeUri.asString}' pixelSize="50,50"/>
+									</td>
+								</tr>
+								<tr>
+									<td align="center">
+									Discipline
+									</td>
+				    		    </tr>
+				    		 </table>
+   		 				</td>
+   		 			</tr>
+   		 		</table>
+	</g:HTMLPanel>
+</ui:UiBinder> 

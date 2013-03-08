@@ -91,4 +91,36 @@ public interface Resources extends ClientBundle {
     @Source("NgoMapIcon.gif")
     ImageResource orphanageMapIcon();
     
+    // Webpage resources
+    @Source("webpics/clothing.jpg")
+    ImageResource clothingWebPic();
+    @Source("webpics/compassionate.jpg")
+    ImageResource compassionateWebPic();
+    @Source("webpics/discipline.jpg")
+    ImageResource disciplineWebPic();
+    @Source("webpics/education.jpg")
+    ImageResource educationWebPic();
+    @Source("webpics/food.jpg")
+    ImageResource foodWebPic();
+    @Source("webpics/guidance.jpg")
+    ImageResource guidanceWebPic();
+    @Source("webpics/health.jpg")
+    ImageResource healthWebPic();
+    @Source("webpics/hopeoffuture.jpg")
+    ImageResource hopeoffutureWebPic();
+    @Source("webpics/hygiene.jpg")
+    ImageResource hygieneWebPic();
+    @Source("webpics/joy.jpg")
+    ImageResource joyWebPic();
+    @Source("webpics/love.jpg")
+    ImageResource loveWebPic();
+    @Source("webpics/responsabilities.jpg")
+    ImageResource responsabilitiesWebPic();
+    @Source("webpics/safety.jpg")
+    ImageResource safetyWebPic();
+    @Source("webpics/shelter.jpg")
+    ImageResource shelterWebPic();
+    @Source("webpics/whatdowedo.jpg")
+    ImageResource whatdowedoWebPic();
+    
 }

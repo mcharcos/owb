@@ -130,3 +130,23 @@ body {
 	float: left;
 	margin-bottom: 10px; /* space following the field */
 }
+
+
+.descwrapper{ /*field row DIV (includes two columns- Styled picture column and 'the description' column)*/
+	height:auto;
+	overflow: hidden;
+	border:5px solid red;
+	padding: 5px 0;
+}
+.descpic{
+	width: auto;
+	float: left;
+	margin-right: 10px; /* space following the field */
+}
+.desclabel{
+	float:left;
+	width: 250px; /*width of label (left column)*/
+	margin-top: 5px; /*spacing with right column*/
+	color:#9152a0;
+}
+

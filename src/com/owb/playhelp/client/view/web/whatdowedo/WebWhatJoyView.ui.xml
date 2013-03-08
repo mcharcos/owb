@@ -1,7 +1,10 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
 	xmlns:g="urn:import:com.google.gwt.user.client.ui">
-	<ui:style>
+	
+    <ui:with field='res' type='com.owb.playhelp.client.resources.Resources'/>
+    
+	<ui:style src="../../../resources/GlobalStyles.css">
 		.important {
 			font-weight: bold;
 		}
@@ -13,12 +16,21 @@
 	<g:HTMLPanel>
 	   <div class="{style.description}">
 	    <h1>JOY</h1>
-		It reserves time for the children to play alone and in group. 
-    		    It encourages social games and good relationship between children to increase 
+			<div class="{style.descwrapper}">
+				<div class="{style.descpic}">
+					<g:Image url='{res.joyWebPic.getSafeUri.asString}' pixelSize="300,300"/>
+				</div>
+				
+				<div class="{style.desclabel}">
+				We recognize the importance of enjoying life, specially during childhood.
+				It is important to reserve time for the children to play alone and in group and 
+    		    to encourages social games and good relationship between children to increase 
     		    the sense of family. The games should happen in an safe environment with the 
     		    surveillance of an appropriate number of adults which are encouraged to participate 
     		    and cheer them. The games should be adapted in order to make all children 
     		    participating independently of personal issues such diseases or handicaps.
+    		    </div>
+    		    </div>
 		</div>
 	</g:HTMLPanel>
 </ui:UiBinder> 

@@ -1,7 +1,10 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
 	xmlns:g="urn:import:com.google.gwt.user.client.ui">
-	<ui:style>
+	
+    <ui:with field='res' type='com.owb.playhelp.client.resources.Resources'/>
+    
+	<ui:style src="../../../resources/GlobalStyles.css">
 		.important {
 			font-weight: bold;
 		}
@@ -13,10 +16,18 @@
 	<g:HTMLPanel>
 	   <div class="{style.description}">
 	    <h1>FOOD</h1>
-		It provides three healthy meals a day or at least the average nutrients 
-    		    and food of the population in its country. Variety and international menus are 
-    		    encourage even though we understand that most of the times the situation is not 
-    		    easy.
+			<div class="{style.descwrapper}">
+				<div class="{style.descpic}">
+					<g:Image url='{res.foodWebPic.getSafeUri.asString}' pixelSize="300,300"/>
+				</div>
+				<div class="{style.desclabel}">
+				Our goal is to provide three healthy meals a day or at least the average nutrients 
+    		    and food of the population in the specific country where the children live. 
+    		    Variety and international menus are encouraged. Even though we understand that most of the times 
+    		    the situation makes hard to provide a single meal, we support projects that are focused toward
+    		    this goal. Providing one meal per day is the first step to reach the ideal nutrition.
+    		    </div>
+    		    </div>
 		</div>
 	</g:HTMLPanel>
 </ui:UiBinder> 

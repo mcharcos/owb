@@ -1,7 +1,10 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
 	xmlns:g="urn:import:com.google.gwt.user.client.ui">
-	<ui:style>
+	
+    <ui:with field='res' type='com.owb.playhelp.client.resources.Resources'/>
+    
+	<ui:style src="../../../resources/GlobalStyles.css">
 		.important {
 			font-weight: bold;
 		}
@@ -13,13 +16,22 @@
 	<g:HTMLPanel>
 	   <div class="{style.description}">
 	    <h1>SHELTER</h1>
-		It hosts the children inside a protected shelter. Likely, the place would be a safe 
+			<div class="{style.descwrapper}">
+				<div class="{style.descpic}">
+					<g:Image url='{res.shelterWebPic.getSafeUri.asString}' pixelSize="300,300"/>
+				</div>
+				
+				<div class="{style.desclabel}">
+				Our goal is to provide a place to host hosts the children inside a protected shelter.
+				Likely, the place would be a safe 
     		    building but in emergency situations such a disasters or extreme poverty the place 
     		    could be more temporary homes protecting the children. The place should contain 
     		    different areas for playing, doing homework, cooking and sleeping. These areas 
     		    should have the minimum material and space to perform the associated task. 
     		    For example, the bedroom should contain mattresses or any other furniture 
     		    appropriate to the country providing a good rest to the children.
+    		    </div>
+    		    </div>
 		</div>
 	</g:HTMLPanel>
 </ui:UiBinder> 

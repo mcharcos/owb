@@ -1,7 +1,10 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
 	xmlns:g="urn:import:com.google.gwt.user.client.ui">
-	<ui:style>
+	
+    <ui:with field='res' type='com.owb.playhelp.client.resources.Resources'/>
+    
+	<ui:style src="../../../resources/GlobalStyles.css">
 		.important {
 			font-weight: bold;
 		}
@@ -14,34 +17,46 @@
 	
 	   <div class="{style.description}">
 		<h1>WHAT DO WE DO?</h1>
-	    We envision to certify that projects in our network work toward providing children
-	    the quality of life. It is important for the children to reach 
-	    a minimum standard in each area in order to allow them to grow and build 
-	    their future as deserve by any human being. We provide support in the areas of health, 
-	    education, food, shelter, clothing, hygiene, joy, hope of future, love, responsibilities, 
-	    safety, guidance, compassionate atmosphere and discipline. Projects of the OWB network 
-	    engage to follow the standards of these areas:
-
-  		<UL TYPE="SQUARE">
-  			<li><b>Health</b></li>
-    		<li><b>Education</b></li>
-    		<li><b>Food</b></li>
-    		<li><b>Shelter</b></li>
-    		<li><b>Clothing</b></li>
-    		<li><b>Hygiene</b></li>
-    		<li><b>Joy</b></li>
-    		<li><b>Hope of future</b></li>
-    		<li><b>Love</b></li>
-    		<li><b>Responsibilities</b></li>
-    		<li><b>Safety</b></li>
-    		<li><b>Guidance</b></li>
-    		<li><b>Compassionate environment</b></li>
-    		<li><b>Discipline</b></li>
-	    </UL>
-	    <br></br>
-  		<br></br><br></br>
-  		<br></br><br></br>
-  		<br></br><br></br>
+		
+			<table border="5px solid red" align="left">
+			    <tr>
+			        <td width="50">
+					<g:Image url='{res.whatdowedoWebPic.getSafeUri.asString}' pixelSize="300,300"/>
+				    </td>
+			        <td width="250">
+						We work with organizations and orphanages that start projects matching our standards. 
+						We support them and represent them in the community and within our network if they follow 
+						the standards in any of the areas they are trying to help. We guaranty that the projects
+						that we support work toward the goals we defined for each of these areas. These goals
+						were defined as a reference that we believe is ideal to allow children grow in an appropriate environment
+						that help them build their future as deserved by any human being. Although we are aware that
+						these goals are challenging and utopique, we believe that having them as a reference
+						will help to always know the way our efforts must go. 
+    		    	</td>
+    		    </tr>
+    		 </table>
 		</div>
+	<!-- 
+	   <div class="{style.description}">
+    		    		We provide support to projects of the OWB network 
+	    				that aim to follow the minimum standards on these areas:
+
+				  		<UL TYPE="SQUARE">
+				  			<li><b>Health</b></li>
+				    		<li><b>Education</b></li>
+				    		<li><b>Food</b></li>
+				    		<li><b>Shelter</b></li>
+				    		<li><b>Clothing</b></li>
+				    		<li><b>Hygiene</b></li>
+				    		<li><b>Joy</b></li>
+				    		<li><b>Hope of future</b></li>
+				    		<li><b>Love</b></li>
+				    		<li><b>Responsibilities</b></li>
+				    		<li><b>Safety</b></li>
+				    		<li><b>Guidance</b></li>
+				    		<li><b>Compassionate environment</b></li>
+				    		<li><b>Discipline</b></li>
+					    </UL>
+		</div> -->
 	</g:HTMLPanel>
 </ui:UiBinder> 
