@@ -17,6 +17,10 @@
 	   <!-- <g:Image resource='{res.FriendsHomePanel}' /> -->
 	    <div class='{style.description}'>
 	    <h1>OUR COMMUNITY</h1>
+	    Our purpose in this section is to create a community where individuals have the opportunity to share their ideas
+	    about how the help to abandoned and orphan children could be improved. We are still figuring out the best way
+	    to gather feedback from you. Stay connected and if you have any question or suggestion please send
+	    us an email to <b>owb@orphanagewithoutborders.org</b>. Thanks for your patience.
 	    </div>
 	</g:HTMLPanel>
 </ui:UiBinder> 

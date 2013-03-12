@@ -13,7 +13,10 @@
 	<g:HTMLPanel>
 	   <div class="{style.description}">
 	    <h1>JOIN OWB</h1>
-		form to request joining
+	    <br></br>
+	    <br></br>
+	    Please contact us at <b>owb@orphanagewithoutborders.org</b> if you are interested about our 
+	    projects to learn about our current opportunities.
 		</div>
 	</g:HTMLPanel>
 </ui:UiBinder> 

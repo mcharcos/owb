@@ -13,7 +13,9 @@
 	<g:HTMLPanel>
 	   <div class="{style.description}">
 	    <h1>CONTACT US</h1>
-		form to send us comments
+		Miguel <br></br>
+		email: owb@orphanagewithoutborders.org <br></br>
+		phone: XXX-XXX-XXXX <br></br>
 		</div>
 	</g:HTMLPanel>
 </ui:UiBinder> 

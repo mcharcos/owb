@@ -13,16 +13,14 @@
 	<g:HTMLPanel>
 	   <div class="{style.description}">
 	    <h1>HOW DO WE HELP ORGANIZATIONS?</h1>
-		We create a community that can that can inspire the way you work <br></br>
-		We create a network of other organizations that support your current projects <br></br>
-		We find and document the needs around the world <br></br>
-		We find and document the way other projects has been performed and how other organizations work <br></br>
-		<br></br><br></br>
-		They are necessary to us in the sense that they provide the resources to the needs of the project. We depend of the network of organizations. Collaboration is the key point of our efforts.<br></br>
-        In addition:<br></br>
-        We provide a framework to find information about similar projects<br></br>
-        We support existing projects with the recommendations of our community or finding resources within our network<br></br>
-        If you as an organization like our way to work, join us as an organization at...<br></br>
+		Organizations that work in specific areas have the experience to support projects with their expertise. Creating a network
+		that can provide knowledge and resources is critical to achieve our goal. We believe that this network will help not only
+		the projects that directly help children but also organizations in different areas to learn from different experiences
+		and a framework to find useful information. In addition, the organizations in our network can take advantage of 
+		feedback from our community of individuals to find resources and support for their own ongoing projects. We also
+		support their projects if they are within our baseline in the areas they work with. 
+		If you as an organization like our way to work, join us as an organization by clicking on 
+        "Contact Us>>Join Our Network" <br></br>
 		</div>
 	</g:HTMLPanel>
 </ui:UiBinder> 
