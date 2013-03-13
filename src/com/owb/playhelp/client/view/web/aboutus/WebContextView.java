@@ -1,4 +1,4 @@
-package com.owb.playhelp.client.view.web;
+package com.owb.playhelp.client.view.web.aboutus;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -11,20 +11,21 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HasText;
 import com.google.gwt.user.client.ui.Widget;
 
-public class WebAboutUsView extends Composite implements HasText {
+import com.owb.playhelp.client.presenter.web.WebPagesPresenter;
 
-	private static WebAboutUsViewUiBinder uiBinder = GWT
-			.create(WebAboutUsViewUiBinder.class);
+public class WebContextView extends Composite implements WebPagesPresenter.Display {
 
-	interface WebAboutUsViewUiBinder extends UiBinder<Widget, WebAboutUsView> {
+	private static WebContextViewUiBinder uiBinder = GWT
+			.create(WebContextViewUiBinder.class);
+
+	interface WebContextViewUiBinder extends UiBinder<Widget, WebContextView> {
 	}
 
-	public WebAboutUsView() {
+	public WebContextView() {
 		initWidget(uiBinder.createAndBindUi(this));
 	}
 
-
-	public WebAboutUsView(String firstName) {
+	public WebContextView(String firstName) {
 		initWidget(uiBinder.createAndBindUi(this));
 	}
 

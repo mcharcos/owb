@@ -11,19 +11,16 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HasText;
 import com.google.gwt.user.client.ui.Widget;
 
-public class WebOurViewView extends Composite implements HasText {
+public class WebOurCommunityIndexView extends Composite implements HasText {
 
-	private static WebOurViewViewUiBinder uiBinder = GWT
-			.create(WebOurViewViewUiBinder.class);
+	private static WebOurCommunityIndexViewUiBinder uiBinder = GWT
+			.create(WebOurCommunityIndexViewUiBinder.class);
 
-	interface WebOurViewViewUiBinder extends UiBinder<Widget, WebOurViewView> {
+	interface WebOurCommunityIndexViewUiBinder extends
+			UiBinder<Widget, WebOurCommunityIndexView> {
 	}
 
-	public WebOurViewView() {
-		initWidget(uiBinder.createAndBindUi(this));
-	}
-
-	public WebOurViewView(String firstName) {
+	public WebOurCommunityIndexView() {
 		initWidget(uiBinder.createAndBindUi(this));
 	}
 

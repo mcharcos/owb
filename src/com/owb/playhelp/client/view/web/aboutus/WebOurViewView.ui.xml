@@ -1,0 +1,67 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+		.important {
+			font-weight: bold;
+		}
+		.description{
+	        color:#9152a0;
+	        margin: 30px;
+	   }
+	</ui:style>
+	<g:HTMLPanel>
+
+		
+	   <div class="{style.description}">
+	    <h1>OUR VIEW</h1>
+	    
+			<table align="left">
+	    		<tr>
+			        <td width="570">
+					Orphanage Without Borders provides a common portal for organization and individuals to 
+				    unify their efforts and facilitate contributions to the cause of abandoned children. This site 
+				    allows projects of our network to inform about the specific needs for reaching the 
+				    acceptable standards of child's lifes. They are also able to create the necessary projects that will walk 
+				    them through the path to follow the standards. Through our portal, individuals and 
+				    organizations know about child's needs, projects and their status. 
+				    This information is critical for participants that are able to decide 
+				    in detail how their contribution is used and know how their volunteer actions will make 
+				    a difference. It is also important for nonprofits willing to help to the cause in their 
+				    specific area. Therefore, our portal creates a network connecting orphanages with 
+				    organizations, individuals and nonprofits with different expertise. A collaborative 
+				    environment results in a more efficient support and increases the confidence of people 
+				    participating to the cause. In addition, we hope our portal will be a site to share 
+				    knowledge that allows new projects to learn from previous experience. Moreover, it will 
+				    be a practical source of information for volunteers and organizations. We intend to use 
+				    the resources in each area provided by existing organizations to support existing 
+				    projects.  
+		  		    </td>
+	  		    </tr>
+	  		    <tr>
+	  		    	<td>
+	  		    	Our organization provides the technoligical tools, consultancy and expertise to support 
+				    activities toward these goals in various areas. Our portal is a visual 
+				    development solution for organizations and projects to increase contributions from 
+				    individuals and support improving the standards of life of children around the world 
+				    by addressing the current issues:
+			
+			  		<UL TYPE="SQUARE">
+			  			<li>Joining efforts and resources to take advantage of previous experiences</li>
+			  			<li>Motivating collaboration against competition</li>
+			  			<li>Informing more contributors about the status of the projects</li>
+			  			<li>Allowing contributors to make decision on how their help is used</li>
+			  			<li>Rewarding contributors to motivate more collaboration</li>
+			  			<li>Creating a strong network of resources working together on the common objective of improving the life quality of orphaned and abandoned children.</li>
+			  			<li>Creating a network of volunteers, motivate people to participate in the program and facilitate their experience</li>
+			  			<li>Improving the relationship and links between donors, non-profit organizations and volunteers.</li>
+			  			<li>Increasing the help to orphaned and abandoned children</li>
+			  			<li>Increasing the flow of information about the cause</li>
+			  			<li>Visually representing the status and the resources for everyone who wants to change the situation.</li>
+					</UL>
+	  		    	</td>
+	  		    </tr>
+	  		 </table>
+		</div>
+	</g:HTMLPanel>
+</ui:UiBinder> 

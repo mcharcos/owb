@@ -13,19 +13,66 @@
 	<g:HTMLPanel>
 	   <div class="{style.description}">
 	    <h1>THE TEAM</h1>
-	    <b>Kathy</b><br></br>
-		Kathy has a PhD in Biomedical Science and she currently does research on AIDS. It is her dream to rescue children living in the streets and make sure that someone cares for them affectionately. In the Summer of 2004, she went to India to volunteer at an orphanage. The children in the shelter had a profound effect on her, and this experience intensified her desire to help orphans around the world. She is also a strong advocate of teamwork. 
-		<br></br><br></br>
-		<b>Miguel</b><br></br>
-		Miguel is a software engineer working for a national organization. He also has a PhD in Astronomy. He is probably the main driving force putting this project into action and making this longtime dream a reality. He cares deeply about the well-being of children in general and wants to guarantee that the horrid conditions in some orphanages cease to exist.
-		<br></br><br></br>
-		<b>Karine</b><br></br>
-		<br></br><br></br>
-		<b>Sadie</b><br></br>
-		<br></br><br></br>
-		<b>Sangeeta</b><br></br>
-		<br></br><br></br>
-		<b>Erika</b><br></br>
+	    
+		<table align="left">
+    		<tr>
+		        <td width="570">
+			    <b>Kathy</b>
+				Kathy has a PhD in Biomedical Science and she currently does research on AIDS. It is her dream to rescue children living in the streets and make sure that someone cares for them affectionately. In the Summer of 2004, she went to India to volunteer at an orphanage. The children in the shelter had a profound effect on her, and this experience intensified her desire to help orphans around the world. She is also a strong advocate of teamwork. 
+				</td>
+			</tr>
+			<tr>
+				<td>
+				<br></br>
+				</td>
+			</tr>
+			<tr>
+				<td>
+				<b>Miguel</b>
+				Miguel is a software engineer working for a national organization. He also has a PhD in Astronomy. He is probably the main driving force putting this project into action and making this longtime dream a reality. He cares deeply about the well-being of children in general and wants to guarantee that the horrid conditions in some orphanages cease to exist.
+				</td>
+			</tr>
+			<tr>
+				<td>
+				<br></br>
+				</td>
+			</tr>
+			<tr>
+				<td>
+				<b>Karine</b>
+				</td>
+			</tr>
+			<tr>
+				<td>
+				<br></br>
+				</td>
+			</tr>
+			<tr>
+				<td>
+				<b>Sadie</b>
+				</td>
+			</tr>
+			<tr>
+				<td>
+				<br></br>
+				</td>
+			</tr>
+			<tr>
+				<td>
+				<b>Sangeeta</b>
+				</td>
+			</tr>
+			<tr>
+				<td>
+				<br></br>
+				</td>
+			</tr>
+			<tr>
+				<td>
+				<b>Erika</b>
+				</td>
+			</tr>
+		</table>
 		</div>
 	</g:HTMLPanel>
 </ui:UiBinder> 

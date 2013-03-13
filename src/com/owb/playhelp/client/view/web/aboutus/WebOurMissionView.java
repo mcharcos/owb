@@ -1,4 +1,4 @@
-package com.owb.playhelp.client.view.web;
+package com.owb.playhelp.client.view.web.aboutus;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;

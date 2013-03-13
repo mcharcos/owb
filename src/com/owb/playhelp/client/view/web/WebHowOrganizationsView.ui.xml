@@ -13,14 +13,21 @@
 	<g:HTMLPanel>
 	   <div class="{style.description}">
 	    <h1>HOW DO WE HELP ORGANIZATIONS?</h1>
-		Organizations that work in specific areas have the experience to support projects with their expertise. Creating a network
-		that can provide knowledge and resources is critical to achieve our goal. We believe that this network will help not only
-		the projects that directly help children but also organizations in different areas to learn from different experiences
-		and a framework to find useful information. In addition, the organizations in our network can take advantage of 
-		feedback from our community of individuals to find resources and support for their own ongoing projects. We also
-		support their projects if they are within our baseline in the areas they work with. 
-		If you as an organization like our way to work, join us as an organization by clicking on 
-        "Contact Us>>Join Our Network" <br></br>
+	    
+		<table align="left">
+    		<tr>
+		        <td width="570">
+				Organizations that work in specific areas have the experience to support projects with their expertise. Creating a network
+				that can provide knowledge and resources is critical to achieve our goal. We believe that this network will help not only
+				the projects that directly help children but also organizations in different areas to learn from different experiences
+				and a framework to find useful information. In addition, the organizations in our network can take advantage of 
+				feedback from our community of individuals to find resources and support for their own ongoing projects. We also
+				support their projects if they are within our baseline in the areas they work with. 
+				If you as an organization like our way to work, join us as an organization by clicking on 
+		        "Contact Us>>Join Our Network" 
+		        </td>
+		    </tr>
+		</table>
 		</div>
 	</g:HTMLPanel>
 </ui:UiBinder> 

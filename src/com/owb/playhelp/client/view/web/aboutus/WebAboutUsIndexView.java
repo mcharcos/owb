@@ -1,4 +1,4 @@
-package com.owb.playhelp.client.view.web;
+package com.owb.playhelp.client.view.web.aboutus;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -11,23 +11,18 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HasText;
 import com.google.gwt.user.client.ui.Widget;
 
-public class WebVolunteerOpportunitiesView extends Composite implements HasText {
+public class WebAboutUsIndexView extends Composite implements HasText {
 
-	private static WebVolunteerOpportunitiesViewUiBinder uiBinder = GWT
-			.create(WebVolunteerOpportunitiesViewUiBinder.class);
+	private static WebAboutUsIndexViewUiBinder uiBinder = GWT
+			.create(WebAboutUsIndexViewUiBinder.class);
 
-	interface WebVolunteerOpportunitiesViewUiBinder extends
-			UiBinder<Widget, WebVolunteerOpportunitiesView> {
+	interface WebAboutUsIndexViewUiBinder extends
+			UiBinder<Widget, WebAboutUsIndexView> {
 	}
 
-	public WebVolunteerOpportunitiesView() {
+	public WebAboutUsIndexView() {
 		initWidget(uiBinder.createAndBindUi(this));
 	}
-
-	public WebVolunteerOpportunitiesView(String firstName) {
-		initWidget(uiBinder.createAndBindUi(this));
-	}
-
 
 	public void setText(String text) {
 	}

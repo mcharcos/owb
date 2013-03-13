@@ -13,9 +13,14 @@
 	<g:HTMLPanel>
 	   <div class="{style.description}">
 	    <h1>CONTACT US</h1>
+	    
+		<table align="left">
+    		<tr>
+		        <td width="570">
 		Miguel <br></br>
 		email: owb@orphanagewithoutborders.org <br></br>
-		phone: XXX-XXX-XXXX <br></br>
+		phone: XXX-XXX-XXXX 
+		</td></tr></table>
 		</div>
 	</g:HTMLPanel>
 </ui:UiBinder> 

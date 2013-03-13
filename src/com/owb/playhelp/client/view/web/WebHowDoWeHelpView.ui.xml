@@ -13,14 +13,20 @@
 	<g:HTMLPanel>
 	   <div class="{style.description}">
 	    <h1>WHO DO WE WORK WITH?</h1>
-		Our view is to unified effords and take advantage of the different expertise to provide a better life to abandoned 
-		and orphan children around the world. We believe that making a change requires a strong collaboration between 
-		different group of people. Our goal is to use the power from each of these groups and stream it to make a difference worldwide.
-		The difference will happen when we are able to listen what are the real needs of the <b>children</b> and focus the <b>projects</b>
-		that help them in order to achieve the change. This will not be possible without the experience in various areas
-		of <b>organizations</b> with many years of experience in the field and countries that can provide resources. It will not
-		be possible either without the power of <b>individuals</b> that are in touch with their community and are willing to help
-		with their ideas.<br></br>
+		<table align="left">
+    		<tr>
+		        <td width="570">
+				Our view is to unified effords and take advantage of the different expertise to provide a better life to abandoned 
+				and orphan children around the world. We believe that making a change requires a strong collaboration between 
+				different group of people. Our goal is to use the power from each of these groups and stream it to make a difference worldwide.
+				The difference will happen when we are able to listen what are the real needs of the <b>children</b> and focus the <b>projects</b>
+				that help them in order to achieve the change. This will not be possible without the experience in various areas
+				of <b>organizations</b> with many years of experience in the field and countries that can provide resources. It will not
+				be possible either without the power of <b>individuals</b> that are in touch with their community and are willing to help
+				with their ideas.
+				</td>
+			</tr>
+		</table>
 		</div>
 	</g:HTMLPanel>
 </ui:UiBinder> 

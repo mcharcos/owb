@@ -1,4 +1,4 @@
-package com.owb.playhelp.client.view.web.whatdowedo;
+package com.owb.playhelp.client.view.web;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
@@ -8,18 +8,18 @@ import com.google.gwt.user.client.ui.HasText;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 
-public class WebWhatDoWeDoMainView extends Composite implements HasText {
+public class WebMainIndexView extends Composite implements HasText {
 
-	private static WebWhatDoWeDoMainViewUiBinder uiBinder = GWT
-			.create(WebWhatDoWeDoMainViewUiBinder.class);
+	private static WebMainIndexViewUiBinder uiBinder = GWT
+			.create(WebMainIndexViewUiBinder.class);
 
-	interface WebWhatDoWeDoMainViewUiBinder extends
-			UiBinder<Widget, WebWhatDoWeDoMainView> {
+	interface WebMainIndexViewUiBinder extends
+			UiBinder<Widget, WebMainIndexView> {
 	}
 
 	@UiField VerticalPanel areaField, indexField;
 	
-	public WebWhatDoWeDoMainView() {
+	public WebMainIndexView() {
 		initWidget(uiBinder.createAndBindUi(this));
 	}
 

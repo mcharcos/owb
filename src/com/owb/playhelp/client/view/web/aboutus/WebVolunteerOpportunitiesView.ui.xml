@@ -15,10 +15,15 @@
 		
 	   <div class="{style.description}">
 	    <h1>VOLUNTEER OPPORTUNITIES</h1>
-	    <br></br>
-	    <br></br>
-	    Please contact us at <b>owb@orphanagewithoutborders.org</b> if you are interested about our 
-	    projects to learn about our current opportunities.
+
+		<table align="left">
+    		<tr>
+		        <td width="570">
+			    Please contact us at <b>owb@orphanagewithoutborders.org</b> if you are interested about our 
+			    projects to learn about our current opportunities.
+	    		</td>
+	    	</tr>
+	    </table>
 	    </div>
 	</g:HTMLPanel>
 </ui:UiBinder> 

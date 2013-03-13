@@ -1,0 +1,85 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	
+    <ui:with field='res' type='com.owb.playhelp.client.resources.Resources'/>
+    
+	<ui:style src="../../../resources/GlobalStyles.css">
+		.important {
+			font-weight: bold;
+		}
+		.description{
+	        color:#9152a0;
+	        margin: 30px;
+	   }
+	</ui:style>
+	<g:HTMLPanel>
+		
+			<table width="100%" align="center">
+   		 			<tr>
+   		 				<td>
+							<table width="100" border="1px solid red" align="center">
+							    <tr>
+							    	<td align="center">
+									<g:Image url='{res.healthWebPic.getSafeUri.asString}' pixelSize="50,50"/>
+									</td>
+								</tr>
+								<tr>
+									<td align="center">
+									Context
+									</td>
+				    		    </tr>
+				    		 </table>
+   		 				</td>
+   		 			</tr>
+   		 			<tr>
+   		 				<td>
+							<table width="100" border="1px solid red" align="center">
+							    <tr>
+							    	<td align="center">
+									<g:Image url='{res.educationWebPic.getSafeUri.asString}' pixelSize="50,50"/>
+									</td>
+								</tr>
+								<tr>
+									<td align="center">
+									Our Mission
+									</td>
+				    		    </tr>
+				    		 </table>
+   		 				</td>
+   		 			</tr>
+   		 			<tr>
+   		 				<td>
+							<table width="100" border="1px solid red" align="center">
+							    <tr>
+							    	<td align="center">
+									<g:Image url='{res.foodWebPic.getSafeUri.asString}' pixelSize="50,50"/>
+									</td>
+								</tr>
+								<tr>
+									<td align="center">
+									Our View
+									</td>
+				    		    </tr>
+				    		 </table>
+   		 				</td>
+   		 			</tr>
+   		 			<tr>
+   		 				<td>
+							<table width="100" border="1px solid red" align="center">
+							    <tr>
+							    	<td align="center">
+									<g:Image url='{res.shelterWebPic.getSafeUri.asString}' pixelSize="50,50"/>
+									</td>
+								</tr>
+								<tr>
+									<td align="center">
+									Volunteer Opportunities
+									</td>
+				    		    </tr>
+				    		 </table>
+   		 				</td>
+   		 			</tr>
+   		 		</table>
+	</g:HTMLPanel>
+</ui:UiBinder> 
