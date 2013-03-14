@@ -10,37 +10,124 @@
 		}
 		.description{
 	        color:#9152a0;
-	        margin: 30px;
+	        font-size:50%;
 	   }
 	</ui:style>
 	<g:HTMLPanel>
-		
 			<table width="100%" align="center">
    		 			<tr>
+   		 				
    		 				<td>
-							<table width="100" border="1px solid red" align="center">
+							<table width="80" border="1px solid red" align="center">
 							    <tr>
 							    	<td align="center">
-									<g:Image url='{res.healthWebPic.getSafeUri.asString}' pixelSize="50,50"/>
+									<g:Image url='{res.waterWebPic.getSafeUri.asString}' pixelSize="40,40"/>
 									</td>
 								</tr>
 								<tr>
 									<td align="center">
-									Health
+									<font size="1">Clean Water</font>
 									</td>
 				    		    </tr>
 				    		 </table>
    		 				</td>
    		 				<td>
-							<table width="100" border="1px solid red" align="center">
+							<table width="80" border="1px solid red" align="center">
 							    <tr>
 							    	<td align="center">
-									<g:Image url='{res.educationWebPic.getSafeUri.asString}' pixelSize="50,50"/>
+									<g:Image url='{res.foodWebPic.getSafeUri.asString}' pixelSize="40,40"/>
 									</td>
 								</tr>
 								<tr>
 									<td align="center">
-									Education
+									<font size="1">Food</font>
+									</td>
+				    		    </tr>
+				    		 </table>
+   		 				</td>
+   		 				<td>
+							<table width="80" border="1px solid red" align="center">
+							    <tr>
+							    	<td align="center">
+									<g:Image url='{res.shelterWebPic.getSafeUri.asString}' pixelSize="40,40"/>
+									</td>
+								</tr>
+								<tr>
+									<td align="center">
+									<font size="1">Shelter</font>
+									</td>
+				    		    </tr>
+				    		 </table>
+   		 				</td>
+   		 				<td>
+							<table width="80" border="1px solid red" align="center">
+							    <tr>
+							    	<td align="center">
+									<g:Image url='{res.clothingWebPic.getSafeUri.asString}' pixelSize="40,40"/>
+									</td>
+								</tr>
+								<tr>
+									<td align="center">
+									<font size="1">Clothing</font>
+									</td>
+				    		    </tr>
+				    		 </table>
+   		 				</td>
+   		 			</tr>
+   		 			<tr>
+   		 				
+   		 				<td>
+							<table width="80" border="1px solid red" align="center">
+							    <tr>
+							    	<td align="center">
+									<g:Image url='{res.healthWebPic.getSafeUri.asString}' pixelSize="40,40"/>
+									</td>
+								</tr>
+								<tr>
+									<td align="center">
+									<font size="1">Medicine</font>
+									</td>
+				    		    </tr>
+				    		 </table>
+   		 				</td>
+   		 				<td>
+							<table width="80" border="1px solid red" align="center">
+							    <tr>
+							    	<td align="center">
+									<g:Image url='{res.hygieneWebPic.getSafeUri.asString}' pixelSize="40,40"/>
+									</td>
+								</tr>
+								<tr>
+									<td align="center">
+									<font size="1">Hygiene</font>
+									</td>
+				    		    </tr>
+				    		 </table>
+   		 				</td>
+   		 				<td>
+							<table width="80" border="1px solid red" align="center">
+							    <tr>
+							    	<td align="center">
+									<g:Image url='{res.safetyWebPic.getSafeUri.asString}' pixelSize="40,40"/>
+									</td>
+								</tr>
+								<tr>
+									<td align="center">
+									<font size="1">Safety</font>
+									</td>
+				    		    </tr>
+				    		 </table>
+   		 				</td>
+   		 				<td>
+							<table width="80" border="1px solid red" align="center">
+							    <tr>
+							    	<td align="center">
+									<g:Image url='{res.excerciseWebPic.getSafeUri.asString}' pixelSize="40,40"/>
+									</td>
+								</tr>
+								<tr>
+									<td align="center">
+									<font size="1">Physical Activities</font>
 									</td>
 				    		    </tr>
 				    		 </table>
@@ -48,89 +135,57 @@
    		 			</tr>
    		 			<tr>
    		 				<td>
-							<table width="100" border="1px solid red" align="center">
+							<table width="80" border="1px solid red" align="center">
 							    <tr>
 							    	<td align="center">
-									<g:Image url='{res.foodWebPic.getSafeUri.asString}' pixelSize="50,50"/>
+									<g:Image url='{res.educationWebPic.getSafeUri.asString}' pixelSize="40,40"/>
 									</td>
 								</tr>
 								<tr>
 									<td align="center">
-									Food
+									<font size="1">Schooling Education</font>
 									</td>
 				    		    </tr>
 				    		 </table>
    		 				</td>
    		 				<td>
-							<table width="100" border="1px solid red" align="center">
+							<table width="80" border="1px solid red" align="center">
 							    <tr>
 							    	<td align="center">
-									<g:Image url='{res.shelterWebPic.getSafeUri.asString}' pixelSize="50,50"/>
+									<g:Image url='{res.guidanceWebPic.getSafeUri.asString}' pixelSize="40,40"/>
 									</td>
 								</tr>
 								<tr>
 									<td align="center">
-									Shelter
-									</td>
-				    		    </tr>
-				    		 </table>
-   		 				</td>
-   		 			</tr>
-   		 			<tr>
-   		 				<td>
-							<table width="100" border="1px solid red" align="center">
-							    <tr>
-							    	<td align="center">
-									<g:Image url='{res.clothingWebPic.getSafeUri.asString}' pixelSize="50,50"/>
-									</td>
-								</tr>
-								<tr>
-									<td align="center">
-									Clothing
+									<font size="1">Guidance</font>
 									</td>
 				    		    </tr>
 				    		 </table>
    		 				</td>
    		 				<td>
-							<table width="100" border="1px solid red" align="center">
+							<table width="80" border="1px solid red" align="center">
 							    <tr>
 							    	<td align="center">
-									<g:Image url='{res.hygieneWebPic.getSafeUri.asString}' pixelSize="50,50"/>
+									<g:Image url='{res.responsabilitiesWebPic.getSafeUri.asString}' pixelSize="40,40"/>
 									</td>
 								</tr>
 								<tr>
 									<td align="center">
-									Hygiene
-									</td>
-				    		    </tr>
-				    		 </table>
-   		 				</td>
-   		 			</tr>
-   		 			<tr>
-   		 				<td>
-							<table width="100" border="1px solid red" align="center">
-							    <tr>
-							    	<td align="center">
-									<g:Image url='{res.joyWebPic.getSafeUri.asString}' pixelSize="50,50"/>
-									</td>
-								</tr>
-								<tr>
-									<td align="center">
-									Joy
+									<font size="1">Responsabilities</font>
 									</td>
 				    		    </tr>
 				    		 </table>
    		 				</td>
    		 				<td>
-							<table width="100" border="1px solid red" align="center">
+							<table width="80" border="1px solid red" align="center">
 							    <tr>
 							    	<td align="center">
-									<g:Image url='{res.hopeoffutureWebPic.getSafeUri.asString}' pixelSize="50,50"/>
+									<g:Image url='{res.disciplineWebPic.getSafeUri.asString}' pixelSize="40,40"/>
 									</td>
 								</tr>
 								<tr>
 									<td align="center">
-									Hope of Future
+									<font size="1">Discipline</font>
 									</td>
 				    		    </tr>
 				    		 </table>
@@ -138,89 +193,57 @@
    		 			</tr>
    		 			<tr>
    		 				<td>
-							<table width="100" border="1px solid red" align="center">
+							<table width="80" border="1px solid red" align="center">
 							    <tr>
 							    	<td align="center">
-									<g:Image url='{res.loveWebPic.getSafeUri.asString}' pixelSize="50,50"/>
+									<g:Image url='{res.loveWebPic.getSafeUri.asString}' pixelSize="40,40"/>
 									</td>
 								</tr>
 								<tr>
 									<td align="center">
-									Love
+									<font size="1">Love</font>
 									</td>
 				    		    </tr>
 				    		 </table>
    		 				</td>
    		 				<td>
-							<table width="100" border="1px solid red" align="center">
+							<table width="80" border="1px solid red" align="center">
 							    <tr>
 							    	<td align="center">
-									<g:Image url='{res.responsabilitiesWebPic.getSafeUri.asString}' pixelSize="50,50"/>
+									<g:Image url='{res.compassionateWebPic.getSafeUri.asString}' pixelSize="40,40"/>
 									</td>
 								</tr>
 								<tr>
 									<td align="center">
-									Responsabilities
-									</td>
-				    		    </tr>
-				    		 </table>
-   		 				</td>
-   		 			</tr>
-   		 			<tr>
-   		 				<td>
-							<table width="100" border="1px solid red" align="center">
-							    <tr>
-							    	<td align="center">
-									<g:Image url='{res.safetyWebPic.getSafeUri.asString}' pixelSize="50,50"/>
-									</td>
-								</tr>
-								<tr>
-									<td align="center">
-									Safety
+									<font size="1">Compassionate Environment</font>
 									</td>
 				    		    </tr>
 				    		 </table>
    		 				</td>
    		 				<td>
-							<table width="100" border="1px solid red" align="center">
+							<table width="80" border="1px solid red" align="center">
 							    <tr>
 							    	<td align="center">
-									<g:Image url='{res.guidanceWebPic.getSafeUri.asString}' pixelSize="50,50"/>
+									<g:Image url='{res.joyWebPic.getSafeUri.asString}' pixelSize="40,40"/>
 									</td>
 								</tr>
 								<tr>
 									<td align="center">
-									Guidance
-									</td>
-				    		    </tr>
-				    		 </table>
-   		 				</td>
-   		 			</tr>
-   		 			<tr>
-   		 				<td>
-							<table width="100" border="1px solid red" align="center">
-							    <tr>
-							    	<td align="center">
-									<g:Image url='{res.compassionateWebPic.getSafeUri.asString}' pixelSize="50,50"/>
-									</td>
-								</tr>
-								<tr>
-									<td align="center">
-									Compassionate Environment
+									<font size="1">Joy</font>
 									</td>
 				    		    </tr>
 				    		 </table>
    		 				</td>
    		 				<td>
-							<table width="100" border="1px solid red" align="center">
+							<table width="80" border="1px solid red" align="center">
 							    <tr>
 							    	<td align="center">
-									<g:Image url='{res.disciplineWebPic.getSafeUri.asString}' pixelSize="50,50"/>
+									<g:Image url='{res.hopeoffutureWebPic.getSafeUri.asString}' pixelSize="40,40"/>
 									</td>
 								</tr>
 								<tr>
 									<td align="center">
-									Discipline
+									<font size="1">Hope of Future</font>
 									</td>
 				    		    </tr>
 				    		 </table>

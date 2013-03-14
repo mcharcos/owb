@@ -102,10 +102,14 @@ public interface Resources extends ClientBundle {
     ImageResource educationWebPic();
     @Source("webpics/food.jpg")
     ImageResource foodWebPic();
+    @Source("webpics/water.jpg")
+    ImageResource waterWebPic();
     @Source("webpics/guidance.jpg")
     ImageResource guidanceWebPic();
     @Source("webpics/health.jpg")
     ImageResource healthWebPic();
+    @Source("webpics/excercise.jpg")
+    ImageResource excerciseWebPic();
     @Source("webpics/hopeoffuture.jpg")
     ImageResource hopeoffutureWebPic();
     @Source("webpics/hygiene.jpg")

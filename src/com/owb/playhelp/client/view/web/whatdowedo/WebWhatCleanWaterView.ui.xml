@@ -15,16 +15,18 @@
 	</ui:style>
 	<g:HTMLPanel>
 	   <div class="{style.description}">
-	    <h1>MEDICATION</h1>
+	    <h1>CLEAN WATER</h1>
 			<div class="{style.descwrapper}">
 				<div class="{style.descpic}">
-					<g:Image url='{res.healthWebPic.getSafeUri.asString}' pixelSize="300,300"/>
+					<g:Image url='{res.waterWebPic.getSafeUri.asString}' pixelSize="300,300"/>
 				</div>
 				<div class="{style.desclabel}">
-				Our goal is to provide medical care any time children suffer of disease or get hurt as well as 
-				teaching them the importance of a healthy diet.
-  			    </div>
-  			    </div>
+				Water is an essential element for life. In regions where there is a water crisis it can affect 
+				other areas as education. In addition, germs in water cause diseases and death. We aim to provide
+				clean water to orphan and abandoned children. We support projects aiming to bring clean water
+				to the children that need it.
+    		    </div>
+    		    </div>
 		</div>
 	</g:HTMLPanel>
 </ui:UiBinder> 

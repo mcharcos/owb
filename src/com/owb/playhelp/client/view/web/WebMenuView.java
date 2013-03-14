@@ -28,7 +28,7 @@ public class WebMenuView extends Composite implements WebMenuPresenter.Display {
 	@UiField
 	MenuItem homeItem,aboutUsItem, contextItem, ourMissionItem, ourViewItem, volunteerOpportunitiesItem;
 	@UiField
-	MenuItem whatDoWeDoItem, healthItem, educationItem, foodItem, shelterItem, clothingItem, hygieneItem, joyItem, hopeOfFutureItem;
+	MenuItem whatDoWeDoItem, healthItem, excerciseItem, educationItem, cleanWaterItem, foodItem, shelterItem, clothingItem, hygieneItem, joyItem, hopeOfFutureItem;
 	@UiField
 	MenuItem loveItem, responsabilitiesItem, safetyItem, guidanceItem, compassionateEnvironementItem, disciplineItem;
 	@UiField
@@ -82,6 +82,11 @@ public class WebMenuView extends Composite implements WebMenuPresenter.Display {
 	}
 
 	@Override
+	public MenuItem getexcerciseItem() {
+		return excerciseItem;
+	}
+
+	@Override
 	public MenuItem geteducationItem() {
 		return educationItem;
 	}
@@ -89,6 +94,11 @@ public class WebMenuView extends Composite implements WebMenuPresenter.Display {
 	@Override
 	public MenuItem getfoodItem() {
 		return foodItem;
+	}
+
+	@Override
+	public MenuItem getcleanWaterItem() {
+		return cleanWaterItem;
 	}
 
 	@Override

@@ -26,8 +26,10 @@ public class WebMenuPresenter  implements Presenter {
 		MenuItem getvolunteerOpportunitiesItem();
 		MenuItem getwhatDoWeDoItem();
 		MenuItem gethealthItem();
+		MenuItem getexcerciseItem();
 		MenuItem geteducationItem();
 		MenuItem getfoodItem();
+		MenuItem getcleanWaterItem();
 		MenuItem getshelterItem();
 		MenuItem getclothingItem();
 		MenuItem gethygieneItem();
@@ -112,6 +114,12 @@ public class WebMenuPresenter  implements Presenter {
 				eventBus.fireEvent(new ShowWebEvent("gethealthItem"));
 			}
 		});
+		this.display.getexcerciseItem().setCommand(new Command() {
+			@Override
+			public void execute() {
+				eventBus.fireEvent(new ShowWebEvent("getexcerciseItem"));
+			}
+		});
 		this.display.geteducationItem().setCommand(new Command() {
 			@Override
 			public void execute() {
@@ -122,6 +130,12 @@ public class WebMenuPresenter  implements Presenter {
 			@Override
 			public void execute() {
 				eventBus.fireEvent(new ShowWebEvent("getfoodItem"));
+			}
+		});
+		this.display.getcleanWaterItem().setCommand(new Command() {
+			@Override
+			public void execute() {
+				eventBus.fireEvent(new ShowWebEvent("getcleanWaterItem"));
 			}
 		});
 		this.display.getshelterItem().setCommand(new Command() {

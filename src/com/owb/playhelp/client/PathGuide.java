@@ -63,12 +63,14 @@ import com.owb.playhelp.client.view.web.aboutus.WebContextView;
 import com.owb.playhelp.client.view.web.aboutus.WebOurMissionView;
 import com.owb.playhelp.client.view.web.aboutus.WebOurViewView;
 import com.owb.playhelp.client.view.web.aboutus.WebVolunteerOpportunitiesView;
+import com.owb.playhelp.client.view.web.whatdowedo.WebWhatCleanWaterView;
 import com.owb.playhelp.client.view.web.whatdowedo.WebWhatClothingView;
 import com.owb.playhelp.client.view.web.whatdowedo.WebWhatCompassionateView;
 import com.owb.playhelp.client.view.web.whatdowedo.WebWhatDisciplineView;
 import com.owb.playhelp.client.view.web.whatdowedo.WebWhatDoWeDoIndexView;
 import com.owb.playhelp.client.view.web.whatdowedo.WebWhatDoWeDoView;
 import com.owb.playhelp.client.view.web.whatdowedo.WebWhatEducationView;
+import com.owb.playhelp.client.view.web.whatdowedo.WebWhatExcerciseView;
 import com.owb.playhelp.client.view.web.whatdowedo.WebWhatFoodView;
 import com.owb.playhelp.client.view.web.whatdowedo.WebWhatGuidanceView;
 import com.owb.playhelp.client.view.web.whatdowedo.WebWhatHealthView;
@@ -528,6 +530,12 @@ public class PathGuide implements ValueChangeHandler<String>  {
 					webMain.getAreaField().add((new WebWhatHealthView()).asWidget());
 		        return;
 		        } 
+				if (token.equals("webgetexcerciseItem")) {
+					webMain.getIndexField().add(new WebWhatDoWeDoIndexView());
+					Owb.get().getMainPanel().add(webMain);
+					webMain.getAreaField().add((new WebWhatExcerciseView()).asWidget());
+		        return;
+		        } 
 				if (token.equals("webgeteducationItem")) {
 					webMain.getIndexField().add(new WebWhatDoWeDoIndexView());
 					Owb.get().getMainPanel().add(webMain);
@@ -538,6 +546,12 @@ public class PathGuide implements ValueChangeHandler<String>  {
 					webMain.getIndexField().add(new WebWhatDoWeDoIndexView());
 					Owb.get().getMainPanel().add(webMain);
 					webMain.getAreaField().add((new WebWhatFoodView()).asWidget());
+		        return;
+		        } 
+				if (token.equals("webgetcleanWaterItem")) {
+					webMain.getIndexField().add(new WebWhatDoWeDoIndexView());
+					Owb.get().getMainPanel().add(webMain);
+					webMain.getAreaField().add((new WebWhatCleanWaterView()).asWidget());
 		        return;
 		        } 
 				if (token.equals("webgetshelterItem")) {
