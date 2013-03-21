@@ -26,9 +26,11 @@ import com.owb.playhelp.client.presenter.orphanage.AddOrphanagePresenter;
 import com.owb.playhelp.client.presenter.orphanage.AddOrphanageStatusPresenter;
 import com.owb.playhelp.client.presenter.project.AddProjectPresenter;
 import com.owb.playhelp.client.presenter.user.UserPreferenceEditPresenter;
+import com.owb.playhelp.client.presenter.volunteer.AddVolunteerPresenter;
 import com.owb.playhelp.client.presenter.web.ContactHomePresenter;
 import com.owb.playhelp.client.presenter.web.WebMenuPresenter;
 import com.owb.playhelp.client.service.project.ProjectServiceAsync;
+import com.owb.playhelp.client.service.volunteer.VolunteerServiceAsync;
 import com.owb.playhelp.client.service.UserServiceAsync;
 import com.owb.playhelp.client.service.ngo.NgoServiceAsync;
 import com.owb.playhelp.client.service.orphanage.OrphanageServiceAsync;
@@ -81,6 +83,8 @@ import com.owb.playhelp.client.view.web.whatdowedo.WebWhatLoveView;
 import com.owb.playhelp.client.view.web.whatdowedo.WebWhatResponsabilitiesView;
 import com.owb.playhelp.client.view.web.whatdowedo.WebWhatSafetyView;
 import com.owb.playhelp.client.view.web.whatdowedo.WebWhatShelterView;
+import com.owb.playhelp.client.event.volunteer.ShowAddVolunteerEvent;
+import com.owb.playhelp.client.event.volunteer.ShowAddVolunteerEventHandler;
 import com.owb.playhelp.client.event.web.ContactHomeEvent;
 import com.owb.playhelp.client.event.web.ContactHomeEventHandler;
 import com.owb.playhelp.client.event.web.ShowWebEvent;
@@ -150,6 +154,7 @@ public class PathGuide implements ValueChangeHandler<String>  {
 	/*
 	 * Services for Ngo, Orphanages, projects and users are defined below
 	 */
+	private final VolunteerServiceAsync volunteerService;
 	private final NgoServiceAsync ngoService;
 	private final OrphanageServiceAsync orphanageService;
 	private final ProjectServiceAsync projectService;
@@ -169,7 +174,8 @@ public class PathGuide implements ValueChangeHandler<String>  {
 	private String lastView = "0";
 	
 	public PathGuide(UserServiceAsync userService, NgoServiceAsync ngoService, OrphanageServiceAsync orphanageService, 
-			ProjectServiceAsync projectService, SimpleEventBus thePath, UserProfileInfo currentUser){
+			ProjectServiceAsync projectService, VolunteerServiceAsync volunteerService, SimpleEventBus thePath, UserProfileInfo currentUser){
+		this.volunteerService = volunteerService;
 		this.userService = userService;
 		this.ngoService = ngoService;
 		this.orphanageService = orphanageService;
@@ -267,6 +273,20 @@ public class PathGuide implements ValueChangeHandler<String>  {
 			public void onContactHome(ContactHomeEvent event){
 				lastView = History.getToken();
 				History.newItem("contactus");
+			}
+		});
+		
+
+		/*
+		 * Listen to an event requesting starting an organization. It will show a popup 
+		 * window where the user can enter the information of the organization.
+		 */
+		thePath.addHandler(ShowAddVolunteerEvent.TYPE, new ShowAddVolunteerEventHandler(){
+			public void onShowPopupAddVolunteer(ShowAddVolunteerEvent event){
+				lastView = History.getToken();
+				History.newItem("addVolunteer");
+				AddVolunteerPresenter addVolunteerPresenter = new AddVolunteerPresenter(event.getVolunteer(), volunteerService,thePath,new WebJoinOWBView());
+		        addVolunteerPresenter.go(Owb.get().getMainPanel());
 			}
 		});
 		
@@ -695,7 +715,8 @@ public class PathGuide implements ValueChangeHandler<String>  {
 	      } 
 			if (token.equals("friends")) {
 				WebMainIndexView webMain = new WebMainIndexView();
-				Owb.get().getBarPanel().clear();webMain.getIndexField().add(new WebOurCommunityIndexView());
+				Owb.get().getBarPanel().clear();
+				webMain.getIndexField().add(new WebOurCommunityIndexView());
 				Owb.get().getMainPanel().add(webMain);
 				presenter = new FriendsHomePresenter(currentUser,thePath,new FriendsHomeView());
 				presenter.go(webMain.getAreaField());

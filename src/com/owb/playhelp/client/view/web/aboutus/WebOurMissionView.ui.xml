@@ -22,7 +22,7 @@
 	    				<table border="5px solid red" align="left">
 						    <tr>
 						        <td width="50">
-								<g:Image url='{res.whatdowedoWebPic.getSafeUri.asString}' pixelSize="300,300"/>
+								<g:Image url='{res.missionWebPic.getSafeUri.asString}' pixelSize="300,300"/>
 							    </td>
 						        <td width="250">
 								Our ultimate goal is to being able to provide the minimum standards for each of the

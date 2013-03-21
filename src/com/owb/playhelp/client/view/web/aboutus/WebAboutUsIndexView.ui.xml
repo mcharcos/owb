@@ -21,7 +21,7 @@
 							<table width="100" border="1px solid red" align="center">
 							    <tr>
 							    	<td align="center">
-									<g:Image url='{res.healthWebPic.getSafeUri.asString}' pixelSize="50,50"/>
+									<g:Image url='{res.contextWebPic.getSafeUri.asString}' pixelSize="140,100"/>
 									</td>
 								</tr>
 								<tr>
@@ -37,7 +37,7 @@
 							<table width="100" border="1px solid red" align="center">
 							    <tr>
 							    	<td align="center">
-									<g:Image url='{res.educationWebPic.getSafeUri.asString}' pixelSize="50,50"/>
+									<g:Image url='{res.missionWebPic.getSafeUri.asString}' pixelSize="140,100"/>
 									</td>
 								</tr>
 								<tr>
@@ -53,7 +53,7 @@
 							<table width="100" border="1px solid red" align="center">
 							    <tr>
 							    	<td align="center">
-									<g:Image url='{res.foodWebPic.getSafeUri.asString}' pixelSize="50,50"/>
+									<g:Image url='{res.viewWebPic.getSafeUri.asString}' pixelSize="140,100"/>
 									</td>
 								</tr>
 								<tr>
@@ -69,7 +69,7 @@
 							<table width="100" border="1px solid red" align="center">
 							    <tr>
 							    	<td align="center">
-									<g:Image url='{res.shelterWebPic.getSafeUri.asString}' pixelSize="50,50"/>
+									<g:Image url='{res.volunteerWebPic.getSafeUri.asString}' pixelSize="140,100"/>
 									</td>
 								</tr>
 								<tr>

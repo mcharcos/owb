@@ -1,7 +1,9 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
 	xmlns:g="urn:import:com.google.gwt.user.client.ui">
-	<ui:style>
+    <ui:with field='res' type='com.owb.playhelp.client.resources.Resources'/>
+    
+	<ui:style src="../../../resources/GlobalStyles.css">
 		.important {
 			font-weight: bold;
 		}
@@ -17,6 +19,11 @@
 	    <h1>VOLUNTEER OPPORTUNITIES</h1>
 
 		<table align="left">
+    		<tr>
+    			<td>
+		        <g:Image url='{res.volunteerWebPic.getSafeUri.asString}'/>
+	    		</td>
+	    	</tr>
     		<tr>
 		        <td width="570">
 			    Please contact us at <b>owb@orphanagewithoutborders.org</b> if you are interested about our 

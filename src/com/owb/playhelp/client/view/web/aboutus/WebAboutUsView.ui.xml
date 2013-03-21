@@ -20,7 +20,7 @@
 			<table border="5px solid red" align="left">
 			    <tr>
 			        <td width="50">
-					<g:Image url='{res.whatdowedoWebPic.getSafeUri.asString}' pixelSize="300,300"/>
+					<g:Image url='{res.aboutusWebPic.getSafeUri.asString}' pixelSize="300,300"/>
 				    </td>
 			        <td width="250">
 						Orphanage Without Borders is a volunteer organization aiming to create an impact in the life

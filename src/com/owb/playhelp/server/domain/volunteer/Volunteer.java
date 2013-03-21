@@ -1,7 +1,7 @@
 /** 
  * Copyright 2011 Miguel Charcos Llorens
  */
-package com.owb.playhelp.server.domain.ngo;
+package com.owb.playhelp.server.domain.volunteer;
 
 
 import java.io.Serializable;
@@ -30,13 +30,13 @@ import com.owb.playhelp.server.utils.EmailHelper;
 import com.owb.playhelp.server.utils.Utils;
 import com.owb.playhelp.server.utils.cache.CacheSupport;
 import com.owb.playhelp.server.utils.cache.Cacheable;
-import com.owb.playhelp.shared.ngo.NgoInfo;
+import com.owb.playhelp.shared.volunteer.VolunteerInfo;
 
 /**
  * 
  * @author Miguel Charcos Llorens
  * This class represents the Non-profits organizations. It contains all the information about the organization
- * that was entered by the user and additional information for keeping track of the validity of the NGO.
+ * that was entered by the user and additional information for keeping track of the validity of the Volunteer.
  * The additional information is stored in a ConfirmationBadge object that is referred here via the uniqueId identifier.
  * Information about users that are related to the organization are also stored here as lists of uniqueId identifiers.
  * The relation to the organization can be in three forms: members, followers and users that want to become member and
@@ -45,7 +45,7 @@ import com.owb.playhelp.shared.ngo.NgoInfo;
  */
 @SuppressWarnings("serial")
 @PersistenceCapable(identityType = IdentityType.APPLICATION, detachable = "true")
-public class Ngo implements Serializable, Cacheable {
+public class Volunteer implements Serializable, Cacheable {
 
 	  private static final Logger log = Logger.getLogger(Utils.class.getName());
 	  private static final int NUM_RETRIES = 5; 
@@ -101,65 +101,65 @@ public class Ngo implements Serializable, Cacheable {
 	//@Element(dependent = "true")
 	//private Set<FriendItem> friends = new HashSet<FriendItem>();
 
-	public Ngo() {
+	public Volunteer() {
 		if (this.getUniqueId() == null) {
 			UUID uuid = UUID.randomUUID();
 			this.uniqueId = uuid.toString();  //this.getEmail();
 		} 
 		
-		//ConfirmationBadge confB = ConfirmationBadge.findOrCreateNgo(new ConfirmationBadge(this));
+		//ConfirmationBadge confB = ConfirmationBadge.findOrCreateVolunteer(new ConfirmationBadge(this));
         
 		// Don't need to update the uniqueId of the confirmationBadge because
 		// the class ConfirmationBadge takes care of this
 		//this.confirmationBadge = confB.getUniqueId();
 	}
 
-	public Ngo(NgoInfo ngoInfo) {
+	public Volunteer(VolunteerInfo volunteerInfo) {
 		this();
-		this.setName(ngoInfo.getName());
-		this.setDescription(ngoInfo.getDescription());
-		this.setAddress(ngoInfo.getAddress());
-		this.setLatitude(ngoInfo.getLatitude());
-		this.setLongitude(ngoInfo.getLongitude());
-		this.setPhone(ngoInfo.getPhone());
-		this.setEmail(ngoInfo.getEmail());
-		this.setWebsite(ngoInfo.getWebsite());
-		//if (ngoInfo.getUniqueId() != null) this.setUniqueId(ngoInfo.getUniqueId());
+		this.setName(volunteerInfo.getName());
+		this.setDescription(volunteerInfo.getDescription());
+		this.setAddress(volunteerInfo.getAddress());
+		this.setLatitude(volunteerInfo.getLatitude());
+		this.setLongitude(volunteerInfo.getLongitude());
+		this.setPhone(volunteerInfo.getPhone());
+		this.setEmail(volunteerInfo.getEmail());
+		this.setWebsite(volunteerInfo.getWebsite());
+		//if (volunteerInfo.getUniqueId() != null) this.setUniqueId(volunteerInfo.getUniqueId());
 		
 	}
 
 	  /**
-	   * Given a NgoInfo object it updates the information of the Ngo object 
-	   * from the NgoInfo object.
+	   * Given a VolunteerInfo object it updates the information of the Volunteer object 
+	   * from the VolunteerInfo object.
 	   * 
-	   * @param NgoInfo object 
+	   * @param VolunteerInfo object 
 	   * @return 
 	   */
-	public void reEdit(NgoInfo ngoInfo) {
-		this.setName(ngoInfo.getName());
-		this.setDescription(ngoInfo.getDescription());
-		this.setName(ngoInfo.getName());
-		this.setAddress(ngoInfo.getAddress());
-		this.setLatitude(ngoInfo.getLatitude());
-		this.setLongitude(ngoInfo.getLongitude());
-		this.setPhone(ngoInfo.getPhone());
-		this.setEmail(ngoInfo.getEmail());
-		this.setWebsite(ngoInfo.getWebsite());	
+	public void reEdit(VolunteerInfo volunteerInfo) {
+		this.setName(volunteerInfo.getName());
+		this.setDescription(volunteerInfo.getDescription());
+		this.setName(volunteerInfo.getName());
+		this.setAddress(volunteerInfo.getAddress());
+		this.setLatitude(volunteerInfo.getLatitude());
+		this.setLongitude(volunteerInfo.getLongitude());
+		this.setPhone(volunteerInfo.getPhone());
+		this.setEmail(volunteerInfo.getEmail());
+		this.setWebsite(volunteerInfo.getWebsite());	
 	}
 
 	  /**
-	   * It creates a NgoInfo object based on the information of the Ngo object. It considers that
+	   * It creates a VolunteerInfo object based on the information of the Volunteer object. It considers that
 	   * the user that requests this is not related to the organization. This is important
 	   * to activate Member and Follower. 
 	   * 
 	   * @param 
-	   * @return  NgoInfo object
+	   * @return  VolunteerInfo object
 	   */
-	public static NgoInfo toInfo(Ngo o) {
+	public static VolunteerInfo toInfo(Volunteer o) {
 		if (o == null)
 			return null;
 
-		NgoInfo oInfo = new NgoInfo(o.getName(), o.getDescription(), o.getAddress(),o.getLatitude(),o.getLongitude(),o.getPhone(), o.getEmail(), o.getWebsite());
+		VolunteerInfo oInfo = new VolunteerInfo(o.getName(), o.getDescription(), o.getAddress(),o.getLatitude(),o.getLongitude(),o.getPhone(), o.getEmail(), o.getWebsite());
 		oInfo.setUniqueId(o.getUniqueId());
 		//oInfo.setPoint(o.getLatitude(),o.getLongitude());
 		oInfo.deactivateMember();
@@ -167,48 +167,22 @@ public class Ngo implements Serializable, Cacheable {
 		oInfo.setValid(o.isValid());
 		oInfo.setConfirm(false);
 		
-		// Fill the information about members, followers,...
-		/*
-		List<String> nameList = new ArrayList<String>();
-		if (o.getMembers() != null){
-			for(String m:o.getMembers()){
-				nameList.add(UserProfile.findUserProfile(new UserProfile(m)).getName());
-			}
-		} 
-		oInfo.setMemberList(nameList);
-
-		nameList = new ArrayList<String>();
-		if (o.getMemberRequests() != null){
-			for(String m:o.getMemberRequests()){
-				nameList.add(UserProfile.findUserProfile(new UserProfile(m)).getName());
-			}
-		} 
-		oInfo.setMemberReqList(nameList);
-
-		nameList = new ArrayList<String>();
-		if (o.getFollowers() != null){
-			for(String m:o.getFollowers()){
-				nameList.add(UserProfile.findUserProfile(new UserProfile(m)).getName());
-			}
-		} 
-		oInfo.setFollowerList(nameList);
-		*/
 		
 		return oInfo;
 	}
 
 	  /**
-	   * It creates a NgoInfo object based on the information of the Ngo object. It considers the
+	   * It creates a VolunteerInfo object based on the information of the Volunteer object. It considers the
 	   * input user to activate Member and Follower. 
 	   * 
 	   * @param 
-	   * @return  NgoInfo object
+	   * @return  VolunteerInfo object
 	   */
-	public static NgoInfo toInfo(Ngo o, String userUniqueId) {
+	public static VolunteerInfo toInfo(Volunteer o, String userUniqueId) {
 		if (o == null)
 			return null;
 
-		NgoInfo oInfo = Ngo.toInfo(o);
+		VolunteerInfo oInfo = Volunteer.toInfo(o);
 		
 		//oInfo.setPoint(o.getLatitude(),o.getLongitude());
 		if (o.isMember(userUniqueId)) oInfo.activateMember();
@@ -221,21 +195,21 @@ public class Ngo implements Serializable, Cacheable {
 	}
 
 	  /**
-	   * Retrieve the user from the database if it exists an object with the same uniqueId as the Ngo or create a new object
-	   * otherwise with the information of the input Ngo.
+	   * Retrieve the user from the database if it exists an object with the same uniqueId as the Volunteer or create a new object
+	   * otherwise with the information of the input Volunteer.
 	   *  
-	   * @param  Requested Ngo
-	   * @return  Ngo object that was persisted
+	   * @param  Requested Volunteer
+	   * @return  Volunteer object that was persisted
 	   */
-	  public static Ngo findOrCreateNgo(Ngo ngo) {
+	  public static Volunteer findOrCreateVolunteer(Volunteer volunteer) {
 	
 	    PersistenceManager pm = PMFactory.getTxnPm();
 	    Transaction tx = null;
-	    Ngo oneResult = null, detached = null;
+	    Volunteer oneResult = null, detached = null;
 	
-	    String uniqueId = ngo.getUniqueId();
+	    String uniqueId = volunteer.getUniqueId();
 	
-	    Query q = pm.newQuery(Ngo.class, "uniqueId == :uniqueId");
+	    Query q = pm.newQuery(Volunteer.class, "uniqueId == :uniqueId");
 	    q.setUnique(true);
 	
 	    //boolean persistConfirmationBadge = false;
@@ -246,20 +220,20 @@ public class Ngo implements Serializable, Cacheable {
 	      for (int i = 0; i < NUM_RETRIES; i++) {
 	        tx = pm.currentTransaction();
 	        tx.begin();
-	        if (uniqueId != null) oneResult = (Ngo) q.execute(uniqueId);
+	        if (uniqueId != null) oneResult = (Volunteer) q.execute(uniqueId);
 	        if (oneResult != null) {
 	          log.info("User uniqueId already exists: " + uniqueId);
 	          detached = pm.detachCopy(oneResult);
 	        } else {
-	          log.info("Ngo " + uniqueId + " does not exist, creating...");
+	          log.info("Volunteer " + uniqueId + " does not exist, creating...");
 	          /*
-	          confB = new ConfirmationBadge(ngo);
+	          confB = new ConfirmationBadge(volunteer);
 	          persistConfirmationBadge = true;
 	          */
-	          pm.makePersistent(ngo);
+	          pm.makePersistent(volunteer);
 	          log.info("Sending email...");
-	          EmailHelper.sendMail(ngo);
-	          detached = pm.detachCopy(ngo);
+	          EmailHelper.sendMail(volunteer);
+	          detached = pm.detachCopy(volunteer);
 	        }
 	        try {
 	          tx.commit();
@@ -274,8 +248,8 @@ public class Ngo implements Serializable, Cacheable {
 	    } catch (JDOUserException e){
 	          log.info("JDOUserException: UserProfile table is empty");
 	          // Create friends from Google+
-	          pm.makePersistent(ngo);
-	          detached = pm.detachCopy(ngo);	    	
+	          pm.makePersistent(volunteer);
+	          detached = pm.detachCopy(volunteer);	    	
 		        try {
 			          tx.commit();
 			        }
@@ -294,40 +268,16 @@ public class Ngo implements Serializable, Cacheable {
 	    
 	    /*
 	    if (persistConfirmationBadge) {
-	    	//ConfirmationBadge newConfB = ConfirmationBadge.findOrCreateNgo(confB);
-	    	ConfirmationBadge.findOrCreateNgo(confB);
+	    	//ConfirmationBadge newConfB = ConfirmationBadge.findOrCreateVolunteer(confB);
+	    	ConfirmationBadge.findOrCreateVolunteer(confB);
 	    }*/
 	    return detached;
 	  }
 	
 
-	  /**
-	   * Confirms the ConfirmationBadge of the Ngo (this) by a user representing the input Ngo (input)
-	   *  
-	   * @param  User profile and Ngo
-	   * @return  
-	   */
-	public void addConfirmation(UserProfile user, Ngo ngo){
-		if (!user.isMember(ngo)){
-			log.info("User is not a member of the NGO");
-			return;
-		}
-		this.getConfirmationBadge().addConfirmation(user, ngo);
-	}
 
 	  /**
-	   * Confirms the ConfirmationBadge of the Ngo by the current user. In principle, 
-	   * ConfirmationBadge.addConfirmation will check the user preferences to validate the Ngo badge.
-	   *  
-	   * @param  User profile
-	   * @return  
-	   */
-	public void addConfirmation(UserProfile user){
-		this.getConfirmationBadge().addConfirmation(user);
-	}
-
-	  /**
-	   * Check if the input user is a member of the Ngo
+	   * Check if the input user is a member of the Volunteer
 	   *  
 	   * @param  User profile uniqueId
 	   * @return  true if member or false if not.
@@ -337,7 +287,7 @@ public class Ngo implements Serializable, Cacheable {
 	}
 
 	  /**
-	   * Check if the input user is a follower of the Ngo
+	   * Check if the input user is a follower of the Volunteer
 	   *  
 	   * @param  User profile uniqueId
 	   * @return  true if follower or false if not.
@@ -347,13 +297,13 @@ public class Ngo implements Serializable, Cacheable {
 	}
 
 	  /**
-	   * Check if the organization is confirmed by the input user representing a specific NGO
+	   * Check if the organization is confirmed by the input user representing a specific Volunteer
 	   *  
-	   * @param  User profile and Ngo that represents
+	   * @param  User profile and Volunteer that represents
 	   * @return  true if confirmed or false if not.
 	   */
-	public boolean isConfirmed(String userId, Ngo ngo){
-		return true;  //this.getConfirmationBadge().isConfirmed(userId, ngo);
+	public boolean isConfirmed(String userId, Volunteer volunteer){
+		return true;  //this.getConfirmationBadge().isConfirmed(userId, volunteer);
 	}
 
 	  /**
@@ -387,123 +337,112 @@ public class Ngo implements Serializable, Cacheable {
 	}
 
 	  /**
-	   * Get the Id of the NGO stored in this object. This id correspond to the index used by the database
+	   * Get the Id of the Volunteer stored in this object. This id correspond to the index used by the database
 	   *  
 	   * @param  
-	   * @return  Id of NGO (different from uniqueId)
+	   * @return  Id of Volunteer (different from uniqueId)
 	   */
 	public Long getId() {
 		return this.id;
 	}
 
 	  /**
-	   * Get the uniqueId of the NGO stored in this object. This id is a unique identifier of the object
-	   * and will be used in other classes to refer to a specific Ngo.
+	   * Get the uniqueId of the Volunteer stored in this object. This id is a unique identifier of the object
+	   * and will be used in other classes to refer to a specific Volunteer.
 	   *  
 	   * @param  
-	   * @return  Unique Id of NGO 
+	   * @return  Unique Id of Volunteer 
 	   */
 	public String getUniqueId() {
 		return uniqueId;
 	}
 	
 	  /**
-	   * Get the Name of the NGO stored in this object
+	   * Get the Name of the Volunteer stored in this object
 	   *  
 	   * @param  
-	   * @return  Name of NGO
+	   * @return  Name of Volunteer
 	   */
 	public String getName() {
 		return this.name;
 	}
 
 	  /**
-	   * Get the Description of the NGO stored in this object
+	   * Get the Description of the Volunteer stored in this object
 	   *  
 	   * @param  
-	   * @return  Description of NGO
+	   * @return  Description of Volunteer
 	   */
 	public String getDescription() {
 		return this.description;
 	}
 
 	  /**
-	   * Get the Address of the NGO stored in this object
+	   * Get the Address of the Volunteer stored in this object
 	   *  
 	   * @param  
-	   * @return  Address of NGO
+	   * @return  Address of Volunteer
 	   */
 	public String getAddress() {
 		return this.address;
 	}
 
 	  /**
-	   * Get the Latitude of the location of the NGO stored in this object
+	   * Get the Latitude of the location of the Volunteer stored in this object
 	   *  
 	   * @param  
-	   * @return  Latitude of NGO
+	   * @return  Latitude of Volunteer
 	   */
 	public double getLatitude() {
 		return this.lat;
 	}
 	
 	  /**
-	   * Get the Longitude of the location of the NGO stored in this object
+	   * Get the Longitude of the location of the Volunteer stored in this object
 	   *  
 	   * @param  
-	   * @return  Longitude of NGO
+	   * @return  Longitude of Volunteer
 	   */
 	public double getLongitude() {
 		return this.lng;
 	}
 
 	  /**
-	   * Get the Phone of the NGO stored in this object
+	   * Get the Phone of the Volunteer stored in this object
 	   *  
 	   * @param  
-	   * @return  Phone of NGO
+	   * @return  Phone of Volunteer
 	   */
 	public String getPhone() {
 		return this.phone;
 	}
 
 	  /**
-	   * Get the email of the NGO stored in this object
+	   * Get the email of the Volunteer stored in this object
 	   *  
 	   * @param  
-	   * @return  Email of NGO
+	   * @return  Email of Volunteer
 	   */
 	public String getEmail() {
 		return this.email;
 	}
 
 	  /**
-	   * Get the website of the NGO stored in this object
+	   * Get the website of the Volunteer stored in this object
 	   *  
 	   * @param  
-	   * @return  Website of NGO
+	   * @return  Website of Volunteer
 	   */
 	public String getWebsite() {
 		return this.website;
 	}
 
-	  /**
-	   * Get the confirmation badge of the NGO stored in this object. Since the object stores
-	   * the uniqueId it will call findNgo to retrieve the confirmation badge itself. It is assumed
-	   * that all Ngo has a confirmation badge that was assigned when it was made persistent.
-	   *  
-	   * @param  
-	   * @return  ConfirmationBadge of NGO
-	   */	
-	public ConfirmationBadge getConfirmationBadge(){
-		return ConfirmationBadge.findNgo(this);
-	}
 
 	  /**
-	   * Get the id of the confirmation badge of the NGO stored in this object
+	   * Get the id of the confirmation badge of the Volunteer stored in this object
 	   *  
 	   * @param  
-	   * @return  Id of confirmation badge of NGO
+	   * @return  Id of confirmation badge of Volunteer
 	   */
 	/*
 	public String getConfirmationBadgeId(){
@@ -544,9 +483,9 @@ public class Ngo implements Serializable, Cacheable {
 	}*/
 	
 	  /**
-	   * Set the Name of the NGO.
+	   * Set the Name of the Volunteer.
 	   *  
-	   * @param  Name of NGO
+	   * @param  Name of Volunteer
 	   * @return  
 	   */
 	public void setName(String name) {
@@ -554,9 +493,9 @@ public class Ngo implements Serializable, Cacheable {
 	}
 
 	  /**
-	   * Set the description of the NGO.
+	   * Set the description of the Volunteer.
 	   *  
-	   * @param  Description of NGO
+	   * @param  Description of Volunteer
 	   * @return  
 	   */
 	public void setDescription(String description) {
@@ -564,9 +503,9 @@ public class Ngo implements Serializable, Cacheable {
 	}
 
 	  /**
-	   * Set the address of the NGO.
+	   * Set the address of the Volunteer.
 	   *  
-	   * @param  Address of NGO
+	   * @param  Address of Volunteer
 	   * @return  
 	   */
 	public void setAddress(String address) {
@@ -574,9 +513,9 @@ public class Ngo implements Serializable, Cacheable {
 	}
 
 	  /**
-	   * Set the latitude of the NGO.
+	   * Set the latitude of the Volunteer.
 	   *  
-	   * @param  Latitude of NGO
+	   * @param  Latitude of Volunteer
 	   * @return  
 	   */
 	public void setLatitude(double lat) {
@@ -584,9 +523,9 @@ public class Ngo implements Serializable, Cacheable {
 	}
 
 	  /**
-	   * Set the longitude of the NGO.
+	   * Set the longitude of the Volunteer.
 	   *  
-	   * @param  Longitude of NGO
+	   * @param  Longitude of Volunteer
 	   * @return  
 	   */
 	public void setLongitude(double lng) {
@@ -594,9 +533,9 @@ public class Ngo implements Serializable, Cacheable {
 	}
 
 	  /**
-	   * Set the phone of the NGO.
+	   * Set the phone of the Volunteer.
 	   *  
-	   * @param  Phone of NGO
+	   * @param  Phone of Volunteer
 	   * @return  
 	   */
 	public void setPhone(String phone) {
@@ -604,9 +543,9 @@ public class Ngo implements Serializable, Cacheable {
 	}
 
 	  /**
-	   * Set the email of the NGO.
+	   * Set the email of the Volunteer.
 	   *  
-	   * @param  Email of NGO
+	   * @param  Email of Volunteer
 	   * @return  
 	   */
 	public void setEmail(String email) {
@@ -614,9 +553,9 @@ public class Ngo implements Serializable, Cacheable {
 	}
 
 	  /**
-	   * Set the website of the NGO.
+	   * Set the website of the Volunteer.
 	   *  
-	   * @param  Website of NGO
+	   * @param  Website of Volunteer
 	   * @return  
 	   */
 	public void setWebsite(String website) {
@@ -624,9 +563,9 @@ public class Ngo implements Serializable, Cacheable {
 	}
 
 	  /**
-	   * Set the id of the NGO. This id is the index in the database. Do we want to be able to set it?
+	   * Set the id of the Volunteer. This id is the index in the database. Do we want to be able to set it?
 	   *  
-	   * @param  Id of NGO
+	   * @param  Id of Volunteer
 	   * @return  
 	   */
 	public void setId(Long id) {
@@ -634,9 +573,9 @@ public class Ngo implements Serializable, Cacheable {
 	}
 
 	  /**
-	   * Set the confirmation badge id of the NGO. Do we really want to be able to modify the id of the confirmation badge?
+	   * Set the confirmation badge id of the Volunteer. Do we really want to be able to modify the id of the confirmation badge?
 	   *  
-	   * @param  UniqueId of NGO confirmation badge
+	   * @param  UniqueId of Volunteer confirmation badge
 	   * @return  
 	   */
 	/*
@@ -645,9 +584,9 @@ public class Ngo implements Serializable, Cacheable {
 	}*/
 
 	  /**
-	   * Set unique id of the NGO. 
+	   * Set unique id of the Volunteer. 
 	   *  
-	   * @param  UniqueId of NGO 
+	   * @param  UniqueId of Volunteer 
 	   * @return  
 	   */
 	/*
@@ -656,7 +595,7 @@ public class Ngo implements Serializable, Cacheable {
 	}*/
 
 	  /**
-	   * Used when a user want to be part of the members of the NGO. The user will be added to the 
+	   * Used when a user want to be part of the members of the Volunteer. The user will be added to the 
 	   * member request list.
 	   *  
 	   * @param  UniqueId of the user requesting membership 
@@ -672,7 +611,7 @@ public class Ngo implements Serializable, Cacheable {
 	}*/
 
 	  /**
-	   * Used to add a member to the NGO. The user will be added to the member list of the object.
+	   * Used to add a member to the Volunteer. The user will be added to the member list of the object.
 	   * We should probably check if the logged in user is a member that has permissions to do so.
 	   * Also, we should remove the added member from the request member list if existing.
 	   *  
@@ -689,7 +628,7 @@ public class Ngo implements Serializable, Cacheable {
 	}*/
 
 	  /**
-	   * Used to add as follower of the NGO. 
+	   * Used to add as follower of the Volunteer. 
 	   *  
 	   * @param  UniqueId of the user added as a follower.
 	   * @return  

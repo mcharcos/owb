@@ -7,6 +7,7 @@ import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.MenuBar;
 import com.google.gwt.user.client.ui.MenuItem;
 import com.google.gwt.user.client.ui.Widget;
+import com.owb.playhelp.client.event.volunteer.ShowAddVolunteerEvent;
 import com.owb.playhelp.client.event.web.ShowWebEvent;
 import com.owb.playhelp.client.event.ngo.ShowPopupAddNgoEvent;
 import com.owb.playhelp.client.event.orphanage.ShowPopupAddOrphanageEvent;
@@ -249,7 +250,7 @@ public class WebMenuPresenter  implements Presenter {
 		this.display.getjoinOWBItem().setCommand(new Command() {
 			@Override
 			public void execute() {
-				eventBus.fireEvent(new ShowWebEvent("getjoinOWBItem"));
+				eventBus.fireEvent(new ShowAddVolunteerEvent());
 			}
 		});
 		this.display.getjoinNetworkItem().setCommand(new Command() {

@@ -24,7 +24,7 @@
 	    				<table border="5px solid red" align="left">
 						    <tr>
 						        <td width="50">
-								<g:Image url='{res.whatdowedoWebPic.getSafeUri.asString}' pixelSize="300,300"/>
+								<g:Image url='{res.contextWebPic.getSafeUri.asString}' pixelSize="300,240"/>
 							    </td>
 						        <td width="250">
 								Abandoned children are a vulnerable population who experience a difficult life. 

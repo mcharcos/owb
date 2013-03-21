@@ -91,7 +91,7 @@ public interface Resources extends ClientBundle {
     @Source("NgoMapIcon.gif")
     ImageResource orphanageMapIcon();
     
-    // Webpage resources
+    // Webpage resources "what do we do"
     @Source("webpics/clothing.jpg")
     ImageResource clothingWebPic();
     @Source("webpics/compassionate.jpg")
@@ -126,5 +126,18 @@ public interface Resources extends ClientBundle {
     ImageResource shelterWebPic();
     @Source("webpics/whatdowedo.jpg")
     ImageResource whatdowedoWebPic();
+    
+    // Webpage resources "about us"
+    @Source("webpics/aboutus.jpg")
+    ImageResource aboutusWebPic();
+    @Source("webpics/context.jpg")
+    ImageResource contextWebPic();
+    @Source("webpics/mission.jpg")
+    ImageResource missionWebPic();
+    @Source("webpics/view.jpg")
+    ImageResource viewWebPic();
+    @Source("webpics/volunteer.jpg")
+    ImageResource volunteerWebPic();
+    
     
 }

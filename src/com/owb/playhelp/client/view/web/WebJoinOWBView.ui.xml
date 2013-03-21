@@ -1,7 +1,7 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
 	xmlns:g="urn:import:com.google.gwt.user.client.ui">
-	<ui:style>
+	<ui:style src="../../resources/GlobalStyles.css" >
 		.important {
 			font-weight: bold;
 		}
@@ -13,12 +13,60 @@
 	<g:HTMLPanel>
 	   <div class="{style.description}">
 	    <h1>JOIN OWB</h1>
-		<table align="center">
-    		<tr>
-		        <td width="570">
-			    Please contact us at <b>owb@orphanagewithoutborders.org</b> if you are interested about our 
-			    projects to learn about our current opportunities.
-				</td></tr></table>
+		<div class="{style.formTitle}">Volunteer Information</div>
+			<div class="{style.formwrapper}">
+				<div class="{style.formlabel}">
+					<g:Label >Name</g:Label>
+				</div>
+				<div class="{style.formfield}">
+					<g:TextBox ui:field='nameField' width="25em"></g:TextBox>
+				</div>
+			</div>
+			<div class="{style.formwrapper}">
+				<div class="{style.formlabel}">
+					<g:Label >Interests:</g:Label>
+				</div>
+				<div class="{style.formfield}">
+					<g:TextArea ui:field='descField' width="25em" height="15em"></g:TextArea>
+				</div>
+			</div>
+			<div class="{style.formwrapper}">
+				<div class="{style.formlabel}">
+					<g:Label >Address</g:Label>
+				</div>
+				<div class="{style.formfield}">
+					<g:TextBox ui:field='addressField' width="25em"></g:TextBox>
+				</div>
+			</div>
+			<div class="{style.formwrapper}">
+				<div class="{style.formlabel}">
+					<g:Label >Phone</g:Label>
+				</div>
+				<div class="{style.formfield}">
+					<g:TextBox ui:field='phoneField' width="25em"></g:TextBox>
+				</div>
+			</div>
+			<div class="{style.formwrapper}">
+				<div class="{style.formlabel}">
+					<g:Label >Email</g:Label>
+				</div>
+				<div class="{style.formfield}">
+					<g:TextBox ui:field='emailField' width="25em"></g:TextBox>
+				</div>
+			</div>
+			<div class="{style.formwrapper}">
+				<div class="{style.formlabel}">
+					<g:Label >Website</g:Label>
+				</div>
+				<div class="{style.formfield}">
+					<g:TextBox ui:field='webField' width="25em"></g:TextBox>
+				</div>
+			</div>
+		<div class='{style.button}'>
+			<g:Anchor href='javascript:;' ui:field='saveBut'>Save</g:Anchor>
+			<g:Anchor href='javascript:;' ui:field='cancelBut'>Cancel</g:Anchor>
+		</div>
+		<div ui:field='nameDiv' />
 		</div>
 	</g:HTMLPanel>
 </ui:UiBinder> 
