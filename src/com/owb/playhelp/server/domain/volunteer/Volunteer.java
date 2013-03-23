@@ -23,6 +23,7 @@ import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
+import com.google.appengine.api.datastore.Text;
 import com.owb.playhelp.server.domain.UserProfile;
 import com.owb.playhelp.server.PMFactory;
 import com.owb.playhelp.server.domain.ConfirmationBadge;
@@ -58,7 +59,7 @@ public class Volunteer implements Serializable, Cacheable {
 	private String name;
 
 	@Persistent
-	private String description;
+	private Text description;
 	
 	@Persistent
 	private String address;
@@ -159,7 +160,7 @@ public class Volunteer implements Serializable, Cacheable {
 		if (o == null)
 			return null;
 
-		VolunteerInfo oInfo = new VolunteerInfo(o.getName(), o.getDescription(), o.getAddress(),o.getLatitude(),o.getLongitude(),o.getPhone(), o.getEmail(), o.getWebsite());
+		VolunteerInfo oInfo = new VolunteerInfo(o.getName(), o.getDescription().toString(), o.getAddress(),o.getLatitude(),o.getLongitude(),o.getPhone(), o.getEmail(), o.getWebsite());
 		oInfo.setUniqueId(o.getUniqueId());
 		//oInfo.setPoint(o.getLatitude(),o.getLongitude());
 		oInfo.deactivateMember();
@@ -373,7 +374,7 @@ public class Volunteer implements Serializable, Cacheable {
 	   * @param  
 	   * @return  Description of Volunteer
 	   */
-	public String getDescription() {
+	public Text getDescription() {
 		return this.description;
 	}
 
@@ -499,7 +500,7 @@ public class Volunteer implements Serializable, Cacheable {
 	   * @return  
 	   */
 	public void setDescription(String description) {
-		this.description = description;
+		this.description = new Text(description);
 	}
 
 	  /**

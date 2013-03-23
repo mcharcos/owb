@@ -3,6 +3,8 @@
  */
 package com.owb.playhelp.client.presenter.volunteer;
 
+import java.util.ArrayList;
+
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.HasClickHandlers;
 import com.google.gwt.event.dom.client.ClickHandler;
@@ -10,6 +12,7 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
+import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.HasValue;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.Widget;
@@ -33,8 +36,9 @@ public class AddVolunteerPresenter implements Presenter {
 		HasValue<String> getPhoneField();
 		HasValue<String> getEmailField();
 		HasValue<String> getWebField();
-	}
-
+		ArrayList<CheckBox> getCheckBoxList();
+	} 
+	  
 	private final SimpleEventBus eventBus;
 	private final Display display;
 	private VolunteerInfo volunteer;
@@ -92,21 +96,37 @@ public class AddVolunteerPresenter implements Presenter {
 		  double lat = -1.0;
 		  double lng = -1.0;
 		  //SolveAddress();
+
+		  // Now add the descriptions and the questions together
+		  String description = display.getDescField().getValue().trim();
+		  for(CheckBox box : display.getCheckBoxList()) {
+			  if (box != null){
+				// if the box was checked
+				  if (box.getValue()) {
+					  description = description + " || Yes ";
+				  } else {
+					  description = description + " || No ";
+				  }
+				  description = description + box.getText();
+			  }
+		  }
+		  
 		  if (volunteer == null){
 			  volunteer = new VolunteerInfo(display.getNameField().getValue().trim(),
-					  	display.getDescField().getValue().trim(),
+					  	description,
 					  	display.getAddressField().getValue().trim(), lat, lng, 
 					  	display.getPhoneField().getValue().trim(),
 					  	display.getEmailField().getValue().trim(),
 					  	display.getWebField().getValue().trim());
 		  } else {
 			  volunteer.setName(display.getNameField().getValue().trim());
-			  volunteer.setDescription(display.getDescField().getValue().trim());
 			  volunteer.setAddress(display.getAddressField().getValue().trim(),lat,lng);
 			  volunteer.setPhone(display.getPhoneField().getValue().trim());
 			  volunteer.setEmail(display.getEmailField().getValue().trim());
 			  volunteer.setWebsite(display.getWebField().getValue().trim());
+			  volunteer.setDescription(description);
 		  }
+		  
 
 	  }
 	  

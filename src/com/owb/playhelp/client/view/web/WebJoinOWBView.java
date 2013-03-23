@@ -1,5 +1,8 @@
 package com.owb.playhelp.client.view.web;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.HasClickHandlers;
@@ -9,6 +12,7 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HasText;
 import com.google.gwt.user.client.ui.HasValue;
@@ -37,18 +41,24 @@ public class WebJoinOWBView extends Composite implements AddVolunteerPresenter.D
 
 	@UiField TextBox nameField,addressField,phoneField,emailField,webField;
 	@UiField TextArea descField;
+	@UiField CheckBox question1, question2, question3, question4, question5, question6, question7, question8, question9, question10;
 	@UiField
 	Anchor saveBut;
 	@UiField
 	Anchor cancelBut;
 
+	private ArrayList<CheckBox> checkboxList;
+	
+	
 	  @Override
 	  public Widget asWidget() {
+		  checkboxList = new ArrayList<CheckBox>(
+					Arrays.asList(question1,question2,question3,question4,question5,question6,question7,question8,question9,question10));
 	    return this;
 	  }
 
 	  public void go(HasWidgets container) {
-		
+		  
 	    
 	  }
 
@@ -84,6 +94,10 @@ public class WebJoinOWBView extends Composite implements AddVolunteerPresenter.D
 	  @Override
 	  public HasValue<String> getWebField(){
 		  return webField;
+	  }
+	  @Override
+	  public ArrayList<CheckBox> getCheckBoxList(){
+		  return checkboxList;
 	  }
 
 

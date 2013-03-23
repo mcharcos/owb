@@ -13,7 +13,7 @@
 	<g:HTMLPanel>
 	   <div class="{style.description}">
 	    <h1>JOIN OWB</h1>
-		<div class="{style.formTitle}">Volunteer Information</div>
+		<div class="{style.formTitle}">Required Information</div>
 			<div class="{style.formwrapper}">
 				<div class="{style.formlabel}">
 					<g:Label >Name</g:Label>
@@ -24,12 +24,37 @@
 			</div>
 			<div class="{style.formwrapper}">
 				<div class="{style.formlabel}">
-					<g:Label >Interests:</g:Label>
+					<g:Label >Email</g:Label>
+				</div>
+				<div class="{style.formfield}">
+					<g:TextBox ui:field='emailField' width="25em"></g:TextBox>
+				</div>
+			</div>
+			
+		<div class="{style.formTitle}">Which activities would you like to be involved?</div>
+		<g:VerticalPanel>
+			<g:CheckBox ui:field='question1'>Website development (programming)</g:CheckBox>
+			<g:CheckBox ui:field='question2'>Website development (programming)</g:CheckBox>
+			<g:CheckBox ui:field='question3'>Website development (design)</g:CheckBox>
+			<g:CheckBox ui:field='question4'>Fundraising</g:CheckBox>
+			<g:CheckBox ui:field='question5'>Researching the needs of orphans and street children</g:CheckBox>
+			<g:CheckBox ui:field='question6'>Researching existing organizations that target a specific need</g:CheckBox>
+			<g:CheckBox ui:field='question7'>Researching existing organizations in a particular location</g:CheckBox>
+			<g:CheckBox ui:field='question8'>Recruiting more volunteers to help us</g:CheckBox>
+			<g:CheckBox ui:field='question9'>Gathering and creating the documentation needed for the 501(c)3 registration</g:CheckBox>
+			<g:CheckBox ui:field='question10'>Developing an improvement plan for an orphanage </g:CheckBox>
+		</g:VerticalPanel>
+			<br></br>
+			<div class="{style.formwrapper}">
+				<div class="{style.formlabel}">
+					<g:Label >Explain further your interests:</g:Label>
 				</div>
 				<div class="{style.formfield}">
 					<g:TextArea ui:field='descField' width="25em" height="15em"></g:TextArea>
 				</div>
 			</div>
+			
+		<div class="{style.formTitle}">Additional Information</div>
 			<div class="{style.formwrapper}">
 				<div class="{style.formlabel}">
 					<g:Label >Address</g:Label>
@@ -44,14 +69,6 @@
 				</div>
 				<div class="{style.formfield}">
 					<g:TextBox ui:field='phoneField' width="25em"></g:TextBox>
-				</div>
-			</div>
-			<div class="{style.formwrapper}">
-				<div class="{style.formlabel}">
-					<g:Label >Email</g:Label>
-				</div>
-				<div class="{style.formfield}">
-					<g:TextBox ui:field='emailField' width="25em"></g:TextBox>
 				</div>
 			</div>
 			<div class="{style.formwrapper}">
