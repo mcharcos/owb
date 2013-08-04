@@ -4,6 +4,8 @@
 package com.owb.playhelp.client.presenter.volunteer;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.HasClickHandlers;
@@ -63,6 +65,7 @@ public class AddVolunteerPresenter implements Presenter {
 	public void bind() {
 	    this.display.getSaveBut().addClickHandler(new ClickHandler() {
 	        public void onClick(ClickEvent event) {
+	        	if (!checkRequiredFields()) return;
 	        	updateVolunteer();
 	        	doSave();
 	        	eventBus.fireEvent(new AddOrphanageUpdateEvent());
@@ -148,6 +151,30 @@ public class AddVolunteerPresenter implements Presenter {
 	        Window.alert("Error retrieving volunteer...");
 	      }
 	    }.retry(3);
+	  }
+	  
+	  private boolean checkRequiredFields(){
+		  Set<String> missedKeys = new HashSet<String>(); 
+		  if (display.getNameField().getValue().trim() == ""){
+			  missedKeys.add("Name");
+		  }
+		  if (display.getEmailField().getValue().trim() == ""){
+			  missedKeys.add("Email");
+		  }
+		  if (display.getAddressField().getValue().trim() == ""){
+			  missedKeys.add("Address");
+		  }
+		  
+		  if (missedKeys.isEmpty()) return true;
+		  
+		  String msg = "The following fields are required: ";
+		  for (String keys:missedKeys) {
+			  msg = msg+"\n    - "+keys;
+		  }
+		  Window.alert(msg);
+		  
+		  return false;
+		  
 	  }
 	  
 }

@@ -16,7 +16,7 @@
 		<div class="{style.formTitle}">Required Information</div>
 			<div class="{style.formwrapper}">
 				<div class="{style.formlabel}">
-					<g:Label >Name</g:Label>
+					<g:Label >Name *</g:Label>
 				</div>
 				<div class="{style.formfield}">
 					<g:TextBox ui:field='nameField' width="25em"></g:TextBox>
@@ -24,10 +24,18 @@
 			</div>
 			<div class="{style.formwrapper}">
 				<div class="{style.formlabel}">
-					<g:Label >Email</g:Label>
+					<g:Label >Email *</g:Label>
 				</div>
 				<div class="{style.formfield}">
 					<g:TextBox ui:field='emailField' width="25em"></g:TextBox>
+				</div>
+			</div>
+			<div class="{style.formwrapper}">
+				<div class="{style.formlabel}">
+					<g:Label >Address * (City/Country)</g:Label>
+				</div>
+				<div class="{style.formfield}">
+					<g:TextBox ui:field='addressField' width="25em"></g:TextBox>
 				</div>
 			</div>
 			
@@ -55,14 +63,6 @@
 			</div>
 			
 		<div class="{style.formTitle}">Additional Information</div>
-			<div class="{style.formwrapper}">
-				<div class="{style.formlabel}">
-					<g:Label >Address</g:Label>
-				</div>
-				<div class="{style.formfield}">
-					<g:TextBox ui:field='addressField' width="25em"></g:TextBox>
-				</div>
-			</div>
 			<div class="{style.formwrapper}">
 				<div class="{style.formlabel}">
 					<g:Label >Phone</g:Label>

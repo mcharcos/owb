@@ -29,6 +29,7 @@ import com.owb.playhelp.client.presenter.user.UserPreferenceEditPresenter;
 import com.owb.playhelp.client.presenter.volunteer.AddVolunteerPresenter;
 import com.owb.playhelp.client.presenter.web.ContactHomePresenter;
 import com.owb.playhelp.client.presenter.web.WebMenuPresenter;
+import com.owb.playhelp.client.presenter.web.WebPagesPresenter;
 import com.owb.playhelp.client.service.project.ProjectServiceAsync;
 import com.owb.playhelp.client.service.volunteer.VolunteerServiceAsync;
 import com.owb.playhelp.client.service.UserServiceAsync;
@@ -517,13 +518,15 @@ public class PathGuide implements ValueChangeHandler<String>  {
 				if (token.equals("webgetcontextItem")) {
 					webMain.getIndexField().add(new WebAboutUsIndexView());
 					Owb.get().getMainPanel().add(webMain);
-					webMain.getAreaField().add((new WebContextView()).asWidget());
+					WebPagesPresenter webpagesPresenter = new WebPagesPresenter(new WebContextView());
+					webpagesPresenter.go(webMain.getAreaField());
 		        return;
 		        } 
 				if (token.equals("webgetourMissionItem")) {
 					webMain.getIndexField().add(new WebAboutUsIndexView());
 					Owb.get().getMainPanel().add(webMain);
-					webMain.getAreaField().add((new WebOurMissionView()).asWidget());
+					WebPagesPresenter webpagesPresenter = new WebPagesPresenter(new WebOurMissionView());
+					webpagesPresenter.go(webMain.getAreaField());
 		        return;
 		        } 
 				if (token.equals("webgetourViewItem")) {

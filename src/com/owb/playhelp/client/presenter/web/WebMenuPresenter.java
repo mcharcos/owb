@@ -1,9 +1,13 @@
 package com.owb.playhelp.client.presenter.web;
 
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.shared.SimpleEventBus;
+import com.google.gwt.safehtml.shared.SafeHtml;
 import com.google.gwt.user.client.Command;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.MenuBar;
 import com.google.gwt.user.client.ui.MenuItem;
 import com.google.gwt.user.client.ui.Widget;
@@ -12,6 +16,7 @@ import com.owb.playhelp.client.event.web.ShowWebEvent;
 import com.owb.playhelp.client.event.ngo.ShowPopupAddNgoEvent;
 import com.owb.playhelp.client.event.orphanage.ShowPopupAddOrphanageEvent;
 import com.owb.playhelp.client.presenter.Presenter;
+import com.owb.playhelp.client.resources.Resources;
 import com.owb.playhelp.client.helper.ClickPoint;
 
 
@@ -267,10 +272,21 @@ public class WebMenuPresenter  implements Presenter {
 		});
 	}
 
+	final Image icon = new Image(Resources.INSTANCE.progressBar());
+	final String image = "<img src='"+icon.getUrl() + "' height='25px' width='25px'/>";
+
+    SafeHtml addActivityImagePath = new SafeHtml() {
+        @Override
+        public String asString() {
+            return image;
+        }
+    };
 	public void go(final HasWidgets container) {
 		container.clear();
 		container.add(display.asWidget());
 		WebMenuPresenter.this.display.getmainMenu().setAutoOpen(true);
+		
+		//WebMenuPresenter.this.display.getmainMenu().addItem(new MenuItem(addActivityImagePath,WebMenuPresenter.this.display.getmainMenu()));
 		bind();
 	}
 	

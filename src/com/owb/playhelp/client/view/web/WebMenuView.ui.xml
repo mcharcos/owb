@@ -7,21 +7,14 @@
     <ui:with field='res' type='com.owb.playhelp.client.resources.Resources'/>
     
 	<ui:style>
-		.titleMenu {
-			font-weight					:	bold;
-			text-align					:  	center;
-			color						:	red;
-            font-family                 :   sans-serif, 'Comic Sans MS';
-			font-style					:	italic;
-		}
-
 		.gwt-MenuBar
 		{
 		    margin                      :   0 auto;
 		    padding                     :   0px;
 		    width    					: 	100%;
 			text-align					:  	center;
-			font-style					:	italic;
+			font-style					:	bold;
+            font-family: tahoma;
 		}
 		.gwt-MenuBar table
 		{
@@ -35,11 +28,13 @@
 		    width    					: 	100%;
 			text-align					:  	center;
 			font-style					:	italic;
+            font-family: tahoma;
 		}
 		.gwt-MenuBar .gwt-MenuItem .gwt-MenuBar table
 		{
 		    background-color            :   #c5f935;
 			border						:	0px;
+            font-family: tahoma;
 		}
 		.gwt-MenuBar .gwt-MenuItem
 		{
@@ -50,18 +45,19 @@
 		    font-size                   :   medium;
 			height						:	35px;
 			width						:	20px;
-            font-family                 :   'Comic Sans MS';
             font-weight 				:	bold;
 		    background-color            :   #c5f935;
 		    padding                     :   0px;
 			text-color					:	red;
 			text-shadow					: 	none;
+            font-family: tahoma;
 		}
 		.gwt-MenuBar .gwt-MenuItem-selected
 		{
 		    background-color            :   #c5f935;
 		    font-size                   :   medium;
 			font-color					:	red;
+            font-family: tahoma;
 		}
 		.backgroundall {  
 	        background-color: #c5f935;
@@ -83,16 +79,17 @@ font-size: 16px;
 background: url(images/bluebar-bg-selected.png) no-repeat 50% 100%;
 }
 -->
+	
 	<g:HTMLPanel>
-		<table>
-		<tr>
 	  		<div class='{style.gwt-MenuBar}'>
 	  		<g:MenuBar ui:field='mainMenu' vertical="false">
-				<g:MenuItem ui:field='homeItem'><font color="#ab0fc8"><b><i>Home</i></b></font></g:MenuItem>
-				<g:MenuItem ui:field='aboutUsItem'><font color="#ab0fc8"><b><i>About_Us</i></b></font>
+				<g:MenuItem ui:field='homeItem'>
+				  <font color="#ab0fc8"><b><i>Home</i></b></font> 
+				</g:MenuItem>
+				<g:MenuItem ui:field='aboutUsItem'><img src='{res.menuAboutIcon.getSafeUri.asString}' width='100px' height='40px' /> 
 				    <g:MenuBar vertical="true">
       					<g:MenuItem ui:field='contextItem'><font color="#ab0fc8"><b><i>Context</i></b></font></g:MenuItem>
-      					<g:MenuItem ui:field='ourMissionItem'><font color="#ab0fc8"><b><i>Our_Mission</i></b></font></g:MenuItem>
+      					<g:MenuItem ui:field='ourMissionItem'><img src='{res.menuMissionIcon.getSafeUri.asString}'  /> </g:MenuItem>
       					<g:MenuItem ui:field='ourViewItem'><font color="#ab0fc8"><b><i>Our_View</i></b></font></g:MenuItem>
       					<g:MenuItem ui:field='volunteerOpportunitiesItem'><font color="#ab0fc8"><b><i>Volunteer_Opportunities</i></b></font></g:MenuItem>
      				</g:MenuBar>
@@ -151,7 +148,5 @@ background: url(images/bluebar-bg-selected.png) no-repeat 50% 100%;
 	 		 	</g:MenuItem>
 	 		 </g:MenuBar>
 	 		 </div>
-	    </tr>
-		</table>
 	</g:HTMLPanel>
 </ui:UiBinder> 

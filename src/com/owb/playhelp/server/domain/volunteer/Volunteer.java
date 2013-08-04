@@ -160,7 +160,7 @@ public class Volunteer implements Serializable, Cacheable {
 		if (o == null)
 			return null;
 
-		VolunteerInfo oInfo = new VolunteerInfo(o.getName(), o.getDescription().toString(), o.getAddress(),o.getLatitude(),o.getLongitude(),o.getPhone(), o.getEmail(), o.getWebsite());
+		VolunteerInfo oInfo = new VolunteerInfo(o.getName(), o.getDescription().getValue(), o.getAddress(),o.getLatitude(),o.getLongitude(),o.getPhone(), o.getEmail(), o.getWebsite());
 		oInfo.setUniqueId(o.getUniqueId());
 		//oInfo.setPoint(o.getLatitude(),o.getLongitude());
 		oInfo.deactivateMember();

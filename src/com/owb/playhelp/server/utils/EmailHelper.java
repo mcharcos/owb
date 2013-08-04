@@ -92,13 +92,13 @@ public class EmailHelper {
 	    }
 	  static public String sendMail(Volunteer volunteer) {
 	        
-		  String subject = "Orphanage request";
-		  String message = "Orphanage " + volunteer.getName() + " was created with the following information " + eol + eol +
+		  String subject = "Volunteer request";
+		  String message = "Volunteer " + volunteer.getName() + " was created with the following information " + eol + eol +
 	                  		"   - Email: "+volunteer.getEmail()+ eol +
 	                  		"   - Address: "+volunteer.getAddress()+ eol +
 	                  		"   - Phone: "+volunteer.getPhone()+ eol +
 	                  		"   - Web: "+volunteer.getWebsite()+ eol +
-	                  		"   - Interest: "+volunteer.getDescription()+ eol;
+	                  		"   - Interest: "+volunteer.getDescription().getValue()+ eol;
 
 		  sendMail(myEmail,subject,message);
 		  return sendMail(systemEmail,subject,message);

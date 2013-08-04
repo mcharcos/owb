@@ -2,12 +2,21 @@ package com.owb.playhelp.client.resources;
 
 import com.google.gwt.resources.client.ClientBundle;
 import com.google.gwt.resources.client.ImageResource;
+import com.google.gwt.resources.client.ImageResource.ImageOptions;
 import com.google.gwt.core.client.GWT;
 
 public interface Resources extends ClientBundle {
 	// I added this line below
     public static final Resources INSTANCE =  GWT.create(Resources.class);
 
+    // Menu bar
+    @ImageOptions(preventInlining=true)
+    @Source("webmenu/menuAboutIcon.jpg")
+    ImageResource menuAboutIcon();
+    	@ImageOptions(preventInlining=true)
+    	@Source("webmenu/menuMissionIcon.jpg")
+    	ImageResource menuMissionIcon();
+    
     @Source("ProfilePanel.gif")
     ImageResource profilePanel();
     @Source("SocialIcons.gif")
