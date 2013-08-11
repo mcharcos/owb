@@ -18,6 +18,7 @@ import com.owb.playhelp.client.resources.Resources;
 import com.owb.playhelp.client.event.friend.FriendsHomeEvent;
 import com.owb.playhelp.client.event.map.MainHomeEvent;
 import com.owb.playhelp.client.event.news.NewsHomeEvent;
+import com.owb.playhelp.client.event.web.ShowWebEvent;
 
 /**
  * 
@@ -30,9 +31,9 @@ import com.owb.playhelp.client.event.news.NewsHomeEvent;
 public class TopCenterPanelPresenter implements Presenter {
 	public interface Display {
 		Widget asWidget();
-		public Image getNewsPanel();
+		/*public Image getNewsPanel();
 		public Image getWorldPanel();
-		public Image getFriendPanel();
+		public Image getFriendPanel();*/
 		public Image getOwbPanel();
 		public HorizontalPanel getUserSettings();
 	}
@@ -46,6 +47,12 @@ public class TopCenterPanelPresenter implements Presenter {
 		this.display = display;
 	}
 	public void bind() {
+
+		  this.display.getOwbPanel().addClickHandler(new ClickHandler(){
+				 public void onClick(ClickEvent event){
+					 eventBus.fireEvent(new ShowWebEvent("gethomeItem"));
+				 }
+			  });
 		/*  
 		this.display.getEmailPanel().addMouseOverHandler(new MouseOverHandler(){
 			  public void onMouseOver(MouseOverEvent event){
@@ -63,6 +70,8 @@ public class TopCenterPanelPresenter implements Presenter {
 				 }
 			  });
 		  */
+		
+		/*
 		  this.display.getNewsPanel().addMouseOverHandler(new MouseOverHandler(){
 			  public void onMouseOver(MouseOverEvent event){
 				  display.getNewsPanel().setResource(Resources.INSTANCE.newsSelLogo2());
@@ -108,6 +117,7 @@ public class TopCenterPanelPresenter implements Presenter {
 					 eventBus.fireEvent(new FriendsHomeEvent());
 				 }
 			  });
+		  */
 	}
 
 	public void go(final HasWidgets container) {

@@ -1,4 +1,4 @@
-package com.owb.playhelp.client.view.web;
+package com.owb.playhelp.client.view.web.aboutus;
 
 import java.util.ArrayList;
 import java.util.Arrays;

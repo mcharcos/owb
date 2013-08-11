@@ -30,7 +30,7 @@
          .horizontalBarStyle{
 			width: 700px;
 			height: 25px;
-            background-color:red;
+            background-color:white;
 		}
          .footerPanel{
 			width: 90%;
@@ -43,6 +43,7 @@
 			height: 100%;
             background-color:white;
             text-align:left;
+			margin-top: 0px; 
 		}
 
 	</ui:style>

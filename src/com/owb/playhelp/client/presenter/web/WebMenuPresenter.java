@@ -1,18 +1,22 @@
 package com.owb.playhelp.client.presenter.web;
 
-import com.google.gwt.core.client.GWT;
+import com.google.gwt.dom.client.ImageElement;
+import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.dom.client.MouseOutEvent;
+import com.google.gwt.event.dom.client.MouseOutHandler;
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.safehtml.shared.SafeHtml;
 import com.google.gwt.user.client.Command;
+import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.HasWidgets;
-import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.MenuBar;
 import com.google.gwt.user.client.ui.MenuItem;
 import com.google.gwt.user.client.ui.Widget;
 import com.owb.playhelp.client.event.volunteer.ShowAddVolunteerEvent;
 import com.owb.playhelp.client.event.web.ShowWebEvent;
+import com.owb.playhelp.client.event.map.MainHomeEvent;
 import com.owb.playhelp.client.event.ngo.ShowPopupAddNgoEvent;
 import com.owb.playhelp.client.event.orphanage.ShowPopupAddOrphanageEvent;
 import com.owb.playhelp.client.presenter.Presenter;
@@ -26,10 +30,19 @@ public class WebMenuPresenter  implements Presenter {
 		MenuBar getmainMenu();
 		MenuItem gethomeItem();
 		MenuItem getaboutUsItem();
-		MenuItem getcontextItem();
 		MenuItem getourMissionItem();
 		MenuItem getourViewItem();
-		MenuItem getvolunteerOpportunitiesItem();
+		MenuItem gettheTeamItem() ;
+		MenuItem getjoinOWBItem() ;
+		MenuItem getresourcesItem();
+		MenuItem getjoinNetworkItem();
+		MenuItem getsearchResourcesItem();
+		MenuItem getneedsItem();
+		MenuItem getshareProjectItem();
+		MenuItem getsearchProjectsItem();
+		MenuItem getmapItem();
+		/*
+		MenuItem getcontextItem();
 		MenuItem getwhatDoWeDoItem();
 		MenuItem gethealthItem();
 		MenuItem getexcerciseItem();
@@ -53,10 +66,10 @@ public class WebMenuPresenter  implements Presenter {
 		MenuItem gethowProjectsItem(); 
 		MenuItem gethowIndividualsItem(); 
 		MenuItem getcontactUsItem() ;
-		MenuItem gettheTeamItem() ;
-		MenuItem getjoinOWBItem() ;
 		MenuItem getjoinNetworkItem();
 		MenuItem getshareProjectItem();
+		*/
+		ImageElement getaboutUsImg();
 	}
 
 	private final SimpleEventBus eventBus;
@@ -78,18 +91,14 @@ public class WebMenuPresenter  implements Presenter {
 				eventBus.fireEvent(new ShowWebEvent("gethomeItem"));
 			}
 		});
+		/*
 		this.display.getaboutUsItem().setCommand(new Command() {
 			@Override
 			public void execute() {
 				eventBus.fireEvent(new ShowWebEvent("getaboutUsItem"));
 			}
-		});
-		this.display.getcontextItem().setCommand(new Command() {
-			@Override
-			public void execute() {
-				eventBus.fireEvent(new ShowWebEvent("getcontextItem"));
-			}
-		});
+		}); */
+		
 		this.display.getourMissionItem().setCommand(new Command() {
 			@Override
 			public void execute() {
@@ -102,10 +111,41 @@ public class WebMenuPresenter  implements Presenter {
 				eventBus.fireEvent(new ShowWebEvent("getourViewItem"));
 			}
 		});
-		this.display.getvolunteerOpportunitiesItem().setCommand(new Command() {
+		this.display.gettheTeamItem().setCommand(new Command() {
 			@Override
 			public void execute() {
-				eventBus.fireEvent(new ShowWebEvent("getvolunteerOpportunitiesItem"));
+				eventBus.fireEvent(new ShowWebEvent("gettheTeamItem"));
+			}
+		});
+		this.display.getjoinOWBItem().setCommand(new Command() {
+			@Override
+			public void execute() {
+				eventBus.fireEvent(new ShowAddVolunteerEvent());
+			}
+		});
+		this.display.getjoinNetworkItem().setCommand(new Command() {
+			@Override
+			public void execute() {
+				eventBus.fireEvent(new ShowPopupAddNgoEvent(new ClickPoint(100,100)));
+			}
+		});
+		this.display.getshareProjectItem().setCommand(new Command() {
+			@Override
+			public void execute() {
+				eventBus.fireEvent(new ShowPopupAddOrphanageEvent(new ClickPoint(100,100)));
+			}
+		});
+		this.display.getmapItem().setCommand(new Command() {
+			@Override
+			public void execute() {
+				eventBus.fireEvent(new MainHomeEvent());
+			}
+		});
+		/*
+		this.display.getcontextItem().setCommand(new Command() {
+			@Override
+			public void execute() {
+				eventBus.fireEvent(new ShowWebEvent("getcontextItem"));
 			}
 		});
 		this.display.getwhatDoWeDoItem().setCommand(new Command() {
@@ -240,36 +280,7 @@ public class WebMenuPresenter  implements Presenter {
 				eventBus.fireEvent(new ShowWebEvent("gethowIndividualsItem"));
 			}
 		});
-		this.display.getcontactUsItem().setCommand(new Command() {
-			@Override
-			public void execute() {
-				eventBus.fireEvent(new ShowWebEvent("getcontactUsItem"));
-			}
-		});
-		this.display.gettheTeamItem().setCommand(new Command() {
-			@Override
-			public void execute() {
-				eventBus.fireEvent(new ShowWebEvent("gettheTeamItem"));
-			}
-		});
-		this.display.getjoinOWBItem().setCommand(new Command() {
-			@Override
-			public void execute() {
-				eventBus.fireEvent(new ShowAddVolunteerEvent());
-			}
-		});
-		this.display.getjoinNetworkItem().setCommand(new Command() {
-			@Override
-			public void execute() {
-				eventBus.fireEvent(new ShowPopupAddNgoEvent(new ClickPoint(100,100)));
-			}
-		});
-		this.display.getshareProjectItem().setCommand(new Command() {
-			@Override
-			public void execute() {
-				eventBus.fireEvent(new ShowPopupAddOrphanageEvent(new ClickPoint(100,100)));
-			}
-		});
+		*/
 	}
 
 	final Image icon = new Image(Resources.INSTANCE.progressBar());

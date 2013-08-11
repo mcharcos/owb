@@ -1,6 +1,7 @@
 package com.owb.playhelp.client.view.web;
 
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.dom.client.ImageElement;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
@@ -26,15 +27,23 @@ public class WebMenuView extends Composite implements WebMenuPresenter.Display {
 	@UiField
 	MenuBar mainMenu;
 	@UiField
-	MenuItem homeItem,aboutUsItem, contextItem, ourMissionItem, ourViewItem, volunteerOpportunitiesItem;
+	MenuItem homeItem, mapItem, aboutUsItem, ourMissionItem, ourViewItem, theTeamItem, joinOWBItem;
+	@UiField
+	MenuItem resourcesItem, joinNetworkItem, searchResourcesItem;
+	@UiField 
+	MenuItem needsItem, shareProjectsItem, searchProjectsItem;
+	@UiField
+	ImageElement aboutUsImg;
+	
+	/*
+	@UiField contextItem;
 	@UiField
 	MenuItem whatDoWeDoItem, healthItem, excerciseItem, educationItem, cleanWaterItem, foodItem, shelterItem, clothingItem, hygieneItem, joyItem, hopeOfFutureItem;
 	@UiField
 	MenuItem loveItem, responsabilitiesItem, safetyItem, guidanceItem, compassionateEnvironementItem, disciplineItem;
 	@UiField
 	MenuItem howDoWeHelpItem, howChildrenItem, howOrganizationsItem, howProjectsItem, howIndividualsItem;
-	@UiField
-	MenuItem contactUsItem, theTeamItem, joinOWBItem, joinNetworkItem, shareProjectItem;
+	*/
 	
 	@Override
 	public MenuBar getmainMenu() {
@@ -52,8 +61,8 @@ public class WebMenuView extends Composite implements WebMenuPresenter.Display {
 	}
 
 	@Override
-	public MenuItem getcontextItem() {
-		return contextItem;
+	public ImageElement getaboutUsImg() {
+		return aboutUsImg;
 	}
 
 	@Override
@@ -67,10 +76,56 @@ public class WebMenuView extends Composite implements WebMenuPresenter.Display {
 	}
 
 	@Override
-	public MenuItem getvolunteerOpportunitiesItem() {
-		return volunteerOpportunitiesItem;
+	public MenuItem gettheTeamItem() {
+		return theTeamItem;
 	}
 
+	@Override
+	public MenuItem getjoinOWBItem() {
+		return joinOWBItem;
+	}
+
+	@Override
+	public MenuItem getresourcesItem() {
+		return resourcesItem;
+	}
+	
+	@Override
+	public MenuItem getjoinNetworkItem() {
+		return joinNetworkItem;
+	}
+	
+	@Override
+	public MenuItem getsearchResourcesItem() {
+		return searchResourcesItem;
+	}
+
+	@Override
+	public MenuItem getneedsItem() {
+		return needsItem;
+	}
+
+	@Override
+	public MenuItem getshareProjectItem() {
+		return shareProjectsItem;
+	}
+	
+	@Override
+	public MenuItem getsearchProjectsItem() {
+		return searchProjectsItem;
+	}
+
+	@Override
+	public MenuItem getmapItem() {
+		return mapItem;
+	}
+
+/*
+	@Override
+	public MenuItem getcontextItem() {
+		return contextItem;
+	}
+	
 	@Override
 	public MenuItem getwhatDoWeDoItem() {
 		return whatDoWeDoItem;
@@ -180,31 +235,7 @@ public class WebMenuView extends Composite implements WebMenuPresenter.Display {
 		return howIndividualsItem;
 	}
 
-	@Override
-	public MenuItem getcontactUsItem() {
-		return contactUsItem;
-	}
-
-	@Override
-	public MenuItem gettheTeamItem() {
-		return theTeamItem;
-	}
-
-	@Override
-	public MenuItem getjoinOWBItem() {
-		return joinOWBItem;
-	}
-
-	@Override
-	public MenuItem getjoinNetworkItem() {
-		return joinNetworkItem;
-	}
-
-	@Override
-	public MenuItem getshareProjectItem() {
-		return shareProjectItem;
-	}
-
+*/
 
 
 }

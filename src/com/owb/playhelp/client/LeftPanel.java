@@ -2,7 +2,9 @@ package com.owb.playhelp.client;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
+import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 
@@ -27,6 +29,8 @@ public class LeftPanel extends Composite implements LeftPanelPresenter.Display {
 		initWidget(uiBinder.createAndBindUi(this));
 	}
 
+	@UiField
+	Image owbIcon;
 	
 	//@UiField
 	  VerticalPanel profilePanel=null;
@@ -59,5 +63,10 @@ public class LeftPanel extends Composite implements LeftPanelPresenter.Display {
 	public VerticalPanel getMenuPanel() {
 		  return menuPanel;
 		}
+	
+	@Override
+	public Image getOWBIcon(){
+		return owbIcon;
+	}
 
 }

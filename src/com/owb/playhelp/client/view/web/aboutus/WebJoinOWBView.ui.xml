@@ -1,7 +1,8 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
 	xmlns:g="urn:import:com.google.gwt.user.client.ui">
-	<ui:style src="../../resources/GlobalStyles.css" >
+    <ui:with field='res' type='com.owb.playhelp.client.resources.Resources'/>
+	<ui:style src="../../../resources/GlobalStyles.css" >
 		.important {
 			font-weight: bold;
 		}
@@ -12,7 +13,29 @@
 	</ui:style>
 	<g:HTMLPanel>
 	   <div class="{style.description}">
-	    <h1>JOIN OWB</h1>
+	    <h1>VOLUNTEER OPPORTUNITIES</h1>
+
+		<table align="left">
+    		<tr>
+    			<td>
+		        <g:Image url='{res.volunteerWebPic.getSafeUri.asString}'/>
+	    		</td>
+	    	</tr>
+    		<tr>
+		        <td width="570">
+		        We meet every Friday at 12 PM (Pacific Standard Time).
+		        <br></br>
+				While our meetings are held in Mountain View, CA, we also have the option
+				of video-conferencing through Google Hangouts or Skype.<br></br>
+				<br></br>
+				Please fill out the volunteering form to join us or 
+				to view our current volunteer opportunities or 
+			    contact us at <b>owb@orphanagewithoutborders.org</b> for requesting information about our organization or share
+			    your interests for helping children.
+	    		</td>
+	    	</tr>
+	    	<tr><td>
+
 		<div class="{style.formTitle}">Required Information</div>
 			<div class="{style.formwrapper}">
 				<div class="{style.formlabel}">
@@ -84,6 +107,8 @@
 			<g:Anchor href='javascript:;' ui:field='cancelBut'>Cancel</g:Anchor>
 		</div>
 		<div ui:field='nameDiv' />
-		</div>
+		</td></tr>
+	    </table>
+		</div>		
 	</g:HTMLPanel>
 </ui:UiBinder> 

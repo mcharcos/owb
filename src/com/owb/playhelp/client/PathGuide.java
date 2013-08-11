@@ -28,6 +28,7 @@ import com.owb.playhelp.client.presenter.project.AddProjectPresenter;
 import com.owb.playhelp.client.presenter.user.UserPreferenceEditPresenter;
 import com.owb.playhelp.client.presenter.volunteer.AddVolunteerPresenter;
 import com.owb.playhelp.client.presenter.web.ContactHomePresenter;
+import com.owb.playhelp.client.presenter.web.WebHomePresenter;
 import com.owb.playhelp.client.presenter.web.WebMenuPresenter;
 import com.owb.playhelp.client.presenter.web.WebPagesPresenter;
 import com.owb.playhelp.client.service.project.ProjectServiceAsync;
@@ -47,15 +48,10 @@ import com.owb.playhelp.client.view.orphanage.AddOrphanageView;
 import com.owb.playhelp.client.view.orphanage.AddOrphanageStatusView;
 import com.owb.playhelp.client.view.project.AddProjectView;
 import com.owb.playhelp.client.view.user.UserPreferenceEditView;
-import com.owb.playhelp.client.view.web.WebContactUsView;
-import com.owb.playhelp.client.view.web.WebHomeView;
 import com.owb.playhelp.client.view.web.WebHowChildrenView;
 import com.owb.playhelp.client.view.web.WebHowDoWeHelpView;
 import com.owb.playhelp.client.view.web.WebHowIndividualsView;
-import com.owb.playhelp.client.view.web.WebHowOrganizationsView;
-import com.owb.playhelp.client.view.web.WebHowProjectsView;
 import com.owb.playhelp.client.view.web.WebJoinNetworkView;
-import com.owb.playhelp.client.view.web.WebJoinOWBView;
 import com.owb.playhelp.client.view.web.WebMenuView;
 import com.owb.playhelp.client.view.web.WebOurCommunityIndexView;
 import com.owb.playhelp.client.view.web.WebTheTeamView;
@@ -63,9 +59,10 @@ import com.owb.playhelp.client.view.web.WebMainIndexView;
 import com.owb.playhelp.client.view.web.aboutus.WebAboutUsIndexView;
 import com.owb.playhelp.client.view.web.aboutus.WebAboutUsView;
 import com.owb.playhelp.client.view.web.aboutus.WebContextView;
+import com.owb.playhelp.client.view.web.aboutus.WebJoinOWBView;
 import com.owb.playhelp.client.view.web.aboutus.WebOurMissionView;
 import com.owb.playhelp.client.view.web.aboutus.WebOurViewView;
-import com.owb.playhelp.client.view.web.aboutus.WebVolunteerOpportunitiesView;
+import com.owb.playhelp.client.view.web.home.WebHomeView;
 import com.owb.playhelp.client.view.web.whatdowedo.WebWhatCleanWaterView;
 import com.owb.playhelp.client.view.web.whatdowedo.WebWhatClothingView;
 import com.owb.playhelp.client.view.web.whatdowedo.WebWhatCompassionateView;
@@ -506,13 +503,41 @@ public class PathGuide implements ValueChangeHandler<String>  {
 				if (token.equals("webgethomeItem")) {
 					webMain.getIndexField().add(new WebOurCommunityIndexView());
 					Owb.get().getMainPanel().add(webMain);
-					webMain.getAreaField().add((new WebHomeView()).asWidget());
+					WebHomePresenter webHomePresenter = new WebHomePresenter(thePath, new WebHomeView());
+					webHomePresenter.go(webMain.getAreaField());
 		        return;
 		        } 
-				if (token.equals("webgetaboutUsItem")) {
-					webMain.getIndexField().add(new WebAboutUsIndexView());
+				if (token.equals("webgetourMissionItem")) {
+					//webMain.getIndexField().add(new WebOurCommunityIndexView());
+					webMain.getIndexField().add(new WebOurCommunityIndexView());
 					Owb.get().getMainPanel().add(webMain);
 					webMain.getAreaField().add((new WebAboutUsView()).asWidget());
+					
+					//Owb.get().getMainPanel().add(webMain);
+					//WebPagesPresenter webpagesPresenter = new WebPagesPresenter(new WebOurMissionView());
+					//webpagesPresenter.go(webMain.getAreaField());
+		        return;
+		        } 
+				if (token.equals("webgetourViewItem")) {
+					Owb.get().getMainPanel().add(webMain);
+					WebPagesPresenter webpagesPresenter = new WebPagesPresenter(new WebOurViewView());
+					webpagesPresenter.go(webMain.getAreaField());
+					
+					//webMain.getIndexField().add(new WebOurCommunityIndexView());
+					//Owb.get().getMainPanel().add(webMain);
+					//webMain.getAreaField().add((new WebOurViewView()).asWidget());
+		        return;
+		        } 
+				if (token.equals("webgettheTeamItem")) {
+					webMain.getIndexField().add(new WebOurCommunityIndexView());
+					Owb.get().getMainPanel().add(webMain);
+					webMain.getAreaField().add((new WebTheTeamView()).asWidget());
+		        return;
+		        } 
+				if (token.equals("webgetjoinOWBItem")) {
+					webMain.getIndexField().add(new WebOurCommunityIndexView());
+					Owb.get().getMainPanel().add(webMain);
+					webMain.getAreaField().add((new WebJoinOWBView()).asWidget());
 		        return;
 		        } 
 				if (token.equals("webgetcontextItem")) {
@@ -520,25 +545,6 @@ public class PathGuide implements ValueChangeHandler<String>  {
 					Owb.get().getMainPanel().add(webMain);
 					WebPagesPresenter webpagesPresenter = new WebPagesPresenter(new WebContextView());
 					webpagesPresenter.go(webMain.getAreaField());
-		        return;
-		        } 
-				if (token.equals("webgetourMissionItem")) {
-					webMain.getIndexField().add(new WebAboutUsIndexView());
-					Owb.get().getMainPanel().add(webMain);
-					WebPagesPresenter webpagesPresenter = new WebPagesPresenter(new WebOurMissionView());
-					webpagesPresenter.go(webMain.getAreaField());
-		        return;
-		        } 
-				if (token.equals("webgetourViewItem")) {
-					webMain.getIndexField().add(new WebAboutUsIndexView());
-					Owb.get().getMainPanel().add(webMain);
-					webMain.getAreaField().add((new WebOurViewView()).asWidget());
-		        return;
-		        } 
-				if (token.equals("webgetvolunteerOpportunitiesItem")) {
-					webMain.getIndexField().add(new WebAboutUsIndexView());
-					Owb.get().getMainPanel().add(webMain);
-					webMain.getAreaField().add((new WebVolunteerOpportunitiesView()).asWidget());
 		        return;
 		        } 
 				if (token.equals("webgetwhatDoWeDoItem")) {
@@ -655,40 +661,10 @@ public class PathGuide implements ValueChangeHandler<String>  {
 					webMain.getAreaField().add((new WebHowChildrenView()).asWidget());
 		        return;
 		        } 
-				if (token.equals("webgethowProjectsItem")) {
-					webMain.getIndexField().add(new WebOurCommunityIndexView());
-					Owb.get().getMainPanel().add(webMain);
-					webMain.getAreaField().add((new WebHowProjectsView()).asWidget());
-		        return;
-		        } 
-				if (token.equals("webgethowOrganizationsItem")) {
-					webMain.getIndexField().add(new WebOurCommunityIndexView());
-					Owb.get().getMainPanel().add(webMain);
-					webMain.getAreaField().add((new WebHowOrganizationsView()).asWidget());
-		        return;
-		        } 
 				if (token.equals("webgethowIndividualsItem")) {
 					webMain.getIndexField().add(new WebOurCommunityIndexView());
 					Owb.get().getMainPanel().add(webMain);
 					webMain.getAreaField().add((new WebHowIndividualsView()).asWidget());
-		        return;
-		        } 
-				if (token.equals("webgetcontactUsItem")) {
-					webMain.getIndexField().add(new WebOurCommunityIndexView());
-					Owb.get().getMainPanel().add(webMain);
-					webMain.getAreaField().add((new WebContactUsView()).asWidget());
-		        return;
-		        } 
-				if (token.equals("webgettheTeamItem")) {
-					webMain.getIndexField().add(new WebOurCommunityIndexView());
-					Owb.get().getMainPanel().add(webMain);
-					webMain.getAreaField().add((new WebTheTeamView()).asWidget());
-		        return;
-		        } 
-				if (token.equals("webgetjoinOWBItem")) {
-					webMain.getIndexField().add(new WebOurCommunityIndexView());
-					Owb.get().getMainPanel().add(webMain);
-					webMain.getAreaField().add((new WebJoinOWBView()).asWidget());
 		        return;
 		        } 
 				if (token.equals("webgetjoinNetworkItem")) {
@@ -704,8 +680,10 @@ public class PathGuide implements ValueChangeHandler<String>  {
 	        return;
 	      } 
 			if (token.equals("map")) {
-				MapMenuPresenter mapMenuPresenter = new MapMenuPresenter(thePath, new MapMenuView());
-				mapMenuPresenter.go(Owb.get().getBarPanel());
+				//MapMenuPresenter mapMenuPresenter = new MapMenuPresenter(thePath, new MapMenuView());
+				//mapMenuPresenter.go(Owb.get().getBarPanel());
+				WebMenuPresenter webMenuPresenter = new WebMenuPresenter(thePath, new WebMenuView());
+				webMenuPresenter.go(Owb.get().getBarPanel());
 				presenter = new MainHomePresenter(currentUser,ngoService,orphanageService,thePath,new MainHomeView());
 				presenter.go(Owb.get().getMainPanel());
 	        return;

@@ -6,10 +6,13 @@ package com.owb.playhelp.client;
 
 import com.owb.playhelp.client.event.user.LoginEvent;
 import com.owb.playhelp.client.presenter.BusyIndicatorPresenter;
+import com.owb.playhelp.client.presenter.LeftPanelPresenter;
 import com.owb.playhelp.client.presenter.TopCenterPanelPresenter;
 import com.owb.playhelp.client.presenter.user.UserSettingPresenter;
+import com.owb.playhelp.client.presenter.web.WebMenuPresenter;
 import com.owb.playhelp.client.view.BusyIndicatorView;
 import com.owb.playhelp.client.view.user.UserSettingView;
+import com.owb.playhelp.client.view.web.WebMenuView;
 import com.owb.playhelp.client.helper.RPCCall;
 import com.owb.playhelp.shared.UserProfileInfo;
 import com.owb.playhelp.client.service.LoginService;
@@ -29,6 +32,7 @@ import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.RunAsyncCallback;
 import com.google.gwt.dom.client.Document;
+import com.google.gwt.dom.client.Style.BorderStyle;
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
@@ -120,6 +124,7 @@ public class Owb implements EntryPoint {
 	//private UserBadgePresenter userBadgePresenter = null;
 	//private WebMenuPresenter webMenuPresenter = null;
 	//private MapMenuPresenter mapMenuPresenter = null;
+	private LeftPanelPresenter leftPanelPresenter = null;
 	private TopCenterPanelPresenter topCenterPanelPresenter = null;
 	private UserSettingPresenter userSettingsPresenter = null;
 	
@@ -255,12 +260,16 @@ public class Owb implements EntryPoint {
 	  guide.go();
 	  
 	  
+	  
 	  //userBadgePresenter = new UserBadgePresenter(loginService, thePath, new UserBadgeView());
 	  //userBadgePresenter.go(actionPanel.getProfilePanel());
 
-	  //webMenuPresenter = new WebMenuPresenter(thePath, new WebMenuView());
-	  //mapMenuPresenter = new MapMenuPresenter(thePath, new MapMenuView());
+	  // WebMenuPresenter webMenuPresenter = new WebMenuPresenter(thePath, new WebMenuView());
+	  // webMenuPresenter.go(barPanel);
 
+	  leftPanelPresenter = new LeftPanelPresenter(thePath, actionPanel);
+	  // leftPanelPresenter.go(actionPanel);
+	  
 	  TopCenterPanel tcpanel = new TopCenterPanel();
 	  topCenterPanelPresenter = new TopCenterPanelPresenter(thePath, tcpanel);
 	  topCenterPanelPresenter.go(topCenterPanel);

@@ -11,11 +11,50 @@ public interface Resources extends ClientBundle {
 
     // Menu bar
     @ImageOptions(preventInlining=true)
-    @Source("webmenu/menuAboutIcon.jpg")
+    @Source("webmenu/Phome.jpg")
+    ImageResource menuHomeIcon();
+    @ImageOptions(preventInlining=true)
+    @Source("webmenu/PaboutB.jpg")
+    ImageResource menuAboutOnIcon();
+    @ImageOptions(preventInlining=true)
+    @Source("webmenu/Pabout.jpg")
     ImageResource menuAboutIcon();
-    	@ImageOptions(preventInlining=true)
-    	@Source("webmenu/menuMissionIcon.jpg")
-    	ImageResource menuMissionIcon();
+		@ImageOptions(preventInlining=true)
+		@Source("webmenu/mission.jpg")
+		ImageResource menuMissionIcon();
+		@ImageOptions(preventInlining=true)
+		@Source("webmenu/what's different?.jpg")
+		ImageResource menuOurViewIcon();
+		@ImageOptions(preventInlining=true)
+		@Source("webmenu/the team.jpg")
+		ImageResource menuTheTeamIcon();
+		@ImageOptions(preventInlining=true)
+		@Source("webmenu/volunteering.jpg")
+		ImageResource menuJoinOWBIcon();
+    @ImageOptions(preventInlining=true)
+    @Source("webmenu/Presources.jpg")
+    ImageResource menuResourcesIcon();
+	    @ImageOptions(preventInlining=true)
+	    @Source("webmenu/join the network.jpg")
+	    ImageResource menuJoinNetworkIcon();
+	    @ImageOptions(preventInlining=true)
+	    @Source("webmenu/search resources.jpg")
+	    ImageResource menuSearchResourcesIcon();
+    @ImageOptions(preventInlining=true)
+    @Source("webmenu/Pneeds.jpg")
+    ImageResource menuNeedsIcon();
+	    @ImageOptions(preventInlining=true)
+	    @Source("webmenu/share a project.jpg")
+	    ImageResource menuShareProjectsIcon();
+	    @ImageOptions(preventInlining=true)
+	    @Source("webmenu/search projects.jpg")
+	    ImageResource menuSearchProjectsIcon();
+	    @ImageOptions(preventInlining=true)
+	    @Source("webmenu/choose a project.jpg")
+	    ImageResource menuChooseProjectsIcon();
+    @ImageOptions(preventInlining=true)
+    @Source("webmenu/Pmap.jpg")
+    ImageResource menuMapIcon();
     
     @Source("ProfilePanel.gif")
     ImageResource profilePanel();
@@ -147,6 +186,21 @@ public interface Resources extends ClientBundle {
     ImageResource viewWebPic();
     @Source("webpics/volunteer.jpg")
     ImageResource volunteerWebPic();
+    
+    // Picture slider
+    @Source("go-next.png")
+    ImageResource getNext();
+    @Source("go-previous.png")
+    ImageResource getBack();
+    @Source("homeimg1.gif")
+    ImageResource homeimg1();
+    @Source("homeimg2.gif")
+    ImageResource homeimg2();
+    @Source("homeimg3.gif")
+    ImageResource homeimg3();
+    @Source("homeimg4.gif")
+    ImageResource homeimg4();
+    
     
     
 }

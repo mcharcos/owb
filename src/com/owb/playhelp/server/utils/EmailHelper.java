@@ -98,8 +98,15 @@ public class EmailHelper {
 	                  		"   - Address: "+volunteer.getAddress()+ eol +
 	                  		"   - Phone: "+volunteer.getPhone()+ eol +
 	                  		"   - Web: "+volunteer.getWebsite()+ eol +
-	                  		"   - Interest: "+volunteer.getDescription().getValue()+ eol;
-
+	                  		"   - Interest: "+eol;
+		  
+		  String interests = volunteer.getDescription().getValue();
+		  if (interests.contains("||")) {
+			  message = message + interests.replace("||",eol+"   + ");
+			} else {
+			  message = message + interests;
+			}
+		  		  
 		  sendMail(myEmail,subject,message);
 		  return sendMail(systemEmail,subject,message);
 	    }

@@ -12,7 +12,7 @@
 	</ui:style>
 	<g:HTMLPanel>
 	   <div class="{style.description}">
-	    <h1>JOINT NETWORK</h1>
+	    <h1>JOIN NETWORK</h1>
 		<table align="left">
     		<tr>
 		        <td width="570">

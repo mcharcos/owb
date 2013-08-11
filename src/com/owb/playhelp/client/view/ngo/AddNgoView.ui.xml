@@ -4,7 +4,26 @@
 	<ui:style src="../../resources/GlobalStyles.css" >
 	</ui:style>
 	<g:HTMLPanel>
-	        <div class="{style.formTitle}">Organization Information</div>
+	        <div class="{style.formTitle}">Organization Information</div>	        
+	        
+	        <table align="left">
+    		<tr>
+		        <td width="570">
+			        Our main purpose is to create a pathway of children to dignified life. For this purpose, we identify worldwide the needs 
+					of group of abandoned and orphan children. This information is shared with organizations that could potentially provide
+					the resources necessary to respond to their needs. Moreover, our OWB community provides support with ideas, funding or
+					raising awareness about these child's needs. In addition, we support projects that are engaged to helping these children
+					in need. We can specially help those projects of individuals or small organizations that do not have the resources
+					of a large organizations and struggle connecting to people and resources. We connect them to the organizations in our 
+					network and advice them about their projects. <br></br>
+					<br></br>
+					Since our main goal is to help the children, we guaranty that the goal of the efforts we support have always in mind the welfare
+					of the children and their main purpose is to improve their life quality. We follow up projects closely to verifying
+					that they are proceeding and performing as expected. <br></br><br></br>
+            	</td>
+            </tr>
+            </table>
+            
 			<div class="{style.formwrapper}">
 				<div class="{style.formlabel}">
 					<g:Label >Name</g:Label>

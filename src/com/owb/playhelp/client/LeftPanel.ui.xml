@@ -33,6 +33,9 @@
 			font-size: 12px;
 			text-indent:5px;
 			font-family:arial,helvica;
+			margin-top: 0px; 
+			pading:0px;
+			border:0px;
          }  
 		.description{
 	        color:#9152a0;
@@ -41,7 +44,7 @@
 	</ui:style>
 	<g:HTMLPanel styleName='{style.backgroundall}'>
 	    
-	    <g:Image styleName='{style.profileContainer}' resource='{res.nameLeftLogo}' />
+	    <g:Image ui:field="owbIcon" styleName='{style.profileContainer}' resource='{res.nameLeftLogo}' />
 	    <div style='margin:15px'>
 			<b>Mission:</b><br></br><br></br>
 			Orphanage Without Borders aims to improve the life of children living in orphanages and abandoned children. Our goal is to create a network of organizations that work together to provide children with the acceptable standards of life such as education, health, hygiene, discipline, affection, responsibility, hope of future, shelter, nutrition, clean water, joy and safety. We aim to apply these standards universally, meaning that they will be independent of the nationality, religion, culture, race political opinion or social class of the children or orphanage location.
@@ -57,7 +60,7 @@
 	    <div style='margin:15px'>
 					<a href="#">Privacy</a>
 					|
-					<a href="#">Responsability</a>
+					<a href="#">Responsibility</a>
 	    </div>
 	    <!-- 
 		<g:VerticalPanel styleName='{style.leftContainer}' ui:field='profilePanel' />

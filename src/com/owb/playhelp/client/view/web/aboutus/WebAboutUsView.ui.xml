@@ -15,7 +15,7 @@
 	</ui:style>
 	<g:HTMLPanel>
 	   <div class="{style.description}">
-	    <h1>ABOUT US</h1>
+	    <h1>MISSION</h1>
 	    
 			<table border="5px solid red" align="left">
 			    <tr>
