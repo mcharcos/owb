@@ -4,6 +4,8 @@
 	xmlns:app='urn:import:com.owb.playhelp.client'
 	xmlns:owb='urn:import:com.owb.playhelp.client.view'>
  	
+    <ui:with field='res' type='com.owb.playhelp.client.resources.Resources'/>
+    
  	<ui:image field='backall' src='resources/GeneralBackground.jpg' />
  	
 	<ui:style src="resources/GlobalStyles.css"> 
@@ -19,18 +21,17 @@
 		}
          .horizontalCenterStyle{
 			width: 100%;
-			height:80%;
+			height: 100%;
             background-color:white;
 		}
          .horizontalTopStyle{
-			width: 100%;
 			height: 50px;
-            background-color:white;
+            background-color: #b314d5;
 		}
          .horizontalBarStyle{
-			width: 700px;
-			height: 25px;
-            background-color:white;
+			width: 100%;
+			height: 50px;
+            background-color:#8bff2d;
 		}
          .footerPanel{
 			width: 90%;
@@ -48,8 +49,37 @@
 
 	</ui:style>
 	
+
 	<g:DockLayoutPanel unit='EM' styleName='{style.panelStyle}'> 
 	
+		<g:north size='100'>
+			<g:VerticalPanel>
+				<g:HorizontalPanel styleName='{style.horizontalTopStyle}' width='100%'>
+				  	<g:Image resource='{res.bar3Logo}' width='170px'/>
+					<g:HorizontalPanel ui:field='topCenterPanel' />
+				  	<g:Image resource='{res.bar3Logo}' width='300px'/>
+				  	<g:Image resource='{res.bar3Logo}' width='300px'/>
+				</g:HorizontalPanel>
+				<g:HorizontalPanel styleName='{style.horizontalBarStyle}'>
+				  	<g:HorizontalPanel  width='80px'/>
+				  	<g:HorizontalPanel ui:field='barPanel' /> 
+				</g:HorizontalPanel>
+				<g:ScrollPanel height='500px'>
+				<g:HorizontalPanel>
+            		<app:LeftPanel ui:field='actionPanel' width='170px'/>
+					<g:ScrollPanel ui:field='centerPanel' styleName='{style.horizontalCenterStyle}' />
+            		<g:VerticalPanel ui:field='statusPanel'/>
+				</g:HorizontalPanel>
+				</g:ScrollPanel>
+			</g:VerticalPanel>
+		</g:north>
+	<!-- 
+		<g:north size='5'>
+			<g:VerticalPanel>
+				<g:HorizontalPanel ui:field='topCenterPanel' styleName='{style.horizontalTopStyle}' />
+				<g:HorizontalPanel ui:field='barPanel' styleName='{style.horizontalBarStyle}' /> 
+			</g:VerticalPanel>
+		</g:north>
 		
 		<g:east size='1'>
             <g:VerticalPanel ui:field='statusPanel' styleName='{style.junkTest}'/>
@@ -59,16 +89,14 @@
             <app:LeftPanel ui:field='actionPanel' />
 		</g:west>
 
-		<g:center size='60'>
+		<g:center size='95'>
 			<g:HTMLPanel>
-				<!-- <app:CenterPanel ui:field='centerPanel' /> -->
-				<g:HorizontalPanel ui:field='topCenterPanel' styleName='{style.horizontalTopStyle}' />
-				<g:HorizontalPanel ui:field='barPanel' styleName='{style.horizontalBarStyle}' /> 
+				<app:CenterPanel ui:field='centerPanel' /> 
 				<g:ScrollPanel ui:field='centerPanel' styleName='{style.horizontalCenterStyle}' />
 			</g:HTMLPanel>
 		</g:center>
 		
-		<!-- 
+
 		<g:south size="5">
 			<g:HTMLPanel styleName='{style.footerPanel}'>
 					<a href="#">Contact us</a>

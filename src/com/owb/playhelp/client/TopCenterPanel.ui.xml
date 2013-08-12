@@ -27,12 +27,14 @@
 	</ui:style>
 	<g:HorizontalPanel>
 	   <g:Image ui:field='owbPanel' resource='{res.name3Logo}' />
+	   <g:Image resource='{res.bar3Logo}' width='250px'/>
 	   <!--
 	   <g:Image ui:field="newsPanel" resource='{res.newsLogo2}' />
 	   <g:Image ui:field="worldPanel" resource='{res.worldLogo2}' />
 	   <g:Image ui:field="friendPanel" resource='{res.friendLogo2}' />
 	   -->
 	   <g:HorizontalPanel ui:field="userSettings" />
-	   <g:Label width='600px' styleName='{style.backgroundall}' />
+	   <g:Image resource='{res.bar3Logo}' width='300px'/>
+	   <!-- <g:Label width='600px' styleName='{style.backgroundall}' /> -->
 	</g:HorizontalPanel>
 </ui:UiBinder>

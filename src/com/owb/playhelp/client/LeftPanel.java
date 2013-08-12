@@ -29,8 +29,8 @@ public class LeftPanel extends Composite implements LeftPanelPresenter.Display {
 		initWidget(uiBinder.createAndBindUi(this));
 	}
 
-	@UiField
-	Image owbIcon;
+	//@UiField
+	Image owbIcon=null;
 	
 	//@UiField
 	  VerticalPanel profilePanel=null;

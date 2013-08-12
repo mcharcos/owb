@@ -13,6 +13,7 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.HasText;
 import com.google.gwt.user.client.ui.HasWidgets;
+import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Widget;
 
 import com.owb.playhelp.client.event.user.LoginEvent;
@@ -23,16 +24,15 @@ import com.owb.playhelp.client.event.user.PreferencesEditEvent;
 import com.owb.playhelp.client.event.user.UserPreferenceUpdateEvent;
 import com.owb.playhelp.client.event.user.UserPreferenceUpdateEventHandler;
 import com.owb.playhelp.client.helper.RPCCall;
+import com.owb.playhelp.client.resources.Resources;
 import com.owb.playhelp.client.service.LoginServiceAsync;
 import com.owb.playhelp.shared.UserProfileInfo;
 import com.owb.playhelp.client.presenter.Presenter;
 
 public class UserSettingPresenter implements Presenter {
 	  public interface Display {
-			HasClickHandlers getPreferencesLink();
-			Anchor getPreferencesText();
-			HasClickHandlers getLogoutLink();
-			Anchor getLogoutText();
+			Image getPreferencesImage();
+			Image getLogoutImage();
 			//HasText getUserNameLabel();
 			//HasText getUserEmailLabel();
 			//HasText getUserTypeLabel();
@@ -54,15 +54,9 @@ public class UserSettingPresenter implements Presenter {
 
 	public void bind() {
 
-		  this.display.getLogoutLink().addClickHandler(new ClickHandler(){
+		  this.display.getLogoutImage().addClickHandler(new ClickHandler(){
 			  public void onClick(ClickEvent event){
 				  doLoginout();
-			  }
-		  });
-		  
-		  this.display.getPreferencesLink().addClickHandler(new ClickHandler(){
-			  public void onClick(ClickEvent event){
-				  eventBus.fireEvent(new PreferencesEditEvent());
 			  }
 		  });
 		  
@@ -143,18 +137,26 @@ public class UserSettingPresenter implements Presenter {
 			  userLoggedout();
 			  return;
 		  }
-		  UserSettingPresenter.this.display.getLogoutText().setText("Logout");
-		  UserSettingPresenter.this.display.getPreferencesText().setText("Preferences");
-		  UserSettingPresenter.this.display.getPreferencesText().setEnabled(true);
+		  UserSettingPresenter.this.display.getLogoutImage().setResource(Resources.INSTANCE.logoutIcon());
+		  UserSettingPresenter.this.display.getPreferencesImage().setResource(Resources.INSTANCE.settingIcon());
+		  UserSettingPresenter.this.display.getPreferencesImage().addClickHandler(new ClickHandler(){
+			  public void onClick(ClickEvent event){
+				  eventBus.fireEvent(new PreferencesEditEvent());
+			  }
+		  });
 		  //UserSettingPresenter.this.display.getUserNameLabel().setText(currentUser.getName());
 		  //UserSettingPresenter.this.display.getUserTypeLabel().setText(currentUser.getUserType());
 		  //UserSettingPresenter.this.display.getUserEmailLabel().setText(currentUser.getEmailAddress());
 		  // change text of loginout link to "logout"		  
 	  }
 	  private void userLoggedout(){		  
-		  UserSettingPresenter.this.display.getLogoutText().setText("Login");
-		  UserSettingPresenter.this.display.getPreferencesText().setText("");
-		  UserSettingPresenter.this.display.getPreferencesText().setEnabled(false);
+		  UserSettingPresenter.this.display.getLogoutImage().setResource(Resources.INSTANCE.loginIcon());
+		  UserSettingPresenter.this.display.getPreferencesImage().setResource(Resources.INSTANCE.settingBlankIcon());
+		  UserSettingPresenter.this.display.getPreferencesImage().addClickHandler(new ClickHandler(){
+			  public void onClick(ClickEvent event){
+			  }
+		  });
+		  //UserSettingPresenter.this.display.getPreferencesText().setEnabled(false);
 		  //UserSettingPresenter.this.display.getUserNameLabel().setText("");
 		  //UserSettingPresenter.this.display.getUserTypeLabel().setText("");
 		  //UserSettingPresenter.this.display.getUserEmailLabel().setText("");

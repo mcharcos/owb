@@ -41,11 +41,11 @@ public class LeftPanelPresenter implements Presenter {
 	}
 
 	public void bind() {
-		  this.display.getOWBIcon().addClickHandler(new ClickHandler(){
+		  /*this.display.getOWBIcon().addClickHandler(new ClickHandler(){
 				 public void onClick(ClickEvent event){
 					 eventBus.fireEvent(new ShowWebEvent("gethomeItem"));
 				 }
-			  });
+			  });*/
 	}
 
 	public void go(final HasWidgets container) {

@@ -106,14 +106,24 @@ public interface Resources extends ClientBundle {
     ImageResource radioSelLogo();
     
     // The new desigh September 27th 2012
-    @Source("TopPanelMain.jpg")
+    @Source("TopePG.jpg")
     ImageResource name3Logo();
+    @Source("filler.jpg")
+    ImageResource bar3Logo();
     @Source("NewsIconPanel.jpg")
     ImageResource newsLogo2();
     @Source("MapIconPanel.jpg")
     ImageResource worldLogo2();
     @Source("FriendsIconPanel.jpg")
     ImageResource friendLogo2();
+    @Source("login.jpg")
+    ImageResource loginIcon();
+    @Source("logout.jpg")
+    ImageResource logoutIcon();
+    @Source("settings.jpg")
+    ImageResource settingIcon();
+    @Source("settingsblank.jpg")
+    ImageResource settingBlankIcon();
     
     @Source("NewsIconPanelSel.jpg")
     ImageResource newsSelLogo2();
@@ -192,13 +202,13 @@ public interface Resources extends ClientBundle {
     ImageResource getNext();
     @Source("go-previous.png")
     ImageResource getBack();
-    @Source("homeimg1.gif")
+    @Source("slide1.jpg")
     ImageResource homeimg1();
-    @Source("homeimg2.gif")
+    @Source("slide2.jpg")
     ImageResource homeimg2();
-    @Source("homeimg3.gif")
+    @Source("slide3.jpg")
     ImageResource homeimg3();
-    @Source("homeimg4.gif")
+    @Source("slide4b.jpg")
     ImageResource homeimg4();
     
     

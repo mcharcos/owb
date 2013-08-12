@@ -38,7 +38,7 @@ public class WebHomePresenter  implements Presenter {
 				"in building our organization to help children in orphanages worldwide. </b> Our organization started two years " + 
 				"ago and looking for help from YOU in making our organization stronger and grow on a national and international level. " + 
 				"An hour of your time can change a life of a child! Volunteer TODAY!!";
-		
+		messageVolunteer = "<font color='#ffffff'>Whether you're a techie, a social butterfly, or an artist, we can use your help! We are seeking committed, compassionate, creative, and awesome individuals who are willing to give their time to continue building this network to help children in need. There are plenty of volunteering opportunities available for you - from research, to computer programming, to brainstorming new ideas, and many more - join us!</font>";
 		// Add the Info band widgets on the bottom of the page
 		WebInfoBandView volunteerBandView = new WebInfoBandView("Volunteer With Us",messageVolunteer,null,"270px","30px");
 		WebInfoBandVolunteerPresenter volunteerBandPresenter = new WebInfoBandVolunteerPresenter(eventBus, volunteerBandView);
@@ -52,6 +52,7 @@ public class WebHomePresenter  implements Presenter {
 				"support their projects if they are within our baseline in the areas they work with. "+
 				"If you as an organization also thinks that collaboration is the key for a global change, join our Network "+
 				"and collaborate with other organizations to the cause";
+		messageResource="<font color='#ffffff'>Companies, non-profits, agencies, and individuals who want to help: this is a call to you. You represent a resource, and this network connects resources to needs. If you agree that collaboration is the key to global change, join our network and start collaborating with other organizations by supporting projects, sharing your expertise, and providing feedback to other organizations.</font>";
 		WebInfoBandView resourceBandView = new WebInfoBandView("Join Our Network",messageResource,null,"270px","30px");
 		WebInfoBandResourcesPresenter resourceBandPresenter = new WebInfoBandResourcesPresenter(eventBus, resourceBandView);
 		resourceBandPresenter.go(this.display.getInfoBandField());
@@ -64,7 +65,7 @@ public class WebHomePresenter  implements Presenter {
 		        "Through our network of organizations or within our community we find advice on how to proceed with projects, find resources "+
 		        "or be more efficient. If you think you have a project helping children in need, you can share it with organizations "+
 		        "and individuals of our network by applying as an orphanage. ";
-		
+		messageProjects = "<font color='#ffffff'>This is where you ask for help. If you are in an orphanage and want to fulfill a need of the children, you can share it with the organizations and individuals in our network by creating a project. You can also create a project to help the children in an orphanage you know. We promote the creation of small tangible projects that can easily be connected to existing resources that can help meet those needs.</font>";
 		WebInfoBandView needBandView = new WebInfoBandView("Share Your Needs",messageProjects,null,"270px","30px");
 		WebInfoBandProjectsPresenter needBandPresenter = new WebInfoBandProjectsPresenter(eventBus, needBandView);
 		needBandPresenter.go(this.display.getInfoBandField());

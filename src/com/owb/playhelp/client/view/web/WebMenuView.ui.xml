@@ -18,32 +18,32 @@
 		.gwt-MenuBar table
 		{
 		    background-color            :   #8bff2d;
-			border						:	0px;
-		    marging						: 	0px;
-		    padding						: 	0px;
+			border						:	0px 0px 0px 0px;
+		    marging						: 	0px 0px 0px 0px;
+		    padding						: 	0px 0px 0px 0px;
 		}
 		.gwt-MenuBar .gwt-MenuItem .gwt-MenuBar
 		{
 		    background-color            :   #8bff2d;
-			border						:	0px;
-		    margin                      :   0px;
-		    padding                     :   0px;
+			border						:	0px 0px 0px 0px;
+		    marging						: 	0px 0px 0px 0px;
+		    padding						: 	0px 0px 0px 0px;
 		}
 		.gwt-MenuBar .gwt-MenuItem .gwt-MenuBar table
 		{
 		    background-color            :   #8bff2d;
-			border						:	0px;
-		    margin                      :   0px;
-		    padding                     :   0px;
+			border						:	0px 0px 0px 0px;
+		    marging						: 	0px 0px 0px 0px;
+		    padding						: 	0px 0px 0px 0px;
 		}
 		.gwt-MenuBar .gwt-MenuItem
 		{
 		    cursor                      :   hand;
 		    cursor                      :   pointer;
 		    background-color            :   #8bff2d;
-			border						:	0px;
-		    margin                      :   0px;
-		    padding                     :   0px;
+			border						:	0px 0px 0px 0px;
+		    marging						: 	0px 0px 0px 0px;
+		    padding						: 	0px 0px 0px 0px;
 			text-color					:	red;
 			text-shadow					: 	none;
             font-family					: tahoma;
@@ -51,6 +51,12 @@
 		.gwt-MenuBar .gwt-MenuItem-selected
 		{
 		    background-color            :   #8bff2d !important;
+			border						:	0px 0px 0px 0px;
+		    marging						: 	0px 0px 0px 0px;
+		    padding						: 	0px 0px 0px 0px;
+		}
+		.gwt-MenuBar-vertical table {
+		 	border-collapse: collapse;
 		}
 	</ui:style>
 	
@@ -79,23 +85,23 @@ background: url(images/bluebar-bg-selected.png) no-repeat 50% 100%;
 				<g:MenuItem ui:field='aboutUsItem'><img src='{res.menuAboutIcon.getSafeUri.asString}' ui:field='aboutUsImg'/>
 				    <g:MenuBar vertical="true">
       					<!-- <g:MenuItem ui:field='contextItem'><font color="#ab0fc8"><b><i>Context</i></b></font></g:MenuItem> -->
-      					<g:MenuItem ui:field='ourMissionItem'><img src='{res.menuMissionIcon.getSafeUri.asString}' width='225px' height='40px' /> </g:MenuItem>
-      					<g:MenuItem ui:field='ourViewItem'><img src='{res.menuOurViewIcon.getSafeUri.asString}' width='225px' height='40px' /> </g:MenuItem>
-      					<g:MenuItem ui:field='theTeamItem'><img src='{res.menuTheTeamIcon.getSafeUri.asString}' width='225px' height='40px' /> </g:MenuItem>
-      					<g:MenuItem ui:field='joinOWBItem'><img src='{res.menuJoinOWBIcon.getSafeUri.asString}' width='225px' height='40px' /></g:MenuItem>
+      					<g:MenuItem ui:field='ourMissionItem'><img src='{res.menuMissionIcon.getSafeUri.asString}' width='223px' height='40px' /> </g:MenuItem>
+      					<g:MenuItem ui:field='ourViewItem'><img src='{res.menuOurViewIcon.getSafeUri.asString}' width='223px' height='40px' /> </g:MenuItem>
+      					<g:MenuItem ui:field='theTeamItem'><img src='{res.menuTheTeamIcon.getSafeUri.asString}' width='223px' height='40px' /> </g:MenuItem>
+      					<g:MenuItem ui:field='joinOWBItem'><img src='{res.menuJoinOWBIcon.getSafeUri.asString}' width='223px' height='40px' /></g:MenuItem>
      				</g:MenuBar>
 				</g:MenuItem>
 				<g:MenuItem ui:field='resourcesItem'><img src='{res.menuResourcesIcon.getSafeUri.asString}'/>
 				    <g:MenuBar vertical="true">
-      					<g:MenuItem ui:field='joinNetworkItem'><img src='{res.menuJoinNetworkIcon.getSafeUri.asString}' width='225px' height='40px' /></g:MenuItem>
-      					<g:MenuItem ui:field='searchResourcesItem'><img src='{res.menuSearchResourcesIcon.getSafeUri.asString}' width='225px' height='40px' /></g:MenuItem>
+      					<g:MenuItem ui:field='joinNetworkItem'><img src='{res.menuJoinNetworkIcon.getSafeUri.asString}' width='223px' height='40px' /></g:MenuItem>
+      					<g:MenuItem ui:field='searchResourcesItem'><img src='{res.menuSearchResourcesIcon.getSafeUri.asString}' width='223px' height='40px' /></g:MenuItem>
      				</g:MenuBar>
 	 		 	</g:MenuItem>
 				<g:MenuItem ui:field='needsItem'><img src='{res.menuNeedsIcon.getSafeUri.asString}' />
 				    <g:MenuBar vertical="true">
-      					<g:MenuItem ui:field='shareProjectsItem'><img src='{res.menuShareProjectsIcon.getSafeUri.asString}' width='225px' height='40px' /></g:MenuItem>
-      					<g:MenuItem ui:field='searchProjectsItem'><img src='{res.menuSearchProjectsIcon.getSafeUri.asString}' width='225px' height='40px' /></g:MenuItem>
-      					<g:MenuItem ui:field='chooseProjectsItem'><img src='{res.menuChooseProjectsIcon.getSafeUri.asString}' width='225px' height='40px' /></g:MenuItem>
+      					<g:MenuItem ui:field='shareProjectsItem'><img src='{res.menuShareProjectsIcon.getSafeUri.asString}' width='223px' height='40px' /></g:MenuItem>
+      					<g:MenuItem ui:field='searchProjectsItem'><img src='{res.menuSearchProjectsIcon.getSafeUri.asString}' width='223px' height='40px' /></g:MenuItem>
+      					<g:MenuItem ui:field='chooseProjectsItem'><img src='{res.menuChooseProjectsIcon.getSafeUri.asString}' width='223px' height='40px' /></g:MenuItem>
      				</g:MenuBar>
 	 		 	</g:MenuItem>
 				<g:MenuItem ui:field='mapItem'>

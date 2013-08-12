@@ -7,6 +7,7 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HasText;
+import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
 
@@ -24,37 +25,19 @@ public class UserSettingView extends Composite implements UserSettingPresenter.D
 		initWidget(uiBinder.createAndBindUi(this));
 	}
 
-	/*
 	@UiField
-	Label userNameLabel;
-	@UiField
-	Label userEmailLabel;
-	@UiField
-	Label userTypeLabel;*/
-	@UiField
-	Anchor preferences;
-	@UiField
-	Anchor loginout;
+	Image loginout, preferences;
 
 	public UserSettingView(String firstName) {
 		initWidget(uiBinder.createAndBindUi(this));
 	}
 	
-
 	@Override
-	public HasClickHandlers getPreferencesLink() {
+	public Image getPreferencesImage() {
 	  return preferences;
 	}
 	@Override
-	public Anchor getPreferencesText() {
-	  return preferences;
-	}
-	@Override
-	public HasClickHandlers getLogoutLink() {
-	  return loginout;
-	}
-	@Override
-	public Anchor getLogoutText() {
+	public Image getLogoutImage() {
 	  return loginout;
 	}
 	/*

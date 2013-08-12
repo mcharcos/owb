@@ -48,7 +48,7 @@ public class WebPictureBandView extends Composite implements WebPictureBandPrese
 	private void initComponents(){     
         //panelSlider.setAnimationEnabled(true);
         panelSlider.setAnimationVertical(false);
-        panelSlider.setAnimationDuration(1000);
+        panelSlider.setAnimationDuration(2000);
         Iterator<Image> i=listImage.iterator();
         while(i.hasNext()){
             panelSlider.add(i.next());                  

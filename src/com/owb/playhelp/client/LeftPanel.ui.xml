@@ -27,7 +27,7 @@
 			horizontalAlignment: "ALIGN_LEFT";
 		}
 		.backgroundall {  
-	        background-color: #c5f935; 
+	        background-color: white; 
 			color: #9152a0;
 			text-align: left;
 			font-size: 12px;
@@ -44,16 +44,17 @@
 	</ui:style>
 	<g:HTMLPanel styleName='{style.backgroundall}'>
 	    
-	    <g:Image ui:field="owbIcon" styleName='{style.profileContainer}' resource='{res.nameLeftLogo}' />
+	    <!-- <g:Image ui:field="owbIcon" styleName='{style.profileContainer}' resource='{res.nameLeftLogo}' />
 	    <div style='margin:15px'>
 			<b>Mission:</b><br></br><br></br>
 			Orphanage Without Borders aims to improve the life of children living in orphanages and abandoned children. Our goal is to create a network of organizations that work together to provide children with the acceptable standards of life such as education, health, hygiene, discipline, affection, responsibility, hope of future, shelter, nutrition, clean water, joy and safety. We aim to apply these standards universally, meaning that they will be independent of the nationality, religion, culture, race political opinion or social class of the children or orphanage location.
 		</div>
 		<br></br><br></br>
+		
 	    <div style='margin:15px'>
 	    <b><big>CONTACT US</big></b><br></br>
 	      email: owb@orphanagewithoutborders.org <br></br>
-	      <!-- phone: XXX-XXX-XXXX -->
+	      phone: XXX-XXX-XXXX 
 	    </div>
 	    <br></br><br></br><br></br><br></br>
 	    
@@ -62,6 +63,8 @@
 					|
 					<a href="#">Responsibility</a>
 	    </div>
+	    
+		 -->
 	    <!-- 
 		<g:VerticalPanel styleName='{style.leftContainer}' ui:field='profilePanel' />
 		<g:VerticalPanel styleName='{style.menuContainer}' ui:field='menuPanel'/>
