@@ -6,7 +6,7 @@
 			font-weight: bold;
         	text-align: center;
         	font-size:40px;
-        	font-color:#b314d5;
+        	color:#b314d5;
         	font-family: Arial, sans-serif;
         	background: #fbe600;
         	border-bottom-left-radius: 16px 16px;

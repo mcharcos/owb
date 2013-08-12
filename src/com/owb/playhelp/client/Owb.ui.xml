@@ -64,7 +64,7 @@
 				  	<g:HorizontalPanel  width='80px'/>
 				  	<g:HorizontalPanel ui:field='barPanel' /> 
 				</g:HorizontalPanel>
-				<g:ScrollPanel height='500px'>
+				<g:ScrollPanel height='700px'>
 				<g:HorizontalPanel>
             		<app:LeftPanel ui:field='actionPanel' width='170px'/>
 					<g:ScrollPanel ui:field='centerPanel' styleName='{style.horizontalCenterStyle}' />
