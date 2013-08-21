@@ -11,9 +11,9 @@
 		{
 		    cursor                      :   hand;
 		    background-color            :   #8bff2d;
-		    border						:	0px;
-		    margin                      :   0px;
-		    padding                     :   0px;
+			border						:	0px 0px 0px 0px;
+		    marging						: 	0px 0px 0px 0px;
+		    padding						: 	0px 0px 0px 0px;
 		}
 		.gwt-MenuBar table
 		{
@@ -79,6 +79,7 @@ background: url(images/bluebar-bg-selected.png) no-repeat 50% 100%;
 	<g:HTMLPanel>
 	  		<div class='{style.gwt-MenuBar}'>
 	  		<g:MenuBar ui:field='mainMenu' vertical="false">
+	  			<g:MenuItem width='100%' />
 				<g:MenuItem ui:field='homeItem'>
 				  <img src='{res.menuHomeIcon.getSafeUri.asString}' />
 				</g:MenuItem>

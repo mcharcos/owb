@@ -3,13 +3,13 @@
 	xmlns:g="urn:import:com.google.gwt.user.client.ui">
 	<ui:style>
 		.main {
-			text-align: center;
-	        color:#9152a0;
-	        margin: 30px;
+            background-color	:	white;
+            width				:	100%;
 		}
 	</ui:style>
-	<g:VerticalPanel>
-		<g:HorizontalPanel ui:field='sliderPanel'/>
-		<g:HorizontalPanel ui:field='infoBandField' />
+	
+	<g:VerticalPanel styleName='{style.main}' horizontalAlignment="ALIGN_CENTER">
+		<g:HorizontalPanel ui:field='sliderPanel' horizontalAlignment="ALIGN_CENTER" width='100%'/>
+		<g:HorizontalPanel ui:field='infoBandField' horizontalAlignment="ALIGN_CENTER"/>
 	</g:VerticalPanel>
 </ui:UiBinder> 

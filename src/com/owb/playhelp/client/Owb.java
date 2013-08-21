@@ -33,6 +33,8 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.RunAsyncCallback;
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.dom.client.Style.BorderStyle;
+import com.google.gwt.event.logical.shared.ResizeEvent;
+import com.google.gwt.event.logical.shared.ResizeHandler;
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
@@ -40,6 +42,7 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.rpc.SerializationStreamFactory;
 import com.google.gwt.user.client.ui.DockLayoutPanel;
+import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.RootLayoutPanel;
 import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
@@ -113,8 +116,9 @@ public class Owb implements EntryPoint {
 	 */
 	@UiField LeftPanel actionPanel;
 	@UiField HorizontalPanel topCenterPanel, barPanel;
-	@UiField ScrollPanel centerPanel;
+	@UiField HorizontalPanel centerPanel;
 	@UiField VerticalPanel statusPanel;
+	@UiField Image leftTopImg, rightTopImg;
 
 	RootLayoutPanel rootLayout;
     
@@ -277,6 +281,34 @@ public class Owb implements EntryPoint {
 	  userSettingsPresenter = new UserSettingPresenter(loginService,thePath, new UserSettingView());
 	  userSettingsPresenter.go(tcpanel.getUserSettings());
 	  
+	  // Set the initial size of the left and right sides
+	  int width = (Window.getClientWidth()-topCenterPanel.getOffsetWidth())/2;
+	  if (width <= 0){width=1;}
+	  try {
+		  leftTopImg.setWidth(Integer.toString(width)+"px");
+		  rightTopImg.setWidth(Integer.toString(width)+"px");
+	  }catch (Exception e) {
+		  leftTopImg.setWidth("1px");
+		  rightTopImg.setWidth("1px");        		  
+	  }
+	  
+	  // Add window resize handler for window resizing
+	  Window.addResizeHandler(new ResizeHandler(){           
+          @Override
+          public void onResize(ResizeEvent event) {
+        	  int width = (Window.getClientWidth()-topCenterPanel.getOffsetWidth())/2;
+        	  //int height = Window.getClientHeight();
+        	  //Window.alert(Integer.toString(Window.getClientHeight())+" "+Integer.toString(topCenterPanel.getOffsetWidth())+" "+Integer.toString(width));
+        	  if (width <= 0){width=1;}
+        	  try {
+        		  leftTopImg.setWidth(Integer.toString(width)+"px");
+        		  rightTopImg.setWidth(Integer.toString(width)+"px");
+        	  }catch (Exception e) {
+        		  leftTopImg.setWidth("1px");
+        		  rightTopImg.setWidth("1px");        		  
+        	  }
+          }
+      });  
 	  }
 	
 	/**
@@ -300,7 +332,7 @@ public class Owb implements EntryPoint {
 	 * Returns the central panel where all the views will be shown
 	 * @return main panel 
 	 */
-	public ScrollPanel getMainPanel() {
+	public HorizontalPanel getMainPanel() {
 		return centerPanel;
 	}
 	

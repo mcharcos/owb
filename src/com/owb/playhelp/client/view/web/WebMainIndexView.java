@@ -17,7 +17,7 @@ public class WebMainIndexView extends Composite implements HasText {
 			UiBinder<Widget, WebMainIndexView> {
 	}
 
-	@UiField VerticalPanel areaField, indexField;
+	@UiField VerticalPanel areaField; //, indexField;
 	
 	public WebMainIndexView() {
 		initWidget(uiBinder.createAndBindUi(this));
@@ -34,8 +34,10 @@ public class WebMainIndexView extends Composite implements HasText {
 		return areaField;
 	}
 	
+	/*
 	public VerticalPanel getIndexField(){
 		return indexField;
 	}
+	*/
 
 }
