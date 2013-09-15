@@ -23,6 +23,8 @@
     <url-pattern>/owb/loginService</url-pattern>
   </servlet-mapping>
   
+  <!-- ===================== DBRecord Service ===================== -->
+  
   <!-- ===================== NGO Service ===================== -->
   <servlet>
     <servlet-name>ngoService</servlet-name>
