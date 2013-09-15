@@ -29,6 +29,11 @@
 		  		    </td>
 	  		    </tr>
 	  		     -->
+	  		     <tr>
+			        <td width="570">			        
+					<g:HorizontalPanel ui:field='sliderPanel' horizontalAlignment="ALIGN_CENTER" width='100%'/>
+			        </td>
+	  		     </tr>
 	    		<tr>
 			        <td width="570">
 					Orphanage Without Borders provides a common portal for organization and individuals to 

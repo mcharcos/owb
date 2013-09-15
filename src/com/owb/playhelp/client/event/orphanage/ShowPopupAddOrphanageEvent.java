@@ -5,19 +5,20 @@ package com.owb.playhelp.client.event.orphanage;
 
 import com.google.gwt.event.shared.GwtEvent;
 import com.owb.playhelp.client.helper.ClickPoint;
+import com.owb.playhelp.shared.DBRecordInfo;
 import com.owb.playhelp.shared.orphanage.OrphanageInfo;
 
 public class ShowPopupAddOrphanageEvent extends GwtEvent<ShowPopupAddOrphanageEventHandler>{
 	public static Type<ShowPopupAddOrphanageEventHandler> TYPE = new Type<ShowPopupAddOrphanageEventHandler>();
 	
 	private final ClickPoint point;
-	private OrphanageInfo Orphanage;
+	private DBRecordInfo Orphanage;
 	
 	public ShowPopupAddOrphanageEvent(ClickPoint location){
 		this.point = location;
 		this.Orphanage = null;
 	};
-	public ShowPopupAddOrphanageEvent(ClickPoint location, OrphanageInfo Orphanage){
+	public ShowPopupAddOrphanageEvent(ClickPoint location, DBRecordInfo Orphanage){
 		this.point = location;
 		this.Orphanage = Orphanage;
 	};
@@ -26,7 +27,7 @@ public class ShowPopupAddOrphanageEvent extends GwtEvent<ShowPopupAddOrphanageEv
 		return point;
 	}
 	
-	public OrphanageInfo getOrphanage(){
+	public DBRecordInfo getOrphanage(){
 		return Orphanage;
 	}
 	@Override public Type<ShowPopupAddOrphanageEventHandler> getAssociatedType(){

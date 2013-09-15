@@ -5,18 +5,19 @@ package com.owb.playhelp.client.event.volunteer;
 
 import com.google.gwt.event.shared.GwtEvent;
 import com.owb.playhelp.client.event.volunteer.VolunteerUpdateEventHandler;
+import com.owb.playhelp.shared.DBRecordInfo;
 import com.owb.playhelp.shared.volunteer.VolunteerInfo;
 
 public class VolunteerUpdateEvent extends GwtEvent<VolunteerUpdateEventHandler>{
 	public static Type<VolunteerUpdateEventHandler> TYPE = new Type<VolunteerUpdateEventHandler>();
 	
-	private final VolunteerInfo updatedVolunteer;
+	private final DBRecordInfo updatedVolunteer;
 	
-	public VolunteerUpdateEvent(VolunteerInfo updatedVolunteer){
-		this.updatedVolunteer = updatedVolunteer;
+	public VolunteerUpdateEvent(DBRecordInfo result){
+		this.updatedVolunteer = result;
 	}
 	
-	public VolunteerInfo getUpdatedVolunteer(){
+	public DBRecordInfo getUpdatedVolunteer(){
 		return updatedVolunteer;
 	}
 	

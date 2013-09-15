@@ -11,9 +11,9 @@
 		    display:inline-block;
 		}
 	</ui:style>
-	<g:FlowPanel styleName="{style.flowPanel_inline}">
-	  <g:Label ui:field='nextLeft'>Previous</g:Label>
-	  <g:DeckLayoutPanel ui:field='panelSlider'/>
-	  <g:Label ui:field='nextRight'>Next</g:Label>  
-	</g:FlowPanel>
+		<g:FlowPanel styleName="{style.flowPanel_inline}">
+		  <g:Label ui:field='nextLeft'></g:Label>
+		  <g:DeckLayoutPanel ui:field='panelSlider'/>
+		  <g:Label ui:field='nextRight'></g:Label>  
+		</g:FlowPanel>
 </ui:UiBinder> 

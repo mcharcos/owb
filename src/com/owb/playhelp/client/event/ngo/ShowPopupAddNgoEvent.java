@@ -5,19 +5,20 @@ package com.owb.playhelp.client.event.ngo;
 
 import com.google.gwt.event.shared.GwtEvent;
 import com.owb.playhelp.client.helper.ClickPoint;
+import com.owb.playhelp.shared.DBRecordInfo;
 import com.owb.playhelp.shared.ngo.NgoInfo;
 
 public class ShowPopupAddNgoEvent extends GwtEvent<ShowPopupAddNgoEventHandler>{
 	public static Type<ShowPopupAddNgoEventHandler> TYPE = new Type<ShowPopupAddNgoEventHandler>();
 	
 	private final ClickPoint point;
-	private NgoInfo ngo;
+	private DBRecordInfo ngo;
 	
 	public ShowPopupAddNgoEvent(ClickPoint location){
 		this.point = location;
 		this.ngo = null;
 	};
-	public ShowPopupAddNgoEvent(ClickPoint location, NgoInfo ngo){
+	public ShowPopupAddNgoEvent(ClickPoint location, DBRecordInfo ngo){
 		this.point = location;
 		this.ngo = ngo;
 	};
@@ -26,7 +27,7 @@ public class ShowPopupAddNgoEvent extends GwtEvent<ShowPopupAddNgoEventHandler>{
 		return point;
 	}
 	
-	public NgoInfo getNgo(){
+	public DBRecordInfo getNgo(){
 		return ngo;
 	}
 	@Override public Type<ShowPopupAddNgoEventHandler> getAssociatedType(){

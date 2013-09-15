@@ -4,18 +4,19 @@
 package com.owb.playhelp.client.event.ngo;
 
 import com.google.gwt.event.shared.GwtEvent;
+import com.owb.playhelp.shared.DBRecordInfo;
 import com.owb.playhelp.shared.ngo.NgoInfo;
 
 public class NgoRemoveEvent extends GwtEvent<NgoRemoveEventHandler>{
 	public static Type<NgoRemoveEventHandler> TYPE = new Type<NgoRemoveEventHandler>();
 	
-	private final NgoInfo ngo;
+	private final DBRecordInfo ngo;
 	
-	public NgoRemoveEvent(NgoInfo ngo){
+	public NgoRemoveEvent(DBRecordInfo ngo){
 		this.ngo = ngo;
 	};
 	
-	public NgoInfo getNgo(){
+	public DBRecordInfo getNgo(){
 		return ngo;
 	}
 	

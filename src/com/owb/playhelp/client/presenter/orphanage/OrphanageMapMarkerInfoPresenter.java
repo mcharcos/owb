@@ -13,6 +13,7 @@ import com.google.gwt.user.client.ui.HasText;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.Widget;
 
+import com.owb.playhelp.shared.DBRecordInfo;
 import com.owb.playhelp.shared.orphanage.OrphanageInfo;
 import com.owb.playhelp.shared.project.ProjectInfo;
 import com.owb.playhelp.client.presenter.Presenter;
@@ -27,9 +28,6 @@ public class OrphanageMapMarkerInfoPresenter implements Presenter {
 		public HTMLPanel getMainPanel();
 		public HasText getOrphanageName();
 		public HasText getOrphanageDescription();
-		public HasText getOrphanageAddress();
-		public HasText getOrphanagePhone();
-		public HasText getOrphanageEmail();
 		public Anchor getEditBut();
 		public Anchor getRemoveBut();
 		public Anchor getReportBut();
@@ -41,9 +39,9 @@ public class OrphanageMapMarkerInfoPresenter implements Presenter {
 	private final SimpleEventBus eventBus;
 	public final Display display;
 
-	private final OrphanageInfo Orphanage;
+	private final DBRecordInfo Orphanage;
 
-	public OrphanageMapMarkerInfoPresenter(SimpleEventBus eventBus, OrphanageInfo Orphanage, Display display) {
+	public OrphanageMapMarkerInfoPresenter(SimpleEventBus eventBus, DBRecordInfo Orphanage, Display display) {
 		this.eventBus = eventBus;
 		this.display = display;
 		this.Orphanage = Orphanage;
@@ -83,10 +81,7 @@ public class OrphanageMapMarkerInfoPresenter implements Presenter {
 		container.clear();
 		container.add(display.asWidget());
 		display.getOrphanageName().setText(Orphanage.getName());
-		display.getOrphanageAddress().setText(Orphanage.getAddress());
 		display.getOrphanageDescription().setText(Orphanage.getDescription());
-		display.getOrphanagePhone().setText(Orphanage.getPhone());
-		display.getOrphanageEmail().setText(Orphanage.getEmail());
 		
 		//if (!Orphanage.getMember()) {
 			display.getEditBut().setVisible(false);

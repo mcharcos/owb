@@ -18,6 +18,7 @@ import com.owb.playhelp.client.event.volunteer.ShowAddVolunteerEvent;
 import com.owb.playhelp.client.event.web.ShowWebEvent;
 import com.owb.playhelp.client.event.map.MainHomeEvent;
 import com.owb.playhelp.client.event.ngo.ShowPopupAddNgoEvent;
+import com.owb.playhelp.client.event.orphanage.ShowListOrphanageEvent;
 import com.owb.playhelp.client.event.orphanage.ShowPopupAddOrphanageEvent;
 import com.owb.playhelp.client.presenter.Presenter;
 import com.owb.playhelp.client.resources.Resources;
@@ -133,6 +134,12 @@ public class WebMenuPresenter  implements Presenter {
 			@Override
 			public void execute() {
 				eventBus.fireEvent(new ShowPopupAddOrphanageEvent(new ClickPoint(100,100)));
+			}
+		});
+		this.display.getsearchProjectsItem().setCommand(new Command() {
+			@Override
+			public void execute() {
+				eventBus.fireEvent(new ShowListOrphanageEvent());
 			}
 		});
 		this.display.getmapItem().setCommand(new Command() {

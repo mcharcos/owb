@@ -198,9 +198,9 @@ public interface Resources extends ClientBundle {
     ImageResource volunteerWebPic();
     
     // Picture slider
-    @Source("go-next.png")
+    @Source("go-next.gif")
     ImageResource getNext();
-    @Source("go-previous.png")
+    @Source("go-previous.gif")
     ImageResource getBack();
     @Source("slide1.jpg")
     ImageResource homeimg1();

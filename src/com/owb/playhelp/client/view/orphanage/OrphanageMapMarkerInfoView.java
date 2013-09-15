@@ -24,7 +24,7 @@ public class OrphanageMapMarkerInfoView extends Composite implements OrphanageMa
 	}
 
 	@UiField
-	Label orphanageName, orphanageDescription, orphanageAddress, orphanagePhone, orphanageEmail;
+	Label orphanageName, orphanageDescription;
 	@UiField
 	HTMLPanel mainPanel;
 	@UiField
@@ -46,18 +46,6 @@ public class OrphanageMapMarkerInfoView extends Composite implements OrphanageMa
 	  @Override
 	public Label getOrphanageDescription(){
 		return orphanageDescription;
-	}
-	  @Override
-	public Label getOrphanageAddress(){
-		return orphanageAddress;
-	}
-	  @Override
-	public Label getOrphanagePhone(){
-		return orphanagePhone;
-	}
-	  @Override
-	public Label getOrphanageEmail(){
-		return orphanageEmail;
 	}
 
 		@Override

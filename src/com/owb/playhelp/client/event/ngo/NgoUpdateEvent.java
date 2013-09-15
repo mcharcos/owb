@@ -4,18 +4,19 @@
 package com.owb.playhelp.client.event.ngo;
 
 import com.google.gwt.event.shared.GwtEvent;
+import com.owb.playhelp.shared.DBRecordInfo;
 import com.owb.playhelp.shared.ngo.NgoInfo;
 
 public class NgoUpdateEvent extends GwtEvent<NgoUpdateEventHandler>{
 	public static Type<NgoUpdateEventHandler> TYPE = new Type<NgoUpdateEventHandler>();
 	
-	private final NgoInfo updatedNgo;
+	private final DBRecordInfo updatedNgo;
 	
-	public NgoUpdateEvent(NgoInfo updatedNgo){
+	public NgoUpdateEvent(DBRecordInfo updatedNgo){
 		this.updatedNgo = updatedNgo;
 	}
 	
-	public NgoInfo getUpdatedNgo(){
+	public DBRecordInfo getUpdatedNgo(){
 		return updatedNgo;
 	}
 	

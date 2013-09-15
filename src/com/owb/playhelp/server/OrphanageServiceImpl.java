@@ -12,9 +12,9 @@ import javax.jdo.Transaction;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.owb.playhelp.client.service.orphanage.OrphanageService;
-import com.owb.playhelp.server.domain.UserProfile;
-import com.owb.playhelp.server.domain.orphanage.Orphanage;
-import com.owb.playhelp.shared.orphanage.OrphanageInfo;
+import com.owb.playhelp.server.domain.Orphanage;
+import com.owb.playhelp.server.domain.user.UserProfile;
+import com.owb.playhelp.shared.DBRecordInfo;
 
 public class OrphanageServiceImpl extends RemoteServiceServlet implements OrphanageService {
 
@@ -27,9 +27,9 @@ public class OrphanageServiceImpl extends RemoteServiceServlet implements Orphan
 	private static final int NUM_RETRIES = 5;
 
 	@Override
-	public OrphanageInfo updateOrphanage(OrphanageInfo orphanageInfo){
+	public DBRecordInfo updateDBRecord(DBRecordInfo orphanageInfo){
 
-		Orphanage orphanage = Orphanage.findOrCreateOrphanage(new Orphanage(orphanageInfo));
+		Orphanage orphanage = Orphanage.findOrCreateDBRecord(new Orphanage(orphanageInfo));
 		orphanage.reEdit(orphanageInfo);
 		
 	    PersistenceManager pm = PMFactory.getTxnPm();
@@ -94,7 +94,7 @@ public class OrphanageServiceImpl extends RemoteServiceServlet implements Orphan
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public ArrayList<OrphanageInfo> getOrphanageList(){
+	public ArrayList<DBRecordInfo> getDBRecordList(){
 		//ArrayList<OrphanageInfo> orphanageList = new ArrayList<OrphanageInfo>();
 		
 		PersistenceManager pm = PMFactory.getNonTxnPm();
@@ -112,8 +112,8 @@ public class OrphanageServiceImpl extends RemoteServiceServlet implements Orphan
 			foundIdOrphanages = (List<Long>) dq.execute();
 			
 			Orphanage foundOrphanage = null;
-			OrphanageInfo orphanageInfo = null;
-			ArrayList<OrphanageInfo> orphanageArray = new ArrayList<OrphanageInfo>();
+			DBRecordInfo orphanageInfo = null;
+			ArrayList<DBRecordInfo> orphanageArray = new ArrayList<DBRecordInfo>();
 			for (Long orphanageId: foundIdOrphanages){
 				if (orphanageId != null){
 					foundOrphanage = pm.getObjectById(Orphanage.class, orphanageId);
@@ -131,7 +131,7 @@ public class OrphanageServiceImpl extends RemoteServiceServlet implements Orphan
 	}
 
 	@Override
-	public void removeOrphanage(OrphanageInfo orphanageInfo){
+	public void removeDBRecord(DBRecordInfo orphanageInfo){
 		
 		if (orphanageInfo.getUniqueId() == null) {
 			logger.info("UniqueId is empty");

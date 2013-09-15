@@ -10,9 +10,10 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-import com.owb.playhelp.server.domain.ngo.Ngo;
-import com.owb.playhelp.server.domain.orphanage.Orphanage;
-import com.owb.playhelp.server.domain.volunteer.Volunteer;
+import com.owb.playhelp.server.domain.DBRecord;
+import com.owb.playhelp.server.domain.Orphanage;
+import com.owb.playhelp.server.domain.Ngo;
+import com.owb.playhelp.server.domain.Volunteer;
 
 
 public class EmailHelper {
@@ -60,7 +61,21 @@ public class EmailHelper {
 	        
 	        return output;
 	    }
-	  
+
+	  static public String sendMail(DBRecord record) {
+	        
+		  String subject = "DB record was added";
+		  String message = "DB Record " + record.getName() + " was created with the following information " + eol + eol +
+	                  		"   - Email: "+record.getEmail()+ eol +
+	                  		"   - Address: "+record.getAddress()+ eol +
+	                  		"   - Phone: "+record.getPhone()+ eol +
+	                  		"   - Web: "+record.getWebsite()+ eol +
+	                  		"   - Coordinates: "+record.getLongitude()+","+record.getLatitude()+ eol +
+	                  		"   - Description: "+record.getDescription()+ eol;
+
+		  sendMail(myEmail,subject,message);
+		  return sendMail(systemEmail,subject,message);
+	    }
 
 	  static public String sendMail(Ngo ngo) {
 	        
@@ -102,7 +117,13 @@ public class EmailHelper {
 		  
 		  String interests = volunteer.getDescription().getValue();
 		  if (interests.contains("||")) {
-			  message = message + interests.replace("||",eol+"   + ");
+			  String[] parts = interests.split("[|]+");
+			  for (String p: parts){
+				  if (p.contains("Yes")){
+					  message = message + p + eol; //.substring(4, p.length());
+				  }
+			  }
+			  //message = message + interests.replace("||",eol+"   + ");
 			} else {
 			  message = message + interests;
 			}

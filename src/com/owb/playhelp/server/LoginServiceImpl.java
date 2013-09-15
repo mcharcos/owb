@@ -7,7 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.owb.playhelp.server.LoginHelper;
-import com.owb.playhelp.server.domain.UserProfile;
+import com.owb.playhelp.server.domain.user.UserProfile;
 import com.owb.playhelp.client.service.LoginService;
 import com.owb.playhelp.shared.UserProfileInfo;
 import com.owb.playhelp.shared.exceptions.NotLoggedInException;

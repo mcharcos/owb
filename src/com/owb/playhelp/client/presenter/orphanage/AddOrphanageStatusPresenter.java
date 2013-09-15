@@ -17,6 +17,7 @@ import com.owb.playhelp.client.event.orphanage.OrphanageUpdateEvent;
 import com.owb.playhelp.client.helper.RPCCall;
 import com.owb.playhelp.client.presenter.Presenter;
 import com.owb.playhelp.client.service.orphanage.OrphanageServiceAsync;
+import com.owb.playhelp.shared.DBRecordInfo;
 import com.owb.playhelp.shared.StandardInfo;
 import com.owb.playhelp.shared.orphanage.OrphanageInfo;
 
@@ -67,7 +68,7 @@ public class AddOrphanageStatusPresenter implements Presenter{
 		
 		if (orphanage == null) return;
         
-		StandardInfo status = this.orphanage.getStandard();
+		StandardInfo status = this.orphanage.getStatus();
 		this.display.getNameField().setText(this.orphanage.getName());
 		if (status!=null){
 			this.display.getHealthField().setValue(String.valueOf(status.getHealth()));
@@ -83,18 +84,18 @@ public class AddOrphanageStatusPresenter implements Presenter{
 		  status.setEducation(Float.valueOf(this.display.getEducationField().getValue()));
 		  status.setNutrition(Float.valueOf(this.display.getFoodField().getValue()));
 		  
-		  this.orphanage.setStandard(status);
+		  this.orphanage.setStatus(status);
 
-	    new RPCCall<OrphanageInfo>() {
+	    new RPCCall<DBRecordInfo>() {
 	      @Override
-	      protected void callService(AsyncCallback<OrphanageInfo> cb) {
-	    	  orphanageService.updateOrphanage(orphanage, cb);
+	      protected void callService(AsyncCallback<DBRecordInfo> cb) {
+	    	  orphanageService.updateDBRecord(orphanage, cb);
 	      }
 
 	      @Override
-	      public void onSuccess(OrphanageInfo result) {
+	      public void onSuccess(DBRecordInfo result) {
 	        GWT.log("OrphanageAddPresenter: Firing ShowPopupAddOrphanageStatusEvent");
-	        eventBus.fireEvent(new OrphanageUpdateEvent(result)); 
+	        eventBus.fireEvent(new OrphanageUpdateEvent((OrphanageInfo) result)); 
 	      }
 
 	      @Override

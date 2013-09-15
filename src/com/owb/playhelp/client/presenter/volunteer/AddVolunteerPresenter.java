@@ -24,8 +24,8 @@ import com.owb.playhelp.client.event.orphanage.AddOrphanageUpdateEvent;
 import com.owb.playhelp.client.event.volunteer.VolunteerUpdateEvent;
 import com.owb.playhelp.client.helper.RPCCall;
 import com.owb.playhelp.client.presenter.Presenter;
-import com.owb.playhelp.client.service.volunteer.VolunteerServiceAsync;
-import com.owb.playhelp.shared.volunteer.VolunteerInfo;
+import com.owb.playhelp.client.service.orphanage.VolunteerServiceAsync;
+import com.owb.playhelp.shared.DBRecordInfo;
 
 public class AddVolunteerPresenter implements Presenter {
 	public interface Display {
@@ -43,7 +43,7 @@ public class AddVolunteerPresenter implements Presenter {
 	  
 	private final SimpleEventBus eventBus;
 	private final Display display;
-	private VolunteerInfo volunteer;
+	private DBRecordInfo volunteer;
 
 	private final VolunteerServiceAsync volunteerService;
 
@@ -56,7 +56,7 @@ public class AddVolunteerPresenter implements Presenter {
 		this.display = display;
 		this.volunteer = null;
 	}
-	public AddVolunteerPresenter(VolunteerInfo volunteer, VolunteerServiceAsync volunteerService,
+	public AddVolunteerPresenter(DBRecordInfo volunteer, VolunteerServiceAsync volunteerService,
 			SimpleEventBus eventBus, Display display) {
 		this(volunteerService, eventBus, display);
 		this.volunteer = volunteer;
@@ -115,7 +115,7 @@ public class AddVolunteerPresenter implements Presenter {
 		  }
 		  
 		  if (volunteer == null){
-			  volunteer = new VolunteerInfo(display.getNameField().getValue().trim(),
+			  volunteer = new DBRecordInfo(DBRecordInfo.VOLUNTEER, display.getNameField().getValue().trim(),
 					  	description,
 					  	display.getAddressField().getValue().trim(), lat, lng, 
 					  	display.getPhoneField().getValue().trim(),
@@ -134,14 +134,14 @@ public class AddVolunteerPresenter implements Presenter {
 	  }
 	  
 	  private void doSave() {
-	    new RPCCall<VolunteerInfo>() {
+	    new RPCCall<DBRecordInfo>() {
 	      @Override
-	      protected void callService(AsyncCallback<VolunteerInfo> cb) {
-	    	  volunteerService.updateVolunteer(volunteer, cb);
+	      protected void callService(AsyncCallback<DBRecordInfo> cb) {
+	    	  volunteerService.updateDBRecord(volunteer, cb);
 	      }
 
 	      @Override
-	      public void onSuccess(VolunteerInfo result) {
+	      public void onSuccess(DBRecordInfo result) {
 	        GWT.log("VolunteerAddPresenter: Firing VolunteerUpdateEvent");
 	        eventBus.fireEvent(new VolunteerUpdateEvent(result)); 
 	      }

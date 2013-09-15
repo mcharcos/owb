@@ -14,7 +14,7 @@ import javax.jdo.Query;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.owb.playhelp.server.LoginHelper;
 import com.owb.playhelp.server.PMFactory;
-import com.owb.playhelp.server.domain.UserProfile;
+import com.owb.playhelp.server.domain.user.UserProfile;
 import com.owb.playhelp.server.utils.ServletHelper;
 import com.owb.playhelp.server.utils.ServletUtils;
 

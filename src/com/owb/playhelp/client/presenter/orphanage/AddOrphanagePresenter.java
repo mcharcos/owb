@@ -21,6 +21,7 @@ import com.owb.playhelp.client.event.orphanage.ShowPopupAddOrphanageStatusEvent;
 import com.owb.playhelp.client.helper.RPCCall;
 import com.owb.playhelp.client.helper.ClickPoint;
 import com.owb.playhelp.client.service.orphanage.OrphanageServiceAsync;
+import com.owb.playhelp.shared.DBRecordInfo;
 import com.owb.playhelp.shared.orphanage.OrphanageInfo;
 import com.owb.playhelp.client.presenter.Presenter;
 
@@ -39,7 +40,7 @@ public class AddOrphanagePresenter implements Presenter {
 
 	private final SimpleEventBus eventBus;
 	private final Display display;
-	private OrphanageInfo orphanage;
+	private DBRecordInfo orphanage;
 
 	private final OrphanageServiceAsync orphanageService;
 	
@@ -50,7 +51,7 @@ public class AddOrphanagePresenter implements Presenter {
 		this.display = display;
 		this.orphanage = null;
 	}
-	public AddOrphanagePresenter(OrphanageInfo orphanage, OrphanageServiceAsync orphanageService,
+	public AddOrphanagePresenter(DBRecordInfo orphanage, OrphanageServiceAsync orphanageService,
 			SimpleEventBus eventBus, Display display) {
 		this(orphanageService, eventBus, display);
 		this.orphanage = orphanage;
@@ -121,16 +122,16 @@ public class AddOrphanagePresenter implements Presenter {
 	  }
 	  
 	  private void doSave(){
-	    new RPCCall<OrphanageInfo>() {
+	    new RPCCall<DBRecordInfo>() {
 	      @Override
-	      protected void callService(AsyncCallback<OrphanageInfo> cb) {
-	    	  orphanageService.updateOrphanage(orphanage, cb);
+	      protected void callService(AsyncCallback<DBRecordInfo> cb) {
+	    	  orphanageService.updateDBRecord(orphanage, cb);
 	      }
 
 	      @Override
-	      public void onSuccess(OrphanageInfo result) {
+	      public void onSuccess(DBRecordInfo result) {
 	        GWT.log("OrphanageAddPresenter: Firing OrphanageUpdateEvent");
-	        eventBus.fireEvent(new OrphanageUpdateEvent(result)); 
+	        eventBus.fireEvent(new OrphanageUpdateEvent((OrphanageInfo) result)); 
 	      }
 
 	      @Override

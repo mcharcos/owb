@@ -7,11 +7,8 @@
 		}
 	</ui:style>
 	<g:HTMLPanel ui:field="mainPanel">
-		Name: <g:Label ui:field="orphanageName" />
-		Description: <g:Label ui:field="orphanageDescription" />
-		Address: <g:Label ui:field="orphanageAddress" />
-		Phone:   <g:Label ui:field="orphanagePhone" />
-		Email:   <g:Label ui:field="orphanageEmail" />
+		<div class="{style.formTitle}"><g:Label ui:field="orphanageName" /></div>
+		<g:Label ui:field="orphanageDescription" />
 		<div class='{style.button}'>
 			<g:Anchor href='javascript:;' ui:field='editBut'>Edit</g:Anchor>
 			<g:Anchor href='javascript:;' ui:field='removeBut'>Remove</g:Anchor>

@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.owb.playhelp.server.utils.AuthenticationProvider;
 import com.owb.playhelp.server.LoginHelper;
-import com.owb.playhelp.server.domain.UserProfile;
+import com.owb.playhelp.server.domain.user.UserProfile;
 
 @SuppressWarnings("serial") 
 public class LoginGoogleCallbackServlet extends HttpServlet {

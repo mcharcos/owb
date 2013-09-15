@@ -16,7 +16,7 @@
 				<g:Hyperlink styleName='{style.addElementListLink}' ui:field='addNew'>+add</g:Hyperlink>
 			</div>
 			<div class="{style.titleBar}">
-		    	<g:Label ui:field='titleReportField'>Report</g:Label>
+		    	<g:Label ui:field='titleReportField'>Summary</g:Label>
 		    </div>
 			<g:Label ui:field='loadingLabel' styleName='{style.loading}'>None</g:Label>
 			<g:FlexTable ui:field='listTable' />

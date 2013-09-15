@@ -4,18 +4,19 @@
 package com.owb.playhelp.client.event.orphanage;
 
 import com.google.gwt.event.shared.GwtEvent;
+import com.owb.playhelp.shared.DBRecordInfo;
 import com.owb.playhelp.shared.orphanage.OrphanageInfo;
 
 public class OrphanageRemoveEvent extends GwtEvent<OrphanageRemoveEventHandler>{
 	public static Type<OrphanageRemoveEventHandler> TYPE = new Type<OrphanageRemoveEventHandler>();
 	
-	private final OrphanageInfo Orphanage;
+	private final DBRecordInfo Orphanage;
 	
-	public OrphanageRemoveEvent(OrphanageInfo Orphanage){
+	public OrphanageRemoveEvent(DBRecordInfo Orphanage){
 		this.Orphanage = Orphanage;
 	};
 	
-	public OrphanageInfo getOrphanage(){
+	public DBRecordInfo getOrphanage(){
 		return Orphanage;
 	}
 	

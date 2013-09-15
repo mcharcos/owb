@@ -16,7 +16,8 @@ import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.Widget;
 
 import com.owb.playhelp.client.helper.RPCCall;
-import com.owb.playhelp.client.service.ngo.NgoServiceAsync;
+import com.owb.playhelp.client.service.orphanage.NgoServiceAsync;
+import com.owb.playhelp.shared.DBRecordInfo;
 import com.owb.playhelp.shared.UserProfileInfo;
 import com.owb.playhelp.shared.ngo.NgoInfo;
 import com.owb.playhelp.client.presenter.Presenter;
@@ -55,10 +56,10 @@ public class NgoMapMarkerInfoPresenter implements Presenter {
 
 	private UserProfileInfo currentUser;
 	private final NgoServiceAsync ngoService;
-	private final NgoInfo ngo;
+	private final DBRecordInfo ngo;
 
 	public NgoMapMarkerInfoPresenter(UserProfileInfo currentUser, NgoServiceAsync ngoService,
-			SimpleEventBus eventBus, NgoInfo ngo, Display display) {
+			SimpleEventBus eventBus, DBRecordInfo ngo, Display display) {
 		this.currentUser = currentUser;
 		this.ngoService = ngoService;
 		this.eventBus = eventBus;
@@ -93,40 +94,11 @@ public class NgoMapMarkerInfoPresenter implements Presenter {
 	      });
 	    this.display.getJoinBut().addClickHandler(new ClickHandler() {
 	        public void onClick(ClickEvent event) {
-	        	if (display.getJoinBut().getText()=="Join"){
-	        		eventBus.fireEvent(new JoinNgoEvent(ngo));
-	        		// since the update will take some time I am going to fake the change to update the display
-	        		ngo.activateMember();
-	        	}
-	        	if (display.getJoinBut().getText()=="Leave"){
-	        		eventBus.fireEvent(new LeaveNgoEvent(ngo));
-	        		ngo.deactivateMember();
-	        	}
-	        	
-	        	// I would say that we should listen to an event indicating that the ngo has been updated
-	        	// It may happen than admin removed us from the member list in the mean time
-	        	updateButtons();
 	        }
 	      });
 	    this.display.getConfirmBut().addClickHandler(new ClickHandler() {
 	    	public void onClick(ClickEvent event) {
-	    		new RPCCall<NgoInfo>() {
-				      @Override
-				      protected void callService(AsyncCallback<NgoInfo> cb) {
-				    	  ngoService.confirmNgo(ngo, cb);
-				      }
 
-				      @Override
-				      public void onSuccess(NgoInfo result) {
-				    	  GWT.log("NgoMapMarkerInfoPresenter: Ngo was confirmed");
-				        eventBus.fireEvent(new NgoUpdateEvent(result));
-				      }
-
-				      @Override
-				      public void onFailure(Throwable caught) {
-				        Window.alert("Error removing Ngo...");
-				      }
-				    }.retry(3);
 	        }
 	      });
 	    this.display.getFollowBut().addClickHandler(new ClickHandler() {
@@ -140,8 +112,8 @@ public class NgoMapMarkerInfoPresenter implements Presenter {
 	      });
 	}
 
-	private void updateNgo(NgoInfo newNgo){
-		ngo.setAdminReportList(newNgo.getAdminReportList());
+	private void updateNgo(DBRecordInfo dbRecordInfo){
+		ngo.setAdminReportList(dbRecordInfo.getAdminReportList());
 	}
 
 	private void hideButtons(){

@@ -13,8 +13,9 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.Widget;
 
-import com.owb.playhelp.client.service.ngo.NgoServiceAsync;
+import com.owb.playhelp.client.service.orphanage.NgoServiceAsync;
 import com.owb.playhelp.client.view.ListReportView;
+import com.owb.playhelp.shared.DBRecordInfo;
 import com.owb.playhelp.shared.UserProfileInfo;
 import com.owb.playhelp.shared.ngo.NgoInfo;
 import com.owb.playhelp.client.presenter.Presenter;
@@ -40,7 +41,7 @@ public class ShowDetailsNgoPresenter implements Presenter {
 
 	private final SimpleEventBus eventBus;
 	private final Display display;
-	private NgoInfo ngo;
+	private DBRecordInfo ngo;
 
 	private UserProfileInfo currentUser;
 	private final NgoServiceAsync ngoService;
@@ -54,7 +55,7 @@ public class ShowDetailsNgoPresenter implements Presenter {
 		this.display = display;
 		this.ngo = null;
 	}
-	public ShowDetailsNgoPresenter(NgoInfo ngo, UserProfileInfo currentUser, NgoServiceAsync ngoService,
+	public ShowDetailsNgoPresenter(DBRecordInfo ngo, UserProfileInfo currentUser, NgoServiceAsync ngoService,
 			SimpleEventBus eventBus, Display display) {
 		this(currentUser, ngoService, eventBus, display);
 		this.ngo = ngo;

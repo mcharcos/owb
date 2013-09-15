@@ -9,7 +9,7 @@ import javax.jdo.JDOCanRetryException;
 import javax.jdo.PersistenceManager;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
-import com.owb.playhelp.server.domain.UserProfile;
+import com.owb.playhelp.server.domain.user.UserProfile;
 import com.owb.playhelp.client.service.UserService;
 import com.owb.playhelp.shared.UserProfileInfo;
 

@@ -18,7 +18,8 @@ import com.google.gwt.user.client.ui.Widget;
 import com.owb.playhelp.client.event.ngo.ReportAbuseNgoEvent;
 import com.owb.playhelp.client.helper.RPCCall;
 import com.owb.playhelp.client.presenter.Presenter;
-import com.owb.playhelp.client.service.ngo.NgoServiceAsync;
+import com.owb.playhelp.client.service.orphanage.NgoServiceAsync;
+import com.owb.playhelp.shared.DBRecordInfo;
 import com.owb.playhelp.shared.ngo.NgoInfo;
 
 public class ReportAbuseNgoPresenter implements Presenter {
@@ -33,7 +34,7 @@ public class ReportAbuseNgoPresenter implements Presenter {
 
 	private final SimpleEventBus eventBus;
 	private final Display display;
-	private NgoInfo ngo;
+	private DBRecordInfo ngo;
 	private String report;
 
 	private final NgoServiceAsync ngoService;
@@ -45,7 +46,7 @@ public class ReportAbuseNgoPresenter implements Presenter {
 		this.display = display;
 		this.ngo = null;
 	}
-	public ReportAbuseNgoPresenter(NgoInfo ngo, NgoServiceAsync ngoService,
+	public ReportAbuseNgoPresenter(DBRecordInfo ngo, NgoServiceAsync ngoService,
 			SimpleEventBus eventBus, Display display) {
 		this(ngoService, eventBus, display);
 		this.ngo = ngo;
@@ -54,7 +55,7 @@ public class ReportAbuseNgoPresenter implements Presenter {
 	public void bind() {
 	    this.display.getSaveBut().addClickHandler(new ClickHandler() {
 	        public void onClick(ClickEvent event) {
-	        	doReport();
+	        	//doReport();
 	        }
 	      });
 	    this.display.getCancelBut().addClickHandler(new ClickHandler() {
@@ -72,6 +73,7 @@ public class ReportAbuseNgoPresenter implements Presenter {
 		this.display.getNameField().setText(this.ngo.getName());
 	}
 
+	/*
 	  private void doReport() {
 	      report = this.display.getDescField().getValue();
 		  new RPCCall<NgoInfo>() {
@@ -93,5 +95,6 @@ public class ReportAbuseNgoPresenter implements Presenter {
 	      }
 	    }.retry(3);
 	  }
+	  */
 
 }

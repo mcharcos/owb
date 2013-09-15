@@ -28,14 +28,15 @@ public class WebPictureBandPresenter implements Presenter{
 		Timer getTimer();
 		void setPanelSlider(DeckLayoutPanel panelSlider);
 		List<Image> getListImage();
+		void setSize(boolean manual);
 	}
 
 	private final Display display;
 	private final SimpleEventBus eventBus;
 
-	public WebPictureBandPresenter() {
+	public WebPictureBandPresenter(Display display) {
 		this.eventBus = null;
-		this.display = null;
+		this.display = display;
 	}
 	
 	public WebPictureBandPresenter(SimpleEventBus eventBus, Display display) {

@@ -11,95 +11,26 @@ import javax.jdo.Query;
 import javax.jdo.Transaction;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
-import com.owb.playhelp.client.service.ngo.NgoService;
-import com.owb.playhelp.server.domain.ConfirmationBadge;
-import com.owb.playhelp.server.domain.UserProfile;
-import com.owb.playhelp.server.domain.ngo.Ngo;
-import com.owb.playhelp.shared.ngo.NgoInfo;
+import com.owb.playhelp.client.service.orphanage.NgoService;
+import com.owb.playhelp.server.domain.Orphanage;
+import com.owb.playhelp.server.domain.user.UserProfile;
+import com.owb.playhelp.shared.DBRecordInfo;
 
 public class NgoServiceImpl extends RemoteServiceServlet implements NgoService {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -2351679826873531508L;
+	private static final long serialVersionUID = 6040792375246657307L;
 	private static Logger logger = Logger.getLogger(NgoServiceImpl.class.getName());
 	public final static String CHANNEL_ID = "channel_id";
 	private static final int NUM_RETRIES = 5;
-  
-	@Override
-	public NgoInfo requestMemberNgo(NgoInfo ngoInfo){
 
-		Ngo ngo = Ngo.findOrCreateNgo(new Ngo(ngoInfo));
-		
-	    PersistenceManager pm = PMFactory.getTxnPm();
-	    UserProfile user = LoginHelper.getLoggedUser(getThreadLocalRequest().getSession(), pm);
-	    
-        
-	    pm.close();
-	    
-	    pm = PMFactory.getTxnPm();
-		String userUniqueId = user.getUniqueId();
-		
-		/*
-	    if (ngo.getMembers().size() == 0){
-			ngo.addMember(userUniqueId);
-	    }*/
-		
-	    if (ngo.isMember(userUniqueId)) return null;
-	    
-	    //ngo.requestMember(userUniqueId);
-	    
-		try {
-			for (int i = 0; i < NUM_RETRIES; i++){
-				pm.currentTransaction().begin();
-				pm.makePersistent(ngo);
-				try {
-			          logger.fine("starting commit");
-			          pm.currentTransaction().commit();
-			          logger.fine("commit was successful");
-			          break;
-			    } catch (JDOCanRetryException e1) {
-			          if (i == (NUM_RETRIES - 1)) {
-			            throw e1;
-			          }
-			        }
-			} // end for
-		}catch (Exception e) {
-		      e.printStackTrace();
-		      logger.warning(e.getMessage());
-		      ngoInfo = null;
-		} finally {
-			if (pm.currentTransaction().isActive()){
-				pm.currentTransaction().rollback();
-				logger.warning("transaction rollback");
-				ngoInfo = null;
-			}
-			pm.close();
-		}
-		
-		return ngoInfo;
-		
-		// Check if name changed. Name is the key for UniqueId. 
-		// If it changed we have to verify that the new name does not overlap with 
-		// an existing name. I guess, for simplicity now, we should keep the name unchangeable
-		// but we could perform these kind of tests in the future if we want something more sophisticated
-		
-		//Ngo addedNgo = addNgo(ngoInfo);
-		
-		// do something to store the information
-		// probably creating a Ngo from NgoInfo and
-		// store it if it does not exist already
-		//return Ngo.toInfo(addedNgo);
-	}
-	
-	
 	@Override
-	public NgoInfo updateNgo(NgoInfo ngoInfo){
+	public DBRecordInfo updateDBRecord(DBRecordInfo orphanageInfo){
 
-		Ngo ngo = Ngo.findOrCreateNgo(new Ngo(ngoInfo));
-		if (ngo == null) return ngoInfo;
-		ngo.reEdit(ngoInfo);
+		Orphanage orphanage = Orphanage.findOrCreateDBRecord(new Orphanage(orphanageInfo));
+		orphanage.reEdit(orphanageInfo);
 		
 	    PersistenceManager pm = PMFactory.getTxnPm();
 	    UserProfile user = LoginHelper.getLoggedUser(getThreadLocalRequest().getSession(), pm);
@@ -110,16 +41,17 @@ public class NgoServiceImpl extends RemoteServiceServlet implements NgoService {
 		String userUniqueId = user.getUniqueId();
 		
 		/*
-	    if (ngo.getMembers().size() == 0){
-			ngo.addMember(userUniqueId);
-	    }*/
+	    if (orphanage.getMembers().size() == 0){
+	    	orphanage.addMember(userUniqueId);
+	    }
+	    */
 		
-	    if (!ngo.isMember(userUniqueId)) return null;
+	    if (!orphanage.isMember(userUniqueId)) return null;
 	    
 		try {
 			for (int i = 0; i < NUM_RETRIES; i++){
 				pm.currentTransaction().begin();
-				pm.makePersistent(ngo);
+				pm.makePersistent(orphanage);
 				try {
 			          logger.fine("starting commit");
 			          pm.currentTransaction().commit();
@@ -134,158 +66,36 @@ public class NgoServiceImpl extends RemoteServiceServlet implements NgoService {
 		}catch (Exception e) {
 		      e.printStackTrace();
 		      logger.warning(e.getMessage());
-		      ngoInfo = null;
+		      orphanageInfo = null;
 		} finally {
 			if (pm.currentTransaction().isActive()){
 				pm.currentTransaction().rollback();
 				logger.warning("transaction rollback");
-				ngoInfo = null;
+				orphanageInfo = null;
 			}
 			pm.close();
 		}
 		
-		return ngoInfo;
+		return orphanageInfo;
 		
 		// Check if name changed. Name is the key for UniqueId. 
 		// If it changed we have to verify that the new name does not overlap with 
 		// an existing name. I guess, for simplicity now, we should keep the name unchangeable
 		// but we could perform these kind of tests in the future if we want something more sophisticated
 		
-		//Ngo addedNgo = addNgo(ngoInfo);
+		//Orphanage addedOrphanage = addOrphanage(orphanageInfo);
 		
 		// do something to store the information
-		// probably creating a Ngo from NgoInfo and
+		// probably creating a Orphanage from OrphanageInfo and
 		// store it if it does not exist already
-		//return Ngo.toInfo(addedNgo);
+		//return Orphanage.toInfo(addedOrphanage);
 	}
 	
-    @Override
-    public NgoInfo reportAbuseNgo(NgoInfo ngoInfo, String report){
 
-		Ngo ngo = Ngo.findOrCreateNgo(new Ngo(ngoInfo));
-		
-	    PersistenceManager pm = PMFactory.getTxnPm();
-	    UserProfile user = LoginHelper.getLoggedUser(getThreadLocalRequest().getSession(), pm);
-	    if (user == null) return null;
-	    pm.close();
-	    
-	    pm = PMFactory.getTxnPm();
-		String userUniqueId = user.getUniqueId();
-		
-		// Now update ConfirmationBadge
-		ConfirmationBadge confB = ngo.getConfirmationBadge();
-		confB.addAbuse(userUniqueId, report);
-	    
-		try {
-			for (int i = 0; i < NUM_RETRIES; i++){
-				pm.currentTransaction().begin();
-				pm.makePersistent(confB);
-				try {
-			          logger.fine("starting commit");
-			          pm.currentTransaction().commit();
-			          logger.fine("commit was successful");
-			          break;
-			    } catch (JDOCanRetryException e1) {
-			          if (i == (NUM_RETRIES - 1)) {
-			            throw e1;
-			          }
-			        }
-			} // end for
-		}catch (Exception e) {
-		      e.printStackTrace();
-		      logger.warning(e.getMessage());
-		      ngoInfo = null;
-		} finally {
-			if (pm.currentTransaction().isActive()){
-				pm.currentTransaction().rollback();
-				logger.warning("transaction rollback");
-				ngoInfo = null;
-			}
-			pm.close();
-		}
-		
-		return ngoInfo;
-		
-		// Check if name changed. Name is the key for UniqueId. 
-		// If it changed we have to verify that the new name does not overlap with 
-		// an existing name. I guess, for simplicity now, we should keep the name unchangeable
-		// but we could perform these kind of tests in the future if we want something more sophisticated
-		
-		//Ngo addedNgo = addNgo(ngoInfo);
-		
-		// do something to store the information
-		// probably creating a Ngo from NgoInfo and
-		// store it if it does not exist already
-		//return Ngo.toInfo(addedNgo);
-	}
-	
-    @Override
-    public NgoInfo confirmNgo(NgoInfo ngoInfo){
-
-		Ngo ngo = Ngo.findOrCreateNgo(new Ngo(ngoInfo));
-		
-	    PersistenceManager pm = PMFactory.getTxnPm();
-	    UserProfile user = LoginHelper.getLoggedUser(getThreadLocalRequest().getSession(), pm);
-		//ngo.addConfirmation(user);
-	    if (user == null) return null;
-	    pm.close();
-	    
-	    pm = PMFactory.getTxnPm();
-		//String userUniqueId = user.getUniqueId();
-		
-		// Now update ConfirmationBadge
-		ConfirmationBadge confB = ngo.getConfirmationBadge();
-		confB.addConfirmation(user);
-				
-		try {
-			for (int i = 0; i < NUM_RETRIES; i++){
-				pm.currentTransaction().begin();
-				pm.makePersistent(confB);
-				try {
-			          logger.fine("starting commit");
-			          pm.currentTransaction().commit();
-			          logger.fine("commit was successful");
-			          break;
-			    } catch (JDOCanRetryException e1) {
-			          if (i == (NUM_RETRIES - 1)) {
-			            throw e1;
-			          }
-			        }
-			} // end for
-		}catch (Exception e) {
-		      e.printStackTrace();
-		      logger.warning(e.getMessage());
-		      ngoInfo = null;
-		} finally {
-			if (pm.currentTransaction().isActive()){
-				pm.currentTransaction().rollback();
-				logger.warning("transaction rollback");
-				ngoInfo = null;
-			}
-			pm.close();
-		}
-			    
-        // Update the ngoInfo that will be returned
-        if (ngoInfo != null) ngoInfo = Ngo.toInfo(ngo,user.getUniqueId());
-		return ngoInfo;
-		
-		// Check if name changed. Name is the key for UniqueId. 
-		// If it changed we have to verify that the new name does not overlap with 
-		// an existing name. I guess, for simplicity now, we should keep the name unchangeable
-		// but we could perform these kind of tests in the future if we want something more sophisticated
-		
-		//Ngo addedNgo = addNgo(ngoInfo);
-		
-		// do something to store the information
-		// probably creating a Ngo from NgoInfo and
-		// store it if it does not exist already
-		//return Ngo.toInfo(addedNgo);
-	}
-    
 	@SuppressWarnings("unchecked")
 	@Override
-	public ArrayList<NgoInfo> getNgoList(){
-		//ArrayList<NgoInfo> ngoList = new ArrayList<NgoInfo>();
+	public ArrayList<DBRecordInfo> getDBRecordList(){
+		//ArrayList<OrphanageInfo> orphanageList = new ArrayList<OrphanageInfo>();
 		
 		PersistenceManager pm = PMFactory.getNonTxnPm();
 		UserProfile user = LoginHelper.getLoggedUser(getThreadLocalRequest().getSession(), pm);
@@ -297,31 +107,22 @@ public class NgoServiceImpl extends RemoteServiceServlet implements NgoService {
 		try{
 			Query dq = null;
 			
-			dq = pm.newQuery("select id from " + Ngo.class.getName());			
-			List<Long> foundIdNgos;
-			foundIdNgos = (List<Long>) dq.execute();
+			dq = pm.newQuery("select id from " + Orphanage.class.getName());			
+			List<Long> foundIdOrphanages;
+			foundIdOrphanages = (List<Long>) dq.execute();
 			
-			Ngo foundNgo = null;
-			NgoInfo ngoInfo = null;
-			ArrayList<NgoInfo> ngoArray = new ArrayList<NgoInfo>();
-			for (Long ngoId: foundIdNgos){
-				if (ngoId != null){
-					foundNgo = pm.getObjectById(Ngo.class, ngoId);
-					//pm.deletePersistent(pm.getObjectById(Ngo.class, ngoId));
-					ngoInfo = Ngo.toInfo(foundNgo,userUniqueId);
-					if (user != null){
-						if (ngoInfo.getConfirmed() || user.isAdmin() || foundNgo.isMember(userUniqueId)){
-							ngoArray.add(ngoInfo);
-						}
-					} else {
-						if (ngoInfo.getConfirmed()){
-							ngoArray.add(ngoInfo);
-						}
-					}
-											
+			Orphanage foundOrphanage = null;
+			DBRecordInfo orphanageInfo = null;
+			ArrayList<DBRecordInfo> orphanageArray = new ArrayList<DBRecordInfo>();
+			for (Long orphanageId: foundIdOrphanages){
+				if (orphanageId != null){
+					foundOrphanage = pm.getObjectById(Orphanage.class, orphanageId);
+					//pm.deletePersistent(pm.getObjectById(Orphanage.class, orphanageId));
+					orphanageInfo = Orphanage.toInfo(foundOrphanage,userUniqueId);
+					orphanageArray.add(orphanageInfo);	
 				}
 			}
-			 return ngoArray;
+			 return orphanageArray;
 		}// end try
 	    catch (Exception e) {
 	        e.printStackTrace();
@@ -330,9 +131,9 @@ public class NgoServiceImpl extends RemoteServiceServlet implements NgoService {
 	}
 
 	@Override
-	public void removeNgo(NgoInfo ngoInfo){
+	public void removeDBRecord(DBRecordInfo orphanageInfo){
 		
-		if (ngoInfo.getUniqueId() == null) {
+		if (orphanageInfo.getUniqueId() == null) {
 			logger.info("UniqueId is empty");
 			return;
 		}
@@ -345,11 +146,11 @@ public class NgoServiceImpl extends RemoteServiceServlet implements NgoService {
 		
 		pm = PMFactory.getTxnPm();
 	    Transaction tx = null;
-	    Ngo oneResult = null;
+	    Orphanage oneResult = null;
 
-	    String uniqueId = ngoInfo.getUniqueId();
+	    String uniqueId = orphanageInfo.getUniqueId();
 
-	    Query q = pm.newQuery(Ngo.class, "uniqueId == :uniqueId");
+	    Query q = pm.newQuery(Orphanage.class, "uniqueId == :uniqueId");
 	    q.setUnique(true);
 
 	    // perform the query and creation under transactional control,
@@ -358,7 +159,7 @@ public class NgoServiceImpl extends RemoteServiceServlet implements NgoService {
 	      for (int i = 0; i < NUM_RETRIES; i++) {
 	        tx = pm.currentTransaction();
 	        tx.begin();
-	        oneResult = (Ngo) q.execute(uniqueId);
+	        oneResult = (Orphanage) q.execute(uniqueId);
 	        if (oneResult != null) {
 	        	logger.info("Found object with uniqueId: " + uniqueId);
 	        	if (oneResult.isMember(userUniqueId)) pm.deletePersistent(oneResult);
@@ -377,7 +178,7 @@ public class NgoServiceImpl extends RemoteServiceServlet implements NgoService {
 	        }
 	      } // end for
 	    } catch (JDOUserException e){
-	          logger.info("JDOUserException: Ngo table is empty"); 	
+	          logger.info("JDOUserException: Orphanage table is empty"); 	
 		        try {
 			          tx.commit();
 			        }
@@ -396,13 +197,13 @@ public class NgoServiceImpl extends RemoteServiceServlet implements NgoService {
 	}
 	
 	/*
-	private Ngo addNgo(NgoInfo ngoInfo){
+	private Orphanage addOrphanage(OrphanageInfo orphanageInfo){
 		PersistenceManager pm = PMFactory.getTxnPm();
-		Ngo ngo = null;
+		Orphanage orphanage = null;
 		try{
 				pm.currentTransaction().begin();
-				ngo = new Ngo(ngoInfo);
-				pm.makePersistent(ngo);
+				orphanage = new Orphanage(orphanageInfo);
+				pm.makePersistent(orphanage);
 				try{
 					pm.currentTransaction().commit();
 				} catch (JDOCanRetryException e1){
@@ -410,44 +211,45 @@ public class NgoServiceImpl extends RemoteServiceServlet implements NgoService {
 				}
 			
 		}catch (Exception e) {
-			ngo = null;
+			orphanage = null;
 		}finally{
 			if (pm.currentTransaction().isActive()) {
 				pm.currentTransaction().rollback();
-				ngo = null;
+				orphanage = null;
 			}
 			pm.close();
 		}
-		return ngo;
-	}*/
+		return orphanage;
+	}
+	*/
 
 	/*
 	@Override
-	public NgoInfo getNgo(String id){
-		NgoInfo fakeNgoInfo = new NgoInfo();
-		return fakeNgoInfo;
+	public OrphanageInfo getOrphanage(String id){
+		OrphanageInfo fakeOrphanageInfo = new OrphanageInfo();
+		return fakeOrphanageInfo;
 	}
 	
 	@Override
-	public String deleteNgo(String id) throws NoUserException {
-		// should delete the ngo
-		return "ngoDeleted";
+	public String deleteOrphanage(String id) throws NoUserException {
+		// should delete the orphanage
+		return "orphanageDeleted";
 	}
 	
 
-	public ArrayList<NgoItemInfo> getUserNgoList(){
-		ArrayList<NgoItemInfo> ngoInfoList = new ArrayList<NgoItemInfo>();
+	public ArrayList<OrphanageItemInfo> getUserOrphanageList(){
+		ArrayList<OrphanageItemInfo> orphanageInfoList = new ArrayList<OrphanageItemInfo>();
 		PersistenceManager pm = PMFactory.getNonTxnPm();
 		try{
 		      UserProfile user = LoginHelper.getLoggedUser(getThreadLocalRequest().getSession(), pm);
 		      if (user == null)
 		        return null;
 		      
-		      Set<NgoItem> ngos = user.getNgos();
+		      Set<OrphanageItem> orphanages = user.getOrphanages();
 		      
-		      if (ngos == null) return null;
-		      for (NgoItem ngo:ngos){
-		    	  ngoInfoList.add(NgoItem.toInfo(ngo));
+		      if (orphanages == null) return null;
+		      for (OrphanageItem orphanage:orphanages){
+		    	  orphanageInfoList.add(OrphanageItem.toInfo(ngo));
 		      }
 		}// end try
 	    finally {

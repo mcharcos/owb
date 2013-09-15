@@ -35,8 +35,9 @@ import com.owb.playhelp.client.event.ngo.NgoUpdateEventHandler;
 import com.owb.playhelp.client.event.orphanage.OrphanageUpdateEvent;
 import com.owb.playhelp.client.event.orphanage.OrphanageUpdateEventHandler;
 import com.owb.playhelp.client.helper.RPCCall;
-import com.owb.playhelp.client.service.ngo.NgoServiceAsync;
+import com.owb.playhelp.client.service.orphanage.NgoServiceAsync;
 import com.owb.playhelp.client.service.orphanage.OrphanageServiceAsync;
+import com.owb.playhelp.shared.DBRecordInfo;
 import com.owb.playhelp.shared.UserProfileInfo;
 import com.owb.playhelp.shared.ngo.NgoInfo;
 import com.owb.playhelp.shared.orphanage.OrphanageInfo;
@@ -64,8 +65,8 @@ public class MainHomePresenter implements Presenter {
 	private UserProfileInfo currentUser;
 	//private MapWidget map;
 	//private MapWidget map;
-	private ArrayList<NgoInfo> ngoList = null;
-	private ArrayList<OrphanageInfo> orphanageList = null;
+	private ArrayList<DBRecordInfo> ngoList = null;
+	private ArrayList<DBRecordInfo> orphanageList = null;
  
 	private MapWidget map = null; 
 	private Geocoder geocoder = null; //new Geocoder();
@@ -163,7 +164,7 @@ public class MainHomePresenter implements Presenter {
 	private void updateMapNgo(){
 		
 		if (ngoList != null) {
-			for (NgoInfo ngo:ngoList){
+			for (DBRecordInfo ngo:ngoList){
 			    showNgo(ngo);
 			}
 		}
@@ -174,7 +175,7 @@ public class MainHomePresenter implements Presenter {
 	private void updateMapOrphanage(){
 		
 		if (orphanageList != null){
-			for (OrphanageInfo orphanage:orphanageList){
+			for (DBRecordInfo orphanage:orphanageList){
 			    showOrphanage(orphanage);
 			}
 		}
@@ -187,14 +188,14 @@ public class MainHomePresenter implements Presenter {
 	}
 	
 	private void ngoRetrieve(){
-	    new RPCCall<ArrayList<NgoInfo>>() {
+	    new RPCCall<ArrayList<DBRecordInfo>>() {
 	      @Override
-	      protected void callService(AsyncCallback<ArrayList<NgoInfo>> cb) {
-	    	  ngoService.getNgoList(cb);
+	      protected void callService(AsyncCallback<ArrayList<DBRecordInfo>> cb) {
+	    	  ngoService.getDBRecordList(cb);
 	      }
 
 	      @Override
-	      public void onSuccess(ArrayList<NgoInfo> result) {
+	      public void onSuccess(ArrayList<DBRecordInfo> result) {
 	    	  ngoList = result;
 	    	  updateMapNgo();
 	      }
@@ -207,14 +208,14 @@ public class MainHomePresenter implements Presenter {
 	}
 	
 	private void orphanageRetrieve(){
-	    new RPCCall<ArrayList<OrphanageInfo>>() {
+	    new RPCCall<ArrayList<DBRecordInfo>>() {
 	      @Override
-	      protected void callService(AsyncCallback<ArrayList<OrphanageInfo>> cb) {
-	    	  orphanageService.getOrphanageList(cb);
+	      protected void callService(AsyncCallback<ArrayList<DBRecordInfo>> cb) {
+	    	  orphanageService.getDBRecordList(cb);
 	      }
 
 	      @Override
-	      public void onSuccess(ArrayList<OrphanageInfo> result) {
+	      public void onSuccess(ArrayList<DBRecordInfo> result) {
 	    	  orphanageList = result;
 	    	  updateMapOrphanage();
 	      }
@@ -226,7 +227,7 @@ public class MainHomePresenter implements Presenter {
 	    }.retry(3);
 	}
 	
-	private void showNgo(final NgoInfo ngo) {
+	private void showNgo(final DBRecordInfo ngo) {
 		//final String address = ngo.getAddress();
 
 		//Window.alert(ngo.getName()+" => "+ngo.getUniqueId());
@@ -304,7 +305,7 @@ public class MainHomePresenter implements Presenter {
 				
 	  }
 	
-	private void showOrphanage(final OrphanageInfo orphanage) {
+	private void showOrphanage(final DBRecordInfo orphanage) {
 		//final String address = ngo.getAddress();
 		
 		//Window.alert(orphanage.getName()+" => "+orphanage.getUniqueId());
