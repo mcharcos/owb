@@ -5,7 +5,9 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HTMLPanel;
+import com.google.gwt.user.client.ui.HasText;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
 import com.owb.playhelp.client.presenter.DBRecordInfoPresenter;
@@ -24,7 +26,9 @@ public class DBRecordInfoView extends Composite implements DBRecordInfoPresenter
 	}
 
 	@UiField
-	Label recordName, recordDescription;
+	Label recordName;
+	@UiField
+	HTML recordDescription;
 	@UiField
 	HTMLPanel mainPanel;
 	@UiField
@@ -45,7 +49,7 @@ public class DBRecordInfoView extends Composite implements DBRecordInfoPresenter
 		return recordName;
 	}
 	  @Override
-	public Label getRecordDescription(){
+	public HTML getRecordDescription(){
 		return recordDescription;
 	}
 

@@ -80,8 +80,12 @@ background: url(images/bluebar-bg-selected.png) no-repeat 50% 100%;
 	  		<div class='{style.gwt-MenuBar}'>
 	  		<g:MenuBar ui:field='mainMenu' vertical="false">
 	  			<g:MenuItem width='100%' />
-				<g:MenuItem ui:field='homeItem'>
-				  <img src='{res.menuHomeIcon.getSafeUri.asString}' />
+				<g:MenuItem ui:field='internalMenu'>
+				    <g:MenuBar vertical="true">
+	  			  		<g:MenuItem ui:field='volunteerItem'><font color="#ab0fc8"><b><i>Volunteers</i></b></font></g:MenuItem>
+	  			    </g:MenuBar>
+				</g:MenuItem>
+				<g:MenuItem ui:field='homeItem'><img src='{res.menuHomeIcon.getSafeUri.asString}' />
 				</g:MenuItem>
 				<g:MenuItem ui:field='aboutUsItem'><img src='{res.menuAboutIcon.getSafeUri.asString}' ui:field='aboutUsImg'/>
 				    <g:MenuBar vertical="true">

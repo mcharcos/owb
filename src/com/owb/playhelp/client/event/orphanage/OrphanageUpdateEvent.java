@@ -4,18 +4,18 @@
 package com.owb.playhelp.client.event.orphanage;
 
 import com.google.gwt.event.shared.GwtEvent;
-import com.owb.playhelp.shared.orphanage.OrphanageInfo;
+import com.owb.playhelp.shared.DBRecordInfo;
 
 public class OrphanageUpdateEvent extends GwtEvent<OrphanageUpdateEventHandler>{
 	public static Type<OrphanageUpdateEventHandler> TYPE = new Type<OrphanageUpdateEventHandler>();
 	
-	private final OrphanageInfo updatedOrphanage;
+	private final DBRecordInfo updatedOrphanage;
 	
-	public OrphanageUpdateEvent(OrphanageInfo updatedOrphanage){
+	public OrphanageUpdateEvent(DBRecordInfo updatedOrphanage){
 		this.updatedOrphanage = updatedOrphanage;
 	}
 	
-	public OrphanageInfo getUpdatedOrphanage(){
+	public DBRecordInfo getUpdatedOrphanage(){
 		return updatedOrphanage;
 	}
 	

@@ -39,11 +39,11 @@ import com.owb.playhelp.client.service.orphanage.NgoServiceAsync;
 import com.owb.playhelp.client.service.orphanage.OrphanageServiceAsync;
 import com.owb.playhelp.shared.DBRecordInfo;
 import com.owb.playhelp.shared.UserProfileInfo;
-import com.owb.playhelp.shared.ngo.NgoInfo;
-import com.owb.playhelp.shared.orphanage.OrphanageInfo;
 import com.owb.playhelp.client.helper.MapHelper;
 import com.owb.playhelp.client.resources.Resources;
+import com.owb.playhelp.client.view.MapMarkerView;
 import com.owb.playhelp.client.view.ngo.NgoMapMarkerInfoView;
+import com.owb.playhelp.client.presenter.MapMarkerPresenter;
 import com.owb.playhelp.client.presenter.Presenter;
 import com.owb.playhelp.client.presenter.ngo.NgoMapMarkerInfoPresenter;
 import com.owb.playhelp.client.view.orphanage.OrphanageMapMarkerInfoView;
@@ -63,16 +63,11 @@ public class MainHomePresenter implements Presenter {
 	private final Display display;
 
 	private UserProfileInfo currentUser;
-	//private MapWidget map;
-	//private MapWidget map;
 	private ArrayList<DBRecordInfo> ngoList = null;
 	private ArrayList<DBRecordInfo> orphanageList = null;
  
 	private MapWidget map = null; 
-	private Geocoder geocoder = null; //new Geocoder();
-	//Geocoder geocoder=new Geocoder();
-	
-	//private MapHelper mapHelper = null;
+	private Geocoder geocoder = null; 
 
 
 	public MainHomePresenter(UserProfileInfo currentUser, NgoServiceAsync ngoService, OrphanageServiceAsync orphanageService,
@@ -82,11 +77,6 @@ public class MainHomePresenter implements Presenter {
 		this.orphanageService = orphanageService;
 		this.eventBus = eventBus;
 		this.display = display;
-		
-		//LatLng cawkerCity = LatLng.newInstance(39.509, -98.434); 
-        //this.map = new MapWidget(cawkerCity, 2); 
-		//mapHelper = new MapHelper(display.getMapPanel());
-		//mapHelper = new MapHelper();
 	}
 
 	public void bind() {
@@ -109,8 +99,6 @@ public class MainHomePresenter implements Presenter {
 	public void go(final HasWidgets container) {
 		container.clear();
 		container.add(display.asWidget());
-		//display.getMapPanel().add(mapHelper.getMap());
-		//mapHelper = new MapHelper(display.getMapPanel());
 
 		Maps.loadMapsApi(MapHelper.MapKEY, "2", false, new Runnable() {
 			   public void run() { 
@@ -129,32 +117,6 @@ public class MainHomePresenter implements Presenter {
 			        doRetrieve();
 			   }
 		    });
-        
-		/*
-		try{
-			Timer apiLoadedTimer = new Timer() {
-				@Override
-				public void run() {
-					if (mapHelper.isApiLoaded()) {
-						map = mapHelper.getMap();
-						display.getMapPanel().add(map);
-						
-						//geocoder = new Geocoder();
-						bind();
-						doRetrieve(); 
-						cancel();
-					}
-					
-				}
-			};
-			apiLoadedTimer.scheduleRepeating(30);
-
-			
-		}// end try
-	    catch (Exception e) {
-	        e.printStackTrace();
-	        // Window.alert("Map cannot be loaded!!");
-	      }*/
 	}
 
 	public Geocoder getGeocoder(){
@@ -162,10 +124,14 @@ public class MainHomePresenter implements Presenter {
 	}
 	
 	private void updateMapNgo(){
-		
+
+  	  Icon icon = Icon.DEFAULT_ICON;
+  	  icon.setImageURL(Resources.INSTANCE.ngoMapIcon().getURL());
+  	  icon.setIconSize(Size.newInstance(30, 30));
+  	  
 		if (ngoList != null) {
 			for (DBRecordInfo ngo:ngoList){
-			    showNgo(ngo);
+				showRecord(ngo,icon,"Ngo");
 			}
 		}
 		
@@ -173,10 +139,16 @@ public class MainHomePresenter implements Presenter {
 	}
 	
 	private void updateMapOrphanage(){
-		
+
+	  	  Icon icon = Icon.DEFAULT_ICON;
+	  	  icon.setImageURL(Resources.INSTANCE.orphanageMapIcon().getURL());
+	  	  icon.setIconSize(Size.newInstance(30, 30));
+	  	  
 		if (orphanageList != null){
 			for (DBRecordInfo orphanage:orphanageList){
-			    showOrphanage(orphanage);
+			    //showOrphanage(orphanage);
+				Window.alert(orphanage.getName());
+			    showRecord(orphanage,icon,"Orphanage");
 			}
 		}
 			        
@@ -226,6 +198,54 @@ public class MainHomePresenter implements Presenter {
 	      }
 	    }.retry(3);
 	}
+	
+
+	
+	private void showRecord(final DBRecordInfo record, final Icon icon, final String title) {
+		//final String address = ngo.getAddress();
+
+		//Window.alert(ngo.getName()+" => "+ngo.getUniqueId());
+		final InfoWindow info = map.getInfoWindow();
+		MapMarkerPresenter markPresenter = new MapMarkerPresenter(this.currentUser, this.eventBus, record, new MapMarkerView());
+		VerticalPanel container = new VerticalPanel();
+		markPresenter.go(container);
+		final InfoWindowContent infoContent = new InfoWindowContent(container);
+		
+	    final MarkerOptions markerOptions = MarkerOptions.newInstance();
+        
+		if (record.getLatitude() == -1 || record.getLatitude() == 0 ) {
+			geocoder.getLatLng(record.getAddress(), new LatLngCallback() {
+			      public void onFailure() {
+			    	  //alert(address + " not found"); 
+			      }
+
+			      @SuppressWarnings("deprecation")
+				public void onSuccess(LatLng point) {
+			    	  record.setPoint(point.getLatitude(),point.getLongitude());
+			    	  markerOptions.setDraggable(false);
+			    	  
+			    	  markerOptions.setIcon(icon);
+					  markerOptions.setTitle(title);  
+					   
+			    	  final Marker marker = new Marker(LatLng.newInstance(record.getLatitude(),record.getLongitude()),markerOptions);
+			    	  marker.addMarkerClickHandler(new MarkerClickHandler() {
+			    			public void onClick(MarkerClickEvent event) {
+			    				info.open(marker, infoContent);
+			    			}
+			    		});
+
+			          map.addOverlay(marker);
+			          
+			          //info.open(marker, infoContent);
+			      }
+			    });
+		} else{
+	        Marker marker = new Marker(LatLng.newInstance(record.getLatitude(),record.getLongitude()),markerOptions);
+	        map.addOverlay(marker);
+	        info.open(marker, new InfoWindowContent(record.getName()));			
+		}
+				
+	  }
 	
 	private void showNgo(final DBRecordInfo ngo) {
 		//final String address = ngo.getAddress();

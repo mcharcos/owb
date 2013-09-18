@@ -14,38 +14,39 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 
 import com.owb.playhelp.shared.DBRecordInfo;
 import com.owb.playhelp.shared.UserProfileInfo;
-import com.owb.playhelp.shared.ngo.NgoInfo;
 import com.owb.playhelp.client.presenter.Presenter;
 import com.owb.playhelp.client.presenter.map.MainHomePresenter;
 import com.owb.playhelp.client.presenter.news.NewsHomePresenter;
 import com.owb.playhelp.client.presenter.ngo.AddNgoPresenter;
+import com.owb.playhelp.client.presenter.ngo.NgoListPresenter;
 import com.owb.playhelp.client.presenter.ngo.ReportAbuseNgoPresenter;
 import com.owb.playhelp.client.presenter.ngo.ShowDetailsNgoPresenter;
 import com.owb.playhelp.client.presenter.orphanage.AddOrphanagePresenter;
 import com.owb.playhelp.client.presenter.orphanage.AddOrphanageStatusPresenter;
 import com.owb.playhelp.client.presenter.orphanage.OrphanageListPresenter;
-import com.owb.playhelp.client.presenter.project.AddProjectPresenter;
+import com.owb.playhelp.client.presenter.orphanage.ShowDetailsOrphanagePresenter;
 import com.owb.playhelp.client.presenter.user.UserPreferenceEditPresenter;
 import com.owb.playhelp.client.presenter.volunteer.AddVolunteerPresenter;
+import com.owb.playhelp.client.presenter.volunteer.VolunteerListPresenter;
 import com.owb.playhelp.client.presenter.web.ContactHomePresenter;
 import com.owb.playhelp.client.presenter.web.WebHomePresenter;
 import com.owb.playhelp.client.presenter.web.WebMenuPresenter;
 import com.owb.playhelp.client.presenter.web.WebPagesPresenter;
 import com.owb.playhelp.client.service.project.ProjectServiceAsync;
 import com.owb.playhelp.client.service.orphanage.VolunteerServiceAsync;
+import com.owb.playhelp.client.service.LoginServiceAsync;
 import com.owb.playhelp.client.service.UserServiceAsync;
 import com.owb.playhelp.client.service.orphanage.NgoServiceAsync;
 import com.owb.playhelp.client.service.orphanage.OrphanageServiceAsync;
 import com.owb.playhelp.client.view.ContactHomeView;
 import com.owb.playhelp.client.view.DBRecordListView;
+import com.owb.playhelp.client.view.ShowDetailsDBRecordView;
 import com.owb.playhelp.client.view.map.MainHomeView;
 import com.owb.playhelp.client.view.news.NewsHomeView;
 import com.owb.playhelp.client.view.ngo.AddNgoView;
 import com.owb.playhelp.client.view.ngo.ReportAbuseNgoView;
-import com.owb.playhelp.client.view.ngo.ShowDetailsNgoView;
 import com.owb.playhelp.client.view.orphanage.AddOrphanageView;
 import com.owb.playhelp.client.view.orphanage.AddOrphanageStatusView;
-import com.owb.playhelp.client.view.project.AddProjectView;
 import com.owb.playhelp.client.view.user.UserPreferenceEditView;
 import com.owb.playhelp.client.view.web.WebHowChildrenView;
 import com.owb.playhelp.client.view.web.WebHowDoWeHelpView;
@@ -88,28 +89,26 @@ import com.owb.playhelp.client.event.user.UserPreferenceUpdateEvent;
 import com.owb.playhelp.client.event.user.UserPreferenceUpdateEventHandler;
 import com.owb.playhelp.client.event.user.UserPreferenceEditCancelEvent;
 import com.owb.playhelp.client.event.user.UserPreferenceEditCancelEventHandler;
+import com.owb.playhelp.client.event.dbrecord.DBRecordUpdateEvent;
+import com.owb.playhelp.client.event.dbrecord.DBRecordUpdateEventHandler;
+import com.owb.playhelp.client.event.dbrecord.ShowAddDBRecordEvent;
+import com.owb.playhelp.client.event.dbrecord.ShowAddDBRecordEventHandler;
+import com.owb.playhelp.client.event.dbrecord.ShowDetailsDBRecordEvent;
+import com.owb.playhelp.client.event.dbrecord.ShowDetailsDBRecordEventHandler;
+import com.owb.playhelp.client.event.dbrecord.ShowListDBRecordEvent;
+import com.owb.playhelp.client.event.dbrecord.ShowListDBRecordEventHandler;
 import com.owb.playhelp.client.event.friend.FriendsHomeEvent;
 import com.owb.playhelp.client.event.friend.FriendsHomeEventHandler;
 import com.owb.playhelp.client.event.map.MainHomeEvent;
 import com.owb.playhelp.client.event.map.MainHomeEventHandler;
 import com.owb.playhelp.client.event.news.NewsHomeEvent;
 import com.owb.playhelp.client.event.news.NewsHomeEventHandler;
-import com.owb.playhelp.client.event.ngo.ShowPopupAddNgoEvent;
-import com.owb.playhelp.client.event.ngo.ShowPopupAddNgoEventHandler;
-import com.owb.playhelp.client.event.ngo.ShowPopupDetailsNgoEventHandler;
 import com.owb.playhelp.client.event.ngo.ShowPopupReportAbuseNgoEvent;
 import com.owb.playhelp.client.event.ngo.ShowPopupReportAbuseNgoEventHandler;
-import com.owb.playhelp.client.event.ngo.NgoRemoveEvent;
-import com.owb.playhelp.client.event.ngo.NgoRemoveEventHandler;
-import com.owb.playhelp.client.event.ngo.ShowPopupDetailsNgoEvent;
 import com.owb.playhelp.client.event.orphanage.AddOrphanageUpdateEvent;
 import com.owb.playhelp.client.event.orphanage.AddOrphanageUpdateEventHandler;
 import com.owb.playhelp.client.event.orphanage.DBRecordRemoveEvent;
 import com.owb.playhelp.client.event.orphanage.DBRecordRemoveEventHandler;
-import com.owb.playhelp.client.event.orphanage.ShowListOrphanageEvent;
-import com.owb.playhelp.client.event.orphanage.ShowListOrphanageEventHandler;
-import com.owb.playhelp.client.event.orphanage.ShowPopupAddOrphanageEvent;
-import com.owb.playhelp.client.event.orphanage.ShowPopupAddOrphanageEventHandler;
 import com.owb.playhelp.client.event.orphanage.ShowPopupAddOrphanageStatusEvent;
 import com.owb.playhelp.client.event.orphanage.ShowPopupAddOrphanageStatusEventHandler;
 import com.owb.playhelp.client.event.orphanage.AddOrphanageCancelEvent;
@@ -156,6 +155,7 @@ public class PathGuide implements ValueChangeHandler<String>  {
 	private final OrphanageServiceAsync orphanageService;
 	private final ProjectServiceAsync projectService;
 	private final UserServiceAsync userService;
+	private final LoginServiceAsync loginService;
 	
 	/*
 	 * the Presenter instance will be used when creating new presenters
@@ -171,12 +171,13 @@ public class PathGuide implements ValueChangeHandler<String>  {
 	private String lastView = "0";
 	
 	public PathGuide(UserServiceAsync userService, NgoServiceAsync ngoService, OrphanageServiceAsync orphanageService, 
-			ProjectServiceAsync projectService, VolunteerServiceAsync volunteerService, SimpleEventBus thePath, UserProfileInfo currentUser){
+			ProjectServiceAsync projectService, VolunteerServiceAsync volunteerService, LoginServiceAsync loginService, SimpleEventBus thePath, UserProfileInfo currentUser){
 		this.volunteerService = volunteerService;
 		this.userService = userService;
 		this.ngoService = ngoService;
 		this.orphanageService = orphanageService;
 		this.projectService = projectService;
+		this.loginService = loginService;
 		this.thePath = thePath;
 		this.currentUser = currentUser;
 		bind();
@@ -288,22 +289,44 @@ public class PathGuide implements ValueChangeHandler<String>  {
 		});
 
 		/*
-		 * Listen to an event requesting showing list of orphanages.
+		 * Listen to an event requesting showing list of DB records.
 		 */
-		thePath.addHandler(ShowListOrphanageEvent.TYPE, new ShowListOrphanageEventHandler(){
-			public void onShowListOrphanage(ShowListOrphanageEvent event){
+		thePath.addHandler(ShowListDBRecordEvent.TYPE, new ShowListDBRecordEventHandler(){
+			public void onShowListDBRecord(ShowListDBRecordEvent event){
 				lastView = History.getToken();
+				if (event.getDBRecord().getDBType() == DBRecordInfo.ORGANIZATION){
+					History.newItem("listNgo");
+				}
+				if (event.getDBRecord().getDBType() == DBRecordInfo.ORPHANAGE){
 				History.newItem("listOrphanage");
+				}
+				if (event.getDBRecord().getDBType() == DBRecordInfo.VOLUNTEER){
+				History.newItem("listVolunteer");
+				}
 			}
 		});
+
 		
 		/*
 		 * Listen to requests of pop-up view containing the details of the ngo
 		 */
-		thePath.addHandler(ShowPopupDetailsNgoEvent.TYPE, new ShowPopupDetailsNgoEventHandler(){
-			public void onShowPopupDetailsNgo(ShowPopupDetailsNgoEvent event){
-				ShowDetailsNgoPresenter showDetailsNgoPresenter = new ShowDetailsNgoPresenter(event.getNgo(),currentUser, ngoService, thePath,new ShowDetailsNgoView());
-				showDetailsNgoPresenter.go(Owb.get().getMainPanel());
+		thePath.addHandler(ShowDetailsDBRecordEvent.TYPE, new ShowDetailsDBRecordEventHandler(){
+			public void onShowDetailsDBRecord(ShowDetailsDBRecordEvent event){
+
+				if (event.getDBRecord() == null){
+					return;
+				}
+
+				if (event.getDBRecord().getDBType() == DBRecordInfo.ORGANIZATION){
+					History.newItem("detailsNgo");
+					ShowDetailsNgoPresenter showDetailsNgoPresenter = new ShowDetailsNgoPresenter(event.getDBRecord(),currentUser, ngoService, thePath,new ShowDetailsDBRecordView());
+					showDetailsNgoPresenter.go(Owb.get().getMainPanel());
+				}
+				if (event.getDBRecord().getDBType() == DBRecordInfo.ORPHANAGE){
+					History.newItem("detailsOrphanage");
+					ShowDetailsOrphanagePresenter showDetailsOrphanagePresenter = new ShowDetailsOrphanagePresenter(event.getDBRecord(),currentUser, orphanageService, thePath,new ShowDetailsDBRecordView());
+					showDetailsOrphanagePresenter.go(Owb.get().getMainPanel());
+				}
 			}
 		});
 		
@@ -328,46 +351,32 @@ public class PathGuide implements ValueChangeHandler<String>  {
 		 * Listen to an event requesting starting an organization. It will show a popup 
 		 * window where the user can enter the information of the organization.
 		 */
-		thePath.addHandler(ShowPopupAddNgoEvent.TYPE, new ShowPopupAddNgoEventHandler(){
-			public void onShowPopupAddNgo(ShowPopupAddNgoEvent event){
+		thePath.addHandler(ShowAddDBRecordEvent.TYPE, new ShowAddDBRecordEventHandler(){
+			public void onShowAddDBRecord(ShowAddDBRecordEvent event){
 				if (currentUser == null){
 					Window.alert("You must log in to add or update an Organization");
 					return;
 				}
-				if (event.getNgo() != null){
-					if (!event.getNgo().getMember()){
-						Window.alert("You can't update an Organization if you are not a member ");
-						return;
-					}
+				if (event.getDBRecord() == null){
+					Window.alert("Problem selecting elemet to be updated. Contact the administrator.");
+					return;
+				}
+				if (!event.getDBRecord().getMember()){
+					Window.alert("You can't update records if you are not a member.");
+					return;
 				}
 				lastView = History.getToken();
-				History.newItem("addNgo");
-				AddNgoPresenter addNgoPresenter = new AddNgoPresenter(event.getNgo(), ngoService,thePath,new AddNgoView());
-		        addNgoPresenter.go(Owb.get().getMainPanel());
-			}
-		});
-		
+				if (event.getDBRecord().getDBType() == DBRecordInfo.ORGANIZATION){
+					History.newItem("addNgo");
+					AddNgoPresenter addNgoPresenter = new AddNgoPresenter(event.getDBRecord(), ngoService,thePath,new AddNgoView());
+			        addNgoPresenter.go(Owb.get().getMainPanel());
+				}
 
-		/*
-		 * Listen to an event requesting starting an orphanage. It will show in the main panel 
-		 * where the user can enter the information of the orphanage.
-		 */
-		thePath.addHandler(ShowPopupAddOrphanageEvent.TYPE, new ShowPopupAddOrphanageEventHandler(){
-			public void onShowPopupAddOrphanage(ShowPopupAddOrphanageEvent event){
-				if (currentUser == null){
-					Window.alert("You must log in to add or update an Organization");
-					return;
+				if (event.getDBRecord().getDBType() == DBRecordInfo.ORPHANAGE){
+					History.newItem("addOrphanage");
+					AddOrphanagePresenter addOrphanagePresenter = new AddOrphanagePresenter(event.getDBRecord(), orphanageService,thePath,new AddOrphanageView());
+					addOrphanagePresenter.go(Owb.get().getMainPanel());
 				}
-				if (event.getOrphanage() != null){
-					if (!event.getOrphanage().getMember()){
-						Window.alert("You can't update an Orphanage if you are not a member ");
-						return;
-					}
-				}
-				lastView = History.getToken();
-				History.newItem("addOrphanage");
-				AddOrphanagePresenter addOrphanagePresenter = new AddOrphanagePresenter(event.getOrphanage(), orphanageService,thePath,new AddOrphanageView());
-				addOrphanagePresenter.go(Owb.get().getMainPanel());
 			}
 		});
 
@@ -427,11 +436,19 @@ public class PathGuide implements ValueChangeHandler<String>  {
 						return;
 					}
 				}
-				AddProjectPresenter addProjectPresenter = new AddProjectPresenter(event.getProject(), currentUser, projectService,thePath,new AddProjectView(event.getClickPoint()));
-				addProjectPresenter.go(Owb.get().getMainPanel());
+				//AddProjectPresenter addProjectPresenter = new AddProjectPresenter(event.getProject(), currentUser, projectService,thePath,new AddProjectView(event.getClickPoint()));
+				//addProjectPresenter.go(Owb.get().getMainPanel());
 			}
 		});
-		
+
+		/*
+		 * The user updated or cancelled the update of the DB record
+		 */
+		thePath.addHandler(DBRecordUpdateEvent.TYPE, new DBRecordUpdateEventHandler(){
+			public void onDBRecordUpdate(DBRecordUpdateEvent event){
+				History.newItem("updateDBRecord");
+			}
+		});
 		
 		/*
 		 * Listen to an event requesting removing an organization. 
@@ -453,6 +470,9 @@ public class PathGuide implements ValueChangeHandler<String>  {
 				
 				if (delDBRecord.getDBType() == DBRecordInfo.ORPHANAGE){
 					removeOrphanage(delDBRecord);
+				}
+				if (delDBRecord.getDBType() == DBRecordInfo.ORGANIZATION){
+					removeNgo(delDBRecord);
 				}
 			}
 		});
@@ -489,7 +509,7 @@ public class PathGuide implements ValueChangeHandler<String>  {
 			if (token.equals("0")) token = "webgethomeItem";
 			if (token.contains("web")) {
 				//Owb.get().setWebMenu();
-				WebMenuPresenter webMenuPresenter = new WebMenuPresenter(thePath, new WebMenuView());
+				WebMenuPresenter webMenuPresenter = new WebMenuPresenter(thePath, loginService, new WebMenuView());
 				webMenuPresenter.go(Owb.get().getBarPanel());
 				
 				WebMainIndexView webMain = new WebMainIndexView();
@@ -680,10 +700,22 @@ public class PathGuide implements ValueChangeHandler<String>  {
 				presenter.go(Owb.get().getMainPanel());	
 	        return;
 	        } 
+			if (token.equals("listNgo")) {
+				//Owb.get().getMainTitle().setText("User Preferences");
+				presenter = new NgoListPresenter(ngoService,thePath,new DBRecordListView());
+				presenter.go(Owb.get().getMainPanel());	
+	        return;
+	        } 
+			if (token.equals("listVolunteer")) {
+				//Owb.get().getMainTitle().setText("User Preferences");
+				presenter = new VolunteerListPresenter(volunteerService,thePath,new DBRecordListView());
+				presenter.go(Owb.get().getMainPanel());	
+	        return;
+	        } 
 			if (token.equals("map")) {
 				//MapMenuPresenter mapMenuPresenter = new MapMenuPresenter(thePath, new MapMenuView());
 				//mapMenuPresenter.go(Owb.get().getBarPanel());
-				WebMenuPresenter webMenuPresenter = new WebMenuPresenter(thePath, new WebMenuView());
+				WebMenuPresenter webMenuPresenter = new WebMenuPresenter(thePath, loginService, new WebMenuView());
 				webMenuPresenter.go(Owb.get().getBarPanel());
 				presenter = new MainHomePresenter(currentUser,ngoService,orphanageService,thePath,new MainHomeView());
 				presenter.go(Owb.get().getMainPanel());
@@ -701,6 +733,14 @@ public class PathGuide implements ValueChangeHandler<String>  {
 				presenter.go(Owb.get().getMainPanel());
 	        return;
 	      } 
+			if (token.equals("removeDBRecord")) {
+				History.newItem(lastView);
+	        return;
+	      } 
+			if (token.equals("updateDBRecord")) {
+				History.newItem(lastView);
+	        return;
+	      } 
 			/*
 			if (token.equals("loginout")) {
 				Owb.get().loggedOutView();
@@ -714,7 +754,7 @@ public class PathGuide implements ValueChangeHandler<String>  {
 		}
 		//lastView = token;
 	}
-	
+
 	private void removeOrphanage(final DBRecordInfo delRecord){
 		new RPCCall<Void>() {
 		      @Override
@@ -725,11 +765,37 @@ public class PathGuide implements ValueChangeHandler<String>  {
 		      @Override
 		      public void onSuccess(Void result) {
 		        GWT.log("PathGuide: Orphanage was removed");
+				lastView = History.getToken();
+				History.newItem("removeDBRecord");
 		      }
 
 		      @Override
 		      public void onFailure(Throwable caught) {
 		        Window.alert("Error removing Orphanage...");
+				lastView = History.getToken();
+				History.newItem("removeDBRecord");
+		      }
+		    }.retry(3);
+	}
+	private void removeNgo(final DBRecordInfo delRecord){
+		new RPCCall<Void>() {
+		      @Override
+		      protected void callService(AsyncCallback<Void> cb) {
+		    	  ngoService.removeDBRecord(delRecord, cb);
+		      }
+
+		      @Override
+		      public void onSuccess(Void result) {
+		        GWT.log("PathGuide: Ngo was removed");
+				lastView = History.getToken();
+				History.newItem("removeDBRecord");
+		      }
+
+		      @Override
+		      public void onFailure(Throwable caught) {
+		        Window.alert("Error removing Ngo...");
+				lastView = History.getToken();
+				History.newItem("removeDBRecord");
 		      }
 		    }.retry(3);
 	}

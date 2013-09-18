@@ -17,7 +17,7 @@ import com.owb.playhelp.shared.DBRecordInfo;
 import com.owb.playhelp.shared.orphanage.OrphanageInfo;
 import com.owb.playhelp.shared.project.ProjectInfo;
 import com.owb.playhelp.client.presenter.Presenter;
-import com.owb.playhelp.client.event.orphanage.ShowPopupAddOrphanageEvent;
+import com.owb.playhelp.client.event.dbrecord.ShowAddDBRecordEvent;
 import com.owb.playhelp.client.event.orphanage.OrphanageRemoveEvent;
 import com.owb.playhelp.client.event.project.ShowPopupAddProjectEvent;
 import com.owb.playhelp.client.helper.ClickPoint;
@@ -39,23 +39,23 @@ public class OrphanageMapMarkerInfoPresenter implements Presenter {
 	private final SimpleEventBus eventBus;
 	public final Display display;
 
-	private final DBRecordInfo Orphanage;
+	private final DBRecordInfo orphanage;
 
-	public OrphanageMapMarkerInfoPresenter(SimpleEventBus eventBus, DBRecordInfo Orphanage, Display display) {
+	public OrphanageMapMarkerInfoPresenter(SimpleEventBus eventBus, DBRecordInfo orphanage, Display display) {
 		this.eventBus = eventBus;
 		this.display = display;
-		this.Orphanage = Orphanage;
+		this.orphanage = orphanage;
 	}
 
 	public void bind() {
 	    this.display.getEditBut().addClickHandler(new ClickHandler() {
 	        public void onClick(ClickEvent event) {
-	        	eventBus.fireEvent(new ShowPopupAddOrphanageEvent(new ClickPoint(100,100),Orphanage));
+	        	eventBus.fireEvent(new ShowAddDBRecordEvent(orphanage));
 	        }
 	      });
 	    this.display.getRemoveBut().addClickHandler(new ClickHandler() {
 	        public void onClick(ClickEvent event) {
-	        	eventBus.fireEvent(new OrphanageRemoveEvent(Orphanage));
+	        	eventBus.fireEvent(new OrphanageRemoveEvent(orphanage));
 	        }
 	      });
 	    this.display.getReportBut().addClickHandler(new ClickHandler() {
@@ -80,8 +80,8 @@ public class OrphanageMapMarkerInfoPresenter implements Presenter {
 	public void go(final HasWidgets container) {
 		container.clear();
 		container.add(display.asWidget());
-		display.getOrphanageName().setText(Orphanage.getName());
-		display.getOrphanageDescription().setText(Orphanage.getDescription());
+		display.getOrphanageName().setText(orphanage.getName());
+		display.getOrphanageDescription().setText(orphanage.getDescription());
 		
 		//if (!Orphanage.getMember()) {
 			display.getEditBut().setVisible(false);

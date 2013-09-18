@@ -14,6 +14,7 @@ public class UserProfileInfo implements Serializable  {
 	private String userType;
 	private String channelId;
 	private String uniqueId;
+	private boolean isAdmin;
 
     public UserProfileInfo() {
 	  
@@ -36,6 +37,9 @@ public class UserProfileInfo implements Serializable  {
     public String getUniqueId(){
     	return this.uniqueId;
     }	  
+    public boolean getIsAdmin(){
+    	return isAdmin;
+    }
     
     public void setId(String id){
     	this.id = id;
@@ -54,5 +58,8 @@ public class UserProfileInfo implements Serializable  {
     }
     public void setUniqueId(String uniqueId){
     	this.uniqueId = uniqueId;
+    }
+    public void setIsAdmin(boolean isAdmin){
+    	this.isAdmin = isAdmin;
     }
 }

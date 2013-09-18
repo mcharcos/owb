@@ -56,9 +56,11 @@ public class DBRecordInfo implements Serializable {
 
 	public DBRecordInfo() {
 		this.dbType=DBRecordInfo.USER;
+		this.member=true;
 	}
 	public DBRecordInfo(Integer dbType) {
 		this.dbType=dbType;
+		this.member=true;
 	}
 	public DBRecordInfo(Integer dbType, String name) {
 		this(dbType);

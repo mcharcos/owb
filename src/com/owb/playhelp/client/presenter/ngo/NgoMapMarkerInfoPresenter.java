@@ -21,8 +21,8 @@ import com.owb.playhelp.shared.DBRecordInfo;
 import com.owb.playhelp.shared.UserProfileInfo;
 import com.owb.playhelp.shared.ngo.NgoInfo;
 import com.owb.playhelp.client.presenter.Presenter;
+import com.owb.playhelp.client.event.dbrecord.ShowAddDBRecordEvent;
 import com.owb.playhelp.client.event.ngo.NgoUpdateEventHandler;
-import com.owb.playhelp.client.event.ngo.ShowPopupAddNgoEvent;
 import com.owb.playhelp.client.event.ngo.ShowPopupDetailsNgoEvent;
 import com.owb.playhelp.client.event.ngo.ShowPopupReportAbuseNgoEvent;
 import com.owb.playhelp.client.event.ngo.NgoRemoveEvent;
@@ -79,7 +79,7 @@ public class NgoMapMarkerInfoPresenter implements Presenter {
 	      });
 		this.display.getEditBut().addClickHandler(new ClickHandler() {
 	        public void onClick(ClickEvent event) {
-	        	eventBus.fireEvent(new ShowPopupAddNgoEvent(new ClickPoint(100,100),ngo));
+	        	eventBus.fireEvent(new ShowAddDBRecordEvent(ngo));
 	        }
 	      });
 	    this.display.getRemoveBut().addClickHandler(new ClickHandler() {

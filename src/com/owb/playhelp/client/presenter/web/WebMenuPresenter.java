@@ -1,14 +1,11 @@
 package com.owb.playhelp.client.presenter.web;
 
 import com.google.gwt.dom.client.ImageElement;
-import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.event.dom.client.MouseOutEvent;
-import com.google.gwt.event.dom.client.MouseOutHandler;
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.safehtml.shared.SafeHtml;
 import com.google.gwt.user.client.Command;
-import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.MenuBar;
@@ -16,13 +13,15 @@ import com.google.gwt.user.client.ui.MenuItem;
 import com.google.gwt.user.client.ui.Widget;
 import com.owb.playhelp.client.event.volunteer.ShowAddVolunteerEvent;
 import com.owb.playhelp.client.event.web.ShowWebEvent;
+import com.owb.playhelp.client.event.dbrecord.ShowAddDBRecordEvent;
+import com.owb.playhelp.client.event.dbrecord.ShowListDBRecordEvent;
 import com.owb.playhelp.client.event.map.MainHomeEvent;
-import com.owb.playhelp.client.event.ngo.ShowPopupAddNgoEvent;
-import com.owb.playhelp.client.event.orphanage.ShowListOrphanageEvent;
-import com.owb.playhelp.client.event.orphanage.ShowPopupAddOrphanageEvent;
+import com.owb.playhelp.client.helper.RPCCall;
 import com.owb.playhelp.client.presenter.Presenter;
 import com.owb.playhelp.client.resources.Resources;
-import com.owb.playhelp.client.helper.ClickPoint;
+import com.owb.playhelp.client.service.LoginServiceAsync;
+import com.owb.playhelp.shared.DBRecordInfo;
+import com.owb.playhelp.shared.UserProfileInfo;
 
 
 public class WebMenuPresenter  implements Presenter {
@@ -42,43 +41,19 @@ public class WebMenuPresenter  implements Presenter {
 		MenuItem getshareProjectItem();
 		MenuItem getsearchProjectsItem();
 		MenuItem getmapItem();
-		/*
-		MenuItem getcontextItem();
-		MenuItem getwhatDoWeDoItem();
-		MenuItem gethealthItem();
-		MenuItem getexcerciseItem();
-		MenuItem geteducationItem();
-		MenuItem getfoodItem();
-		MenuItem getcleanWaterItem();
-		MenuItem getshelterItem();
-		MenuItem getclothingItem();
-		MenuItem gethygieneItem();
-		MenuItem getjoyItem();
-		MenuItem gethopeOfFutureItem();
-		MenuItem getloveItem();
-		MenuItem getresponsabilitiesItem(); 
-		MenuItem getsafetyItem();
-		MenuItem getguidanceItem();
-		MenuItem getcompassionateEnvironementItem(); 
-		MenuItem getdisciplineItem();
-		MenuItem gethowDoWeHelpItem(); 
-		MenuItem gethowChildrenItem();
-		MenuItem gethowOrganizationsItem();
-		MenuItem gethowProjectsItem(); 
-		MenuItem gethowIndividualsItem(); 
-		MenuItem getcontactUsItem() ;
-		MenuItem getjoinNetworkItem();
-		MenuItem getshareProjectItem();
-		*/
 		ImageElement getaboutUsImg();
+		MenuItem getInternalMenu();
+		MenuItem getVolunteerItem();
 	}
 
 	private final SimpleEventBus eventBus;
 	private final Display display;
+	private final LoginServiceAsync loginService;
 
-	public WebMenuPresenter(SimpleEventBus eventBus, Display display) {
+	public WebMenuPresenter(SimpleEventBus eventBus, LoginServiceAsync loginService, Display display) {
 		this.eventBus = eventBus;
 		this.display = display;
+		this.loginService = loginService;
 		
 		//LatLng cawkerCity = LatLng.newInstance(39.509, -98.434); 
         //this.map = new MapWidget(cawkerCity, 2); 
@@ -86,6 +61,12 @@ public class WebMenuPresenter  implements Presenter {
 
 
 	public void bind() {
+		this.display.getVolunteerItem().setCommand(new Command() {
+			@Override
+			public void execute() {
+				eventBus.fireEvent(new ShowListDBRecordEvent(new DBRecordInfo(DBRecordInfo.VOLUNTEER)));
+			}
+		});
 		this.display.gethomeItem().setCommand(new Command() {
 			@Override
 			public void execute() {
@@ -127,19 +108,25 @@ public class WebMenuPresenter  implements Presenter {
 		this.display.getjoinNetworkItem().setCommand(new Command() {
 			@Override
 			public void execute() {
-				eventBus.fireEvent(new ShowPopupAddNgoEvent(new ClickPoint(100,100)));
+				eventBus.fireEvent(new ShowAddDBRecordEvent(new DBRecordInfo(DBRecordInfo.ORGANIZATION)));
+			}
+		});
+		this.display.getsearchResourcesItem().setCommand(new Command() {
+			@Override
+			public void execute() {
+				eventBus.fireEvent(new ShowListDBRecordEvent(new DBRecordInfo(DBRecordInfo.ORGANIZATION)));
 			}
 		});
 		this.display.getshareProjectItem().setCommand(new Command() {
 			@Override
 			public void execute() {
-				eventBus.fireEvent(new ShowPopupAddOrphanageEvent(new ClickPoint(100,100)));
+				eventBus.fireEvent(new ShowAddDBRecordEvent(new DBRecordInfo(DBRecordInfo.ORPHANAGE)));
 			}
 		});
 		this.display.getsearchProjectsItem().setCommand(new Command() {
 			@Override
 			public void execute() {
-				eventBus.fireEvent(new ShowListOrphanageEvent());
+				eventBus.fireEvent(new ShowListDBRecordEvent(new DBRecordInfo(DBRecordInfo.ORPHANAGE)));
 			}
 		});
 		this.display.getmapItem().setCommand(new Command() {
@@ -304,8 +291,31 @@ public class WebMenuPresenter  implements Presenter {
 		container.add(display.asWidget());
 		WebMenuPresenter.this.display.getmainMenu().setAutoOpen(true);
 		
+		this.display.getInternalMenu().setVisible(false);
+		new RPCCall<UserProfileInfo>() {
+		    @Override protected void callService(AsyncCallback<UserProfileInfo> cb) {
+			  // the call returns a generic guest user if no logged in
+		      loginService.getCurrentUserInfo(cb);
+		    }
+
+		    @Override public void onSuccess(UserProfileInfo userInfo) {
+		    	if (userInfo==null) {
+		    		bind();
+		    		return;
+		    	}
+		    	if (userInfo.getIsAdmin()){
+		    		display.getInternalMenu().setVisible(true);
+		    	}
+	    		bind();
+		    }
+
+		    @Override public void onFailure(Throwable caught) {
+		      Window.alert("Error: " + caught.getMessage());
+				bind();
+		    }
+		  }.retry(3);
+		  
 		//WebMenuPresenter.this.display.getmainMenu().addItem(new MenuItem(addActivityImagePath,WebMenuPresenter.this.display.getmainMenu()));
-		bind();
 	}
 	
 }

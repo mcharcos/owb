@@ -5,9 +5,8 @@ import com.google.gwt.user.client.Command;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.MenuItem;
 import com.google.gwt.user.client.ui.Widget;
+import com.owb.playhelp.client.event.dbrecord.ShowAddDBRecordEvent;
 import com.owb.playhelp.client.event.web.ShowWebEvent;
-import com.owb.playhelp.client.event.ngo.ShowPopupAddNgoEvent;
-import com.owb.playhelp.client.event.orphanage.ShowPopupAddOrphanageEvent;
 import com.owb.playhelp.client.presenter.Presenter;
 import com.owb.playhelp.client.helper.ClickPoint;
 
@@ -42,13 +41,13 @@ public class WebMenuImgPresenter  implements Presenter {
 		this.display.getAddNgoItem().setCommand(new Command() {
 			@Override
 			public void execute() {
-				eventBus.fireEvent(new ShowPopupAddNgoEvent(new ClickPoint(100,100)));
+				eventBus.fireEvent(new ShowAddDBRecordEvent());
 			}
 		});
 		this.display.getAddOrphanageItem().setCommand(new Command() {
 			@Override
 			public void execute() {
-				eventBus.fireEvent(new ShowPopupAddOrphanageEvent(new ClickPoint(100,100)));
+				eventBus.fireEvent(new ShowAddDBRecordEvent());
 			}
 		});
 		this.display.getMissionItem().setCommand(new Command() {

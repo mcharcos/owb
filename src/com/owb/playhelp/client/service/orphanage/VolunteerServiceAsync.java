@@ -10,7 +10,7 @@ import com.owb.playhelp.shared.ngo.NgoInfo;
 import com.owb.playhelp.shared.orphanage.OrphanageInfo;
 
 public interface VolunteerServiceAsync {
-	void updateDBRecord(DBRecordInfo ngo, AsyncCallback<DBRecordInfo> callback);	
+	void updateDBRecord(DBRecordInfo record, AsyncCallback<DBRecordInfo> callback);	
 	void getDBRecordList(AsyncCallback<ArrayList<DBRecordInfo>> callback);
-	void removeDBRecord(DBRecordInfo Orphanage, AsyncCallback<Void> callback);	
+	void removeDBRecord(DBRecordInfo record, AsyncCallback<Void> callback);	
 }

@@ -23,8 +23,6 @@
     <url-pattern>/owb/loginService</url-pattern>
   </servlet-mapping>
   
-  <!-- ===================== DBRecord Service ===================== -->
-  
   <!-- ===================== NGO Service ===================== -->
   <servlet>
     <servlet-name>ngoService</servlet-name>
@@ -45,28 +43,6 @@
   <servlet-mapping>
     <servlet-name>orphanageService</servlet-name>
     <url-pattern>/owb/orphanageService</url-pattern>
-  </servlet-mapping>
-  
-  <!-- ===================== Project Service ===================== -->
-  <servlet>
-    <servlet-name>projectService</servlet-name>
-    <servlet-class>com.owb.playhelp.server.ProjectServiceImpl</servlet-class>
-  </servlet>
-
-  <servlet-mapping>
-    <servlet-name>projectService</servlet-name>
-    <url-pattern>/owb/projectService</url-pattern>
-  </servlet-mapping>
-  
-  <!-- ===================== Contribution Service ===================== -->
-  <servlet>
-    <servlet-name>contributionService</servlet-name>
-    <servlet-class>com.owb.playhelp.server.ContributionServiceImpl</servlet-class>
-  </servlet>
-
-  <servlet-mapping>
-    <servlet-name>contributionService</servlet-name>
-    <url-pattern>/owb/contributionService</url-pattern>
   </servlet-mapping>
   
   <!-- ===================== User Service ===================== -->

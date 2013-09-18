@@ -29,22 +29,26 @@ public class OrphanageServiceImpl extends RemoteServiceServlet implements Orphan
 	@Override
 	public DBRecordInfo updateDBRecord(DBRecordInfo orphanageInfo){
 
-		Orphanage orphanage = Orphanage.findOrCreateDBRecord(new Orphanage(orphanageInfo));
-		orphanage.reEdit(orphanageInfo);
-		
 	    PersistenceManager pm = PMFactory.getTxnPm();
 	    UserProfile user = LoginHelper.getLoggedUser(getThreadLocalRequest().getSession(), pm);
 	    if (user == null) return null;
 	    pm.close();
 	    
+		Orphanage orphanage = Orphanage.findOrCreateDBRecord(new Orphanage(orphanageInfo),user.getUniqueId());
+		orphanage.reEdit(orphanageInfo);
+		
+	    
 	    pm = PMFactory.getTxnPm();
 		String userUniqueId = user.getUniqueId();
-		
-		/*
-	    if (orphanage.getMembers().size() == 0){
-	    	orphanage.addMember(userUniqueId);
-	    }
-	    */
+
+		// If the user is not an admin and it is not a member the ngo information could not
+		// be updated
+		if (!user.isAdmin()){
+	      if (!orphanage.isMember(userUniqueId)) {
+	    	  pm.close();
+	    	  return null;
+	      }
+		}
 		
 	    if (!orphanage.isMember(userUniqueId)) return null;
 	    
@@ -102,6 +106,7 @@ public class OrphanageServiceImpl extends RemoteServiceServlet implements Orphan
 		String userUniqueId = null;
 		if (user != null) userUniqueId = user.getUniqueId();
 		pm.close();
+		
 
 		pm = PMFactory.getNonTxnPm();
 		try{
@@ -146,7 +151,7 @@ public class OrphanageServiceImpl extends RemoteServiceServlet implements Orphan
 		
 		pm = PMFactory.getTxnPm();
 	    Transaction tx = null;
-	    Orphanage oneResult = null;
+	    Orphanage oneResult = null, detached = null;
 
 	    String uniqueId = orphanageInfo.getUniqueId();
 
@@ -162,8 +167,7 @@ public class OrphanageServiceImpl extends RemoteServiceServlet implements Orphan
 	        oneResult = (Orphanage) q.execute(uniqueId);
 	        if (oneResult != null) {
 	        	logger.info("Found object with uniqueId: " + uniqueId);
-	        	if (oneResult.isMember(userUniqueId)) pm.deletePersistent(oneResult);
-	        	else logger.info("UserProfile " + uniqueId + " is not a member");
+	        	detached = pm.detachCopy(oneResult);
 	        } else {
 	        	logger.info("UserProfile " + uniqueId + " does not exist and can't be removed...");
 	        }
@@ -194,70 +198,27 @@ public class OrphanageServiceImpl extends RemoteServiceServlet implements Orphan
 	      pm.close();
 	      q.closeAll();
 	    }
-	}
-	
-	/*
-	private Orphanage addOrphanage(OrphanageInfo orphanageInfo){
-		PersistenceManager pm = PMFactory.getTxnPm();
-		Orphanage orphanage = null;
-		try{
-				pm.currentTransaction().begin();
-				orphanage = new Orphanage(orphanageInfo);
-				pm.makePersistent(orphanage);
-				try{
-					pm.currentTransaction().commit();
-				} catch (JDOCanRetryException e1){
-					throw e1;
-				}
-			
-		}catch (Exception e) {
-			orphanage = null;
-		}finally{
-			if (pm.currentTransaction().isActive()) {
-				pm.currentTransaction().rollback();
-				orphanage = null;
-			}
-			pm.close();
-		}
-		return orphanage;
-	}
-	*/
-
-	/*
-	@Override
-	public OrphanageInfo getOrphanage(String id){
-		OrphanageInfo fakeOrphanageInfo = new OrphanageInfo();
-		return fakeOrphanageInfo;
-	}
-	
-	@Override
-	public String deleteOrphanage(String id) throws NoUserException {
-		// should delete the orphanage
-		return "orphanageDeleted";
-	}
-	
-
-	public ArrayList<OrphanageItemInfo> getUserOrphanageList(){
-		ArrayList<OrphanageItemInfo> orphanageInfoList = new ArrayList<OrphanageItemInfo>();
-		PersistenceManager pm = PMFactory.getNonTxnPm();
-		try{
-		      UserProfile user = LoginHelper.getLoggedUser(getThreadLocalRequest().getSession(), pm);
-		      if (user == null)
-		        return null;
-		      
-		      Set<OrphanageItem> orphanages = user.getOrphanages();
-		      
-		      if (orphanages == null) return null;
-		      for (OrphanageItem orphanage:orphanages){
-		    	  orphanageInfoList.add(OrphanageItem.toInfo(ngo));
-		      }
-		}// end try
-	    finally {
-	        pm.close();
+	    
+	    // Exit if we did not find any Orphanage with these properties
+	    if (oneResult == null) {
+	    	return;
+	    }
+	    
+		// If the user is not an admin and it is not a member the ngo information could not
+		// be updated
+		if (!user.isAdmin()){
+	      if (!oneResult.isMember(userUniqueId)) {
+	    	  logger.info("User " + uniqueId + " is not a member");
+	    	  return;
 	      }
-	    return ngoInfoList;
+		}
+		
+		// Here we know that the user is member or admin
+		// so we can go ahead and remove the instance from the DB
+	  	  pm = PMFactory.getTxnPm();
+	  	  pm.deletePersistent(detached);
+	  	  pm.close();
+    	
 	}
-
-	*/
 		
 }

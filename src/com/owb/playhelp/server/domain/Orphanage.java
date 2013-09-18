@@ -12,6 +12,8 @@ import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.PersistenceCapable;
 
 import com.owb.playhelp.server.PMFactory;
+import com.owb.playhelp.server.domain.associations.NgoUser;
+import com.owb.playhelp.server.domain.associations.OrphanageUser;
 import com.owb.playhelp.server.utils.EmailHelper;
 import com.owb.playhelp.shared.orphanage.OrphanageInfo;
 import com.owb.playhelp.shared.DBRecordInfo;
@@ -48,7 +50,7 @@ public class Orphanage extends DBRecord {
 	 * @param DBRecord
 	 * @return
 	 */
-	  public static Orphanage findOrCreateDBRecord(Orphanage record) {
+	  public static Orphanage findOrCreateDBRecord(Orphanage record, String userId) {
 	
 		// Open the data-store manager 
 	    PersistenceManager pm = PMFactory.getTxnPm();
@@ -56,6 +58,7 @@ public class Orphanage extends DBRecord {
 	    // Set the required variables
 	    Transaction tx = null;
 	    Orphanage oneResult = null, detached = null;
+	    boolean newPersisted=false;
 	    
 	    // Get the unique Id from the input orphanage
 	    // Because all the orphanage objects are created or copied
@@ -86,10 +89,11 @@ public class Orphanage extends DBRecord {
 	          log.info("User uniqueId already exists: " + uniqueId);
 	          detached = pm.detachCopy(oneResult);
 	        } else {
-	          log.info("UserProfile " + uniqueId + " does not exist, creating...");
+	          log.info("Orphanage " + uniqueId + " does not exist, creating...");
 	          pm.makePersistent(record);
 	          log.info("Sending email...");
 	          EmailHelper.sendMail(record);
+	          newPersisted=true;
 	          detached = pm.detachCopy(record);
 	        }
 	        
@@ -105,9 +109,10 @@ public class Orphanage extends DBRecord {
 	        }
 	      } // end for
 	    } catch (JDOUserException e){
-	          log.info("JDOUserException: UserProfile table is empty");
+	          log.info("JDOUserException: Orphanage table is empty");
 	          // Create friends from Google+
 	          pm.makePersistent(record);
+	          newPersisted=true;
 	          detached = pm.detachCopy(record);	    	
 		        try {
 			          tx.commit();
@@ -125,7 +130,11 @@ public class Orphanage extends DBRecord {
 	      pm.close();
 	      q.closeAll();
 	    }
-	    
+
+	    // Here we create the association if it is a new persisted object 
+	    if (newPersisted) {
+	          OrphanageUser.associate(record.getUniqueId(), userId, userId);
+	    }
 	    
 	    // Return a detached copy of the retrieved object or 
 	    // the input object after being persisted
@@ -184,5 +193,10 @@ public class Orphanage extends DBRecord {
 			if (o.isFollower(userUniqueId)) oInfo.activateFollower();
 			
 			return oInfo;
+		}
+
+		@Override
+		public boolean isMember(String userUniqueId){
+			return OrphanageUser.isAssociated(this.getUniqueId(), userUniqueId);
 		}
 }

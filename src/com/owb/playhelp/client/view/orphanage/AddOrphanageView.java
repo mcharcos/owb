@@ -1,75 +1,24 @@
 package com.owb.playhelp.client.view.orphanage;
 
-import com.google.gwt.core.client.GWT;
-import com.google.gwt.event.dom.client.HasClickHandlers;
-import com.google.gwt.uibinder.client.UiBinder;
-import com.google.gwt.uibinder.client.UiField;
-import com.google.gwt.user.client.ui.Anchor;
-import com.google.gwt.user.client.ui.HasValue;
-import com.google.gwt.user.client.ui.TextBox;
-import com.google.gwt.user.client.ui.TextArea;
-import com.google.gwt.user.client.ui.Widget;
-import com.google.gwt.user.client.ui.Composite;
 import com.owb.playhelp.client.presenter.orphanage.AddOrphanagePresenter;
+import com.owb.playhelp.client.view.AddDBRecordView;
 
-public class AddOrphanageView extends Composite implements AddOrphanagePresenter.Display {
-
-	private static AddOrphanageViewUiBinder uiBinder = GWT
-			.create(AddOrphanageViewUiBinder.class);
-
-	interface AddOrphanageViewUiBinder extends UiBinder<Widget, AddOrphanageView> {
-	}
+public class AddOrphanageView extends AddDBRecordView implements AddOrphanagePresenter.Display {
 
 	public AddOrphanageView() {
-		initWidget(uiBinder.createAndBindUi(this));
+		super();
+		this.getPageTitleField().setText("Orphanage Information");
+		
+		String description="We work with organizations and orphanages that start projects matching our standards. "+
+		            "We support them and represent them in the community and within our network if they follow "+
+		            "the standards in any of the areas they are trying to help. "+
+		            "We guaranty that the projects that we support work toward the goals we defined "+ 
+		            "for each of these areas. These goals were defined as a reference that we believe is ideal to "+ 
+		            "allow children grow in an appropriate environment that help them build their future as deserved "+ 
+		            "by any human being. Although we are aware that these goals are challenging and utopique, we believe "+ 
+		            "that having them as a reference will help to always know the way our efforts must go.<br></br>";
+		this.getPageDescriptionField().setHTML(description);
 	}
 
 	
-	@UiField TextBox nameField,addressField,phoneField,emailField,webField;
-	@UiField TextArea descField;
-	@UiField
-	Anchor saveBut;
-	@UiField
-	Anchor cancelBut;
-
-	  @Override
-	  public Widget asWidget() {
-	    return this;
-	  }
-
-	  @Override
-	  public HasClickHandlers getSaveBut(){
-		  return saveBut;
-	  }
-	  @Override
-	  public HasClickHandlers getCancelBut(){
-		  return cancelBut;
-	  }
-
-	  @Override
-	  public HasValue<String> getNameField(){
-		  return nameField;
-	  }
-	  @Override
-	  public HasValue<String> getDescField(){
-		  return descField;
-	  }
-	  @Override
-	  public HasValue<String> getAddressField(){
-		  return addressField;
-	  }
-	  @Override
-	  public HasValue<String> getPhoneField(){
-		  return phoneField;
-	  }
-	  @Override
-	  public HasValue<String> getEmailField(){
-		  return emailField;
-	  }
-	  @Override
-	  public HasValue<String> getWebField(){
-		  return webField;
-	  }
-
-
 }

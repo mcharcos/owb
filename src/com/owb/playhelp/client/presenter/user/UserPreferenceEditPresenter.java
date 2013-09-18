@@ -160,6 +160,7 @@ public class UserPreferenceEditPresenter implements Presenter {
 	      @Override
 	      public void onFailure(Throwable caught) {
 	        Window.alert("Error retrieving user...");
+			eventBus.fireEvent(new UserPreferenceEditCancelEvent());
 	      }
 	    }.retry(3);
 	  }

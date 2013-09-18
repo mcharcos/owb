@@ -10,7 +10,7 @@ import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 import com.owb.playhelp.shared.DBRecordInfo;
 import com.owb.playhelp.shared.orphanage.OrphanageInfo;
 
-@RemoteServiceRelativePath("ngoService")
+@RemoteServiceRelativePath("volunteerService")
 public interface VolunteerService extends RemoteService {
 	DBRecordInfo updateDBRecord(DBRecordInfo record);	
 	ArrayList<DBRecordInfo> getDBRecordList();

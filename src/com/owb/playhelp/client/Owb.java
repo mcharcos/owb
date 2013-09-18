@@ -258,7 +258,7 @@ public class Owb implements EntryPoint {
 	  OrphanageServiceAsync orphanageService = GWT.create(OrphanageService.class);
 	  ProjectServiceAsync projectService = GWT.create(ProjectService.class);
 	  VolunteerServiceAsync volunteerService = GWT.create(VolunteerService.class);
-	  PathGuide guide = new PathGuide(userService, ngoService, orphanageService, projectService, volunteerService, thePath, currentUser);
+	  PathGuide guide = new PathGuide(userService, ngoService, orphanageService, projectService, volunteerService, loginService, thePath, currentUser);
 	  guide.go();
 	  
 	  

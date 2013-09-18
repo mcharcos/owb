@@ -22,10 +22,15 @@ public class WebMenuView extends Composite implements WebMenuPresenter.Display {
 
 	public WebMenuView() {
 		initWidget(uiBinder.createAndBindUi(this));
+		internalMenu.setVisible(false);
 	}
 	
 	@UiField
 	MenuBar mainMenu;
+	@UiField
+	MenuItem internalMenu;
+	@UiField 
+	MenuItem volunteerItem;
 	@UiField
 	MenuItem homeItem, mapItem, aboutUsItem, ourMissionItem, ourViewItem, theTeamItem, joinOWBItem;
 	@UiField
@@ -44,10 +49,21 @@ public class WebMenuView extends Composite implements WebMenuPresenter.Display {
 	@UiField
 	MenuItem howDoWeHelpItem, howChildrenItem, howOrganizationsItem, howProjectsItem, howIndividualsItem;
 	*/
+
 	
 	@Override
 	public MenuBar getmainMenu() {
 		return mainMenu;
+	}
+
+	@Override 
+	public MenuItem getVolunteerItem(){
+		return volunteerItem;
+	}
+	
+	@Override
+	public MenuItem getInternalMenu() {
+		return internalMenu;
 	}
 
 	@Override

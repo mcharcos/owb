@@ -11,9 +11,12 @@ import javax.jdo.Transaction;
 import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.PersistenceCapable;
 
+import com.owb.playhelp.server.LoginServiceImpl;
 import com.owb.playhelp.server.PMFactory;
+import com.owb.playhelp.server.domain.associations.NgoUser;
 import com.owb.playhelp.server.utils.EmailHelper;
 import com.owb.playhelp.shared.DBRecordInfo;
+import com.owb.playhelp.shared.UserProfileInfo;
 
 /**
  * 
@@ -26,7 +29,6 @@ import com.owb.playhelp.shared.DBRecordInfo;
 @PersistenceCapable(identityType = IdentityType.APPLICATION, detachable = "true")
 //@Inheritance(strategy=InheritanceStrategy.NEW_TABLE)
 public class Ngo extends DBRecord {
-
 
 	/**
 	 * Constructor class from a shared class. It will initialize an object
@@ -47,7 +49,7 @@ public class Ngo extends DBRecord {
 	 * @param DBRecord
 	 * @return
 	 */
-	  public static Ngo findOrCreateDBRecord(Ngo record) {
+	  public static Ngo findOrCreateDBRecord(Ngo record, String userId) {
 	
 		// Open the data-store manager 
 	    PersistenceManager pm = PMFactory.getTxnPm();
@@ -55,6 +57,7 @@ public class Ngo extends DBRecord {
 	    // Set the required variables
 	    Transaction tx = null;
 	    Ngo oneResult = null, detached = null;
+	    boolean newPersisted=false;
 	    
 	    // Get the unique Id from the input ngo
 	    // Because all the ngo objects are created or copied
@@ -89,6 +92,7 @@ public class Ngo extends DBRecord {
 	          pm.makePersistent(record);
 	          log.info("Sending email...");
 	          EmailHelper.sendMail(record);
+	          newPersisted=true;
 	          detached = pm.detachCopy(record);
 	        }
 	        
@@ -107,7 +111,8 @@ public class Ngo extends DBRecord {
 	          log.info("JDOUserException: UserProfile table is empty");
 	          // Create friends from Google+
 	          pm.makePersistent(record);
-	          detached = pm.detachCopy(record);	    	
+	          detached = pm.detachCopy(record);	
+	          newPersisted=true;
 		        try {
 			          tx.commit();
 			        }
@@ -125,6 +130,10 @@ public class Ngo extends DBRecord {
 	      q.closeAll();
 	    }
 	    
+	    // Here we create the association if it is a new persisted object 
+	    if (newPersisted) {
+	          NgoUser.associate(record.getUniqueId(), userId, userId);
+	    }
 	    
 	    // Return a detached copy of the retrieved object or 
 	    // the input object after being persisted
@@ -183,5 +192,16 @@ public class Ngo extends DBRecord {
 			if (o.isFollower(userUniqueId)) oInfo.activateFollower();
 			
 			return oInfo;
+		}
+
+		/**
+		 * Returns true if the input unique Id is a member of the 
+		 * record.
+		 * @param userUniqueId
+		 * @return
+		 */
+		@Override
+		public boolean isMember(String userUniqueId){
+			return NgoUser.isAssociated(this.getUniqueId(), userUniqueId);
 		}
 }

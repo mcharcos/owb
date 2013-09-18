@@ -19,6 +19,7 @@ import com.google.gwt.user.client.ui.HasValue;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.Widget;
 
+import com.owb.playhelp.client.event.dbrecord.DBRecordUpdateEvent;
 import com.owb.playhelp.client.event.orphanage.AddOrphanageCancelEvent;
 import com.owb.playhelp.client.event.orphanage.AddOrphanageUpdateEvent;
 import com.owb.playhelp.client.event.volunteer.VolunteerUpdateEvent;
@@ -68,12 +69,12 @@ public class AddVolunteerPresenter implements Presenter {
 	        	if (!checkRequiredFields()) return;
 	        	updateVolunteer();
 	        	doSave();
-	        	eventBus.fireEvent(new AddOrphanageUpdateEvent());
+		        eventBus.fireEvent(new DBRecordUpdateEvent(null)); 
 	        }
 	      });
 	    this.display.getCancelBut().addClickHandler(new ClickHandler() {
 	        public void onClick(ClickEvent event) {
-	        	eventBus.fireEvent(new AddOrphanageCancelEvent());
+		        eventBus.fireEvent(new DBRecordUpdateEvent(null)); 
 	        }
 	      });
 	    
@@ -143,12 +144,13 @@ public class AddVolunteerPresenter implements Presenter {
 	      @Override
 	      public void onSuccess(DBRecordInfo result) {
 	        GWT.log("VolunteerAddPresenter: Firing VolunteerUpdateEvent");
-	        eventBus.fireEvent(new VolunteerUpdateEvent(result)); 
+	        eventBus.fireEvent(new DBRecordUpdateEvent(result)); 
 	      }
 
 	      @Override
 	      public void onFailure(Throwable caught) {
 	        Window.alert("Error retrieving volunteer...");
+	        eventBus.fireEvent(new DBRecordUpdateEvent(null)); 
 	      }
 	    }.retry(3);
 	  }

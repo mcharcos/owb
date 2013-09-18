@@ -45,7 +45,7 @@ public class DBRecord implements Serializable, Cacheable {
 
 	  protected static final Logger log = Logger.getLogger(Utils.class.getName());
 	  protected static final int NUM_RETRIES = 5; 
-
+  
 	/*
 	 * Index id of the data store
 	 */

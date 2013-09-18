@@ -82,45 +82,8 @@ public class UserProfile implements Serializable, Cacheable  {
       @Persistent
       private boolean isAdmin;
 	  
-      /*
-	  @Persistent(mappedBy = "userChap")
-	  //@Element(dependent = "true")
-	  private Set<ChapterItem> chapters = new HashSet<ChapterItem>();
-	  
-	  @Persistent(mappedBy = "userProj")
-	  //@Element(dependent = "true")
-	  private Set<ProjectItem> projects = new HashSet<ProjectItem>();
-	  
-	  @Persistent(mappedBy = "userNgo")
-	  //@Element(dependent = "true")
-	  private Set<NgoItem> ngos = new HashSet<NgoItem>();
-	  
-	  @Persistent(mappedBy = "userOrph")
-	  //@Element(dependent = "true")
-	  private Set<OrphanageItem> orphanages = new HashSet<OrphanageItem>();
-	  
-	  @Persistent(mappedBy = "userFriends")
-	  //@Element(dependent = "true")
-	  private Set<FriendItem> friends = new HashSet<FriendItem>();
-	  */
-
-	  @Persistent
-	  private Set<String> chapters = new HashSet<String>();
-	  
-	  @Persistent
-	  private Set<String> projects = new HashSet<String>();
-	  
-	  @Persistent
-	  private Set<String> ngos = new HashSet<String>();
-	  
-	  @Persistent
-	  private Set<String> orphanages = new HashSet<String>();
-	  
-	  @Persistent
-	  private Set<String> friends = new HashSet<String>();
-	  
 	  public UserProfile(){
-		  this.isAdmin = true;
+		  this.isAdmin = false;
 	  }
 
 	  public UserProfile(String loginId, Integer loginProvider){
@@ -130,8 +93,9 @@ public class UserProfile implements Serializable, Cacheable  {
 		  // We should may be retrieve the Name from Google
 		  this.setName(loginId);
 		  this.emailAddress = loginId;
-			  this.picture = "profile_icon.png";
-		  if (loginId=="mcharcos@example.com") this.isAdmin = true;
+		  this.picture = "profile_icon.png";
+		  if (loginId.equalsIgnoreCase("mvcharcos@gmail.com")) this.isAdmin = true;
+		  if (loginId.equalsIgnoreCase("kathyrula@gmail.com")) this.isAdmin = true;
 	  }
 	  
 	  public UserProfile(String uniqueId){
@@ -154,6 +118,7 @@ public class UserProfile implements Serializable, Cacheable  {
 		  userInfo.setUserType(user.getType());
 		  userInfo.setUniqueId(user.getUniqueId());
 		  userInfo.setChannelId(user.getChannelId());
+		  userInfo.setIsAdmin(user.isAdmin());
 		  
 		  return userInfo;
 	  }
@@ -242,17 +207,6 @@ public class UserProfile implements Serializable, Cacheable  {
 	    
 
         UserProfile superUser = new UserProfile();
-        //OrphanageItem orphanage = new OrphanageItem();
-        //NgoItem ngo = new NgoItem();
-        //ProjectInfo project = new ProjectInfo();
-        //ChapterItem chapter = new ChapterItem();
-        //FriendItem friend = new FriendItem();
-        /*
-        superUser.addOrphanage(orphanage);
-        superUser.addNgo(ngo);
-        superUser.addProject(project);
-        superUser.addChapter(chapter);
-        superUser.addFriend(friend);*/
 
 	    // perform the query and creation under transactional control,
 	    // to prevent another process from creating an acct with the same id.
@@ -326,76 +280,6 @@ public class UserProfile implements Serializable, Cacheable  {
 	  public String getUniqueId() {
 	    return uniqueId;
 	  }
-	  
-	  /*
-	  public void addChapter(ChapterItem chapter){
-		  chapters.add(chapter);
-	  }
-	  public Set<ChapterItem> getChapters(){
-		  return chapters;
-	  }
-	  
-	  public void addProject(ProjectItem project){
-		  projects.add(project);
-	  }
-	  public Set<ProjectItem> getProjects(){
-		  return projects;
-	  }
-	  
-	  public void addOrphanage(OrphanageItem orphanage){
-		  orphanages.add(orphanage);
-	  }
-	  public Set<OrphanageItem> getOrphanagess(){
-		  return orphanages;
-	  }
-	  
-	  public void addNgo(NgoItem ngo){
-		  ngos.add(ngo);
-	  }
-	  public Set<NgoItem> getNgos(){
-		  return ngos;
-	  }
-	  
-	  public void addFriend(FriendItem friend){
-		  friends.add(friend);
-	  }
-	  public Set<FriendItem> getFriends(){
-		  return friends;
-	  }
-	  */
-
-	  /*
-	  public void addChapter(ChapterItem chapter){
-		  chapters.add(chapter.getUniqueId());
-	  }
-	  */
-	  public Set<String> getChapters(){
-		  // retrieve the chapters with the corresponding UniqueIds
-		  return chapters;
-	  }
-	  
-	  public void addProject(ProjectInfo project){
-		  projects.add(project.getUniqueId());
-	  }
-	  public Set<String> getProjects(){
-		  return projects;
-	  }
-	  
-	  public void addOrphanage(OrphanageInfo orphanage){
-		  orphanages.add(orphanage.getUniqueId());
-	  }
-	  public Set<String> getOrphanagess(){
-		  return orphanages;
-	  }
-	  
-	  public void addNgo(NgoInfo ngo){
-		  ngos.add(ngo.getUniqueId());
-	  }
-	  public Set<String> getNgos(){
-		  return ngos;
-	  }
-	  
-	  
 
 	  public void setLastLoginOn(Date lastLoginOn) {
 	    this.lastLoginOn = lastLoginOn;
@@ -429,16 +313,7 @@ public class UserProfile implements Serializable, Cacheable  {
 		  return true;
 		  //return ngos.contains(ngo.getUniqueId());
 	  }
-	  
-	  /*
-	  public void setKarma(Karma karma){
-		  this.karma = karma;
-	  }
-	  
-	  public Karma getKarma(){
-		  return this.karma;
-	  }*/
-	  
+	  	  
 	  public void reEdit(UserProfileInfo userInfo){
 		  this.name = userInfo.getName();
 		  this.emailAddress = userInfo.getEmailAddress();
