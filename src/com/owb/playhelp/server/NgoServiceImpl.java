@@ -13,7 +13,6 @@ import javax.jdo.Transaction;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.owb.playhelp.client.service.orphanage.NgoService;
 import com.owb.playhelp.server.domain.Ngo;
-import com.owb.playhelp.server.domain.associations.NgoUser;
 import com.owb.playhelp.server.domain.user.UserProfile;
 import com.owb.playhelp.shared.DBRecordInfo;
 
@@ -124,6 +123,7 @@ public class NgoServiceImpl extends RemoteServiceServlet implements NgoService {
 	      }
 	    return null;
 	}
+	
 
 	@Override
 	public void removeDBRecord(DBRecordInfo record){

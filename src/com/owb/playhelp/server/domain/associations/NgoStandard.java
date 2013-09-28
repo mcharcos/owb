@@ -34,7 +34,7 @@ import com.owb.playhelp.server.utils.cache.Cacheable;
  */
 @SuppressWarnings("serial")
 @PersistenceCapable(identityType = IdentityType.APPLICATION, detachable = "true")
-public class NgoUser  implements Serializable, Cacheable {
+public class NgoStandard  implements Serializable, Cacheable {
 
 	  protected static final Logger log = Logger.getLogger(Utils.class.getName());
 	  protected static final int NUM_RETRIES = 5; 
@@ -57,7 +57,7 @@ public class NgoUser  implements Serializable, Cacheable {
 	 * Id used to identify the record when it is passed to the front-end
 	 */
 	@Persistent
-	private String userId;
+	private String standardId;
 
 	/*
 	 * Id used to identify the record when it is passed to the front-end
@@ -80,8 +80,8 @@ public class NgoUser  implements Serializable, Cacheable {
 	 * objects using information from the front end.
 	 * @param DBRecordInfo
 	 */
-	public NgoUser(String ngoId, String userId, String creatorId) {
-		this.userId = userId;
+	public NgoStandard(String ngoId, String standardId, String creatorId) {
+		this.standardId = standardId;
 		this.ngoId = ngoId;
 		this.creatorId = creatorId;
 		this.creationDate = new Date();
@@ -103,15 +103,15 @@ public class NgoUser  implements Serializable, Cacheable {
 			try{
 				Query dq = null;
 				
-				dq = pm.newQuery("select id from " + NgoUser.class.getName());			
+				dq = pm.newQuery("select id from " + NgoStandard.class.getName());			
 				List<Long> foundIdNgos;
 				foundIdNgos = (List<Long>) dq.execute();
 				
-				NgoUser foundNgo = null;
-				ArrayList<NgoUser> ngoArray = new ArrayList<NgoUser>();
+				NgoStandard foundNgo = null;
+				ArrayList<NgoStandard> ngoArray = new ArrayList<NgoStandard>();
 				for (Long ngoId: foundIdNgos){
 					if (ngoId != null){
-						foundNgo = pm.getObjectById(NgoUser.class, ngoId);
+						foundNgo = pm.getObjectById(NgoStandard.class, ngoId);
 						ngoArray.add(foundNgo);	
 					}
 				}
@@ -124,18 +124,18 @@ public class NgoUser  implements Serializable, Cacheable {
 		}
 	  
 	  
-	  public static boolean isAssociated(String ngoId, String userId) {
+	  public static boolean isAssociated(String ngoId, String standardId) {
 	
 		// Open the data-store manager 
 	    PersistenceManager pm = PMFactory.getTxnPm();
 	    
 	    // Set the required variables
 	    Transaction tx = null;
-	    NgoUser oneResult = null;
+	    NgoStandard oneResult = null;
 	    boolean isAssociated = false;
 	    
 	    // Define the query
-	    Query q = pm.newQuery(NgoUser.class, "userId == :userId && ngoId == :ngoId");
+	    Query q = pm.newQuery(NgoStandard.class, "standardId == :standardId && ngoId == :ngoId");
 	    q.setUnique(true);
 	
 	    // perform the query and creation under transactional control,
@@ -146,13 +146,13 @@ public class NgoUser  implements Serializable, Cacheable {
 	        tx.begin();
 	        
 	        // Execute the query for the current uniqueId of the input object
-	        oneResult = (NgoUser) q.execute(userId, ngoId);
+	        oneResult = (NgoStandard) q.execute(standardId, ngoId);
 		      
 	        if (oneResult != null) {
-	          log.info("User association exists: "+userId+", "+ngoId);
+	          log.info("User association exists: "+standardId+", "+ngoId);
 	          isAssociated = true;
 	        } else {
-		      log.info("User association does not exist: "+userId+", "+ngoId);
+		      log.info("User association does not exist: "+standardId+", "+ngoId);
 	        }
 	    } catch (JDOUserException e){
 	          log.info("JDOUserException: NgoStandard table is empty");
@@ -170,15 +170,15 @@ public class NgoUser  implements Serializable, Cacheable {
 	    return isAssociated;
 	  }
 
-	  public static void associate(String ngoId, String userId, String currentUser) {
+	  public static void associate(String ngoId, String standardId, String currentUser) {
 		  
-		  if (NgoUser.isAssociated(ngoId, userId)){
-			  log.info("User association already exists: " + userId+", "+ngoId);
+		  if (NgoStandard.isAssociated(ngoId, standardId)){
+			  log.info("User association already exists: " + standardId+", "+ngoId);
 			  return;
 		  }
 		  
 		  //Create a new object with the input values
-		  NgoUser ngoUser = new NgoUser(ngoId, userId, currentUser);
+		  NgoStandard ngoUser = new NgoStandard(ngoId, standardId, currentUser);
 		  
 		  
 		  // Open the data-store manager 
