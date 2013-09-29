@@ -13,6 +13,7 @@ import javax.jdo.annotations.PersistenceCapable;
 
 import com.owb.playhelp.server.LoginServiceImpl;
 import com.owb.playhelp.server.PMFactory;
+import com.owb.playhelp.server.domain.associations.NgoStandard;
 import com.owb.playhelp.server.domain.associations.NgoUser;
 import com.owb.playhelp.server.utils.EmailHelper;
 import com.owb.playhelp.shared.DBRecordInfo;
@@ -108,7 +109,7 @@ public class Ngo extends DBRecord {
 	        }
 	      } // end for
 	    } catch (JDOUserException e){
-	          log.info("JDOUserException: UserProfile table is empty");
+	          log.info("JDOUserException: Ngo table is empty");
 	          // Create friends from Google+
 	          pm.makePersistent(record);
 	          detached = pm.detachCopy(record);	
@@ -133,6 +134,8 @@ public class Ngo extends DBRecord {
 	    // Here we create the association if it is a new persisted object 
 	    if (newPersisted) {
 	          NgoUser.associate(record.getUniqueId(), userId, userId);
+	          SNgo sNgo = SNgo.findOrCreate(new SNgo(record), userId);
+	          NgoStandard.associate(record.getUniqueId(), sNgo.getUniqueId(), userId);
 	    }
 	    
 	    // Return a detached copy of the retrieved object or 
