@@ -147,7 +147,7 @@ public class MainHomePresenter implements Presenter {
 		if (orphanageList != null){
 			for (DBRecordInfo orphanage:orphanageList){
 			    //showOrphanage(orphanage);
-				Window.alert(orphanage.getName());
+				//Window.alert(orphanage.getName());
 			    showRecord(orphanage,icon,"Orphanage");
 			}
 		}
