@@ -212,7 +212,7 @@ public class Standard implements Serializable, Cacheable {
 		this.setLatitude(record.getLatitude());
 		this.setLongitude(record.getLongitude());
 		
-		this.reEdit(record.getStandard());
+		this.add(record.getStandard());
 	}
 
 	public Standard(DBRecord record){
@@ -226,7 +226,7 @@ public class Standard implements Serializable, Cacheable {
 	
 	public Standard(StandardInfo stdInfo){
 		this();
-		this.reEdit(stdInfo);
+		this.add(stdInfo);
 	}
 
 	/**
@@ -265,6 +265,9 @@ public class Standard implements Serializable, Cacheable {
 		  return toInfo(std, new Date());
 	  }
 	
+	  // For the add functions we may want to check if the values changed before
+	  // adding. If not the list may get very long as the users edit information
+	  // We should find a way to add only when the standard is updated.
 	public void addWater(Long stdStatus, String stdDesc){
 		water.add(stdStatus, stdDesc);
 	}
@@ -314,7 +317,7 @@ public class Standard implements Serializable, Cacheable {
 		hope.add(stdStatus, stdDesc);
 	}
 	
-	public void reEdit(StandardInfo standardInfo){
+	public void add(StandardInfo standardInfo){
 		this.addWater(standardInfo.getWaterStatus(),standardInfo.getWaterDescription());
 		this.addFood(standardInfo.getFoodStatus(),standardInfo.getFoodDescription());
 		this.addShelter(standardInfo.getShelterStatus(),standardInfo.getSafetyDescription());
@@ -362,6 +365,9 @@ public class Standard implements Serializable, Cacheable {
 	}
 	public void setDescription(String description) {
 		this.description = new Text(description);
+	}
+	public void setDescription(Text description) {
+		this.description = description;
 	}
 	public void setAddress(String address) {
 		this.address = address;

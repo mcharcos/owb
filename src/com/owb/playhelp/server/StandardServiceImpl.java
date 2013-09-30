@@ -55,7 +55,7 @@ public class StandardServiceImpl extends RemoteServiceServlet implements Standar
 
 	    SNgo standard = SNgo.findOrCreate(new SNgo(stdInfo),userId);
 	    
-		standard.reEdit(stdInfo);
+		standard.add(stdInfo);
 	    
 	    pm = PMFactory.getTxnPm();
 		

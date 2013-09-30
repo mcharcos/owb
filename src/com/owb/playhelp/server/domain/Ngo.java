@@ -16,6 +16,7 @@ import com.owb.playhelp.server.domain.associations.NgoStandard;
 import com.owb.playhelp.server.domain.associations.NgoUser;
 import com.owb.playhelp.server.utils.EmailHelper;
 import com.owb.playhelp.shared.DBRecordInfo;
+import com.owb.playhelp.shared.StandardInfo;
 
 /**
  * 
@@ -161,6 +162,13 @@ public class Ngo extends DBRecord {
 			oInfo.deactivateMember();
 			oInfo.deactivateFollower();
 			
+			// Include the standard information in the Info object
+			// if it exists in the DB
+			SNgo standard = NgoStandard.getStandard(o);
+			if (standard != null){
+				oInfo.setStandard(SNgo.toInfo(standard));
+			}
+			
 			return oInfo;
 		}
 
@@ -191,6 +199,13 @@ public class Ngo extends DBRecord {
 			// will be set.
 			if (o.isMember(userId)) oInfo.activateMember();
 			if (o.isFollower(userId)) oInfo.activateFollower();
+
+			// Include the standard information in the Info object
+			// if it exists in the DB
+			SNgo standard = NgoStandard.getStandard(o);
+			if (standard != null){
+				oInfo.setStandard(SNgo.toInfo(standard));
+			}
 			
 			return oInfo;
 		}

@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import javax.jdo.JDOCanRetryException;
+import javax.jdo.JDOException;
 import javax.jdo.JDOUserException;
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
@@ -21,6 +22,9 @@ import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
 import com.owb.playhelp.server.PMFactory;
+import com.owb.playhelp.server.domain.Ngo;
+import com.owb.playhelp.server.domain.SNgo;
+import com.owb.playhelp.server.domain.user.UserProfile;
 import com.owb.playhelp.server.utils.Utils;
 import com.owb.playhelp.server.utils.cache.CacheSupport;
 import com.owb.playhelp.server.utils.cache.Cacheable;
@@ -123,6 +127,79 @@ public class NgoStandard  implements Serializable, Cacheable {
 		    return;
 		}
 	  
+
+	  public static SNgo getStandard(Ngo ngo) {
+		  return NgoStandard.getStandard(ngo.getId());
+	  }
+
+	  public static SNgo getStandard(Long ngoId) {
+	
+		// Open the data-store manager 
+	    PersistenceManager pm = PMFactory.getTxnPm();
+	    
+	    // Set the required variables
+	    Transaction tx = null;
+	    NgoStandard oneResult = null;
+	    Long stdId = null;
+	    
+	    // Define the query
+	    Query q = pm.newQuery(NgoStandard.class, "ngoId == :ngoId");
+	    q.setUnique(true);
+	
+	    // perform the query and creation under transactional control,
+	    // to prevent another process from creating an acct with the same id.
+	    try {
+	        // Initialize and start the transaction
+	    	tx = pm.currentTransaction();
+	        tx.begin();
+	        
+	        // Execute the query for the current uniqueId of the input object
+	        oneResult = (NgoStandard) q.execute(ngoId);
+		      
+	        if (oneResult != null) {
+	          log.info("Standard exists for Ngo id : "+ngoId);
+	          stdId = oneResult.getStandardId();
+	        } else {
+		      log.info("Standard does not exist for Ngo id: "+ngoId);
+	        }
+	    } catch (JDOUserException e){
+	          log.info("JDOUserException: NgoStandard table is empty");
+	    } catch (Exception e) {
+	      e.printStackTrace();
+	    } finally {
+	      if (tx.isActive()) {
+		        tx.rollback();
+		      }
+		      // Close the persistent manager and the query.
+		      pm.close();
+		      q.closeAll();
+		}
+	    
+	    if (stdId == null){
+	    	return null;
+	    }
+	    
+	    SNgo standard = null;
+	    tx = pm.currentTransaction();
+	    
+	    try{
+	    	for (int i=0; i < NUM_RETRIES; i++){
+	            tx = pm.currentTransaction();
+	            tx.begin();
+	            standard = (SNgo) pm.getObjectById(SNgo.class, stdId);
+	    	}
+	    } catch (JDOException e) {
+	        e.printStackTrace();
+	        return null;
+	      } finally{
+	          if (tx.isActive()) {
+	              log.info("NgoStandard:getStandard: transaction rollback.");
+	              tx.rollback();
+	            }
+	            pm.close();
+	          }
+	    return standard;
+	  }
 	  
 	  public static boolean isAssociated(Long ngoId, Long standardId) {
 	
@@ -231,4 +308,19 @@ public class NgoStandard  implements Serializable, Cacheable {
 	  }
 
 
+	  public Long getId(){
+		  return this.id;
+	  }
+	  public Long getNgoId(){
+		  return this.ngoId;
+	  }
+	  public Long getStandardId(){
+		  return this.standardId;
+	  }
+	  public Long getCreatorId(){
+		  return this.creatorId;
+	  }
+	  public Date getDate(){
+		  return this.creationDate;
+	  }
 }

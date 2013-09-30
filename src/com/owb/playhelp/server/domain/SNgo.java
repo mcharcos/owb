@@ -34,9 +34,31 @@ public class SNgo extends Standard {
 	public SNgo(DBRecord record){
 		super(record);
 	}
+	
+	public SNgo(Ngo record){
+		this();
+		this.setName(record.getName());
+		this.setDescription(record.getDescription());
+		this.setAddress(record.getAddress());
+		this.setLatitude(record.getLatitude());
+		this.setLongitude(record.getLongitude());
+
+		// Complete standard information from record
+		// We will have to check if it already existed 
+		// an instance in the DB for this record (probably by checking the uniqueId)
+		// Since this is going to be something that we need more than once, 
+		// we should create the method to perform the task.
+	}
 
 	public SNgo(DBRecordInfo record){
 		super(record);
+		
+		// Complete standard information from record
+		// We will have to check if it already existed 
+		// an instance in the DB for this record (probably by checking the uniqueId of NgoInfo and then id of Ngo
+		// matching this uniqueId)
+		// Since this is going to be something that we need more than once, 
+		// we should create the method to perform the task.
 	}
 
 	public SNgo(StandardInfo record){

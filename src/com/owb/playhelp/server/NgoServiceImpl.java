@@ -13,6 +13,7 @@ import javax.jdo.Transaction;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.owb.playhelp.client.service.NgoService;
 import com.owb.playhelp.server.domain.Ngo;
+import com.owb.playhelp.server.domain.SNgo;
 import com.owb.playhelp.server.domain.user.UserProfile;
 import com.owb.playhelp.shared.DBRecordInfo;
 
@@ -77,6 +78,37 @@ public class NgoServiceImpl extends RemoteServiceServlet implements NgoService {
 				pm.currentTransaction().rollback();
 				logger.warning("transaction rollback");
 				record = null;
+			}
+			pm.close();
+		}
+		
+		
+		// Update the standard information
+		SNgo standard = SNgo.findOrCreate(new SNgo(record),userId);
+		standard.add(record.getStandard());
+
+		try {
+			for (int i = 0; i < NUM_RETRIES; i++){
+				pm.currentTransaction().begin();
+				pm.makePersistent(standard);
+				try {
+			          logger.fine("starting commit for standard");
+			          pm.currentTransaction().commit();
+			          logger.fine("commit was successful for standard");
+			          break;
+			    } catch (JDOCanRetryException e1) {
+			          if (i == (NUM_RETRIES - 1)) {
+			            throw e1;
+			          }
+			        }
+			} // end for
+		}catch (Exception e) {
+		      e.printStackTrace();
+		      logger.warning(e.getMessage());
+		} finally {
+			if (pm.currentTransaction().isActive()){
+				pm.currentTransaction().rollback();
+				logger.warning("transaction rollback for standard");
 			}
 			pm.close();
 		}
