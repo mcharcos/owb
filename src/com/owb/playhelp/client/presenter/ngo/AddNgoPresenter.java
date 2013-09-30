@@ -10,7 +10,7 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 
 import com.owb.playhelp.client.event.dbrecord.DBRecordUpdateEvent;
 import com.owb.playhelp.client.helper.RPCCall;
-import com.owb.playhelp.client.service.orphanage.NgoServiceAsync;
+import com.owb.playhelp.client.service.NgoServiceAsync;
 import com.owb.playhelp.shared.DBRecordInfo;
 import com.owb.playhelp.client.presenter.AddDBRecordPresenter;
 
@@ -46,7 +46,7 @@ public class AddNgoPresenter extends AddDBRecordPresenter {
 
 	      @Override
 	      public void onFailure(Throwable caught) {
-	        Window.alert("Error retrieving project...");
+	        Window.alert("Error retrieving ngo...");
 	        eventBus.fireEvent(new DBRecordUpdateEvent(null)); 
 	      }
 	    }.retry(3);

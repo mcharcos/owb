@@ -3,24 +3,18 @@
  */
 package com.owb.playhelp.client.presenter.ngo;
 
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.HasClickHandlers;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.shared.SimpleEventBus;
-import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.HasValue;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.Widget;
 
-import com.owb.playhelp.client.event.ngo.ReportAbuseNgoEvent;
-import com.owb.playhelp.client.helper.RPCCall;
 import com.owb.playhelp.client.presenter.Presenter;
-import com.owb.playhelp.client.service.orphanage.NgoServiceAsync;
+import com.owb.playhelp.client.service.NgoServiceAsync;
 import com.owb.playhelp.shared.DBRecordInfo;
-import com.owb.playhelp.shared.ngo.NgoInfo;
 
 public class ReportAbuseNgoPresenter implements Presenter {
 	public interface Display {

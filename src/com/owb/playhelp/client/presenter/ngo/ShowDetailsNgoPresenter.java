@@ -5,7 +5,7 @@ package com.owb.playhelp.client.presenter.ngo;
 
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.owb.playhelp.client.presenter.ShowDetailsDBRecordPresenter;
-import com.owb.playhelp.client.service.orphanage.NgoServiceAsync;
+import com.owb.playhelp.client.service.NgoServiceAsync;
 import com.owb.playhelp.shared.DBRecordInfo;
 import com.owb.playhelp.shared.UserProfileInfo;
 

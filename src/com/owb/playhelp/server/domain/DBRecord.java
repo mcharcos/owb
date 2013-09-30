@@ -4,16 +4,9 @@
 package com.owb.playhelp.server.domain;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.UUID;
 import java.util.logging.Logger;
 
-import javax.jdo.JDOCanRetryException;
-import javax.jdo.JDOUserException;
-import javax.jdo.PersistenceManager;
-import javax.jdo.Query;
-import javax.jdo.Transaction;
 import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.PersistenceCapable;
@@ -23,9 +16,7 @@ import javax.jdo.annotations.Inheritance;
 import javax.jdo.annotations.InheritanceStrategy;
 
 import com.google.appengine.api.datastore.Text;
-import com.owb.playhelp.server.PMFactory;
 import com.owb.playhelp.shared.DBRecordInfo;
-import com.owb.playhelp.server.utils.EmailHelper;
 import com.owb.playhelp.server.utils.Utils;
 import com.owb.playhelp.server.utils.cache.CacheSupport;
 import com.owb.playhelp.server.utils.cache.Cacheable;
@@ -204,7 +195,7 @@ public class DBRecord implements Serializable, Cacheable {
 	 * @param userUniqueId
 	 * @return
 	 */
-	public static DBRecordInfo toInfo(Integer dbType, DBRecord o, String userUniqueId) {
+	public static DBRecordInfo toInfo(Integer dbType, DBRecord o, Long userId) {
 		if (o == null)
 			return null;
 
@@ -220,8 +211,8 @@ public class DBRecord implements Serializable, Cacheable {
 		// If the user with uniqueId id is a member or a follower
 		// the appropriate attributes of the shared object
 		// will be set.
-		if (o.isMember(userUniqueId)) oInfo.activateMember();
-		if (o.isFollower(userUniqueId)) oInfo.activateFollower();
+		if (o.isMember(userId)) oInfo.activateMember();
+		if (o.isFollower(userId)) oInfo.activateFollower();
 		
 		return oInfo;
 	}
@@ -243,18 +234,18 @@ public class DBRecord implements Serializable, Cacheable {
 	 * @param userUniqueId
 	 * @return
 	 */
-	public boolean isMember(String userUniqueId){
+	public boolean isMember(Long userId){
 		// TODO -- Should create a class member and a function to search in the 
 		// data store giving a specific record id.
 		// return Members.contains(userUniqueId)
 		return true;  //members.contains(userUniqueId);
 	}
 	
-	public boolean isFollower(String userUniqueId){
+	public boolean isFollower(Long userId){
 		return true;  //followers.contains(userUniqueId);
 	}
 	
-	public boolean isNgo(String ngoUniqueId){
+	public boolean isNgo(Long ngoId){
 		return true;  //ngos.contains(ngoUniqueId);
 	}
 	  

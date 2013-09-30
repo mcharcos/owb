@@ -22,7 +22,7 @@ import com.owb.playhelp.client.event.ngo.NgoUpdateEvent;
 import com.owb.playhelp.client.event.orphanage.AddOrphanageCancelEvent;
 import com.owb.playhelp.client.event.orphanage.AddOrphanageUpdateEvent;
 import com.owb.playhelp.client.helper.RPCCall;
-import com.owb.playhelp.client.service.orphanage.NgoServiceAsync;
+import com.owb.playhelp.client.service.NgoServiceAsync;
 import com.owb.playhelp.shared.DBRecordInfo;
 import com.owb.playhelp.shared.ngo.NgoInfo;
 

@@ -1,7 +1,7 @@
 /** 
  * Copyright 2011 Miguel Charcos Llorens
  */
-package com.owb.playhelp.client.service.orphanage;
+package com.owb.playhelp.client.service;
 import java.util.ArrayList;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;

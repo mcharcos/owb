@@ -50,7 +50,7 @@ public class Orphanage extends DBRecord {
 	 * @param DBRecord
 	 * @return
 	 */
-	  public static Orphanage findOrCreateDBRecord(Orphanage record, String userId) {
+	  public static Orphanage findOrCreateDBRecord(Orphanage record, Long userId) {
 	
 		// Open the data-store manager 
 	    PersistenceManager pm = PMFactory.getTxnPm();
@@ -133,7 +133,7 @@ public class Orphanage extends DBRecord {
 
 	    // Here we create the association if it is a new persisted object 
 	    if (newPersisted) {
-	          OrphanageUser.associate(record.getUniqueId(), userId, userId);
+	          OrphanageUser.associate(record.getId(), userId, userId);
 	    }
 	    
 	    // Return a detached copy of the retrieved object or 
@@ -173,7 +173,7 @@ public class Orphanage extends DBRecord {
 		 * @param userUniqueId
 		 * @return
 		 */
-		public static DBRecordInfo toInfo(Orphanage o, String userUniqueId) {
+		public static DBRecordInfo toInfo(Orphanage o, Long userId) {
 			if (o == null)
 				return null;
 
@@ -189,14 +189,14 @@ public class Orphanage extends DBRecord {
 			// If the user with uniqueId id is a member or a follower
 			// the appropriate attributes of the shared object
 			// will be set.
-			if (o.isMember(userUniqueId)) oInfo.activateMember();
-			if (o.isFollower(userUniqueId)) oInfo.activateFollower();
+			if (o.isMember(userId)) oInfo.activateMember();
+			if (o.isFollower(userId)) oInfo.activateFollower();
 			
 			return oInfo;
 		}
 
 		@Override
-		public boolean isMember(String userUniqueId){
-			return OrphanageUser.isAssociated(this.getUniqueId(), userUniqueId);
+		public boolean isMember(Long userId){
+			return OrphanageUser.isAssociated(this.getId(), userId);
 		}
 }

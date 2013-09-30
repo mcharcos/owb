@@ -25,7 +25,9 @@ import javax.jdo.annotations.InheritanceStrategy;
 
 import com.google.appengine.api.datastore.Text;
 import com.owb.playhelp.server.PMFactory;
+import com.owb.playhelp.shared.AreaStandardInfo;
 import com.owb.playhelp.shared.DBRecordInfo;
+import com.owb.playhelp.shared.StandardInfo;
 import com.owb.playhelp.server.domain.associations.NgoUser;
 import com.owb.playhelp.server.utils.EmailHelper;
 import com.owb.playhelp.server.utils.Utils;
@@ -154,7 +156,7 @@ public class Standard implements Serializable, Cacheable {
 	* Responsabilities
 	*/ 
 	@Persistent(dependent = "true")
-	private AreaStandard responsability;
+	private AreaStandard responsibility;
 	
 	/*
 	* Discipline
@@ -202,6 +204,17 @@ public class Standard implements Serializable, Cacheable {
 		this.uniqueId = uuid.toString();  
 	}
 	
+	public Standard(DBRecordInfo record){
+		this();
+		this.setName(record.getName());
+		this.description = new Text(record.getDescription());
+		this.setAddress(record.getAddress());
+		this.setLatitude(record.getLatitude());
+		this.setLongitude(record.getLongitude());
+		
+		this.reEdit(record.getStandard());
+	}
+
 	public Standard(DBRecord record){
 		this();
 		this.setName(record.getName());
@@ -210,7 +223,11 @@ public class Standard implements Serializable, Cacheable {
 		this.setLatitude(record.getLatitude());
 		this.setLongitude(record.getLongitude());
 	}
-
+	
+	public Standard(StandardInfo stdInfo){
+		this();
+		this.reEdit(stdInfo);
+	}
 
 	/**
 	 * Retrieve the user from the database if it already exist or
@@ -218,10 +235,35 @@ public class Standard implements Serializable, Cacheable {
 	 * @param Standard
 	 * @return
 	 */
-	  public static Standard findOrCreate(Standard record, String userId) {
+	  public static Standard findOrCreate(Standard record, Long userId) {
 	    return record;
 	  }
 	
+	  public static StandardInfo toInfo(Standard std, Date date){
+		  StandardInfo stdInfo = new StandardInfo(std.getWater(date),
+													std.getFood(date),
+													std.getShelter(date),
+													std.getClothing(date),
+													std.getMedicine(date),
+													std.getHygiene(date),
+													std.getSafety(date),
+													std.getActivity(date),
+													std.getEducation(date),
+													std.getGuidance(date),
+													std.getResponsibility(date),
+													std.getDiscipline(date),
+													std.getLove(date),
+													std.getCompassion(date),
+													std.getJoy(date),
+													std.getHope(date));
+		  
+		  stdInfo.setUniqueId(std.getUniqueId());
+		  return stdInfo;
+	  }
+
+	  public static StandardInfo toInfo(Standard std){
+		  return toInfo(std, new Date());
+	  }
 	
 	public void addWater(Long stdStatus, String stdDesc){
 		water.add(stdStatus, stdDesc);
@@ -253,8 +295,8 @@ public class Standard implements Serializable, Cacheable {
 	public void addGuidance(Long stdStatus, String stdDesc){
 		guidance.add(stdStatus, stdDesc);
 	}
-	public void addResponsability(Long stdStatus, String stdDesc){
-		responsability.add(stdStatus, stdDesc);
+	public void addResponsibility(Long stdStatus, String stdDesc){
+		responsibility.add(stdStatus, stdDesc);
 	}
 	public void addDiscipline(Long stdStatus, String stdDesc){
 		discipline.add(stdStatus, stdDesc);
@@ -272,7 +314,25 @@ public class Standard implements Serializable, Cacheable {
 		hope.add(stdStatus, stdDesc);
 	}
 	
-	  
+	public void reEdit(StandardInfo standardInfo){
+		this.addWater(standardInfo.getWaterStatus(),standardInfo.getWaterDescription());
+		this.addFood(standardInfo.getFoodStatus(),standardInfo.getFoodDescription());
+		this.addShelter(standardInfo.getShelterStatus(),standardInfo.getSafetyDescription());
+		this.addClothing(standardInfo.getClothingStatus(),standardInfo.getClothingDescription());
+		this.addMedicine(standardInfo.getMedicineStatus(),standardInfo.getMedicineDescription());
+		this.addHygiene(standardInfo.getHygieneStatus(),standardInfo.getHopeDescription());
+		this.addSafety(standardInfo.getSafetyStatus(),standardInfo.getSafetyDescription());
+		this.addActivity(standardInfo.getActivityStatus(),standardInfo.getActivityDescription());
+		this.addEducation(standardInfo.getEducationStatus(),standardInfo.getEducationDescription());
+		this.addGuidance(standardInfo.getGuidanceStatus(),standardInfo.getGuidanceDescription());
+		this.addResponsibility(standardInfo.getResponsibilityStatus(),standardInfo.getResponsibilityDescription());
+		this.addDiscipline(standardInfo.getDisciplineStatus(),standardInfo.getDisciplineDescription());
+		this.addLove(standardInfo.getLoveStatus(),standardInfo.getLoveDescription());
+		this.addCompassion(standardInfo.getCompassionStatus(),standardInfo.getCompassionDescription());
+		this.addJoy(standardInfo.getJoyStatus(),standardInfo.getJoyDescription());
+		this.addHope(standardInfo.getHopeStatus(),standardInfo.getHopeDescription());
+	}
+	
 	public void addToCache() {
 		CacheSupport.cachePut(this.getClass().getName(), id, this);
 	}
@@ -329,4 +389,133 @@ public class Standard implements Serializable, Cacheable {
 		return uniqueId;
 	}
 	
+	/*
+	 * Methods to retrieve the standards at a specific date 
+	 * or the latest one
+	 */
+	private AreaStandardInfo getStdInfo(AreaStandard std, Date date){
+		AreaStandardInfo area = new AreaStandardInfo (std.getStatus(date),std.getDescription(date).toString(),std.getDate(date));
+		return area;
+	}
+	public AreaStandardInfo getWater(Date date){
+		return this.getStdInfo(this.water, date);
+	}
+	public AreaStandardInfo getLastWater(Date date){
+		return this.getStdInfo(this.water, new Date());
+	}
+
+	public AreaStandardInfo getFood(Date date){
+		return this.getStdInfo(this.food, date);
+	}
+	public AreaStandardInfo getLastFood(Date date){
+		return this.getStdInfo(this.food, new Date());
+	}
+
+	public AreaStandardInfo getShelter(Date date){
+		return this.getStdInfo(this.shelter, date);
+	}
+	public AreaStandardInfo getLastShelter(Date date){
+		return this.getStdInfo(this.shelter, new Date());
+	}
+
+	public AreaStandardInfo getClothing(Date date){
+		return this.getStdInfo(this.clothing, date);
+	}
+	public AreaStandardInfo getLastClothing(Date date){
+		return this.getStdInfo(this.clothing, new Date());
+	}
+
+	public AreaStandardInfo getMedicine(Date date){
+		return this.getStdInfo(this.medicine, date);
+	}
+	public AreaStandardInfo getLastMedicine(Date date){
+		return this.getStdInfo(this.medicine, new Date());
+	}
+
+	public AreaStandardInfo getHygiene(Date date){
+		return this.getStdInfo(this.hygiene, date);
+	}
+	public AreaStandardInfo getLastHygiene(Date date){
+		return this.getStdInfo(this.hygiene, new Date());
+	}
+
+	public AreaStandardInfo getSafety(Date date){
+		return this.getStdInfo(this.safety, date);
+	}
+	public AreaStandardInfo getLastSafety(Date date){
+		return this.getStdInfo(this.safety, new Date());
+	}
+
+	public AreaStandardInfo getActivity(Date date){
+		return this.getStdInfo(this.activity, date);
+	}
+	public AreaStandardInfo getLastActivity(Date date){
+		return this.getStdInfo(this.activity, new Date());
+	}
+
+	public AreaStandardInfo getEducation(Date date){
+		return this.getStdInfo(this.education, date);
+	}
+	public AreaStandardInfo getLastEducation(Date date){
+		return this.getStdInfo(this.education, new Date());
+	}
+
+	public AreaStandardInfo getGuidance(Date date){
+		return this.getStdInfo(this.guidance, date);
+	}
+	public AreaStandardInfo getLastGuidance(Date date){
+		return this.getStdInfo(this.guidance, new Date());
+	}
+
+	public AreaStandardInfo getResponsibility(Date date){
+		return this.getStdInfo(this.responsibility, date);
+	}
+	public AreaStandardInfo getLastResponsibility(Date date){
+		return this.getStdInfo(this.responsibility, new Date());
+	}
+
+	public AreaStandardInfo getDiscipline(Date date){
+		return this.getStdInfo(this.discipline, date);
+	}
+	public AreaStandardInfo getLastDiscipline(Date date){
+		return this.getStdInfo(this.discipline, new Date());
+	}
+
+	public AreaStandardInfo getLove(Date date){
+		return this.getStdInfo(this.love, date);
+	}
+	public AreaStandardInfo getLastLove(Date date){
+		return this.getStdInfo(this.love, new Date());
+	}
+
+	public AreaStandardInfo getCompassion(Date date){
+		return this.getStdInfo(this.compassion, date);
+	}
+	public AreaStandardInfo getLastCompassion(Date date){
+		return this.getStdInfo(this.compassion, new Date());
+	}
+
+	public AreaStandardInfo getJoy(Date date){
+		return this.getStdInfo(this.joy, date);
+	}
+	public AreaStandardInfo getLastJoy(Date date){
+		return this.getStdInfo(this.joy, new Date());
+	}
+
+	public AreaStandardInfo getHope(Date date){
+		return this.getStdInfo(this.hope, date);
+	}
+	public AreaStandardInfo getLastHope(Date date){
+		return this.getStdInfo(this.hope, new Date());
+	}
+
+	/**
+	 * Returns true if the input unique Id is a member of the 
+	 * record.
+	 * @param userId
+	 * @return
+	 */
+	public boolean isMember(Long userId){
+		return true;
+	}
 }

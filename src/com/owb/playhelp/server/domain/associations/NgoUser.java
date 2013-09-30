@@ -51,19 +51,19 @@ public class NgoUser  implements Serializable, Cacheable {
 	 * Id used to identify the record when it is passed to the front-end
 	 */
 	@Persistent
-	private String ngoId;
+	private Long ngoId;
 
 	/*
 	 * Id used to identify the record when it is passed to the front-end
 	 */
 	@Persistent
-	private String userId;
+	private Long userId;
 
 	/*
 	 * Id used to identify the record when it is passed to the front-end
 	 */
 	@Persistent
-	private String creatorId;
+	private Long creatorId;
 
 	/*
 	 * Date of the association
@@ -80,7 +80,7 @@ public class NgoUser  implements Serializable, Cacheable {
 	 * objects using information from the front end.
 	 * @param DBRecordInfo
 	 */
-	public NgoUser(String ngoId, String userId, String creatorId) {
+	public NgoUser(Long ngoId, Long userId, Long creatorId) {
 		this.userId = userId;
 		this.ngoId = ngoId;
 		this.creatorId = creatorId;
@@ -124,7 +124,7 @@ public class NgoUser  implements Serializable, Cacheable {
 		}
 	  
 	  
-	  public static boolean isAssociated(String ngoId, String userId) {
+	  public static boolean isAssociated(Long ngoId, Long userId) {
 	
 		// Open the data-store manager 
 	    PersistenceManager pm = PMFactory.getTxnPm();
@@ -170,7 +170,7 @@ public class NgoUser  implements Serializable, Cacheable {
 	    return isAssociated;
 	  }
 
-	  public static void associate(String ngoId, String userId, String currentUser) {
+	  public static void associate(Long ngoId, Long userId, Long currentUser) {
 		  
 		  if (NgoUser.isAssociated(ngoId, userId)){
 			  log.info("User association already exists: " + userId+", "+ngoId);

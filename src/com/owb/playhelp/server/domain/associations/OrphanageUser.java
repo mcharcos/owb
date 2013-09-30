@@ -51,19 +51,19 @@ public class OrphanageUser  implements Serializable, Cacheable {
 	 * Id used to identify the record when it is passed to the front-end
 	 */
 	@Persistent
-	private String orphanageId;
+	private Long orphanageId;
 
 	/*
 	 * Id used to identify the record when it is passed to the front-end
 	 */
 	@Persistent
-	private String userId;
+	private Long userId;
 
 	/*
 	 * Id used to identify the record when it is passed to the front-end
 	 */
 	@Persistent
-	private String creatorId;
+	private Long creatorId;
 
 	/*
 	 * Date of the association
@@ -80,7 +80,7 @@ public class OrphanageUser  implements Serializable, Cacheable {
 	 * objects using information from the front end.
 	 * @param DBRecordInfo
 	 */
-	public OrphanageUser(String orphanageId, String userId, String creatorId) {
+	public OrphanageUser(Long orphanageId, Long userId, Long creatorId) {
 		this.userId = userId;
 		this.orphanageId = orphanageId;
 		this.creatorId = creatorId;
@@ -124,7 +124,7 @@ public class OrphanageUser  implements Serializable, Cacheable {
 		}
 	  
 	  
-	  public static boolean isAssociated(String orphanageId, String userId) {
+	  public static boolean isAssociated(Long orphanageId, Long userId) {
 	
 		// Open the data-store manager 
 	    PersistenceManager pm = PMFactory.getTxnPm();
@@ -164,7 +164,7 @@ public class OrphanageUser  implements Serializable, Cacheable {
 		}
 	  }
 
-	  public static void associate(String orphanageId, String userId, String currentUser) {
+	  public static void associate(Long orphanageId, Long userId, Long currentUser) {
 		  
 		  if (OrphanageUser.isAssociated(orphanageId, userId)){
 			  log.info("User association already exists: " + userId+", "+orphanageId);

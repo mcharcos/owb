@@ -11,7 +11,7 @@ import javax.jdo.Query;
 import javax.jdo.Transaction;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
-import com.owb.playhelp.client.service.orphanage.VolunteerService;
+import com.owb.playhelp.client.service.VolunteerService;
 import com.owb.playhelp.server.domain.Volunteer;
 import com.owb.playhelp.server.domain.user.UserProfile;
 import com.owb.playhelp.shared.DBRecordInfo;
@@ -77,8 +77,8 @@ public class VolunteerServiceImpl extends RemoteServiceServlet implements Volunt
 	public ArrayList<DBRecordInfo> getDBRecordList(){
 		PersistenceManager pm = PMFactory.getNonTxnPm();
 		UserProfile user = LoginHelper.getLoggedUser(getThreadLocalRequest().getSession(), pm);
-		String userUniqueId = null;
-		if (user != null) userUniqueId = user.getUniqueId();
+		Long userId = null;
+		if (user != null) userId = user.getId();
 		pm.close();
 
 		pm = PMFactory.getNonTxnPm();
@@ -95,7 +95,7 @@ public class VolunteerServiceImpl extends RemoteServiceServlet implements Volunt
 			for (Long volunteerId: foundIdVolunteers){
 				if (volunteerId != null){
 					foundVolunteer = pm.getObjectById(Volunteer.class, volunteerId);
-					volunteerInfo = Volunteer.toInfo(foundVolunteer,userUniqueId);
+					volunteerInfo = Volunteer.toInfo(foundVolunteer,userId);
 					volunteerArray.add(volunteerInfo);	
 				}
 			}
@@ -118,7 +118,7 @@ public class VolunteerServiceImpl extends RemoteServiceServlet implements Volunt
 		PersistenceManager pm = PMFactory.getTxnPm();
 		UserProfile user = LoginHelper.getLoggedUser(getThreadLocalRequest().getSession(), pm);
 		if (user == null) return;
-		String userUniqueId = user.getUniqueId();
+		Long userId = user.getId();
 		pm.close();
 		
 		pm = PMFactory.getTxnPm();
@@ -139,7 +139,7 @@ public class VolunteerServiceImpl extends RemoteServiceServlet implements Volunt
 	        oneResult = (Volunteer) q.execute(uniqueId);
 	        if (oneResult != null) {
 	        	logger.info("Found object with uniqueId: " + uniqueId);
-	        	if (oneResult.isMember(userUniqueId)) pm.deletePersistent(oneResult);
+	        	if (oneResult.isMember(userId)) pm.deletePersistent(oneResult);
 	        	else logger.info("UserProfile " + uniqueId + " is not a member");
 	        } else {
 	        	logger.info("UserProfile " + uniqueId + " does not exist and can't be removed...");

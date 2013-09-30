@@ -1,5 +1,7 @@
 package com.owb.playhelp.server.domain;
 
+import java.util.Date;
+
 import javax.jdo.JDOCanRetryException;
 import javax.jdo.JDOUserException;
 import javax.jdo.PersistenceManager;
@@ -9,6 +11,8 @@ import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.PersistenceCapable;
 
 import com.owb.playhelp.server.PMFactory;
+import com.owb.playhelp.shared.DBRecordInfo;
+import com.owb.playhelp.shared.StandardInfo;
 
 /**
  * 
@@ -31,13 +35,21 @@ public class SNgo extends Standard {
 		super(record);
 	}
 
+	public SNgo(DBRecordInfo record){
+		super(record);
+	}
+
+	public SNgo(StandardInfo record){
+		super(record);
+	}
+
 	/**
 	 * Retrieve the user from the database if it already exist or
 	 * create a new account if it is the first loggin
 	 * @param Standard
 	 * @return
 	 */
-	  public static SNgo findOrCreate(SNgo record, String userId) {
+	  public static SNgo findOrCreate(SNgo record, Long userId) {
 	
 		// Open the data-store manager 
 	    PersistenceManager pm = PMFactory.getTxnPm();
@@ -113,4 +125,115 @@ public class SNgo extends Standard {
 	    // the input object after being persisted
 	    return detached;
 	  }
+	  
+
+		/**
+		 * Creates a share object to be passed to the front end. The resulting
+		 * object contains the information of the data-store object.
+		 * @param o
+		 * @return
+		 */
+		public static StandardInfo toInfo(SNgo o, Date date) {
+			if (o == null)
+				return null;
+
+			// Create a new object with the information from the input
+			StandardInfo oInfo = new StandardInfo(o.getWater(date), o.getFood(date),o.getShelter(date),o.getClothing(date),
+					                              o.getMedicine(date),o.getHygiene(date),o.getSafety(date),o.getActivity(date),
+					                              o.getEducation(date),o.getGuidance(date),o.getResponsibility(date),o.getDiscipline(date),
+					                              o.getLove(date),o.getCompassion(date),o.getJoy(date),o.getHope(date));
+			
+			// Set the unique Id to the current Id from the input object
+			oInfo.setUniqueId(o.getUniqueId());
+			
+			oInfo.deactivateMember();
+			
+			return oInfo;
+		}
+
+		/**
+		 * Creates a share object to be passed to the front end. The resulting
+		 * object contains the information of the data-store object. The returned
+		 * object privacy is set according to the input userUniqueId accessibility 
+		 * to the input record. 
+		 * @param o
+		 * @param userUniqueId
+		 * @return
+		 */
+		public static StandardInfo toInfo(SNgo o, Long userId, Date date) {
+			if (o == null)
+				return null;
+
+			// Create a new object with the information from the input
+			StandardInfo oInfo = SNgo.toInfo(o, date);
+			
+			// Check if the share object was created. If not, null should be 
+			// returned instead of setting privacies. 
+			if (oInfo == null)
+				return null;
+
+			// Set privacy depending on the user uniqueId
+			// If the user with uniqueId id is a member or a follower
+			// the appropriate attributes of the shared object
+			// will be set.
+			if (o.isMember(userId)) oInfo.activateMember();
+			
+			return oInfo;
+		}
+		
+
+		/**
+		 * Creates a share object to be passed to the front end. The resulting
+		 * object contains the information of the data-store object.
+		 * @param o
+		 * @return
+		 */
+		public static StandardInfo toInfo(SNgo o) {
+			if (o == null)
+				return null;
+
+			Date date = new Date();
+			// Create a new object with the information from the input
+			StandardInfo oInfo = new StandardInfo(o.getWater(date), o.getFood(date),o.getShelter(date),o.getClothing(date),
+					                              o.getMedicine(date),o.getHygiene(date),o.getSafety(date),o.getActivity(date),
+					                              o.getEducation(date),o.getGuidance(date),o.getResponsibility(date),o.getDiscipline(date),
+					                              o.getLove(date),o.getCompassion(date),o.getJoy(date),o.getHope(date));
+			
+			// Set the unique Id to the current Id from the input object
+			oInfo.setUniqueId(o.getUniqueId());
+			
+			oInfo.deactivateMember();
+			
+			return oInfo;
+		}
+
+		/**
+		 * Creates a share object to be passed to the front end. The resulting
+		 * object contains the information of the data-store object. The returned
+		 * object privacy is set according to the input userUniqueId accessibility 
+		 * to the input record. 
+		 * @param o
+		 * @param userUniqueId
+		 * @return
+		 */
+		public static StandardInfo toInfo(SNgo o, Long userId) {
+			if (o == null)
+				return null;
+
+			// Create a new object with the information from the input
+			StandardInfo oInfo = SNgo.toInfo(o);
+			
+			// Check if the share object was created. If not, null should be 
+			// returned instead of setting privacies. 
+			if (oInfo == null)
+				return null;
+
+			// Set privacy depending on the user uniqueId
+			// If the user with uniqueId id is a member or a follower
+			// the appropriate attributes of the shared object
+			// will be set.
+			if (o.isMember(userId)) oInfo.activateMember();
+			
+			return oInfo;
+		}
 }

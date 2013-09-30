@@ -10,7 +10,7 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.owb.playhelp.client.helper.RPCCall;
 import com.owb.playhelp.client.presenter.DBRecordInfoPresenter;
 import com.owb.playhelp.client.presenter.DBRecordListPresenter;
-import com.owb.playhelp.client.service.orphanage.NgoServiceAsync;
+import com.owb.playhelp.client.service.NgoServiceAsync;
 import com.owb.playhelp.client.view.DBRecordInfoView;
 import com.owb.playhelp.shared.DBRecordInfo;
 

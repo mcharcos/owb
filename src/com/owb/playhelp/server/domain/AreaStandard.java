@@ -10,6 +10,7 @@ import javax.jdo.annotations.Persistent;
 
 import com.google.appengine.api.datastore.Text;
 import com.owb.playhelp.server.utils.Utils;
+import com.owb.playhelp.shared.AreaStandardInfo;
 
 public class AreaStandard implements Serializable {
 	
@@ -24,6 +25,10 @@ public class AreaStandard implements Serializable {
 		this.add(stdStatus, stdDesc);
 	}
 	
+	public AreaStandard(AreaStandardInfo std){
+		this.add(std);
+	}
+	
 
     @Persistent
     private List<Date> stdDate = new ArrayList<Date>();
@@ -31,11 +36,22 @@ public class AreaStandard implements Serializable {
     private List<Long> stdStatus = new ArrayList<Long>();
 	@Persistent
 	private List<Text> stdDesc = new ArrayList<Text>();
-	
+
 	public void add(Long stdStatus, String stdDesc){
 		this.stdDate.add(new Date());
 		this.stdStatus.add(stdStatus);
 		this.stdDesc.add(new Text(stdDesc));
+	}
+	
+	public void add(Long stdStatus, String stdDesc, Date date){
+		this.stdDate.add(date);
+		this.stdStatus.add(stdStatus);
+		this.stdDesc.add(new Text(stdDesc));
+	}
+	
+	public void add(AreaStandardInfo std){
+		if (std.getDate() == null) this.add(std.getStatus(),std.getDescription()); 
+		else this.add(std.getStatus(),std.getDescription(),std.getDate());
 	}
 
 	/**
@@ -112,4 +128,70 @@ public class AreaStandard implements Serializable {
 		}
 		return stdDesc.get(idx);
 	}
+	
+
+	/*
+	 * Get values of standard at a specific date or latest one
+	 */
+	/**
+	 * Get the index of the list that correspond to the values of the standard
+	 * at a given date. This is the closest date before the input date.
+	 * @param date
+	 * @return
+	 */
+	public int getIndex(Date date){
+		return stdDate.size();
+	}
+	/**
+	 * 
+	 * @param 
+	 * @return Date for last index
+	 */
+	public Date getLastDate(){
+		return stdDate.get(stdDate.size());
+	}
+	/**
+	 * 
+	 * @param 
+	 * @return Date of last entry before the input date
+	 */
+	public Date getDate(Date date){
+		return stdDate.get(this.getIndex(date));
+	}
+
+	/**
+	 * 
+	 * @param 
+	 * @return Status for last index
+	 */
+	public Long getLastStatus(){
+		return stdStatus.get(stdStatus.size());
+	}
+	/**
+	 * 
+	 * @param 
+	 * @return Status of last entry before the input date
+	 */
+	public Long getStatus(Date date){
+		return stdStatus.get(this.getIndex(date));
+	}
+
+	/**
+	 * 
+	 * @param 
+	 * @return Description for last index
+	 */
+	public Text getLastDescription(){
+		return stdDesc.get(stdDesc.size());
+	}
+	/**
+	 * 
+	 * @param 
+	 * @return Description of last entry before the input date
+	 */
+	public Text getDescription(Date date){
+		return stdDesc.get(this.getIndex(date));
+	}
+	
+	
 }

@@ -163,7 +163,7 @@ public class Volunteer extends DBRecord {
 		 * @param userUniqueId
 		 * @return
 		 */
-		public static DBRecordInfo toInfo(Volunteer o, String userUniqueId) {
+		public static DBRecordInfo toInfo(Volunteer o, Long userId) {
 			if (o == null)
 				return null;
 
@@ -179,8 +179,8 @@ public class Volunteer extends DBRecord {
 			// If the user with uniqueId id is a member or a follower
 			// the appropriate attributes of the shared object
 			// will be set.
-			if (o.isMember(userUniqueId)) oInfo.activateMember();
-			if (o.isFollower(userUniqueId)) oInfo.activateFollower();
+			if (o.isMember(userId)) oInfo.activateMember();
+			if (o.isFollower(userId)) oInfo.activateFollower();
 			
 			return oInfo;
 		}

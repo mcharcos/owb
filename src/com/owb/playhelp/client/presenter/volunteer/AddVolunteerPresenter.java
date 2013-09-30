@@ -25,7 +25,7 @@ import com.owb.playhelp.client.event.orphanage.AddOrphanageUpdateEvent;
 import com.owb.playhelp.client.event.volunteer.VolunteerUpdateEvent;
 import com.owb.playhelp.client.helper.RPCCall;
 import com.owb.playhelp.client.presenter.Presenter;
-import com.owb.playhelp.client.service.orphanage.VolunteerServiceAsync;
+import com.owb.playhelp.client.service.VolunteerServiceAsync;
 import com.owb.playhelp.shared.DBRecordInfo;
 
 public class AddVolunteerPresenter implements Presenter {

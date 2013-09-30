@@ -67,6 +67,17 @@
     <url-pattern>/owb/volunteerService</url-pattern>
   </servlet-mapping>
   
+  <!-- ===================== Standard Service ===================== -->
+  <servlet>
+    <servlet-name>standardService</servlet-name>
+    <servlet-class>com.owb.playhelp.server.StandardServiceImpl</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>standardService</servlet-name>
+    <url-pattern>/owb/standardService</url-pattern>
+  </servlet-mapping>
+  
   
   <!-- ===================== Upload module Service ===================== -->
    <!-- 

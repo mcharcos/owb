@@ -11,13 +11,11 @@ import javax.jdo.Transaction;
 import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.PersistenceCapable;
 
-import com.owb.playhelp.server.LoginServiceImpl;
 import com.owb.playhelp.server.PMFactory;
 import com.owb.playhelp.server.domain.associations.NgoStandard;
 import com.owb.playhelp.server.domain.associations.NgoUser;
 import com.owb.playhelp.server.utils.EmailHelper;
 import com.owb.playhelp.shared.DBRecordInfo;
-import com.owb.playhelp.shared.UserProfileInfo;
 
 /**
  * 
@@ -46,11 +44,11 @@ public class Ngo extends DBRecord {
 
 	/**
 	 * Retrieve the user from the database if it already exist or
-	 * create a new account if it is the first loggin
+	 * create a new account if it is the first login
 	 * @param DBRecord
 	 * @return
 	 */
-	  public static Ngo findOrCreateDBRecord(Ngo record, String userId) {
+	  public static Ngo findOrCreateDBRecord(Ngo record, Long userId) {
 	
 		// Open the data-store manager 
 	    PersistenceManager pm = PMFactory.getTxnPm();
@@ -133,9 +131,9 @@ public class Ngo extends DBRecord {
 	    
 	    // Here we create the association if it is a new persisted object 
 	    if (newPersisted) {
-	          NgoUser.associate(record.getUniqueId(), userId, userId);
+	          NgoUser.associate(record.getId(), userId, userId);
 	          SNgo sNgo = SNgo.findOrCreate(new SNgo(record), userId);
-	          NgoStandard.associate(record.getUniqueId(), sNgo.getUniqueId(), userId);
+	          NgoStandard.associate(record.getId(), sNgo.getId(), userId);
 	    }
 	    
 	    // Return a detached copy of the retrieved object or 
@@ -175,7 +173,7 @@ public class Ngo extends DBRecord {
 		 * @param userUniqueId
 		 * @return
 		 */
-		public static DBRecordInfo toInfo(Ngo o, String userUniqueId) {
+		public static DBRecordInfo toInfo(Ngo o, Long userId) {
 			if (o == null)
 				return null;
 
@@ -191,8 +189,8 @@ public class Ngo extends DBRecord {
 			// If the user with uniqueId id is a member or a follower
 			// the appropriate attributes of the shared object
 			// will be set.
-			if (o.isMember(userUniqueId)) oInfo.activateMember();
-			if (o.isFollower(userUniqueId)) oInfo.activateFollower();
+			if (o.isMember(userId)) oInfo.activateMember();
+			if (o.isFollower(userId)) oInfo.activateFollower();
 			
 			return oInfo;
 		}
@@ -200,11 +198,11 @@ public class Ngo extends DBRecord {
 		/**
 		 * Returns true if the input unique Id is a member of the 
 		 * record.
-		 * @param userUniqueId
+		 * @param userId
 		 * @return
 		 */
 		@Override
-		public boolean isMember(String userUniqueId){
-			return NgoUser.isAssociated(this.getUniqueId(), userUniqueId);
+		public boolean isMember(Long userId){
+			return NgoUser.isAssociated(this.getId(), userId);
 		}
 }

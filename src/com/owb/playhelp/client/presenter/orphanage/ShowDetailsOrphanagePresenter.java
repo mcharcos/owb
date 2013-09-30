@@ -5,7 +5,7 @@ package com.owb.playhelp.client.presenter.orphanage;
 
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.owb.playhelp.client.presenter.ShowDetailsDBRecordPresenter;
-import com.owb.playhelp.client.service.orphanage.OrphanageServiceAsync;
+import com.owb.playhelp.client.service.OrphanageServiceAsync;
 import com.owb.playhelp.shared.DBRecordInfo;
 import com.owb.playhelp.shared.UserProfileInfo;
 

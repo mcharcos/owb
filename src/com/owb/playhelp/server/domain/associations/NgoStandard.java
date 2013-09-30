@@ -51,19 +51,19 @@ public class NgoStandard  implements Serializable, Cacheable {
 	 * Id used to identify the record when it is passed to the front-end
 	 */
 	@Persistent
-	private String ngoId;
+	private Long ngoId;
 
 	/*
 	 * Id used to identify the record when it is passed to the front-end
 	 */
 	@Persistent
-	private String standardId;
+	private Long standardId;
 
 	/*
 	 * Id used to identify the record when it is passed to the front-end
 	 */
 	@Persistent
-	private String creatorId;
+	private Long creatorId;
 
 	/*
 	 * Date of the association
@@ -80,7 +80,7 @@ public class NgoStandard  implements Serializable, Cacheable {
 	 * objects using information from the front end.
 	 * @param DBRecordInfo
 	 */
-	public NgoStandard(String ngoId, String standardId, String creatorId) {
+	public NgoStandard(Long ngoId, Long standardId, Long creatorId) {
 		this.standardId = standardId;
 		this.ngoId = ngoId;
 		this.creatorId = creatorId;
@@ -124,7 +124,7 @@ public class NgoStandard  implements Serializable, Cacheable {
 		}
 	  
 	  
-	  public static boolean isAssociated(String ngoId, String standardId) {
+	  public static boolean isAssociated(Long ngoId, Long standardId) {
 	
 		// Open the data-store manager 
 	    PersistenceManager pm = PMFactory.getTxnPm();
@@ -170,7 +170,7 @@ public class NgoStandard  implements Serializable, Cacheable {
 	    return isAssociated;
 	  }
 
-	  public static void associate(String ngoId, String standardId, String currentUser) {
+	  public static void associate(Long ngoId, Long standardId, Long currentUser) {
 		  
 		  if (NgoStandard.isAssociated(ngoId, standardId)){
 			  log.info("User association already exists: " + standardId+", "+ngoId);
@@ -209,7 +209,7 @@ public class NgoStandard  implements Serializable, Cacheable {
 	        }
 	      } // end for
 	    } catch (JDOUserException e){
-	          log.info("JDOUserException: NgoUser table is empty");
+	          log.info("JDOUserException: NgoStandard table is empty");
 	          // Create friends from Google+
 	          pm.makePersistent(ngoUser);	    	
 		      try {

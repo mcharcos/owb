@@ -22,7 +22,6 @@ import com.owb.playhelp.client.presenter.ngo.NgoListPresenter;
 import com.owb.playhelp.client.presenter.ngo.ReportAbuseNgoPresenter;
 import com.owb.playhelp.client.presenter.ngo.ShowDetailsNgoPresenter;
 import com.owb.playhelp.client.presenter.orphanage.AddOrphanagePresenter;
-import com.owb.playhelp.client.presenter.orphanage.AddOrphanageStatusPresenter;
 import com.owb.playhelp.client.presenter.orphanage.OrphanageListPresenter;
 import com.owb.playhelp.client.presenter.orphanage.ShowDetailsOrphanagePresenter;
 import com.owb.playhelp.client.presenter.user.UserPreferenceEditPresenter;
@@ -33,11 +32,11 @@ import com.owb.playhelp.client.presenter.web.WebHomePresenter;
 import com.owb.playhelp.client.presenter.web.WebMenuPresenter;
 import com.owb.playhelp.client.presenter.web.WebPagesPresenter;
 import com.owb.playhelp.client.service.project.ProjectServiceAsync;
-import com.owb.playhelp.client.service.orphanage.VolunteerServiceAsync;
 import com.owb.playhelp.client.service.LoginServiceAsync;
+import com.owb.playhelp.client.service.NgoServiceAsync;
+import com.owb.playhelp.client.service.OrphanageServiceAsync;
 import com.owb.playhelp.client.service.UserServiceAsync;
-import com.owb.playhelp.client.service.orphanage.NgoServiceAsync;
-import com.owb.playhelp.client.service.orphanage.OrphanageServiceAsync;
+import com.owb.playhelp.client.service.VolunteerServiceAsync;
 import com.owb.playhelp.client.view.ContactHomeView;
 import com.owb.playhelp.client.view.DBRecordListView;
 import com.owb.playhelp.client.view.ShowDetailsDBRecordView;
@@ -46,7 +45,6 @@ import com.owb.playhelp.client.view.news.NewsHomeView;
 import com.owb.playhelp.client.view.ngo.AddNgoView;
 import com.owb.playhelp.client.view.ngo.ReportAbuseNgoView;
 import com.owb.playhelp.client.view.orphanage.AddOrphanageView;
-import com.owb.playhelp.client.view.orphanage.AddOrphanageStatusView;
 import com.owb.playhelp.client.view.user.UserPreferenceEditView;
 import com.owb.playhelp.client.view.web.WebHowChildrenView;
 import com.owb.playhelp.client.view.web.WebHowDoWeHelpView;
@@ -402,7 +400,7 @@ public class PathGuide implements ValueChangeHandler<String>  {
 		 * Listen to events requesting a view for entering the needs of the orphanage
 		 * The view will be set in the main panel
 		 */
-		thePath.addHandler(ShowPopupAddOrphanageStatusEvent.TYPE, new ShowPopupAddOrphanageStatusEventHandler(){
+		/*thePath.addHandler(ShowPopupAddOrphanageStatusEvent.TYPE, new ShowPopupAddOrphanageStatusEventHandler(){
 			public void onShowPopupAddOrphanageStatus(ShowPopupAddOrphanageStatusEvent event){
 				if (currentUser == null){
 					Window.alert("You must log in to add or update an Organization");
@@ -418,7 +416,7 @@ public class PathGuide implements ValueChangeHandler<String>  {
 				AddOrphanageStatusPresenter addOrphanageStatusPresenter = new AddOrphanageStatusPresenter(event.getOrphanage(), orphanageService,thePath,new AddOrphanageStatusView());
 				addOrphanageStatusPresenter.go(Owb.get().getMainPanel());
 			}
-		});
+		});*/
 		
 		/*
 		 * Listen to event requesting adding a project. A panel appears in the main panel to allow the

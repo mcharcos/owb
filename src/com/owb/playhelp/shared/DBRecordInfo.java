@@ -37,6 +37,7 @@ public class DBRecordInfo implements Serializable {
 	private String email;
 	private String website;
 	private String uniqueId;
+	private StandardInfo standard;
 	private boolean valid;
 	private boolean confirmed;
 	private boolean member;
@@ -240,6 +241,14 @@ public class DBRecordInfo implements Serializable {
 	public String getUniqueId() {
 		return uniqueId;
 	}
+	
+	/**
+	 * Get the object containing the standard associated to this DB record
+	 * @return standard information
+	 */
+	public StandardInfo getStandard(){
+		return standard;
+	}
 
 	  /**
 	   * Gets the value member of the object. This value should be true if the current user is part
@@ -266,7 +275,7 @@ public class DBRecordInfo implements Serializable {
 	}
 
 	  /**
-	   * Gets the value cofirmed of the object. This value should be true if the organization was confirmed
+	   * Gets the value confirmed of the object. This value should be true if the organization was confirmed
 	   * by an admin and false otherwise. This value is set when creating the class in 
 	   * the back end.
 	   * 
@@ -458,6 +467,13 @@ public class DBRecordInfo implements Serializable {
 		this.uniqueId = uniqueId;
 	}
 	
+	/**
+	 * Sets the standard that will be associated to this DB record at a given time
+	 * @param standard
+	 */
+	public void setStandard(StandardInfo standard){
+		this.standard = standard;
+	}
 
 	  /**
 	   * Sets the confirm value of the object. This value indicates if the organization was confirmed 

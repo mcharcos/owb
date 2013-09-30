@@ -11,24 +11,38 @@ import javax.jdo.Query;
 import javax.jdo.Transaction;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
-import com.owb.playhelp.client.service.NgoService;
-import com.owb.playhelp.server.domain.Ngo;
+import com.owb.playhelp.client.service.StandardService;
+import com.owb.playhelp.server.domain.SNgo;
 import com.owb.playhelp.server.domain.user.UserProfile;
-import com.owb.playhelp.shared.DBRecordInfo;
+import com.owb.playhelp.shared.StandardInfo;
 
-public class NgoServiceImpl extends RemoteServiceServlet implements NgoService {
+public class StandardServiceImpl extends RemoteServiceServlet implements StandardService {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 6040792375246657307L;
-	private static Logger logger = Logger.getLogger(NgoServiceImpl.class.getName());
+	private static Logger logger = Logger.getLogger(StandardServiceImpl.class.getName());
 	public final static String CHANNEL_ID = "channel_id";
 	private static final int NUM_RETRIES = 5;
 
 	@Override
-	public DBRecordInfo updateDBRecord(DBRecordInfo record){
-		
+	public StandardInfo updateStandard(StandardInfo stdInfo){
+
+	    StandardInfo result = stdInfo;
+	    
+	    if (stdInfo.getDBType() != StandardInfo.ORGANIZATION &&
+	    	stdInfo.getDBType() != StandardInfo.ORPHANAGE	){
+	    	logger.fine("Type "+stdInfo.getDBType()+" is not ");
+	    	return result;
+	    }
+	    if (stdInfo.getDBType() == StandardInfo.ORGANIZATION){
+		    result = updateStdNgo(stdInfo);
+	    }
+	    return result;
+	}
+	
+	private StandardInfo updateStdNgo(StandardInfo stdInfo){
 	    PersistenceManager pm = PMFactory.getTxnPm();
 	    UserProfile user = LoginHelper.getLoggedUser(getThreadLocalRequest().getSession(), pm);
 	    if (user == null) {
@@ -36,18 +50,19 @@ public class NgoServiceImpl extends RemoteServiceServlet implements NgoService {
 	    	return null;
 	    }
 	    pm.close();
-
+	    
 	    Long userId = user.getId();
-		Ngo ngo = Ngo.findOrCreateDBRecord(new Ngo(record),userId);
-		ngo.reEdit(record);
+
+	    SNgo standard = SNgo.findOrCreate(new SNgo(stdInfo),userId);
+	    
+		standard.reEdit(stdInfo);
 	    
 	    pm = PMFactory.getTxnPm();
-		String userUniqueId = user.getUniqueId();
 		
 		// If the user is not an admin and it is not a member the ngo information could not
 		// be updated
 		if (!user.isAdmin()){
-	      if (!ngo.isMember(userId)) {
+	      if (!standard.isMember(userId)) {
 	    	  pm.close();
 	    	  return null;
 	      }
@@ -56,7 +71,7 @@ public class NgoServiceImpl extends RemoteServiceServlet implements NgoService {
 		try {
 			for (int i = 0; i < NUM_RETRIES; i++){
 				pm.currentTransaction().begin();
-				pm.makePersistent(ngo);
+				pm.makePersistent(standard);
 				try {
 			          logger.fine("starting commit");
 			          pm.currentTransaction().commit();
@@ -71,23 +86,23 @@ public class NgoServiceImpl extends RemoteServiceServlet implements NgoService {
 		}catch (Exception e) {
 		      e.printStackTrace();
 		      logger.warning(e.getMessage());
-		      record = null;
+		      stdInfo = null;
 		} finally {
 			if (pm.currentTransaction().isActive()){
 				pm.currentTransaction().rollback();
 				logger.warning("transaction rollback");
-				record = null;
+				stdInfo = null;
 			}
 			pm.close();
 		}
 		
-		return record;
+		return stdInfo;
 	}
 	
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public ArrayList<DBRecordInfo> getDBRecordList(){
+	public ArrayList<StandardInfo> getNgoList(){
 		PersistenceManager pm = PMFactory.getNonTxnPm();
 		UserProfile user = LoginHelper.getLoggedUser(getThreadLocalRequest().getSession(), pm);
 		Long userId = null;
@@ -102,17 +117,17 @@ public class NgoServiceImpl extends RemoteServiceServlet implements NgoService {
 		try{
 			Query dq = null;
 			
-			dq = pm.newQuery("select id from " + Ngo.class.getName());			
+			dq = pm.newQuery("select id from " + SNgo.class.getName());			
 			List<Long> foundIdNgos;
 			foundIdNgos = (List<Long>) dq.execute();
 			
-			Ngo foundNgo = null;
-			DBRecordInfo record = null;
-			ArrayList<DBRecordInfo> ngoArray = new ArrayList<DBRecordInfo>();
+			SNgo foundNgo = null;
+			StandardInfo record = null;
+			ArrayList<StandardInfo> ngoArray = new ArrayList<StandardInfo>();
 			for (Long ngoId: foundIdNgos){
 				if (ngoId != null){
-					foundNgo = pm.getObjectById(Ngo.class, ngoId);
-					record = Ngo.toInfo(foundNgo,userId);
+					foundNgo = pm.getObjectById(SNgo.class, ngoId);
+					record = SNgo.toInfo(foundNgo,userId);
 					if (isAdmin) record.activateMember();
 					ngoArray.add(record);	
 				}
@@ -127,9 +142,9 @@ public class NgoServiceImpl extends RemoteServiceServlet implements NgoService {
 	
 
 	@Override
-	public void removeDBRecord(DBRecordInfo record){
+	public void removeStandard(StandardInfo standard){
 		
-		if (record.getUniqueId() == null) {
+		if (standard.getUniqueId() == null) {
 			logger.info("UniqueId is empty");
 			return;
 		}
@@ -142,11 +157,11 @@ public class NgoServiceImpl extends RemoteServiceServlet implements NgoService {
 		
 		pm = PMFactory.getTxnPm();
 	    Transaction tx = null;
-	    Ngo oneResult = null, detached = null;
+	    SNgo oneResult = null, detached = null;
 
-	    String uniqueId = record.getUniqueId();
+	    String uniqueId = standard.getUniqueId();
 
-	    Query q = pm.newQuery(Ngo.class, "uniqueId == :uniqueId");
+	    Query q = pm.newQuery(SNgo.class, "uniqueId == :uniqueId");
 	    q.setUnique(true);
 
 	    // perform the query and creation under transactional control,
@@ -155,7 +170,7 @@ public class NgoServiceImpl extends RemoteServiceServlet implements NgoService {
 	      for (int i = 0; i < NUM_RETRIES; i++) {
 	        tx = pm.currentTransaction();
 	        tx.begin();
-	        oneResult = (Ngo) q.execute(uniqueId);
+	        oneResult = (SNgo) q.execute(uniqueId);
 	        if (oneResult != null) {
 	        	logger.info("Found object with uniqueId: " + uniqueId);
 	        	detached = pm.detachCopy(oneResult);

@@ -11,7 +11,7 @@ import javax.jdo.Query;
 import javax.jdo.Transaction;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
-import com.owb.playhelp.client.service.orphanage.OrphanageService;
+import com.owb.playhelp.client.service.OrphanageService;
 import com.owb.playhelp.server.domain.Orphanage;
 import com.owb.playhelp.server.domain.user.UserProfile;
 import com.owb.playhelp.shared.DBRecordInfo;
@@ -33,24 +33,24 @@ public class OrphanageServiceImpl extends RemoteServiceServlet implements Orphan
 	    UserProfile user = LoginHelper.getLoggedUser(getThreadLocalRequest().getSession(), pm);
 	    if (user == null) return null;
 	    pm.close();
-	    
-		Orphanage orphanage = Orphanage.findOrCreateDBRecord(new Orphanage(orphanageInfo),user.getUniqueId());
+
+		Long userId = user.getId();
+		Orphanage orphanage = Orphanage.findOrCreateDBRecord(new Orphanage(orphanageInfo),userId);
 		orphanage.reEdit(orphanageInfo);
 		
 	    
 	    pm = PMFactory.getTxnPm();
-		String userUniqueId = user.getUniqueId();
 
 		// If the user is not an admin and it is not a member the ngo information could not
 		// be updated
 		if (!user.isAdmin()){
-	      if (!orphanage.isMember(userUniqueId)) {
+	      if (!orphanage.isMember(userId)) {
 	    	  pm.close();
 	    	  return null;
 	      }
 		}
 		
-	    if (!orphanage.isMember(userUniqueId)) return null;
+	    if (!orphanage.isMember(userId)) return null;
 	    
 		try {
 			for (int i = 0; i < NUM_RETRIES; i++){
@@ -103,8 +103,8 @@ public class OrphanageServiceImpl extends RemoteServiceServlet implements Orphan
 		
 		PersistenceManager pm = PMFactory.getNonTxnPm();
 		UserProfile user = LoginHelper.getLoggedUser(getThreadLocalRequest().getSession(), pm);
-		String userUniqueId = null;
-		if (user != null) userUniqueId = user.getUniqueId();
+		Long userId = null;
+		if (user != null) userId = user.getId();
 		pm.close();
 		
 
@@ -123,7 +123,7 @@ public class OrphanageServiceImpl extends RemoteServiceServlet implements Orphan
 				if (orphanageId != null){
 					foundOrphanage = pm.getObjectById(Orphanage.class, orphanageId);
 					//pm.deletePersistent(pm.getObjectById(Orphanage.class, orphanageId));
-					orphanageInfo = Orphanage.toInfo(foundOrphanage,userUniqueId);
+					orphanageInfo = Orphanage.toInfo(foundOrphanage,userId);
 					orphanageArray.add(orphanageInfo);	
 				}
 			}
@@ -146,7 +146,7 @@ public class OrphanageServiceImpl extends RemoteServiceServlet implements Orphan
 		PersistenceManager pm = PMFactory.getTxnPm();
 		UserProfile user = LoginHelper.getLoggedUser(getThreadLocalRequest().getSession(), pm);
 		if (user == null) return;
-		String userUniqueId = user.getUniqueId();
+		Long userId = user.getId();
 		pm.close();
 		
 		pm = PMFactory.getTxnPm();
@@ -207,7 +207,7 @@ public class OrphanageServiceImpl extends RemoteServiceServlet implements Orphan
 		// If the user is not an admin and it is not a member the ngo information could not
 		// be updated
 		if (!user.isAdmin()){
-	      if (!oneResult.isMember(userUniqueId)) {
+	      if (!oneResult.isMember(userId)) {
 	    	  logger.info("User " + uniqueId + " is not a member");
 	    	  return;
 	      }
