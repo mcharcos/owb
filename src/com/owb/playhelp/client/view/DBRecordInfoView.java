@@ -32,7 +32,7 @@ public class DBRecordInfoView extends Composite implements DBRecordInfoPresenter
 	@UiField
 	HTMLPanel mainPanel;
 	@UiField
-	Anchor editBut, removeBut, reportBut, followBut, fulldescBut,addprojBut;
+	Anchor editBut, removeBut, reportBut, followBut, fulldescBut, addstdBut, addprojBut;
 
 
 	  @Override
@@ -72,6 +72,10 @@ public class DBRecordInfoView extends Composite implements DBRecordInfoPresenter
 		@Override
 		public Anchor getFulldescBut(){
 		  return fulldescBut;
+		}
+		@Override
+		public Anchor getAddStdBut(){
+			return addstdBut;
 		}
 		@Override
 		public Anchor getAddprojBut(){

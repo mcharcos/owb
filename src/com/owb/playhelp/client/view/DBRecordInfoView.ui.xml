@@ -15,6 +15,7 @@
 			<g:Anchor href='javascript:;' ui:field='reportBut'>Report Abuse</g:Anchor>
 			<g:Anchor href='javascript:;' ui:field='followBut'>Follow</g:Anchor>
 			<g:Anchor href='javascript:;' ui:field='fulldescBut'>Full Description</g:Anchor>
+			<g:Anchor href='javascript:;' ui:field='addstdBut'>Add Standard</g:Anchor>
 			<g:Anchor href='javascript:;' ui:field='addprojBut'>Add Project</g:Anchor>
 		</div>
 	</g:HTMLPanel>

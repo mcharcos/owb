@@ -11,9 +11,9 @@ import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
-
 import com.owb.playhelp.shared.DBRecordInfo;
 import com.owb.playhelp.shared.UserProfileInfo;
+import com.owb.playhelp.client.presenter.AddStandardPresenter;
 import com.owb.playhelp.client.presenter.Presenter;
 import com.owb.playhelp.client.presenter.map.MainHomePresenter;
 import com.owb.playhelp.client.presenter.news.NewsHomePresenter;
@@ -35,8 +35,10 @@ import com.owb.playhelp.client.service.project.ProjectServiceAsync;
 import com.owb.playhelp.client.service.LoginServiceAsync;
 import com.owb.playhelp.client.service.NgoServiceAsync;
 import com.owb.playhelp.client.service.OrphanageServiceAsync;
+import com.owb.playhelp.client.service.StandardServiceAsync;
 import com.owb.playhelp.client.service.UserServiceAsync;
 import com.owb.playhelp.client.service.VolunteerServiceAsync;
+import com.owb.playhelp.client.view.AddStandardView;
 import com.owb.playhelp.client.view.ContactHomeView;
 import com.owb.playhelp.client.view.DBRecordListView;
 import com.owb.playhelp.client.view.ShowDetailsDBRecordView;
@@ -81,6 +83,8 @@ import com.owb.playhelp.client.event.web.ContactHomeEvent;
 import com.owb.playhelp.client.event.web.ContactHomeEventHandler;
 import com.owb.playhelp.client.event.web.ShowWebEvent;
 import com.owb.playhelp.client.event.web.ShowWebEventHandler;
+import com.owb.playhelp.client.event.standard.ShowAddStandardEvent;
+import com.owb.playhelp.client.event.standard.ShowAddStandardEventHandler;
 import com.owb.playhelp.client.event.user.PreferencesEditEvent;
 import com.owb.playhelp.client.event.user.PreferencesEditEventHandler;
 import com.owb.playhelp.client.event.user.UserPreferenceUpdateEvent;
@@ -151,6 +155,7 @@ public class PathGuide implements ValueChangeHandler<String>  {
 	private final VolunteerServiceAsync volunteerService;
 	private final NgoServiceAsync ngoService;
 	private final OrphanageServiceAsync orphanageService;
+	private final StandardServiceAsync standardService;
 	private final ProjectServiceAsync projectService;
 	private final UserServiceAsync userService;
 	private final LoginServiceAsync loginService;
@@ -169,11 +174,12 @@ public class PathGuide implements ValueChangeHandler<String>  {
 	private String lastView = "0";
 	
 	public PathGuide(UserServiceAsync userService, NgoServiceAsync ngoService, OrphanageServiceAsync orphanageService, 
-			ProjectServiceAsync projectService, VolunteerServiceAsync volunteerService, LoginServiceAsync loginService, SimpleEventBus thePath, UserProfileInfo currentUser){
+			StandardServiceAsync standardService, ProjectServiceAsync projectService, VolunteerServiceAsync volunteerService, LoginServiceAsync loginService, SimpleEventBus thePath, UserProfileInfo currentUser){
 		this.volunteerService = volunteerService;
 		this.userService = userService;
 		this.ngoService = ngoService;
 		this.orphanageService = orphanageService;
+		this.standardService = standardService;
 		this.projectService = projectService;
 		this.loginService = loginService;
 		this.thePath = thePath;
@@ -342,6 +348,21 @@ public class PathGuide implements ValueChangeHandler<String>  {
 
 				ReportAbuseNgoPresenter reportNgoPresenter = new ReportAbuseNgoPresenter(event.getNgo(), ngoService,thePath,new ReportAbuseNgoView(event.getClickPoint()));
 				reportNgoPresenter.go(Owb.get().getMainPanel());
+			}
+		});
+		
+		/*
+		 * Listen to an event requesting updating or adding the standard of a DB record
+		 */
+		thePath.addHandler(ShowAddStandardEvent.TYPE, new ShowAddStandardEventHandler(){
+			public void onShowAddStandard(ShowAddStandardEvent event){
+				if (currentUser == null){
+					Window.alert("You must log in to add or update status.");
+					return;
+				}
+				lastView = History.getToken();
+				AddStandardPresenter addStandardPresenter = new AddStandardPresenter(event.getDBRecord().getStandard(), standardService, thePath, new AddStandardView());
+				addStandardPresenter.go(Owb.get().getMainPanel());
 			}
 		});
 		

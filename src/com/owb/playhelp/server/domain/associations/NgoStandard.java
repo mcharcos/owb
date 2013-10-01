@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 
 import javax.jdo.JDOCanRetryException;
 import javax.jdo.JDOException;
+import javax.jdo.JDOFatalUserException;
 import javax.jdo.JDOUserException;
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
@@ -171,15 +172,17 @@ public class NgoStandard  implements Serializable, Cacheable {
 		        tx.rollback();
 		      }
 		      // Close the persistent manager and the query.
-		      pm.close();
+		      //pm.close();
 		      q.closeAll();
 		}
 	    
 	    if (stdId == null){
+	    	pm.close();
 	    	return null;
 	    }
 	    
 	    SNgo standard = null;
+	    //pm = PMFactory.getTxnPm();
 	    tx = pm.currentTransaction();
 	    
 	    try{
@@ -188,16 +191,25 @@ public class NgoStandard  implements Serializable, Cacheable {
 	            tx.begin();
 	            standard = (SNgo) pm.getObjectById(SNgo.class, stdId);
 	    	}
+	    } catch (JDOFatalUserException e){
+	    		log.info("JDOUserException: SNgo table does not contain id "+stdId);
+	          standard=null;
+	    } catch (JDOUserException e){
+	          log.info("JDOUserException: SNgo table is empty");
+	          standard=null;
 	    } catch (JDOException e) {
 	        e.printStackTrace();
-	        return null;
-	      } finally{
+	        standard=null;
+	    } catch (Exception e) {
+	    	 e.printStackTrace();
+		     standard = null;
+	    } finally{
 	          if (tx.isActive()) {
 	              log.info("NgoStandard:getStandard: transaction rollback.");
 	              tx.rollback();
 	            }
 	            pm.close();
-	          }
+	    }
 	    return standard;
 	  }
 	  

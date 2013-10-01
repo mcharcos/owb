@@ -13,8 +13,10 @@ import com.owb.playhelp.client.event.dbrecord.ShowAddDBRecordEvent;
 import com.owb.playhelp.client.event.dbrecord.ShowDetailsDBRecordEvent;
 import com.owb.playhelp.client.event.orphanage.DBRecordRemoveEvent;
 import com.owb.playhelp.client.event.project.ShowPopupAddProjectEvent;
+import com.owb.playhelp.client.event.standard.ShowAddStandardEvent;
 import com.owb.playhelp.client.helper.ClickPoint;
 import com.owb.playhelp.shared.DBRecordInfo;
+import com.owb.playhelp.shared.StandardInfo;
 import com.owb.playhelp.shared.project.ProjectInfo;
 
 public class DBRecordInfoPresenter implements Presenter {
@@ -29,6 +31,7 @@ public class DBRecordInfoPresenter implements Presenter {
 		public Anchor getFollowBut();
 		public Anchor getFulldescBut();
 		public Anchor getAddprojBut();
+		public Anchor getAddStdBut();
 	}
 
 	private final SimpleEventBus eventBus;
@@ -44,9 +47,9 @@ public class DBRecordInfoPresenter implements Presenter {
 
 	public void bind() {
 		this.display.getEditBut().addClickHandler(new ClickHandler() {
-		public void onClick(ClickEvent event) {
-			eventBus.fireEvent(new ShowAddDBRecordEvent(record));
-		}
+			public void onClick(ClickEvent event) {
+				eventBus.fireEvent(new ShowAddDBRecordEvent(record));
+			}
 		});
 		this.display.getRemoveBut().addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
@@ -54,22 +57,27 @@ public class DBRecordInfoPresenter implements Presenter {
 			}
 		});
 		this.display.getReportBut().addClickHandler(new ClickHandler() {
-		public void onClick(ClickEvent event) {
-		}
+			public void onClick(ClickEvent event) {
+			}
 		});
 		this.display.getFollowBut().addClickHandler(new ClickHandler() {
-		public void onClick(ClickEvent event) {
-		}
+			public void onClick(ClickEvent event) {
+			}
 		});
 		this.display.getFulldescBut().addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				eventBus.fireEvent(new ShowDetailsDBRecordEvent(record));
 			}
 		});
+		this.display.getAddStdBut().addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent event) {
+					eventBus.fireEvent(new ShowAddStandardEvent(record));
+			}
+		});
 		this.display.getAddprojBut().addClickHandler(new ClickHandler() {
-		public void onClick(ClickEvent event) {
-		eventBus.fireEvent(new ShowPopupAddProjectEvent(new ClickPoint(100,100),new ProjectInfo()));
-		}
+			public void onClick(ClickEvent event) {
+					eventBus.fireEvent(new ShowPopupAddProjectEvent(new ClickPoint(100,100),new ProjectInfo()));
+			}
 		});
 	}
 
@@ -80,6 +88,7 @@ public class DBRecordInfoPresenter implements Presenter {
 
 		display.getEditBut().setVisible(false);
 		display.getRemoveBut().setVisible(false);
+		display.getAddStdBut().setVisible(false);
 		display.getReportBut().setVisible(false);
 		display.getFollowBut().setVisible(false);
 		display.getFulldescBut().setVisible(true);
@@ -88,6 +97,7 @@ public class DBRecordInfoPresenter implements Presenter {
 		if (record.getMember()) {
 		display.getEditBut().setVisible(true);
 		display.getRemoveBut().setVisible(true);
+		display.getAddStdBut().setVisible(true);
 		}
 		bind();
 	};

@@ -19,13 +19,14 @@ import com.owb.playhelp.client.service.NgoService;
 import com.owb.playhelp.client.service.NgoServiceAsync;
 import com.owb.playhelp.client.service.OrphanageService;
 import com.owb.playhelp.client.service.OrphanageServiceAsync;
+import com.owb.playhelp.client.service.StandardService;
+import com.owb.playhelp.client.service.StandardServiceAsync;
 import com.owb.playhelp.client.service.UserService;
 import com.owb.playhelp.client.service.UserServiceAsync;
 import com.owb.playhelp.client.service.VolunteerService;
 import com.owb.playhelp.client.service.VolunteerServiceAsync;
 import com.owb.playhelp.client.service.project.ProjectService;
 import com.owb.playhelp.client.service.project.ProjectServiceAsync;
-
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.RunAsyncCallback;
@@ -256,9 +257,10 @@ public class Owb implements EntryPoint {
 	  UserServiceAsync userService = GWT.create(UserService.class);
 	  NgoServiceAsync ngoService = GWT.create(NgoService.class);
 	  OrphanageServiceAsync orphanageService = GWT.create(OrphanageService.class);
+	  StandardServiceAsync standardService = GWT.create(StandardService.class);
 	  ProjectServiceAsync projectService = GWT.create(ProjectService.class);
 	  VolunteerServiceAsync volunteerService = GWT.create(VolunteerService.class);
-	  PathGuide guide = new PathGuide(userService, ngoService, orphanageService, projectService, volunteerService, loginService, thePath, currentUser);
+	  PathGuide guide = new PathGuide(userService, ngoService, orphanageService, standardService, projectService, volunteerService, loginService, thePath, currentUser);
 	  guide.go();
 	  
 	  
