@@ -20,6 +20,7 @@
   <!-- Configure java.util.logging -->
   <system-properties>
     <property name="java.util.logging.config.file" value="WEB-INF/logging.properties"/>
+    <property name="datanucleus.appengine.allowMultipleRelationsOfSameType" value="true"/>
   </system-properties>
 
 	<inbound-services>

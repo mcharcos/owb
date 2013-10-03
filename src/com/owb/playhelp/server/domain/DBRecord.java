@@ -32,7 +32,7 @@ import com.owb.playhelp.server.utils.cache.Cacheable;
 @SuppressWarnings("serial")
 @PersistenceCapable(identityType = IdentityType.APPLICATION, detachable = "true")
 @Inheritance(strategy=InheritanceStrategy.SUBCLASS_TABLE)
-public class DBRecord implements Serializable, Cacheable {
+public class DBRecord implements Serializable, Cacheable  {
 
 	  protected static final Logger log = Logger.getLogger(Utils.class.getName());
 	  protected static final int NUM_RETRIES = 5; 

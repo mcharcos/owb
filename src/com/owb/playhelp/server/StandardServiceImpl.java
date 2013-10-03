@@ -28,24 +28,33 @@ public class StandardServiceImpl extends RemoteServiceServlet implements Standar
 
 	@Override
 	public StandardInfo updateStandard(StandardInfo stdInfo){
-
+		logger.info("------------------- Starting standard update ---------------------------");
+		
+		if (stdInfo == null){
+			logger.warning("Input information is null");
+			return null;
+		}
+		logger.info("Standard type is "+stdInfo.getDBType().toString());
 	    StandardInfo result = stdInfo;
 	    
 	    if (stdInfo.getDBType() != StandardInfo.ORGANIZATION &&
 	    	stdInfo.getDBType() != StandardInfo.ORPHANAGE	){
-	    	logger.fine("Type "+stdInfo.getDBType()+" is not ");
+	    	logger.fine("Type "+stdInfo.getDBType()+" is not recognized");
 	    	return result;
 	    }
 	    if (stdInfo.getDBType() == StandardInfo.ORGANIZATION){
-		    result = updateStdNgo(stdInfo);
+		    logger.fine("Request update of type Ngo -> updateStdNgo");
+	    	result = updateStdNgo(stdInfo);
 	    }
 	    return result;
 	}
 	
 	private StandardInfo updateStdNgo(StandardInfo stdInfo){
+		logger.info("------------------- Starting Ngo standard update ---------------------------");
 	    PersistenceManager pm = PMFactory.getTxnPm();
 	    UserProfile user = LoginHelper.getLoggedUser(getThreadLocalRequest().getSession(), pm);
 	    if (user == null) {
+	    	logger.warning("User is not logged in");
 	    	pm.close();
 	    	return null;
 	    }
@@ -55,6 +64,7 @@ public class StandardServiceImpl extends RemoteServiceServlet implements Standar
 
 	    SNgo standard = SNgo.findOrCreate(new SNgo(stdInfo),userId);
 	    
+	    logger.fine("Standard unique id: "+standard.getUniqueId());
 		standard.add(stdInfo);
 	    
 	    pm = PMFactory.getTxnPm();

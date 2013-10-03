@@ -11,16 +11,10 @@ import com.google.gwt.user.client.ui.HasValue;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.Widget;
-import com.owb.playhelp.client.event.orphanage.AddOrphanageCancelEvent;
-import com.owb.playhelp.client.event.orphanage.AddOrphanageUpdateEvent;
-import com.owb.playhelp.client.event.orphanage.OrphanageUpdateEvent;
+import com.owb.playhelp.client.event.dbrecord.DBRecordUpdateEvent;
 import com.owb.playhelp.client.helper.RPCCall;
-import com.owb.playhelp.client.service.NgoServiceAsync;
-import com.owb.playhelp.client.service.OrphanageServiceAsync;
 import com.owb.playhelp.client.service.StandardServiceAsync;
-import com.owb.playhelp.shared.DBRecordInfo;
 import com.owb.playhelp.shared.StandardInfo;
-import com.owb.playhelp.shared.orphanage.OrphanageInfo;
 
 public class AddStandardPresenter implements Presenter{
 	public interface Display {
@@ -62,12 +56,12 @@ public class AddStandardPresenter implements Presenter{
 	    this.display.getSaveBut().addClickHandler(new ClickHandler() {
 	        public void onClick(ClickEvent event) {
 		      doSave();
-		      eventBus.fireEvent(new AddOrphanageUpdateEvent());
+		      eventBus.fireEvent(new DBRecordUpdateEvent(null));
 	        }
 	      });
 	    this.display.getCancelBut().addClickHandler(new ClickHandler() {
 	        public void onClick(ClickEvent event) {
-	        	eventBus.fireEvent(new AddOrphanageCancelEvent());
+	        	eventBus.fireEvent(new DBRecordUpdateEvent(null));
 	        }
 	      });
 	    
@@ -131,13 +125,13 @@ public class AddStandardPresenter implements Presenter{
 
 	      @Override
 	      public void onSuccess(StandardInfo result) {
-	        //GWT.log("OrphanageAddPresenter: Firing ShowPopupAddOrphanageStatusEvent");
-	        //eventBus.fireEvent(new OrphanageUpdateEvent((OrphanageInfo) result)); 
+	          GWT.log("AddStandardPresenter: Firing DBRecordUpdateEvent");
 	      }
 
 	      @Override
 	      public void onFailure(Throwable caught) {
-	        Window.alert("Error retrieving standard...");
+	        Window.alert("Error updating standard...");
+	        eventBus.fireEvent(new DBRecordUpdateEvent(null));
 	      }
 	    }.retry(3);
 	  }

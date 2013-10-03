@@ -36,6 +36,11 @@ public class OrphanageServiceImpl extends RemoteServiceServlet implements Orphan
 
 		Long userId = user.getId();
 		Orphanage orphanage = Orphanage.findOrCreateDBRecord(new Orphanage(orphanageInfo),userId);
+
+		if (orphanage == null){
+			return null;
+		}
+		
 		orphanage.reEdit(orphanageInfo);
 		
 	    

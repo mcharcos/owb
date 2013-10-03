@@ -27,7 +27,8 @@ public class AddStandardView extends Composite implements AddStandardPresenter.D
 	}
 	
 
-	@UiField Label nameField;
+	//@UiField 
+	Label nameField = new Label();
 	@UiField TextBox waterField,foodField,shelterField,clothingField;
 	@UiField TextBox medicineField, hygieneField,safetyField, activityField;
 	@UiField TextBox educationField,guidanceField,responsibilityField,disciplineField;

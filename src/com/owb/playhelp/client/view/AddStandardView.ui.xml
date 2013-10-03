@@ -4,12 +4,14 @@
 	<ui:style src="../resources/GlobalStyles.css" >
 	</ui:style>
 	<g:HTMLPanel>
-			<div class="{style.formTitle}">Orphanage Status</div>
+			<div class="{style.formTitle}">Status</div>
+			<!-- 
 			<div class="{style.formwrapper}">
 				<div class="{style.formlabel}">
-					<g:Label ui:field='nameField'> Orphanage Name</g:Label>
+					<g:Label ui:field='nameField'>Name</g:Label>
 				</div>
 			</div>
+			 -->
 			<div class="{style.formwrapper}">
 				<div class="{style.formlabel}">
 					<g:Label> Clean Water (%)</g:Label>

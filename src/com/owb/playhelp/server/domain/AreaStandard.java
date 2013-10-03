@@ -6,16 +6,28 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
+import javax.jdo.annotations.EmbeddedOnly;
+import javax.jdo.annotations.IdGeneratorStrategy;
+import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
 
+import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.Text;
 import com.owb.playhelp.server.utils.Utils;
 import com.owb.playhelp.shared.AreaStandardInfo;
 
-public class AreaStandard implements Serializable {
+/*@PersistenceCapable
+@EmbeddedOnly*/
+public class AreaStandard {
 	
-	private static final long serialVersionUID = -2023204547641864687L;
+	//private static final long serialVersionUID = -2023204547641864687L;
 	protected static final Logger log = Logger.getLogger(Utils.class.getName());
+	
+	/*
+	@PrimaryKey
+    @Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
+    private Key AnotherClassId;*/
 	
 	public AreaStandard(){
 		
@@ -30,11 +42,11 @@ public class AreaStandard implements Serializable {
 	}
 	
 
-    @Persistent
+    @Persistent(defaultFetchGroup = "true")
     private List<Date> stdDate = new ArrayList<Date>();
-	@Persistent
+    @Persistent(defaultFetchGroup = "true")
     private List<Long> stdStatus = new ArrayList<Long>();
-	@Persistent
+    @Persistent(defaultFetchGroup = "true")
 	private List<Text> stdDesc = new ArrayList<Text>();
 
 	public void add(Long stdStatus, String stdDesc){
@@ -140,7 +152,9 @@ public class AreaStandard implements Serializable {
 	 * @return
 	 */
 	public int getIndex(Date date){
-		return stdDate.size();
+		if (stdDate.size() == 0) return -1;
+		if (date == null) return stdDate.size()-1;
+		return stdDate.size()-1;
 	}
 	/**
 	 * 
@@ -148,7 +162,8 @@ public class AreaStandard implements Serializable {
 	 * @return Date for last index
 	 */
 	public Date getLastDate(){
-		return stdDate.get(stdDate.size());
+		if (stdDate.size() == 0) return null;
+		return stdDate.get(stdDate.size()-1);
 	}
 	/**
 	 * 
@@ -156,6 +171,7 @@ public class AreaStandard implements Serializable {
 	 * @return Date of last entry before the input date
 	 */
 	public Date getDate(Date date){
+		if (this.getIndex(date) == -1) return null;
 		return stdDate.get(this.getIndex(date));
 	}
 
@@ -165,6 +181,7 @@ public class AreaStandard implements Serializable {
 	 * @return Status for last index
 	 */
 	public Long getLastStatus(){
+		if (stdStatus.size() == 0) return null;
 		return stdStatus.get(stdStatus.size());
 	}
 	/**
@@ -173,6 +190,7 @@ public class AreaStandard implements Serializable {
 	 * @return Status of last entry before the input date
 	 */
 	public Long getStatus(Date date){
+		if (this.getIndex(date) == -1) return null;
 		return stdStatus.get(this.getIndex(date));
 	}
 
@@ -182,6 +200,7 @@ public class AreaStandard implements Serializable {
 	 * @return Description for last index
 	 */
 	public Text getLastDescription(){
+		if (stdDesc.size() == 0) return null;
 		return stdDesc.get(stdDesc.size());
 	}
 	/**
@@ -190,6 +209,7 @@ public class AreaStandard implements Serializable {
 	 * @return Description of last entry before the input date
 	 */
 	public Text getDescription(Date date){
+		if (this.getIndex(date) == -1) return null;
 		return stdDesc.get(this.getIndex(date));
 	}
 	

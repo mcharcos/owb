@@ -16,7 +16,6 @@ import com.owb.playhelp.server.domain.associations.NgoStandard;
 import com.owb.playhelp.server.domain.associations.NgoUser;
 import com.owb.playhelp.server.utils.EmailHelper;
 import com.owb.playhelp.shared.DBRecordInfo;
-import com.owb.playhelp.shared.StandardInfo;
 
 /**
  * 
@@ -88,7 +87,7 @@ public class Ngo extends DBRecord {
 	          log.info("User uniqueId already exists: " + uniqueId);
 	          detached = pm.detachCopy(oneResult);
 	        } else {
-	          log.info("UserProfile " + uniqueId + " does not exist, creating...");
+	          log.info("Ngo " + uniqueId + " does not exist, creating...");
 	          pm.makePersistent(record);
 	          log.info("Sending email...");
 	          EmailHelper.sendMail(record);
@@ -132,8 +131,8 @@ public class Ngo extends DBRecord {
 	    
 	    // Here we create the association if it is a new persisted object 
 	    if (newPersisted) {
-	          NgoUser.associate(record.getId(), userId, userId);
-	          SNgo sNgo = SNgo.findOrCreate(new SNgo(record), userId);
+	          NgoUser.associate(detached.getId(), userId, userId);
+	          SNgo sNgo = SNgo.findOrCreate(new SNgo(detached), userId);
 	          NgoStandard.associate(record.getId(), sNgo.getId(), userId);
 	    }
 	    

@@ -94,27 +94,37 @@ public class StandardInfo implements Serializable  {
 	private AreaStandardInfo hope;
 
 	public StandardInfo(){
+		this.dbType = -1;
 	}
-	public StandardInfo(Long water, Long food, Long shelter, Long clothing, 
+	public StandardInfo(Integer dbType){
+		this();
+		this.dbType = dbType;
+	}
+	public StandardInfo(Integer dbType,
+						Long water, Long food, Long shelter, Long clothing, 
 			            Long medicine, Long hygiene, Long safety, Long activity, 
 			            Long education, Long guidance, Long responsibility, Long discipline, 
 			            Long love, Long compassion, Long joy, Long hope){
+		this(dbType);
 		setStatus(water, food, shelter, clothing, medicine, hygiene, safety, activity, 
 	            education, guidance, responsibility, discipline, love, compassion, joy, hope);
 	}
-	public StandardInfo(Long water, String waterDesc, Long food, String foodDesc, Long shelter, String shelterDesc, Long clothing, String clothingDesc, 
+	public StandardInfo(Integer dbType,
+			Long water, String waterDesc, Long food, String foodDesc, Long shelter, String shelterDesc, Long clothing, String clothingDesc, 
             Long medicine, String medicineDesc, Long hygiene, String hygieneDesc, Long safety, String safetyDesc, Long activity, String activityDesc, 
             Long education, String educationDesc, Long guidance, String guidanceDesc, Long responsibility, String responsibilityDesc, Long discipline, String disciplineDesc,
             Long love, String loveDesc, Long compassion, String compassionDesc, Long joy, String joyDesc, Long hope, String hopeDesc){
-		this(water, food, shelter, clothing, medicine, hygiene, safety, activity, 
+		this(dbType,water, food, shelter, clothing, medicine, hygiene, safety, activity, 
 	            education, guidance, responsibility, discipline, love, compassion, joy, hope);
 		setDescription(waterDesc, foodDesc, shelterDesc, clothingDesc, medicineDesc, hygieneDesc, safetyDesc, activityDesc, 
                 educationDesc, guidanceDesc, responsibilityDesc, disciplineDesc, loveDesc, compassionDesc, joyDesc, hopeDesc);
 	}
-	public StandardInfo(AreaStandardInfo water, AreaStandardInfo food, AreaStandardInfo shelter, AreaStandardInfo clothing, 
+	public StandardInfo(Integer dbType,
+			AreaStandardInfo water, AreaStandardInfo food, AreaStandardInfo shelter, AreaStandardInfo clothing, 
             AreaStandardInfo medicine, AreaStandardInfo hygiene, AreaStandardInfo safety, AreaStandardInfo activity, 
             AreaStandardInfo education, AreaStandardInfo guidance, AreaStandardInfo responsibility, AreaStandardInfo discipline, 
             AreaStandardInfo love, AreaStandardInfo compassion, AreaStandardInfo joy, AreaStandardInfo hope){
+		this(dbType);
 		this.water = water;
 		this.food = food;
 		this.shelter = shelter;

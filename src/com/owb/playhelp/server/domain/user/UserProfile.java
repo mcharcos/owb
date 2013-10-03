@@ -5,8 +5,6 @@ package com.owb.playhelp.server.domain.user;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.logging.Logger;
 
 import javax.jdo.JDOCanRetryException;
@@ -25,16 +23,13 @@ import com.owb.playhelp.server.utils.Utils;
 import com.owb.playhelp.server.utils.cache.CacheSupport;
 import com.owb.playhelp.server.utils.cache.Cacheable;
 import com.owb.playhelp.server.domain.Ngo;
-import com.owb.playhelp.shared.project.ProjectInfo;
 import com.owb.playhelp.shared.UserProfileInfo;
-import com.owb.playhelp.shared.ngo.NgoInfo;
-import com.owb.playhelp.shared.orphanage.OrphanageInfo;
 
-@SuppressWarnings("serial")
+@SuppressWarnings("serial") 
 @PersistenceCapable(identityType = IdentityType.APPLICATION, detachable = "true")
-public class UserProfile implements Serializable, Cacheable  {
+public class UserProfile implements Serializable, Cacheable{
 
-	  private static final Logger log = Logger.getLogger(Utils.class.getName());
+	  private static final Logger log = Logger.getLogger(Utils.class.getName()); 
 	  private static final int NUM_RETRIES = 5; 
 
 	  @PrimaryKey

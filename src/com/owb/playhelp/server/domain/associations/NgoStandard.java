@@ -25,7 +25,6 @@ import javax.jdo.annotations.PrimaryKey;
 import com.owb.playhelp.server.PMFactory;
 import com.owb.playhelp.server.domain.Ngo;
 import com.owb.playhelp.server.domain.SNgo;
-import com.owb.playhelp.server.domain.user.UserProfile;
 import com.owb.playhelp.server.utils.Utils;
 import com.owb.playhelp.server.utils.cache.CacheSupport;
 import com.owb.playhelp.server.utils.cache.Cacheable;
@@ -39,7 +38,7 @@ import com.owb.playhelp.server.utils.cache.Cacheable;
  */
 @SuppressWarnings("serial")
 @PersistenceCapable(identityType = IdentityType.APPLICATION, detachable = "true")
-public class NgoStandard  implements Serializable, Cacheable {
+public class NgoStandard  implements Serializable, Cacheable  {
 
 	  protected static final Logger log = Logger.getLogger(Utils.class.getName());
 	  protected static final int NUM_RETRIES = 5; 
@@ -188,7 +187,7 @@ public class NgoStandard  implements Serializable, Cacheable {
 	    try{
 	    	for (int i=0; i < NUM_RETRIES; i++){
 	            tx = pm.currentTransaction();
-	            tx.begin();
+	            //tx.begin();
 	            standard = (SNgo) pm.getObjectById(SNgo.class, stdId);
 	    	}
 	    } catch (JDOFatalUserException e){

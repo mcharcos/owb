@@ -12,10 +12,8 @@ import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.PersistenceCapable;
 
 import com.owb.playhelp.server.PMFactory;
-import com.owb.playhelp.server.domain.associations.NgoUser;
 import com.owb.playhelp.server.domain.associations.OrphanageUser;
 import com.owb.playhelp.server.utils.EmailHelper;
-import com.owb.playhelp.shared.orphanage.OrphanageInfo;
 import com.owb.playhelp.shared.DBRecordInfo;
 
 /**

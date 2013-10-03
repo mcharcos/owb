@@ -3,24 +3,16 @@ package com.owb.playhelp.client.presenter;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.SimpleEventBus;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.HasText;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.Widget;
-import com.owb.playhelp.client.event.dbrecord.ShowAddDBRecordEvent;
-import com.owb.playhelp.client.event.dbrecord.ShowDetailsDBRecordEvent;
-import com.owb.playhelp.client.event.orphanage.DBRecordRemoveEvent;
-import com.owb.playhelp.client.event.project.ShowPopupAddProjectEvent;
-import com.owb.playhelp.client.event.standard.ShowAddStandardEvent;
-import com.owb.playhelp.client.helper.ClickPoint;
-import com.owb.playhelp.shared.DBRecordInfo;
+import com.owb.playhelp.client.event.ngo.SNgoRemoveEvent;
 import com.owb.playhelp.shared.StandardInfo;
-import com.owb.playhelp.shared.project.ProjectInfo;
 
-public class DBRecordInfoPresenter implements Presenter {
+public class StandardInfoPresenter implements Presenter {
 	public interface Display {
 		Widget asWidget();
 		public HTMLPanel getMainPanel();
@@ -38,23 +30,23 @@ public class DBRecordInfoPresenter implements Presenter {
 	private final SimpleEventBus eventBus;
 	public final Display display;
 
-	protected final DBRecordInfo record;
+	protected final StandardInfo standard;
 
-	public DBRecordInfoPresenter(SimpleEventBus eventBus, DBRecordInfo record, Display display) {
+	public StandardInfoPresenter(SimpleEventBus eventBus, StandardInfo standard, Display display) {
 		this.eventBus = eventBus;
 		this.display = display;
-		this.record = record;
+		this.standard = standard;
 	}
 
 	public void bind() {
 		this.display.getEditBut().addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
-				eventBus.fireEvent(new ShowAddDBRecordEvent(record));
+				//eventBus.fireEvent(new ShowAddDBRecordEvent(record));
 			}
 		});
 		this.display.getRemoveBut().addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
-				eventBus.fireEvent(new DBRecordRemoveEvent(record));
+				eventBus.fireEvent(new SNgoRemoveEvent(standard));
 			}
 		});
 		this.display.getReportBut().addClickHandler(new ClickHandler() {
@@ -67,25 +59,25 @@ public class DBRecordInfoPresenter implements Presenter {
 		});
 		this.display.getFulldescBut().addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
-				eventBus.fireEvent(new ShowDetailsDBRecordEvent(record));
+				//eventBus.fireEvent(new ShowDetailsDBRecordEvent(record));
 			}
 		});
 		this.display.getAddStdBut().addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
-					eventBus.fireEvent(new ShowAddStandardEvent(record));
+					//eventBus.fireEvent(new ShowAddStandardEvent(record));
 			}
 		});
 		this.display.getAddprojBut().addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
-					eventBus.fireEvent(new ShowPopupAddProjectEvent(new ClickPoint(100,100),new ProjectInfo()));
+					//eventBus.fireEvent(new ShowPopupAddProjectEvent(new ClickPoint(100,100),new ProjectInfo()));
 			}
 		});
 	}
 
 	public void go(final HasWidgets container) {
 		container.add(display.asWidget());
-		display.getRecordName().setText(record.getName());
-		display.getRecordDescription().setHTML(record.getDescription());
+		//display.getRecordName().setText(standard.getName());
+		display.getRecordDescription().setHTML("Guidance:"+standard.getGuidanceStatus().toString()+" Hope:"+standard.getHopeStatus().toString());
 
 		display.getEditBut().setVisible(false);
 		display.getRemoveBut().setVisible(false);
@@ -95,12 +87,13 @@ public class DBRecordInfoPresenter implements Presenter {
 		display.getFulldescBut().setVisible(true);
 		display.getAddprojBut().setVisible(false);
 		
-		if (record.getMember()) {
+		if (standard.getMember()) {
 		display.getEditBut().setVisible(true);
 		display.getRemoveBut().setVisible(true);
 		display.getAddStdBut().setVisible(true);
 		}
 		bind();
 	};
+	
 
 }

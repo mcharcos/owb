@@ -26,3 +26,6 @@ I did a lot the following error at the beginning and is related with the service
 
 (1) Register your service at web.xml
 (2) The name of the service in [@RemoteServiceRelativePath("service_name")] must match the one in the web.xml file
+
+---------------------------------------------------------------------------
+

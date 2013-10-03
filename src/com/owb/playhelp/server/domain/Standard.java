@@ -5,16 +5,11 @@ package com.owb.playhelp.server.domain;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.UUID;
 import java.util.logging.Logger;
 
-import javax.jdo.JDOCanRetryException;
-import javax.jdo.JDOUserException;
-import javax.jdo.PersistenceManager;
-import javax.jdo.Query;
-import javax.jdo.Transaction;
+import javax.jdo.annotations.Embedded;
+import javax.jdo.annotations.Column;
 import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.PersistenceCapable;
@@ -24,12 +19,9 @@ import javax.jdo.annotations.Inheritance;
 import javax.jdo.annotations.InheritanceStrategy;
 
 import com.google.appengine.api.datastore.Text;
-import com.owb.playhelp.server.PMFactory;
 import com.owb.playhelp.shared.AreaStandardInfo;
 import com.owb.playhelp.shared.DBRecordInfo;
 import com.owb.playhelp.shared.StandardInfo;
-import com.owb.playhelp.server.domain.associations.NgoUser;
-import com.owb.playhelp.server.utils.EmailHelper;
 import com.owb.playhelp.server.utils.Utils;
 import com.owb.playhelp.server.utils.cache.CacheSupport;
 import com.owb.playhelp.server.utils.cache.Cacheable;
@@ -47,6 +39,7 @@ import com.owb.playhelp.server.utils.cache.Cacheable;
 @Inheritance(strategy=InheritanceStrategy.SUBCLASS_TABLE)
 public class Standard implements Serializable, Cacheable {
 
+	  //private static final long serialVersionUID = -2023204547641864687L;
 	  protected static final Logger log = Logger.getLogger(Utils.class.getName());
 	  protected static final int NUM_RETRIES = 5; 
   
@@ -95,97 +88,161 @@ public class Standard implements Serializable, Cacheable {
 	/*
 	* Clean Water
 	*/ 	
-	@Persistent(dependent = "true")
-	private AreaStandard water;
+	/*@Persistent
+	@Embedded(members = {
+	        @Persistent(name="stdDate", columns=@Column(name="waterDate")),
+	        @Persistent(name="stdStatus", columns=@Column(name="waterStatus")),
+	        @Persistent(name="stdDesc", columns=@Column(name="waterDesc"))})*/
+	private AreaStandard water; 
 	
 	/*
 	* Food
 	*/ 
-	@Persistent(dependent = "true")
+	/*@Persistent
+	@Embedded(members = {
+	        @Persistent(name="stdDate", columns=@Column(name="foodDate")),
+	        @Persistent(name="stdStatus", columns=@Column(name="foodStatus")),
+	        @Persistent(name="stdDesc", columns=@Column(name="foodDesc"))})*/
 	private AreaStandard food;
 	
 	/*
 	* Shelter
 	*/ 
-	@Persistent(dependent = "true")
+	/*@Persistent
+	@Embedded(members = {
+	        @Persistent(name="stdDate", columns=@Column(name="shelterDate")),
+	        @Persistent(name="stdStatus", columns=@Column(name="shelterStatus")),
+	        @Persistent(name="stdDesc", columns=@Column(name="shelterDesc"))})*/
 	private AreaStandard shelter;
 	
 	/*
 	* Clothing
 	*/ 
-	@Persistent(dependent = "true")
+	/*@Persistent
+	@Embedded(members = {
+	        @Persistent(name="stdDate", columns=@Column(name="clothingDate")),
+	        @Persistent(name="stdStatus", columns=@Column(name="clothingStatus")),
+	        @Persistent(name="stdDesc", columns=@Column(name="clothingDesc"))})*/
 	private AreaStandard clothing;
 	
 	/*
 	* Medicine
 	*/ 
-	@Persistent(dependent = "true")
+	/*@Persistent(serialized = "true")
+	@Embedded(members = {
+	        @Persistent(name="stdDate", columns=@Column(name="medicineDate")),
+	        @Persistent(name="stdStatus", columns=@Column(name="medicineStatus")),
+	        @Persistent(name="stdDesc", columns=@Column(name="medicineDesc"))})*/
 	private AreaStandard medicine;
 	
 	/*
 	* Hygiene
 	*/ 
-	@Persistent(dependent = "true")
+	/*@Persistent
+	@Embedded(members = {
+	        @Persistent(name="stdDate", columns=@Column(name="hygieneDate")),
+	        @Persistent(name="stdStatus", columns=@Column(name="hygieneStatus")),
+	        @Persistent(name="stdDesc", columns=@Column(name="hygieneDesc"))})*/
 	private AreaStandard hygiene;
 	
 	/*
 	* Safety
 	*/ 
-	@Persistent(dependent = "true")
+	/*@Persistent
+	@Embedded(members = {
+	        @Persistent(name="stdDate", columns=@Column(name="safetyDate")),
+	        @Persistent(name="stdStatus", columns=@Column(name="safetyStatus")),
+	        @Persistent(name="stdDesc", columns=@Column(name="safetyDesc"))})*/
 	private AreaStandard safety;
 	
 	/*
 	* Physical Activities
 	*/ 
-	@Persistent(dependent = "true")
+	/*@Persistent
+	@Embedded(members = {
+	        @Persistent(name="stdDate", columns=@Column(name="activityDate")),
+	        @Persistent(name="stdStatus", columns=@Column(name="activityStatus")),
+	        @Persistent(name="stdDesc", columns=@Column(name="activityDesc"))})*/
 	private AreaStandard activity;
 	
 	/*
 	* Schooling Education
 	*/ 
-	@Persistent(dependent = "true")
+	/*@Persistent
+	@Embedded(members = {
+	        @Persistent(name="stdDate", columns=@Column(name="educationDate")),
+	        @Persistent(name="stdStatus", columns=@Column(name="educationStatus")),
+	        @Persistent(name="stdDesc", columns=@Column(name="educationDesc"))})*/
 	private AreaStandard education;
 	
 	/*
 	* Guidance
 	*/ 
-	@Persistent(dependent = "true")
+	/*@Persistent
+	@Embedded(members = {
+	        @Persistent(name="stdDate", columns=@Column(name="guidanceDate")),
+	        @Persistent(name="stdStatus", columns=@Column(name="guidanceStatus")),
+	        @Persistent(name="stdDesc", columns=@Column(name="guidanceDesc"))})*/
 	private AreaStandard guidance;
 	
 	/*
 	* Responsabilities
 	*/ 
-	@Persistent(dependent = "true")
+	/*@Persistent
+	@Embedded(members = {
+	        @Persistent(name="stdDate", columns=@Column(name="responsibilityDate")),
+	        @Persistent(name="stdStatus", columns=@Column(name="responsibilityStatus")),
+	        @Persistent(name="stdDesc", columns=@Column(name="responsibilityDesc"))})*/
 	private AreaStandard responsibility;
 	
 	/*
 	* Discipline
 	*/ 
-	@Persistent(dependent = "true")
+	/*@Persistent
+	@Embedded(members = {
+	        @Persistent(name="stdDate", columns=@Column(name="disciplineDate")),
+	        @Persistent(name="stdStatus", columns=@Column(name="disciplineStatus")),
+	        @Persistent(name="stdDesc", columns=@Column(name="disciplineDesc"))})*/
 	private AreaStandard discipline;
 	
 	/*
 	* Love
 	*/ 
-	@Persistent(dependent = "true")
+	/*@Persistent
+	@Embedded(members = {
+	        @Persistent(name="stdDate", columns=@Column(name="loveDate")),
+	        @Persistent(name="stdStatus", columns=@Column(name="loveStatus")),
+	        @Persistent(name="stdDesc", columns=@Column(name="loveDesc"))})*/
 	private AreaStandard love;
 	
 	/*
 	* Compassionate Environment
 	*/ 
-	@Persistent(dependent = "true")
+	/*@Persistent
+	@Embedded(members = {
+	        @Persistent(name="stdDate", columns=@Column(name="compassionDate")),
+	        @Persistent(name="stdStatus", columns=@Column(name="compassionStatus")),
+	        @Persistent(name="stdDesc", columns=@Column(name="compassionDesc"))})*/
 	private AreaStandard compassion;
 	
 	/*
 	* Joy
 	*/ 
-	@Persistent(dependent = "true")
+	/*@Persistent
+	@Embedded(members = {
+	        @Persistent(name="stdDate", columns=@Column(name="joyDate")),
+	        @Persistent(name="stdStatus", columns=@Column(name="joyStatus")),
+	        @Persistent(name="stdDesc", columns=@Column(name="joyDesc"))})*/
 	private AreaStandard joy;
 	
 	/*
 	* Hope of Future
 	*/ 
-	@Persistent(dependent = "true")
+	/*@Persistent
+	@Embedded(members = {
+	        @Persistent(name="stdDate", columns=@Column(name="hopeDate")),
+	        @Persistent(name="stdStatus", columns=@Column(name="hopeStatus")),
+	        @Persistent(name="stdDesc", columns=@Column(name="hopeDesc"))})*/
 	private AreaStandard hope;
 		
 	/*
@@ -212,6 +269,11 @@ public class Standard implements Serializable, Cacheable {
 		this.setLatitude(record.getLatitude());
 		this.setLongitude(record.getLongitude());
 		
+		if (record.getStandard() == null){
+			log.info("Standard(DBRecordInfo): Does not have StandardInfo");
+			return;
+		}
+		this.setUniqueId(record.getStandard().getUniqueId());
 		this.add(record.getStandard());
 	}
 
@@ -240,7 +302,8 @@ public class Standard implements Serializable, Cacheable {
 	  }
 	
 	  public static StandardInfo toInfo(Standard std, Date date){
-		  StandardInfo stdInfo = new StandardInfo(std.getWater(date),
+		  StandardInfo stdInfo = new StandardInfo(-1, 
+				  									std.getWater(date),
 													std.getFood(date),
 													std.getShelter(date),
 													std.getClothing(date),
@@ -269,55 +332,127 @@ public class Standard implements Serializable, Cacheable {
 	  // adding. If not the list may get very long as the users edit information
 	  // We should find a way to add only when the standard is updated.
 	public void addWater(Long stdStatus, String stdDesc){
+		if (water == null){
+			water = new AreaStandard(stdStatus,stdDesc);
+			return;
+		}
 		water.add(stdStatus, stdDesc);
 	}
 	public void addFood(Long stdStatus, String stdDesc){
+		if (food == null){
+			food = new AreaStandard(stdStatus,stdDesc);
+			return;
+		}
 		food.add(stdStatus, stdDesc);
 	}
 	public void addShelter(Long stdStatus, String stdDesc){
+		if (shelter == null){
+			shelter = new AreaStandard(stdStatus,stdDesc);
+			return;
+		}
 		shelter.add(stdStatus, stdDesc);
 	}
 	public void addClothing(Long stdStatus, String stdDesc){
+		if (clothing == null){
+			clothing = new AreaStandard(stdStatus,stdDesc);
+			return;
+		}
 		clothing.add(stdStatus, stdDesc);
 	}
 	public void addMedicine(Long stdStatus, String stdDesc){
+		if (medicine == null){
+			medicine = new AreaStandard(stdStatus,stdDesc);
+			return;
+		}
 		medicine.add(stdStatus, stdDesc);
 	}
 	public void addHygiene(Long stdStatus, String stdDesc){
+		if (hygiene == null){
+			hygiene = new AreaStandard(stdStatus,stdDesc);
+			return;
+		}
 		hygiene.add(stdStatus, stdDesc);
 	}
 	public void addSafety(Long stdStatus, String stdDesc){
+		if (safety == null){
+			safety = new AreaStandard(stdStatus,stdDesc);
+			return;
+		}
 		safety.add(stdStatus, stdDesc);
 	}
 	public void addActivity(Long stdStatus, String stdDesc){
+		if (activity == null){
+			activity = new AreaStandard(stdStatus,stdDesc);
+			return;
+		}
 		activity.add(stdStatus, stdDesc);
 	}
 	public void addEducation(Long stdStatus, String stdDesc){
+		if (education == null){
+			education = new AreaStandard(stdStatus,stdDesc);
+			return;
+		}
 		education.add(stdStatus, stdDesc);
 	}
 	public void addGuidance(Long stdStatus, String stdDesc){
+		if (guidance == null){
+			guidance = new AreaStandard(stdStatus,stdDesc);
+			return;
+		}
 		guidance.add(stdStatus, stdDesc);
 	}
 	public void addResponsibility(Long stdStatus, String stdDesc){
+		if (responsibility == null){
+			responsibility = new AreaStandard(stdStatus,stdDesc);
+			return;
+		}
 		responsibility.add(stdStatus, stdDesc);
 	}
 	public void addDiscipline(Long stdStatus, String stdDesc){
+		if (discipline == null){
+			discipline = new AreaStandard(stdStatus,stdDesc);
+			return;
+		}
 		discipline.add(stdStatus, stdDesc);
 	}
 	public void addLove(Long stdStatus, String stdDesc){
+		if (love == null){
+			love = new AreaStandard(stdStatus,stdDesc);
+			return;
+		}
 		love.add(stdStatus, stdDesc);
 	}
 	public void addCompassion(Long stdStatus, String stdDesc){
+		if (compassion == null){
+			compassion = new AreaStandard(stdStatus,stdDesc);
+			return;
+		}
 		compassion.add(stdStatus, stdDesc);
 	}
 	public void addJoy(Long stdStatus, String stdDesc){
+		if (joy == null){
+			joy = new AreaStandard(stdStatus,stdDesc);
+			return;
+		}
 		joy.add(stdStatus, stdDesc);
 	}
 	public void addHope(Long stdStatus, String stdDesc){
+		if (hope == null){
+			hope = new AreaStandard(stdStatus,stdDesc);
+			return;
+		}
 		hope.add(stdStatus, stdDesc);
 	}
 	
 	public void add(StandardInfo standardInfo){
+		if (standardInfo == null){
+			log.info("Input standard information is null");
+			return;
+		}
+		
+		if (standardInfo.getUniqueId() != null){
+			this.uniqueId = standardInfo.getUniqueId();
+		}
 		this.addWater(standardInfo.getWaterStatus(),standardInfo.getWaterDescription());
 		this.addFood(standardInfo.getFoodStatus(),standardInfo.getFoodDescription());
 		this.addShelter(standardInfo.getShelterStatus(),standardInfo.getSafetyDescription());
@@ -400,118 +535,154 @@ public class Standard implements Serializable, Cacheable {
 	 * or the latest one
 	 */
 	private AreaStandardInfo getStdInfo(AreaStandard std, Date date){
+		if (std == null){
+			log.info("Standard area is empty");
+			return new AreaStandardInfo(100L,"default");
+		}
 		AreaStandardInfo area = new AreaStandardInfo (std.getStatus(date),std.getDescription(date).toString(),std.getDate(date));
 		return area;
 	}
 	public AreaStandardInfo getWater(Date date){
+		log.info("Getting water standard");
 		return this.getStdInfo(this.water, date);
 	}
 	public AreaStandardInfo getLastWater(Date date){
+		log.info("Getting last water standard");
 		return this.getStdInfo(this.water, new Date());
 	}
 
 	public AreaStandardInfo getFood(Date date){
+		log.info("Getting food standard");
 		return this.getStdInfo(this.food, date);
 	}
 	public AreaStandardInfo getLastFood(Date date){
+		log.info("Getting last food standard");
 		return this.getStdInfo(this.food, new Date());
 	}
 
 	public AreaStandardInfo getShelter(Date date){
+		log.info("Getting shelter standard");
 		return this.getStdInfo(this.shelter, date);
 	}
 	public AreaStandardInfo getLastShelter(Date date){
+		log.info("Getting last shelter standard");
 		return this.getStdInfo(this.shelter, new Date());
 	}
 
 	public AreaStandardInfo getClothing(Date date){
+		log.info("Getting clothing standard");
 		return this.getStdInfo(this.clothing, date);
 	}
 	public AreaStandardInfo getLastClothing(Date date){
+		log.info("Getting last clothing standard");
 		return this.getStdInfo(this.clothing, new Date());
 	}
 
 	public AreaStandardInfo getMedicine(Date date){
+		log.info("Getting medicine standard");
 		return this.getStdInfo(this.medicine, date);
 	}
 	public AreaStandardInfo getLastMedicine(Date date){
+		log.info("Getting last medicine standard");
 		return this.getStdInfo(this.medicine, new Date());
 	}
 
 	public AreaStandardInfo getHygiene(Date date){
+		log.info("Getting hygiene standard");
 		return this.getStdInfo(this.hygiene, date);
 	}
 	public AreaStandardInfo getLastHygiene(Date date){
+		log.info("Getting last hygiene standard");
 		return this.getStdInfo(this.hygiene, new Date());
 	}
 
 	public AreaStandardInfo getSafety(Date date){
+		log.info("Getting safety standard");
 		return this.getStdInfo(this.safety, date);
 	}
 	public AreaStandardInfo getLastSafety(Date date){
+		log.info("Getting last safety standard");
 		return this.getStdInfo(this.safety, new Date());
 	}
 
 	public AreaStandardInfo getActivity(Date date){
+		log.info("Getting activity standard");
 		return this.getStdInfo(this.activity, date);
 	}
 	public AreaStandardInfo getLastActivity(Date date){
+		log.info("Getting last activty standard");
 		return this.getStdInfo(this.activity, new Date());
 	}
 
 	public AreaStandardInfo getEducation(Date date){
+		log.info("Getting education standard");
 		return this.getStdInfo(this.education, date);
 	}
 	public AreaStandardInfo getLastEducation(Date date){
+		log.info("Getting last education standard");
 		return this.getStdInfo(this.education, new Date());
 	}
 
 	public AreaStandardInfo getGuidance(Date date){
+		log.info("Getting guidance standard");
 		return this.getStdInfo(this.guidance, date);
 	}
 	public AreaStandardInfo getLastGuidance(Date date){
+		log.info("Getting last guidance standard");
 		return this.getStdInfo(this.guidance, new Date());
 	}
 
 	public AreaStandardInfo getResponsibility(Date date){
+		log.info("Getting responsibility standard");
 		return this.getStdInfo(this.responsibility, date);
 	}
 	public AreaStandardInfo getLastResponsibility(Date date){
+		log.info("Getting last responsibility standard");
 		return this.getStdInfo(this.responsibility, new Date());
 	}
 
 	public AreaStandardInfo getDiscipline(Date date){
+		log.info("Getting discipline standard");
 		return this.getStdInfo(this.discipline, date);
 	}
 	public AreaStandardInfo getLastDiscipline(Date date){
+		log.info("Getting last discipline standard");
 		return this.getStdInfo(this.discipline, new Date());
 	}
 
 	public AreaStandardInfo getLove(Date date){
+		log.info("Getting love standard");
 		return this.getStdInfo(this.love, date);
 	}
 	public AreaStandardInfo getLastLove(Date date){
+		log.info("Getting last love standard");
 		return this.getStdInfo(this.love, new Date());
 	}
 
 	public AreaStandardInfo getCompassion(Date date){
+		log.info("Getting compassion standard");
 		return this.getStdInfo(this.compassion, date);
 	}
 	public AreaStandardInfo getLastCompassion(Date date){
+		log.info("Getting last compassion standard");
 		return this.getStdInfo(this.compassion, new Date());
 	}
 
 	public AreaStandardInfo getJoy(Date date){
+		log.info("Getting joy standard");
 		return this.getStdInfo(this.joy, date);
 	}
 	public AreaStandardInfo getLastJoy(Date date){
+		log.info("Getting last joy standard");
 		return this.getStdInfo(this.joy, new Date());
 	}
 
 	public AreaStandardInfo getHope(Date date){
+		log.info("Getting hope standard");
 		return this.getStdInfo(this.hope, date);
 	}
 	public AreaStandardInfo getLastHope(Date date){
+		log.info("Getting last hope standard");
 		return this.getStdInfo(this.hope, new Date());
 	}
 

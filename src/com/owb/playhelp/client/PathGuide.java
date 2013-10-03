@@ -12,6 +12,7 @@ import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.owb.playhelp.shared.DBRecordInfo;
+import com.owb.playhelp.shared.StandardInfo;
 import com.owb.playhelp.shared.UserProfileInfo;
 import com.owb.playhelp.client.presenter.AddStandardPresenter;
 import com.owb.playhelp.client.presenter.Presenter;
@@ -20,6 +21,7 @@ import com.owb.playhelp.client.presenter.news.NewsHomePresenter;
 import com.owb.playhelp.client.presenter.ngo.AddNgoPresenter;
 import com.owb.playhelp.client.presenter.ngo.NgoListPresenter;
 import com.owb.playhelp.client.presenter.ngo.ReportAbuseNgoPresenter;
+import com.owb.playhelp.client.presenter.ngo.SNgoListPresenter;
 import com.owb.playhelp.client.presenter.ngo.ShowDetailsNgoPresenter;
 import com.owb.playhelp.client.presenter.orphanage.AddOrphanagePresenter;
 import com.owb.playhelp.client.presenter.orphanage.OrphanageListPresenter;
@@ -42,6 +44,7 @@ import com.owb.playhelp.client.view.AddStandardView;
 import com.owb.playhelp.client.view.ContactHomeView;
 import com.owb.playhelp.client.view.DBRecordListView;
 import com.owb.playhelp.client.view.ShowDetailsDBRecordView;
+import com.owb.playhelp.client.view.StandardListView;
 import com.owb.playhelp.client.view.map.MainHomeView;
 import com.owb.playhelp.client.view.news.NewsHomeView;
 import com.owb.playhelp.client.view.ngo.AddNgoView;
@@ -105,14 +108,14 @@ import com.owb.playhelp.client.event.map.MainHomeEvent;
 import com.owb.playhelp.client.event.map.MainHomeEventHandler;
 import com.owb.playhelp.client.event.news.NewsHomeEvent;
 import com.owb.playhelp.client.event.news.NewsHomeEventHandler;
+import com.owb.playhelp.client.event.ngo.SNgoRemoveEvent;
+import com.owb.playhelp.client.event.ngo.SNgoRemoveEventHandler;
 import com.owb.playhelp.client.event.ngo.ShowPopupReportAbuseNgoEvent;
 import com.owb.playhelp.client.event.ngo.ShowPopupReportAbuseNgoEventHandler;
 import com.owb.playhelp.client.event.orphanage.AddOrphanageUpdateEvent;
 import com.owb.playhelp.client.event.orphanage.AddOrphanageUpdateEventHandler;
 import com.owb.playhelp.client.event.orphanage.DBRecordRemoveEvent;
 import com.owb.playhelp.client.event.orphanage.DBRecordRemoveEventHandler;
-import com.owb.playhelp.client.event.orphanage.ShowPopupAddOrphanageStatusEvent;
-import com.owb.playhelp.client.event.orphanage.ShowPopupAddOrphanageStatusEventHandler;
 import com.owb.playhelp.client.event.orphanage.AddOrphanageCancelEvent;
 import com.owb.playhelp.client.event.orphanage.AddOrphanageCancelEventHandler;
 import com.owb.playhelp.client.event.project.ShowPopupAddProjectEvent;
@@ -470,7 +473,7 @@ public class PathGuide implements ValueChangeHandler<String>  {
 		});
 		
 		/*
-		 * Listen to an event requesting removing an organization. 
+		 * Listen to an event requesting removing an organization or orphanage. 
 		 */
 		thePath.addHandler(DBRecordRemoveEvent.TYPE, new DBRecordRemoveEventHandler(){
 			public void onDBRecordRemove(DBRecordRemoveEvent event){
@@ -493,6 +496,27 @@ public class PathGuide implements ValueChangeHandler<String>  {
 				if (delDBRecord.getDBType() == DBRecordInfo.ORGANIZATION){
 					removeNgo(delDBRecord);
 				}
+			}
+		});
+
+		/*
+		 * Listen to an event requesting removing a Ngo standard. 
+		 */
+		thePath.addHandler(SNgoRemoveEvent.TYPE, new SNgoRemoveEventHandler(){
+			public void onSNgoRemove(SNgoRemoveEvent event){
+				if (currentUser == null){
+					Window.alert("You must log in to remove a standard");
+					return;
+				}
+				if (event.getSNgo() != null){
+					if (!event.getSNgo().getMember()){
+						Window.alert("You can't remove a standard if you are not a member ");
+						return;
+					}
+				}
+				
+				final StandardInfo delSNgo = event.getSNgo();
+				removeSNgo(delSNgo);
 			}
 		});
 		
@@ -723,6 +747,8 @@ public class PathGuide implements ValueChangeHandler<String>  {
 				//Owb.get().getMainTitle().setText("User Preferences");
 				presenter = new NgoListPresenter(ngoService,thePath,new DBRecordListView());
 				presenter.go(Owb.get().getMainPanel());	
+				presenter = new SNgoListPresenter(standardService,thePath,new StandardListView());
+				presenter.go(Owb.get().getMainPanel());	
 	        return;
 	        } 
 			if (token.equals("listVolunteer")) {
@@ -753,6 +779,10 @@ public class PathGuide implements ValueChangeHandler<String>  {
 	        return;
 	      } 
 			if (token.equals("removeDBRecord")) {
+				History.newItem(lastView);
+	        return;
+	      } 
+			if (token.equals("removeSNgo")) {
 				History.newItem(lastView);
 	        return;
 	      } 
@@ -815,6 +845,29 @@ public class PathGuide implements ValueChangeHandler<String>  {
 		        Window.alert("Error removing Ngo...");
 				lastView = History.getToken();
 				History.newItem("removeDBRecord");
+		      }
+		    }.retry(3);
+	}
+	private void removeSNgo(final StandardInfo delRecord){
+		new RPCCall<Void>() {
+		      @Override
+		      protected void callService(AsyncCallback<Void> cb) {
+		    	  standardService.removeStandard(delRecord, cb);
+		      }
+
+		      @Override
+		      public void onSuccess(Void result) {
+		        GWT.log("PathGuide: SNgo was removed");
+		        Window.alert("Was removed");
+				lastView = History.getToken();
+				History.newItem("removeSNgo");
+		      }
+
+		      @Override
+		      public void onFailure(Throwable caught) {
+		        Window.alert("Error removing SNgo...");
+				lastView = History.getToken();
+				History.newItem("removeSNgo");
 		      }
 		    }.retry(3);
 	}

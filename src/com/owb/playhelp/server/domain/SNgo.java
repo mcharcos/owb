@@ -1,5 +1,6 @@
 package com.owb.playhelp.server.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.jdo.JDOCanRetryException;
@@ -7,10 +8,14 @@ import javax.jdo.JDOUserException;
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 import javax.jdo.Transaction;
+import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
 
 import com.owb.playhelp.server.PMFactory;
+import com.owb.playhelp.server.utils.cache.Cacheable;
 import com.owb.playhelp.shared.DBRecordInfo;
 import com.owb.playhelp.shared.StandardInfo;
 
@@ -26,6 +31,8 @@ import com.owb.playhelp.shared.StandardInfo;
 @SuppressWarnings("serial")
 @PersistenceCapable(identityType = IdentityType.APPLICATION, detachable = "true")
 public class SNgo extends Standard {
+
+	  //private static final long serialVersionUID = -2023204547641864687L;
 	
 	public SNgo(){
 		super();
@@ -122,7 +129,7 @@ public class SNgo extends Standard {
 	        }
 	      } // end for
 	    } catch (JDOUserException e){
-	          log.info("JDOUserException: UserProfile table is empty");
+	          log.info("JDOUserException: SNgo table is empty");
 	          // Create friends from Google+
 	          pm.makePersistent(record);
 	          detached = pm.detachCopy(record);	
@@ -160,7 +167,8 @@ public class SNgo extends Standard {
 				return null;
 
 			// Create a new object with the information from the input
-			StandardInfo oInfo = new StandardInfo(o.getWater(date), o.getFood(date),o.getShelter(date),o.getClothing(date),
+			StandardInfo oInfo = new StandardInfo(StandardInfo.ORGANIZATION, 
+												  o.getWater(date), o.getFood(date),o.getShelter(date),o.getClothing(date),
 					                              o.getMedicine(date),o.getHygiene(date),o.getSafety(date),o.getActivity(date),
 					                              o.getEducation(date),o.getGuidance(date),o.getResponsibility(date),o.getDiscipline(date),
 					                              o.getLove(date),o.getCompassion(date),o.getJoy(date),o.getHope(date));
@@ -216,7 +224,8 @@ public class SNgo extends Standard {
 
 			Date date = new Date();
 			// Create a new object with the information from the input
-			StandardInfo oInfo = new StandardInfo(o.getWater(date), o.getFood(date),o.getShelter(date),o.getClothing(date),
+			StandardInfo oInfo = new StandardInfo(StandardInfo.ORGANIZATION, 
+												  o.getWater(date), o.getFood(date),o.getShelter(date),o.getClothing(date),
 					                              o.getMedicine(date),o.getHygiene(date),o.getSafety(date),o.getActivity(date),
 					                              o.getEducation(date),o.getGuidance(date),o.getResponsibility(date),o.getDiscipline(date),
 					                              o.getLove(date),o.getCompassion(date),o.getJoy(date),o.getHope(date));
@@ -244,6 +253,7 @@ public class SNgo extends Standard {
 
 			// Create a new object with the information from the input
 			StandardInfo oInfo = SNgo.toInfo(o);
+			oInfo.setDBType(StandardInfo.ORGANIZATION);
 			
 			// Check if the share object was created. If not, null should be 
 			// returned instead of setting privacies. 

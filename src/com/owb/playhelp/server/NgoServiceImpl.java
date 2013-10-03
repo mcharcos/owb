@@ -14,6 +14,7 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.owb.playhelp.client.service.NgoService;
 import com.owb.playhelp.server.domain.Ngo;
 import com.owb.playhelp.server.domain.SNgo;
+import com.owb.playhelp.server.domain.associations.NgoStandard;
 import com.owb.playhelp.server.domain.user.UserProfile;
 import com.owb.playhelp.shared.DBRecordInfo;
 
@@ -28,7 +29,7 @@ public class NgoServiceImpl extends RemoteServiceServlet implements NgoService {
 	private static final int NUM_RETRIES = 5;
 
 	@Override
-	public DBRecordInfo updateDBRecord(DBRecordInfo record){
+	public DBRecordInfo updateDBRecord(DBRecordInfo ngoInfo){
 		
 	    PersistenceManager pm = PMFactory.getTxnPm();
 	    UserProfile user = LoginHelper.getLoggedUser(getThreadLocalRequest().getSession(), pm);
@@ -39,11 +40,20 @@ public class NgoServiceImpl extends RemoteServiceServlet implements NgoService {
 	    pm.close();
 
 	    Long userId = user.getId();
-		Ngo ngo = Ngo.findOrCreateDBRecord(new Ngo(record),userId);
-		ngo.reEdit(record);
+	    
+	    // Here we create the instance in the data base or 
+	    // retrieve the instance that has the same UniqueId
+		Ngo ngo = Ngo.findOrCreateDBRecord(new Ngo(ngoInfo),userId);
+
+		if (ngo == null){
+			return null;
+		}
+		
+		// Here we edit the fields based on the DBRecordInfo
+		// and then reingest it in the DB.
+		ngo.reEdit(ngoInfo);
 	    
 	    pm = PMFactory.getTxnPm();
-		String userUniqueId = user.getUniqueId();
 		
 		// If the user is not an admin and it is not a member the ngo information could not
 		// be updated
@@ -72,29 +82,38 @@ public class NgoServiceImpl extends RemoteServiceServlet implements NgoService {
 		}catch (Exception e) {
 		      e.printStackTrace();
 		      logger.warning(e.getMessage());
-		      record = null;
 		} finally {
 			if (pm.currentTransaction().isActive()){
 				pm.currentTransaction().rollback();
 				logger.warning("transaction rollback");
-				record = null;
 			}
 			pm.close();
 		}
 		
 		
 		// Update the standard information
-		SNgo standard = SNgo.findOrCreate(new SNgo(record),userId);
-		standard.add(record.getStandard());
+		// We first retrieve the standard from the DB 
+		// matching the ngo
+		SNgo standard = NgoStandard.getStandard(ngo);
+		
+		if (standard == null){
+			logger.warning("No standard matching Ngo object of uniqueId "+ngo.getUniqueId());
+			return ngoInfo;
+		}
+		
+		// Then we update the inforamtion of the standard
+		// with the information of the StandardInfo.
+		standard.add(ngoInfo.getStandard());
 
+	    pm = PMFactory.getTxnPm();
 		try {
 			for (int i = 0; i < NUM_RETRIES; i++){
 				pm.currentTransaction().begin();
 				pm.makePersistent(standard);
 				try {
-			          logger.fine("starting commit for standard");
+			          logger.fine("NgoService:updateRecord - starting commit of standard");
 			          pm.currentTransaction().commit();
-			          logger.fine("commit was successful for standard");
+			          logger.fine("NgoService:updateRecord - commit of standard was successful");
 			          break;
 			    } catch (JDOCanRetryException e1) {
 			          if (i == (NUM_RETRIES - 1)) {
@@ -108,12 +127,13 @@ public class NgoServiceImpl extends RemoteServiceServlet implements NgoService {
 		} finally {
 			if (pm.currentTransaction().isActive()){
 				pm.currentTransaction().rollback();
-				logger.warning("transaction rollback for standard");
+				logger.warning("transaction rollback");
 			}
 			pm.close();
 		}
+		//SNgo.findOrCreate(standard,userId);
 		
-		return record;
+		return ngoInfo;
 	}
 	
 
