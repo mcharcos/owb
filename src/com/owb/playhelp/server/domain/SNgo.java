@@ -8,14 +8,10 @@ import javax.jdo.JDOUserException;
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 import javax.jdo.Transaction;
-import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.PersistenceCapable;
-import javax.jdo.annotations.Persistent;
-import javax.jdo.annotations.PrimaryKey;
 
 import com.owb.playhelp.server.PMFactory;
-import com.owb.playhelp.server.utils.cache.Cacheable;
 import com.owb.playhelp.shared.DBRecordInfo;
 import com.owb.playhelp.shared.StandardInfo;
 
@@ -26,7 +22,7 @@ import com.owb.playhelp.shared.StandardInfo;
  * We differenciate Standards for Ngo and Orphanage so we can do searches later
  * for the specific entities instead of retrieving all of them and then checking
  * which ones correspond to what.
- *
+ * 
  */
 @SuppressWarnings("serial")
 @PersistenceCapable(identityType = IdentityType.APPLICATION, detachable = "true")

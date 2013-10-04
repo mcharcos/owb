@@ -17,8 +17,8 @@ import com.google.appengine.api.datastore.Text;
 import com.owb.playhelp.server.utils.Utils;
 import com.owb.playhelp.shared.AreaStandardInfo;
 
-/*@PersistenceCapable
-@EmbeddedOnly*/
+@PersistenceCapable
+@EmbeddedOnly
 public class AreaStandard {
 	
 	//private static final long serialVersionUID = -2023204547641864687L;
@@ -42,11 +42,11 @@ public class AreaStandard {
 	}
 	
 
-    @Persistent(defaultFetchGroup = "true")
+    @Persistent   //(defaultFetchGroup = "true")
     private List<Date> stdDate = new ArrayList<Date>();
-    @Persistent(defaultFetchGroup = "true")
+    @Persistent   //(defaultFetchGroup = "true")
     private List<Long> stdStatus = new ArrayList<Long>();
-    @Persistent(defaultFetchGroup = "true")
+    @Persistent   //(defaultFetchGroup = "true")
 	private List<Text> stdDesc = new ArrayList<Text>();
 
 	public void add(Long stdStatus, String stdDesc){
@@ -162,7 +162,7 @@ public class AreaStandard {
 	 * @return Date for last index
 	 */
 	public Date getLastDate(){
-		if (stdDate.size() == 0) return null;
+		if (stdDate.size() == 0) return new Date();
 		return stdDate.get(stdDate.size()-1);
 	}
 	/**
@@ -171,7 +171,7 @@ public class AreaStandard {
 	 * @return Date of last entry before the input date
 	 */
 	public Date getDate(Date date){
-		if (this.getIndex(date) == -1) return null;
+		if (this.getIndex(date) == -1) return new Date();
 		return stdDate.get(this.getIndex(date));
 	}
 
@@ -181,7 +181,7 @@ public class AreaStandard {
 	 * @return Status for last index
 	 */
 	public Long getLastStatus(){
-		if (stdStatus.size() == 0) return null;
+		if (stdStatus.size() == 0) return -1L;
 		return stdStatus.get(stdStatus.size());
 	}
 	/**
@@ -190,7 +190,7 @@ public class AreaStandard {
 	 * @return Status of last entry before the input date
 	 */
 	public Long getStatus(Date date){
-		if (this.getIndex(date) == -1) return null;
+		if (this.getIndex(date) == -1) return -1L;
 		return stdStatus.get(this.getIndex(date));
 	}
 
@@ -200,7 +200,7 @@ public class AreaStandard {
 	 * @return Description for last index
 	 */
 	public Text getLastDescription(){
-		if (stdDesc.size() == 0) return null;
+		if (stdDesc.size() == 0) return new Text("");
 		return stdDesc.get(stdDesc.size());
 	}
 	/**
@@ -209,7 +209,7 @@ public class AreaStandard {
 	 * @return Description of last entry before the input date
 	 */
 	public Text getDescription(Date date){
-		if (this.getIndex(date) == -1) return null;
+		if (this.getIndex(date) == -1) return new Text("");
 		return stdDesc.get(this.getIndex(date));
 	}
 	

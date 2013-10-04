@@ -108,6 +108,7 @@ public class StandardInfo implements Serializable  {
 		this(dbType);
 		setStatus(water, food, shelter, clothing, medicine, hygiene, safety, activity, 
 	            education, guidance, responsibility, discipline, love, compassion, joy, hope);
+		setDescription("","","","","","","","","","","","","","","","");
 	}
 	public StandardInfo(Integer dbType,
 			Long water, String waterDesc, Long food, String foodDesc, Long shelter, String shelterDesc, Long clothing, String clothingDesc, 

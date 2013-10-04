@@ -127,6 +127,7 @@ public class StandardServiceImpl extends RemoteServiceServlet implements Standar
 		try{
 			Query dq = null;
 			
+			logger.info("Retrieving ids from "+SNgo.class.getName());
 			dq = pm.newQuery("select id from " + SNgo.class.getName());			
 			List<Long> foundIdNgos;
 			foundIdNgos = (List<Long>) dq.execute();

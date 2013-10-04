@@ -38,7 +38,7 @@ import com.owb.playhelp.server.utils.cache.Cacheable;
  */
 @SuppressWarnings("serial")
 @PersistenceCapable(identityType = IdentityType.APPLICATION, detachable = "true")
-public class NgoStandard  implements Serializable, Cacheable  {
+public class NgoStandard  implements Serializable, Cacheable {
 
 	  protected static final Logger log = Logger.getLogger(Utils.class.getName());
 	  protected static final int NUM_RETRIES = 5; 

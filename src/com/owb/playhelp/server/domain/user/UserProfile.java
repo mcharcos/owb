@@ -27,7 +27,7 @@ import com.owb.playhelp.shared.UserProfileInfo;
 
 @SuppressWarnings("serial") 
 @PersistenceCapable(identityType = IdentityType.APPLICATION, detachable = "true")
-public class UserProfile implements Serializable, Cacheable{
+public class UserProfile implements Serializable, Cacheable {
 
 	  private static final Logger log = Logger.getLogger(Utils.class.getName()); 
 	  private static final int NUM_RETRIES = 5; 

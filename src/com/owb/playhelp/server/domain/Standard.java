@@ -37,7 +37,7 @@ import com.owb.playhelp.server.utils.cache.Cacheable;
 @SuppressWarnings("serial")
 @PersistenceCapable(identityType = IdentityType.APPLICATION, detachable = "true")
 @Inheritance(strategy=InheritanceStrategy.SUBCLASS_TABLE)
-public class Standard implements Serializable, Cacheable {
+public class Standard implements Serializable, Cacheable  {
 
 	  //private static final long serialVersionUID = -2023204547641864687L;
 	  protected static final Logger log = Logger.getLogger(Utils.class.getName());
@@ -88,161 +88,161 @@ public class Standard implements Serializable, Cacheable {
 	/*
 	* Clean Water
 	*/ 	
-	/*@Persistent
-	@Embedded(members = {
+	@Persistent
+	@Embedded(members = { 
 	        @Persistent(name="stdDate", columns=@Column(name="waterDate")),
 	        @Persistent(name="stdStatus", columns=@Column(name="waterStatus")),
-	        @Persistent(name="stdDesc", columns=@Column(name="waterDesc"))})*/
+	        @Persistent(name="stdDesc", columns=@Column(name="waterDesc"))})
 	private AreaStandard water; 
 	
 	/*
 	* Food
 	*/ 
-	/*@Persistent
+	@Persistent
 	@Embedded(members = {
 	        @Persistent(name="stdDate", columns=@Column(name="foodDate")),
 	        @Persistent(name="stdStatus", columns=@Column(name="foodStatus")),
-	        @Persistent(name="stdDesc", columns=@Column(name="foodDesc"))})*/
+	        @Persistent(name="stdDesc", columns=@Column(name="foodDesc"))})
 	private AreaStandard food;
 	
 	/*
 	* Shelter
 	*/ 
-	/*@Persistent
+	@Persistent
 	@Embedded(members = {
 	        @Persistent(name="stdDate", columns=@Column(name="shelterDate")),
 	        @Persistent(name="stdStatus", columns=@Column(name="shelterStatus")),
-	        @Persistent(name="stdDesc", columns=@Column(name="shelterDesc"))})*/
+	        @Persistent(name="stdDesc", columns=@Column(name="shelterDesc"))})
 	private AreaStandard shelter;
 	
 	/*
 	* Clothing
 	*/ 
-	/*@Persistent
+	@Persistent
 	@Embedded(members = {
 	        @Persistent(name="stdDate", columns=@Column(name="clothingDate")),
 	        @Persistent(name="stdStatus", columns=@Column(name="clothingStatus")),
-	        @Persistent(name="stdDesc", columns=@Column(name="clothingDesc"))})*/
+	        @Persistent(name="stdDesc", columns=@Column(name="clothingDesc"))})
 	private AreaStandard clothing;
 	
 	/*
 	* Medicine
 	*/ 
-	/*@Persistent(serialized = "true")
+	@Persistent
 	@Embedded(members = {
 	        @Persistent(name="stdDate", columns=@Column(name="medicineDate")),
 	        @Persistent(name="stdStatus", columns=@Column(name="medicineStatus")),
-	        @Persistent(name="stdDesc", columns=@Column(name="medicineDesc"))})*/
+	        @Persistent(name="stdDesc", columns=@Column(name="medicineDesc"))})
 	private AreaStandard medicine;
 	
 	/*
 	* Hygiene
 	*/ 
-	/*@Persistent
+	@Persistent
 	@Embedded(members = {
 	        @Persistent(name="stdDate", columns=@Column(name="hygieneDate")),
 	        @Persistent(name="stdStatus", columns=@Column(name="hygieneStatus")),
-	        @Persistent(name="stdDesc", columns=@Column(name="hygieneDesc"))})*/
+	        @Persistent(name="stdDesc", columns=@Column(name="hygieneDesc"))})
 	private AreaStandard hygiene;
 	
 	/*
 	* Safety
 	*/ 
-	/*@Persistent
+	@Persistent
 	@Embedded(members = {
 	        @Persistent(name="stdDate", columns=@Column(name="safetyDate")),
 	        @Persistent(name="stdStatus", columns=@Column(name="safetyStatus")),
-	        @Persistent(name="stdDesc", columns=@Column(name="safetyDesc"))})*/
+	        @Persistent(name="stdDesc", columns=@Column(name="safetyDesc"))})
 	private AreaStandard safety;
 	
 	/*
 	* Physical Activities
 	*/ 
-	/*@Persistent
-	@Embedded(members = {
+	@Persistent
+	@Embedded(members = { 
 	        @Persistent(name="stdDate", columns=@Column(name="activityDate")),
 	        @Persistent(name="stdStatus", columns=@Column(name="activityStatus")),
-	        @Persistent(name="stdDesc", columns=@Column(name="activityDesc"))})*/
+	        @Persistent(name="stdDesc", columns=@Column(name="activityDesc"))})
 	private AreaStandard activity;
 	
 	/*
 	* Schooling Education
 	*/ 
-	/*@Persistent
+	@Persistent
 	@Embedded(members = {
 	        @Persistent(name="stdDate", columns=@Column(name="educationDate")),
 	        @Persistent(name="stdStatus", columns=@Column(name="educationStatus")),
-	        @Persistent(name="stdDesc", columns=@Column(name="educationDesc"))})*/
+	        @Persistent(name="stdDesc", columns=@Column(name="educationDesc"))})
 	private AreaStandard education;
 	
 	/*
 	* Guidance
 	*/ 
-	/*@Persistent
+	@Persistent
 	@Embedded(members = {
 	        @Persistent(name="stdDate", columns=@Column(name="guidanceDate")),
 	        @Persistent(name="stdStatus", columns=@Column(name="guidanceStatus")),
-	        @Persistent(name="stdDesc", columns=@Column(name="guidanceDesc"))})*/
+	        @Persistent(name="stdDesc", columns=@Column(name="guidanceDesc"))})
 	private AreaStandard guidance;
 	
 	/*
 	* Responsabilities
 	*/ 
-	/*@Persistent
+	@Persistent
 	@Embedded(members = {
 	        @Persistent(name="stdDate", columns=@Column(name="responsibilityDate")),
 	        @Persistent(name="stdStatus", columns=@Column(name="responsibilityStatus")),
-	        @Persistent(name="stdDesc", columns=@Column(name="responsibilityDesc"))})*/
+	        @Persistent(name="stdDesc", columns=@Column(name="responsibilityDesc"))})
 	private AreaStandard responsibility;
 	
 	/*
 	* Discipline
 	*/ 
-	/*@Persistent
+	@Persistent
 	@Embedded(members = {
 	        @Persistent(name="stdDate", columns=@Column(name="disciplineDate")),
 	        @Persistent(name="stdStatus", columns=@Column(name="disciplineStatus")),
-	        @Persistent(name="stdDesc", columns=@Column(name="disciplineDesc"))})*/
+	        @Persistent(name="stdDesc", columns=@Column(name="disciplineDesc"))})
 	private AreaStandard discipline;
 	
 	/*
 	* Love
 	*/ 
-	/*@Persistent
+	@Persistent
 	@Embedded(members = {
 	        @Persistent(name="stdDate", columns=@Column(name="loveDate")),
 	        @Persistent(name="stdStatus", columns=@Column(name="loveStatus")),
-	        @Persistent(name="stdDesc", columns=@Column(name="loveDesc"))})*/
+	        @Persistent(name="stdDesc", columns=@Column(name="loveDesc"))})
 	private AreaStandard love;
 	
 	/*
 	* Compassionate Environment
 	*/ 
-	/*@Persistent
+	@Persistent
 	@Embedded(members = {
 	        @Persistent(name="stdDate", columns=@Column(name="compassionDate")),
 	        @Persistent(name="stdStatus", columns=@Column(name="compassionStatus")),
-	        @Persistent(name="stdDesc", columns=@Column(name="compassionDesc"))})*/
+	        @Persistent(name="stdDesc", columns=@Column(name="compassionDesc"))})
 	private AreaStandard compassion;
 	
 	/*
 	* Joy
 	*/ 
-	/*@Persistent
+	@Persistent
 	@Embedded(members = {
 	        @Persistent(name="stdDate", columns=@Column(name="joyDate")),
 	        @Persistent(name="stdStatus", columns=@Column(name="joyStatus")),
-	        @Persistent(name="stdDesc", columns=@Column(name="joyDesc"))})*/
+	        @Persistent(name="stdDesc", columns=@Column(name="joyDesc"))})
 	private AreaStandard joy;
 	
 	/*
 	* Hope of Future
 	*/ 
-	/*@Persistent
+	@Persistent
 	@Embedded(members = {
 	        @Persistent(name="stdDate", columns=@Column(name="hopeDate")),
 	        @Persistent(name="stdStatus", columns=@Column(name="hopeStatus")),
-	        @Persistent(name="stdDesc", columns=@Column(name="hopeDesc"))})*/
+	        @Persistent(name="stdDesc", columns=@Column(name="hopeDesc"))})
 	private AreaStandard hope;
 		
 	/*

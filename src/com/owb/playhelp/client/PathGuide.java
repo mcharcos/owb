@@ -858,7 +858,6 @@ public class PathGuide implements ValueChangeHandler<String>  {
 		      @Override
 		      public void onSuccess(Void result) {
 		        GWT.log("PathGuide: SNgo was removed");
-		        Window.alert("Was removed");
 				lastView = History.getToken();
 				History.newItem("removeSNgo");
 		      }
