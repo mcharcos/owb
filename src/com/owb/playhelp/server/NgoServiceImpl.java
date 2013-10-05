@@ -150,17 +150,19 @@ public class NgoServiceImpl extends RemoteServiceServlet implements NgoService {
 		}
 		pm.close();
 
+		ArrayList<DBRecordInfo> ngoArray = null;
+		List<Long> foundIdNgos = null;
 		pm = PMFactory.getNonTxnPm();
 		try{
 			Query dq = null;
 			
 			dq = pm.newQuery("select id from " + Ngo.class.getName());			
-			List<Long> foundIdNgos;
+			
 			foundIdNgos = (List<Long>) dq.execute();
 			
 			Ngo foundNgo = null;
 			DBRecordInfo record = null;
-			ArrayList<DBRecordInfo> ngoArray = new ArrayList<DBRecordInfo>();
+			ngoArray = new ArrayList<DBRecordInfo>();
 			for (Long ngoId: foundIdNgos){
 				if (ngoId != null){
 					foundNgo = pm.getObjectById(Ngo.class, ngoId);
@@ -169,12 +171,28 @@ public class NgoServiceImpl extends RemoteServiceServlet implements NgoService {
 					ngoArray.add(record);	
 				}
 			}
-			 return ngoArray;
 		}// end try
 	    catch (Exception e) {
 	        e.printStackTrace();
-	      }
-	    return null;
+	      }finally {
+				if (pm.currentTransaction().isActive()){
+					pm.currentTransaction().rollback();
+					logger.warning("transaction rollback");
+				}
+				pm.close();
+			}
+		
+		if (foundIdNgos == null){
+			logger.info("No Ngo was found");
+			return null;
+		}
+		for (int i=0; i<foundIdNgos.size();i++){
+			SNgo standard = NgoStandard.getStandard(foundIdNgos.get(i));
+			if (standard != null){
+				ngoArray.get(i).setStandard(SNgo.toInfo(standard));
+			}
+		}
+	    return ngoArray;
 	}
 	
 

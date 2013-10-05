@@ -296,7 +296,17 @@ public class Owb implements EntryPoint {
 	  Window.addResizeHandler(new ResizeHandler(){           
           @Override
           public void onResize(ResizeEvent event) {
-        	  int width = (Window.getClientWidth()-topCenterPanel.getOffsetWidth())/2;
+        	  int winWidth = Window.getClientWidth();
+        	  int width;
+        	  
+        	  /*
+        	  if (winWidth > 1368){
+        		  topCenterPanel.setWidth("1366px");
+        	  } else {
+        		  topCenterPanel.setWidth(winWidth-300+"px");
+        	  }*/
+        	  
+        	  width = (winWidth-topCenterPanel.getOffsetWidth())/2;
         	  //int height = Window.getClientHeight();
         	  //Window.alert(Integer.toString(Window.getClientHeight())+" "+Integer.toString(topCenterPanel.getOffsetWidth())+" "+Integer.toString(width));
         	  if (width <= 0){width=1;}

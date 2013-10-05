@@ -29,7 +29,7 @@ import com.owb.playhelp.server.utils.cache.Cacheable;
  * for other records as ngo, orphanages, users,...
  *
  */
-@SuppressWarnings("serial")
+@SuppressWarnings("serial") 
 @PersistenceCapable(identityType = IdentityType.APPLICATION, detachable = "true")
 @Inheritance(strategy=InheritanceStrategy.SUBCLASS_TABLE)
 public class DBRecord implements Serializable, Cacheable  {

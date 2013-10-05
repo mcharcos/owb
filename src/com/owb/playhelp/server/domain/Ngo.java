@@ -48,7 +48,7 @@ public class Ngo extends DBRecord  {
 	 * @param DBRecord
 	 * @return
 	 */
-	  public static Ngo findOrCreateDBRecord(Ngo record, Long userId) {
+	  public static Ngo findOrCreateDBRecord(Ngo record, Long userId){
 	
 		// Open the data-store manager 
 	    PersistenceManager pm = PMFactory.getTxnPm();
@@ -97,7 +97,7 @@ public class Ngo extends DBRecord  {
 	        
 	        // commit the transaction
 	        try {
-	          tx.commit();
+	          tx.commit(); 
 	          break;
 	        }
 	        catch (JDOCanRetryException e1) {
@@ -163,10 +163,11 @@ public class Ngo extends DBRecord  {
 			
 			// Include the standard information in the Info object
 			// if it exists in the DB
+			/*
 			SNgo standard = NgoStandard.getStandard(o);
 			if (standard != null){
-				oInfo.setStandard(SNgo.toInfo(standard));
-			}
+				//oInfo.setStandard(SNgo.toInfo(standard));
+			}*/
 			
 			return oInfo;
 		}
@@ -201,10 +202,10 @@ public class Ngo extends DBRecord  {
 
 			// Include the standard information in the Info object
 			// if it exists in the DB
-			SNgo standard = NgoStandard.getStandard(o);
+			/*SNgo standard = NgoStandard.getStandard(o);
 			if (standard != null){
 				oInfo.setStandard(SNgo.toInfo(standard));
-			}
+			}*/
 			
 			return oInfo;
 		}

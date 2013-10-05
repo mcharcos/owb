@@ -65,7 +65,20 @@ public class StandardServiceImpl extends RemoteServiceServlet implements Standar
 	    SNgo standard = SNgo.findOrCreate(new SNgo(stdInfo),userId);
 	    
 	    logger.fine("Standard unique id: "+standard.getUniqueId());
-		standard.add(stdInfo);
+	    
+	    // Here there is a problem updating the standard. It is like 
+	    // the standard embedded AreaStandard attributes where not detached
+	    // or may be the standard. The funny thing is that it only sends the error message
+	    // for the first attribute it tries to update. And within standard.add, the attributes
+	    // are updated.
+	    // The warning is:
+	    // WARNING: You have just attempted to access field "water" yet this field was not detached when you detached the object. Either dont access this field, or detach it when detaching the object.
+	    try{
+	    	standard.add(stdInfo);
+	    }catch (Exception e) {
+	    	logger.warning(e.getMessage());
+	    }
+		
 	    
 	    pm = PMFactory.getTxnPm();
 		

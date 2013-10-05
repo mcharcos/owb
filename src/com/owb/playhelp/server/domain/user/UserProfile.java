@@ -25,7 +25,7 @@ import com.owb.playhelp.server.utils.cache.Cacheable;
 import com.owb.playhelp.server.domain.Ngo;
 import com.owb.playhelp.shared.UserProfileInfo;
 
-@SuppressWarnings("serial") 
+@SuppressWarnings("serial")
 @PersistenceCapable(identityType = IdentityType.APPLICATION, detachable = "true")
 public class UserProfile implements Serializable, Cacheable {
 
@@ -33,7 +33,7 @@ public class UserProfile implements Serializable, Cacheable {
 	  private static final int NUM_RETRIES = 5; 
 
 	  @PrimaryKey
-	  @Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
+	  @Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY) 
 	  private Long id;
 
 	  @Persistent

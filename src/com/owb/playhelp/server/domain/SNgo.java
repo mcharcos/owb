@@ -1,6 +1,5 @@
 package com.owb.playhelp.server.domain;
 
-import java.io.Serializable;
 import java.util.Date;
 
 import javax.jdo.JDOCanRetryException;
@@ -24,12 +23,11 @@ import com.owb.playhelp.shared.StandardInfo;
  * which ones correspond to what.
  * 
  */
-@SuppressWarnings("serial")
+@SuppressWarnings("serial") 
 @PersistenceCapable(identityType = IdentityType.APPLICATION, detachable = "true")
 public class SNgo extends Standard {
 
 	  //private static final long serialVersionUID = -2023204547641864687L;
-	
 	public SNgo(){
 		super();
 	}
@@ -124,10 +122,10 @@ public class SNgo extends Standard {
 	          }
 	        }
 	      } // end for
-	    } catch (JDOUserException e){
+	    } catch (JDOUserException e){ 
 	          log.info("JDOUserException: SNgo table is empty");
 	          // Create friends from Google+
-	          pm.makePersistent(record);
+	          pm.makePersistent(record); 
 	          detached = pm.detachCopy(record);	
 		        try {
 			          tx.commit();
@@ -158,7 +156,7 @@ public class SNgo extends Standard {
 		 * @param o
 		 * @return
 		 */
-		public static StandardInfo toInfo(SNgo o, Date date) {
+		public static StandardInfo toInfo(SNgo o, Date date){
 			if (o == null)
 				return null;
 

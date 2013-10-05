@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 
 import javax.jdo.annotations.EmbeddedOnly;
 import javax.jdo.annotations.IdGeneratorStrategy;
+import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
@@ -17,7 +18,7 @@ import com.google.appengine.api.datastore.Text;
 import com.owb.playhelp.server.utils.Utils;
 import com.owb.playhelp.shared.AreaStandardInfo;
 
-@PersistenceCapable
+@PersistenceCapable(detachable = "true")
 @EmbeddedOnly
 public class AreaStandard {
 	

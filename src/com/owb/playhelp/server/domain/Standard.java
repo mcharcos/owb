@@ -17,6 +17,8 @@ import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 import javax.jdo.annotations.Inheritance;
 import javax.jdo.annotations.InheritanceStrategy;
+import javax.persistence.Basic;
+import javax.persistence.FetchType;
 
 import com.google.appengine.api.datastore.Text;
 import com.owb.playhelp.shared.AreaStandardInfo;
@@ -85,10 +87,10 @@ public class Standard implements Serializable, Cacheable  {
      * with time. For each standard, the date, status and 
      * description is entered at the same time.
     */
+
 	/*
 	* Clean Water
 	*/ 	
-	@Persistent
 	@Embedded(members = { 
 	        @Persistent(name="stdDate", columns=@Column(name="waterDate")),
 	        @Persistent(name="stdStatus", columns=@Column(name="waterStatus")),
@@ -98,7 +100,6 @@ public class Standard implements Serializable, Cacheable  {
 	/*
 	* Food
 	*/ 
-	@Persistent
 	@Embedded(members = {
 	        @Persistent(name="stdDate", columns=@Column(name="foodDate")),
 	        @Persistent(name="stdStatus", columns=@Column(name="foodStatus")),
@@ -108,7 +109,6 @@ public class Standard implements Serializable, Cacheable  {
 	/*
 	* Shelter
 	*/ 
-	@Persistent
 	@Embedded(members = {
 	        @Persistent(name="stdDate", columns=@Column(name="shelterDate")),
 	        @Persistent(name="stdStatus", columns=@Column(name="shelterStatus")),
@@ -118,7 +118,6 @@ public class Standard implements Serializable, Cacheable  {
 	/*
 	* Clothing
 	*/ 
-	@Persistent
 	@Embedded(members = {
 	        @Persistent(name="stdDate", columns=@Column(name="clothingDate")),
 	        @Persistent(name="stdStatus", columns=@Column(name="clothingStatus")),
@@ -128,7 +127,6 @@ public class Standard implements Serializable, Cacheable  {
 	/*
 	* Medicine
 	*/ 
-	@Persistent
 	@Embedded(members = {
 	        @Persistent(name="stdDate", columns=@Column(name="medicineDate")),
 	        @Persistent(name="stdStatus", columns=@Column(name="medicineStatus")),
@@ -138,7 +136,6 @@ public class Standard implements Serializable, Cacheable  {
 	/*
 	* Hygiene
 	*/ 
-	@Persistent
 	@Embedded(members = {
 	        @Persistent(name="stdDate", columns=@Column(name="hygieneDate")),
 	        @Persistent(name="stdStatus", columns=@Column(name="hygieneStatus")),
@@ -148,7 +145,6 @@ public class Standard implements Serializable, Cacheable  {
 	/*
 	* Safety
 	*/ 
-	@Persistent
 	@Embedded(members = {
 	        @Persistent(name="stdDate", columns=@Column(name="safetyDate")),
 	        @Persistent(name="stdStatus", columns=@Column(name="safetyStatus")),
@@ -158,7 +154,6 @@ public class Standard implements Serializable, Cacheable  {
 	/*
 	* Physical Activities
 	*/ 
-	@Persistent
 	@Embedded(members = { 
 	        @Persistent(name="stdDate", columns=@Column(name="activityDate")),
 	        @Persistent(name="stdStatus", columns=@Column(name="activityStatus")),
@@ -168,7 +163,6 @@ public class Standard implements Serializable, Cacheable  {
 	/*
 	* Schooling Education
 	*/ 
-	@Persistent
 	@Embedded(members = {
 	        @Persistent(name="stdDate", columns=@Column(name="educationDate")),
 	        @Persistent(name="stdStatus", columns=@Column(name="educationStatus")),
@@ -178,7 +172,6 @@ public class Standard implements Serializable, Cacheable  {
 	/*
 	* Guidance
 	*/ 
-	@Persistent
 	@Embedded(members = {
 	        @Persistent(name="stdDate", columns=@Column(name="guidanceDate")),
 	        @Persistent(name="stdStatus", columns=@Column(name="guidanceStatus")),
@@ -188,7 +181,6 @@ public class Standard implements Serializable, Cacheable  {
 	/*
 	* Responsabilities
 	*/ 
-	@Persistent
 	@Embedded(members = {
 	        @Persistent(name="stdDate", columns=@Column(name="responsibilityDate")),
 	        @Persistent(name="stdStatus", columns=@Column(name="responsibilityStatus")),
@@ -198,7 +190,6 @@ public class Standard implements Serializable, Cacheable  {
 	/*
 	* Discipline
 	*/ 
-	@Persistent
 	@Embedded(members = {
 	        @Persistent(name="stdDate", columns=@Column(name="disciplineDate")),
 	        @Persistent(name="stdStatus", columns=@Column(name="disciplineStatus")),
@@ -208,7 +199,6 @@ public class Standard implements Serializable, Cacheable  {
 	/*
 	* Love
 	*/ 
-	@Persistent
 	@Embedded(members = {
 	        @Persistent(name="stdDate", columns=@Column(name="loveDate")),
 	        @Persistent(name="stdStatus", columns=@Column(name="loveStatus")),
@@ -218,7 +208,6 @@ public class Standard implements Serializable, Cacheable  {
 	/*
 	* Compassionate Environment
 	*/ 
-	@Persistent
 	@Embedded(members = {
 	        @Persistent(name="stdDate", columns=@Column(name="compassionDate")),
 	        @Persistent(name="stdStatus", columns=@Column(name="compassionStatus")),
@@ -228,7 +217,6 @@ public class Standard implements Serializable, Cacheable  {
 	/*
 	* Joy
 	*/ 
-	@Persistent
 	@Embedded(members = {
 	        @Persistent(name="stdDate", columns=@Column(name="joyDate")),
 	        @Persistent(name="stdStatus", columns=@Column(name="joyStatus")),
@@ -238,7 +226,6 @@ public class Standard implements Serializable, Cacheable  {
 	/*
 	* Hope of Future
 	*/ 
-	@Persistent
 	@Embedded(members = {
 	        @Persistent(name="stdDate", columns=@Column(name="hopeDate")),
 	        @Persistent(name="stdStatus", columns=@Column(name="hopeStatus")),
@@ -259,6 +246,23 @@ public class Standard implements Serializable, Cacheable  {
 	public Standard() {
 		UUID uuid = UUID.randomUUID();
 		this.uniqueId = uuid.toString();  
+		water = new AreaStandard(); 
+		food = new AreaStandard(); 
+		shelter = new AreaStandard(); 
+		clothing = new AreaStandard(); 
+		water = new AreaStandard(); 
+		medicine = new AreaStandard(); 
+		hygiene = new AreaStandard(); 
+		safety = new AreaStandard(); 
+		activity = new AreaStandard(); 
+		education = new AreaStandard(); 
+		guidance = new AreaStandard(); 
+		responsibility = new AreaStandard(); 
+		discipline = new AreaStandard(); 
+		love = new AreaStandard(); 
+		compassion = new AreaStandard(); 
+		joy = new AreaStandard();
+		hope = new AreaStandard(); 
 	}
 	
 	public Standard(DBRecordInfo record){
@@ -527,7 +531,7 @@ public class Standard implements Serializable, Cacheable  {
 	}
 
 	public String getUniqueId() {
-		return uniqueId;
+		return uniqueId; 
 	}
 	
 	/*

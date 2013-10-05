@@ -76,7 +76,6 @@ public class NgoStandard  implements Serializable, Cacheable {
 	private Date creationDate;
 	
 	
-	
 	/**
 	 * Constructor class from a shared class. It will initialize an object
 	 * with the information from an DBRecordInfo object passed from the 
@@ -180,28 +179,23 @@ public class NgoStandard  implements Serializable, Cacheable {
 	    	return null;
 	    }
 	    
-	    SNgo standard = null;
+	    SNgo standard = null, detached=null;
 	    //pm = PMFactory.getTxnPm();
 	    tx = pm.currentTransaction();
 	    
 	    try{
-	    	for (int i=0; i < NUM_RETRIES; i++){
 	            tx = pm.currentTransaction();
 	            //tx.begin();
 	            standard = (SNgo) pm.getObjectById(SNgo.class, stdId);
-	    	}
+	            detached = standard;  //pm.detachCopy(standard);
 	    } catch (JDOFatalUserException e){
 	    		log.info("JDOUserException: SNgo table does not contain id "+stdId);
-	          standard=null;
 	    } catch (JDOUserException e){
 	          log.info("JDOUserException: SNgo table is empty");
-	          standard=null;
 	    } catch (JDOException e) {
 	        e.printStackTrace();
-	        standard=null;
 	    } catch (Exception e) {
 	    	 e.printStackTrace();
-		     standard = null;
 	    } finally{
 	          if (tx.isActive()) {
 	              log.info("NgoStandard:getStandard: transaction rollback.");
@@ -209,7 +203,7 @@ public class NgoStandard  implements Serializable, Cacheable {
 	            }
 	            pm.close();
 	    }
-	    return standard;
+	    return detached;
 	  }
 	  
 	  public static boolean isAssociated(Long ngoId, Long standardId) {
