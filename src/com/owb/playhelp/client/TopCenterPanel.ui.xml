@@ -11,6 +11,7 @@
 			height                      :   80px;
 		}
 		.logo_bar {
+			background-color            :   #8bff2d;
 			width                       :   60px;
 			height                      :   60px;
 		}
@@ -19,10 +20,12 @@
 		}
 		.important {
 			font-weight: bold;
+	        background-color			:	#8bff2d;
 		}
 		.backgroundall {  
 	        background-color			:	#8bff2d;
 			height                      :   60px;
+			margin						:	0px;
          }  
 	</ui:style>
 	<g:HorizontalPanel styleName='{style.backgroundall}'>
