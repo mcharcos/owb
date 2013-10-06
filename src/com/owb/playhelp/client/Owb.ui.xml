@@ -26,9 +26,23 @@
 		}
          .horizontalTopStyle{
 			height: 50px;
-            background-color: #b314d5;
+            background-color: #8bff2d;
 		}
          .horizontalBarStyle{
+			height: 50px;
+			width: 100%;
+            background-color:#8bff2d;
+		}
+         .horizontalMenuStyle{
+			height: 50px;
+            background-color:#8bff2d;
+		}
+         .fillBeforeBarStyle{
+			width: 30px;
+			height: 50px;
+            background-color:#8bff2d;
+		}
+         .fillAfterBarStyle{
 			width: 100%;
 			height: 50px;
             background-color:#8bff2d;
@@ -63,7 +77,10 @@
 					</g:VerticalPanel>
 					<g:VerticalPanel>
 						<g:HorizontalPanel ui:field='topCenterPanel' styleName='{style.horizontalTopStyle}'/>
-						<g:HorizontalPanel ui:field='barPanel'  styleName='{style.horizontalBarStyle}' horizontalAlignment="ALIGN_CENTER"/> 
+						<g:HorizontalPanel styleName='{style.fillAfterBarStyle}'>
+							<g:HorizontalPanel ui:field='beforeBarPanel' styleName='{style.fillBeforeBarStyle}' horizontalAlignment="ALIGN_LEFT"/>
+							<g:HorizontalPanel ui:field='barPanel'  styleName='{style.horizontalMenuStyle}' horizontalAlignment="ALIGN_RIGHT"/>
+						</g:HorizontalPanel>
 						<g:HorizontalPanel ui:field='centerPanel' styleName='{style.horizontalCenterStyle}' horizontalAlignment="ALIGN_CENTER" />
 						<g:HorizontalPanel ui:field='footerPanel' styleName='{style.horizontalCenterStyle}' horizontalAlignment="ALIGN_CENTER" />
 					</g:VerticalPanel>

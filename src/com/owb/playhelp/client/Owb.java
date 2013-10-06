@@ -113,7 +113,7 @@ public class Owb implements EntryPoint {
 	 * Layout the window with three frameworks
 	 */
 	@UiField LeftPanel actionPanel;
-	@UiField HorizontalPanel topCenterPanel, barPanel, footerPanel;
+	@UiField HorizontalPanel topCenterPanel, beforeBarPanel, barPanel, footerPanel;
 	@UiField HorizontalPanel centerPanel;
 	@UiField VerticalPanel statusPanel;
 	@UiField Image leftTopImg, rightTopImg;
@@ -286,44 +286,43 @@ public class Owb implements EntryPoint {
 	  userSettingsPresenter.go(tcpanel.getUserSettings());
 	  
 	  // Set the initial size of the left and right sides
-	  int width = (Window.getClientWidth()-topCenterPanel.getOffsetWidth())/2;
-	  if (width <= 0){width=1;}
-	  try {
-		  leftTopImg.setWidth(Integer.toString(width)+"px");
-		  rightTopImg.setWidth(Integer.toString(width)+"px");
-	  }catch (Exception e) {
-		  leftTopImg.setWidth("1px");
-		  rightTopImg.setWidth("1px");        		  
-	  }
+	  adjustWindowSize();
 	  
 	  // Add window resize handler for window resizing
 	  Window.addResizeHandler(new ResizeHandler(){           
           @Override
           public void onResize(ResizeEvent event) {
-        	  int winWidth = Window.getClientWidth();
-        	  int width;
-        	  
-        	  /*
-        	  if (winWidth > 1368){
-        		  topCenterPanel.setWidth("1366px");
-        	  } else {
-        		  topCenterPanel.setWidth(winWidth-300+"px");
-        	  }*/
-        	  
-        	  width = (winWidth-topCenterPanel.getOffsetWidth())/2;
-        	  //int height = Window.getClientHeight();
-        	  //Window.alert(Integer.toString(Window.getClientHeight())+" "+Integer.toString(topCenterPanel.getOffsetWidth())+" "+Integer.toString(width));
-        	  if (width <= 0){width=1;}
-        	  try {
-        		  leftTopImg.setWidth(Integer.toString(width)+"px");
-        		  rightTopImg.setWidth(Integer.toString(width)+"px");
-        	  }catch (Exception e) {
-        		  leftTopImg.setWidth("1px");
-        		  rightTopImg.setWidth("1px");        		  
-        	  }
+        	  adjustWindowSize();
           }
       });  
 	  }
+	
+	private void adjustWindowSize(){
+		  int winWidth = Window.getClientWidth();
+	  	  int width;
+	  	  
+	  	  /*
+	  	  if (winWidth > 1368){
+	  		  topCenterPanel.setWidth("1366px");
+	  	  } else {
+	  		  topCenterPanel.setWidth(winWidth-300+"px");
+	  	  }*/
+	  	  
+	  	  width = (winWidth-topCenterPanel.getOffsetWidth())/2;
+	  	  //int height = Window.getClientHeight();
+	  	  //Window.alert(Integer.toString(Window.getClientHeight())+" "+Integer.toString(topCenterPanel.getOffsetWidth())+" "+Integer.toString(width));
+	  	  if (width <= 0){width=1;}
+	  	  try {
+	  		  leftTopImg.setWidth(Integer.toString(width)+"px");
+	  		  rightTopImg.setWidth(Integer.toString(width)+"px");
+	  	  }catch (Exception e) {
+	  		  leftTopImg.setWidth("1px");
+	  		  rightTopImg.setWidth("1px");        		  
+	  	  }
+	  	  
+	  	  // Adjust menu size
+		  beforeBarPanel.setWidth(topCenterPanel.getOffsetWidth()-barPanel.getOffsetWidth()+"px");
+	}
 	
 	/**
 	 * Returns the event bus that will be listen by the presenters. There is only one single event 

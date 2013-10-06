@@ -6,7 +6,7 @@
      
 	<ui:style>
 		.logo_small {
-			background-color            :   #9152a0;
+			background-color            :   #8bff2d;
 			width                       :   311px;
 			height                      :   80px;
 		}
@@ -15,13 +15,13 @@
 			height                      :   60px;
 		}
 		.mainBar {
-			background-color            :   #9152a0;
+			background-color            :   #8bff2d;
 		}
 		.important {
 			font-weight: bold;
 		}
 		.backgroundall {  
-	        background-color			:	#9152a0;
+	        background-color			:	#8bff2d;
 			height                      :   60px;
          }  
 	</ui:style>

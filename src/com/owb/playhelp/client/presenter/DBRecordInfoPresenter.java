@@ -98,7 +98,7 @@ public class DBRecordInfoPresenter implements Presenter {
 		if (record.getMember()) {
 		display.getEditBut().setVisible(true);
 		display.getRemoveBut().setVisible(true);
-		display.getAddStdBut().setVisible(true);
+		//display.getAddStdBut().setVisible(true);
 		}
 		bind();
 	};

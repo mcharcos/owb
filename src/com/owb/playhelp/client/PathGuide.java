@@ -747,8 +747,8 @@ public class PathGuide implements ValueChangeHandler<String>  {
 				//Owb.get().getMainTitle().setText("User Preferences");
 				presenter = new NgoListPresenter(ngoService,thePath,new DBRecordListView());
 				presenter.go(Owb.get().getMainPanel());	
-				presenter = new SNgoListPresenter(standardService,thePath,new StandardListView());
-				presenter.go(Owb.get().getMainPanel());	
+				//presenter = new SNgoListPresenter(standardService,thePath,new StandardListView());
+				//presenter.go(Owb.get().getMainPanel());	
 	        return;
 	        } 
 			if (token.equals("listVolunteer")) {

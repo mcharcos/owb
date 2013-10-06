@@ -108,7 +108,7 @@ public interface Resources extends ClientBundle {
     // The new design September 27th 2012
     @Source("TopePG.jpg")
     ImageResource name3Logo();
-    @Source("filler.jpg")
+    @Source("fillerLarge.jpg")
     ImageResource bar3Logo();
     @Source("NewsIconPanel.jpg")
     ImageResource newsLogo2();
