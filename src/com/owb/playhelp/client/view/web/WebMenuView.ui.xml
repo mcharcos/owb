@@ -12,22 +12,33 @@
 		    cursor                      :   hand;
 		    background-color            :   #8bff2d;
 			border						:	0px 0px 0px 0px;
-		    marging						: 	0px 0px 0px 0px;
+		    margin						: 	0px 0px 0px 0px;
 		    padding						: 	0px 0px 0px 0px;
 		}
 		.gwt-MenuBar table
 		{
 		    background-color            :   #8bff2d;
 			border						:	0px 0px 0px 0px;
-		    marging						: 	0px 0px 0px 0px;
-		    padding						: 	0px 0px 0px 0px;
+		    margin						: 	0px 0px 0px 0px;
+		    padding						: 	0px 40px 0px 40px;
+			horizontal-align			:	justified
+		}
+		.gwt-MenuBar .gwt-MenuItemSeparator 
+		{ 
+			width: 1px;
+			padding: 50px;
+			margin: 0px;
+			border: 0px;
+			border-left: 1px solid #888888;
+			background: white; 
 		}
 		.gwt-MenuBar .gwt-MenuItem .gwt-MenuBar
 		{
 		    background-color            :   #8bff2d;
 			border						:	0px 0px 0px 0px;
-		    marging						: 	0px 0px 0px 0px;
+		    margin						: 	0px 0px 0px 0px;
 		    padding						: 	0px 0px 0px 0px;
+			horizontal-align			:	left
 		}
 		.gwt-MenuBar .gwt-MenuItem .gwt-MenuBar table
 		{
@@ -42,22 +53,27 @@
 		    cursor                      :   pointer;
 		    background-color            :   #8bff2d;
 			border						:	0px 0px 0px 0px;
-		    marging						: 	0px 0px 0px 0px;
+		    margin						: 	0px 0px 0px 0px;
 		    padding						: 	0px 0px 0px 0px;
 			text-color					:	red;
 			text-shadow					: 	none;
-            font-family					: tahoma;
 		}
-		.gwt-MenuBar .gwt-MenuItem-selected
+		.gwt-MenuBar .gwt-MenuItem .gwt-MenuBar-selected
 		{
-		    background-color            :   #8bff2d !important;
+			font-color					:	#F00
+		    background-color            :   #FFFFFF !important;
 			border						:	0px 0px 0px 0px;
-		    marging						: 	0px 0px 0px 0px;
+		    margin						: 	0px 0px 0px 0px;
 		    padding						: 	0px 0px 0px 0px;
 		}
 		.gwt-MenuBar-vertical table {
 		 	border-collapse: collapse;
 		}
+		.gwt-MenuBar table	a:hover 
+		{
+			font-color					:	#F00;
+			background-color            :   #FFFFFF;
+		}			
 	</ui:style>
 	
 	<!--
@@ -82,35 +98,34 @@ background: url(images/bluebar-bg-selected.png) no-repeat 50% 100%;
 	  			<g:MenuItem width='100%' />
 				<g:MenuItem ui:field='internalMenu'>
 				    <g:MenuBar vertical="true">
-	  			  		<g:MenuItem ui:field='volunteerItem'><font color="#ab0fc8"><b><i>Volunteers</i></b></font></g:MenuItem>
+	  			  		<g:MenuItem ui:field='volunteerItem'><font style="font-family:Century Gothic; font-size: 22px; color: #FFFFFF; font-weight:normal;">Volunteers</font></g:MenuItem>
 	  			    </g:MenuBar>
 				</g:MenuItem>
-				<g:MenuItem ui:field='homeItem'><img src='{res.menuHomeIcon.getSafeUri.asString}' />
+			<g:MenuItem ui:field='homeItem'><font style="font-family:Century Gothic; font-size: 22px; color: #FFFFFF; font-weight:normal;">Home</font>
 				</g:MenuItem>
-				<g:MenuItem ui:field='aboutUsItem'><img src='{res.menuAboutIcon.getSafeUri.asString}' ui:field='aboutUsImg'/>
+				<g:MenuItem ui:field='aboutUsItem'><font style="font-family:Century Gothic; font-size: 22px; color: #FFFFFF; font-weight:normal;">About us</font>
 				    <g:MenuBar vertical="true">
       					<!-- <g:MenuItem ui:field='contextItem'><font color="#ab0fc8"><b><i>Context</i></b></font></g:MenuItem> -->
-      					<g:MenuItem ui:field='ourMissionItem'><img src='{res.menuMissionIcon.getSafeUri.asString}' width='223px' height='40px' /> </g:MenuItem>
-      					<g:MenuItem ui:field='ourViewItem'><img src='{res.menuOurViewIcon.getSafeUri.asString}' width='223px' height='40px' /> </g:MenuItem>
-      					<g:MenuItem ui:field='theTeamItem'><img src='{res.menuTheTeamIcon.getSafeUri.asString}' width='223px' height='40px' /> </g:MenuItem>
-      					<g:MenuItem ui:field='joinOWBItem'><img src='{res.menuJoinOWBIcon.getSafeUri.asString}' width='223px' height='40px' /></g:MenuItem>
+      					<g:MenuItem ui:field='ourMissionItem'><font style="font-family:Century Gothic; font-size: 18px; color: #8BFF2D;">Our mission</font></g:MenuItem>
+      					<g:MenuItem ui:field='theTeamItem'><font style="font-family:Century Gothic; font-size: 18px; color: #8BFF2D;">Our team</font></g:MenuItem>
+      					<g:MenuItem ui:field='joinOWBItem'><font style="font-family:Century Gothic; font-size: 18px; color: #8BFF2D;">Join our team</font></g:MenuItem>
      				</g:MenuBar>
 				</g:MenuItem>
-				<g:MenuItem ui:field='resourcesItem'><img src='{res.menuResourcesIcon.getSafeUri.asString}'/>
+				<g:MenuItem ui:field='resourcesItem'><font style="font-family:Century Gothic; font-size: 22px; color: #FFFFFF; font-weight:normal;">Resources</font>
 				    <g:MenuBar vertical="true">
-      					<g:MenuItem ui:field='joinNetworkItem'><img src='{res.menuJoinNetworkIcon.getSafeUri.asString}' width='223px' height='40px' /></g:MenuItem>
-      					<g:MenuItem ui:field='searchResourcesItem'><img src='{res.menuSearchResourcesIcon.getSafeUri.asString}' width='223px' height='40px' /></g:MenuItem>
+      					<g:MenuItem ui:field='joinNetworkItem'><font style="font-family:Century Gothic; font-size: 18px; color: #8BFF2D;">Join the network</font></g:MenuItem>
+      					<g:MenuItem ui:field='searchResourcesItem'><font style="font-family:Century Gothic; font-size: 18px; color: #8BFF2D;">Search resources</font></g:MenuItem>
      				</g:MenuBar>
 	 		 	</g:MenuItem>
-				<g:MenuItem ui:field='needsItem'><img src='{res.menuNeedsIcon.getSafeUri.asString}' />
+				<g:MenuItem ui:field='needsItem'><font style="font-family:Century Gothic; font-size: 22px; color: #FFFFFF; font-weight:normal;">Needs</font>
 				    <g:MenuBar vertical="true">
-      					<g:MenuItem ui:field='shareProjectsItem'><img src='{res.menuShareProjectsIcon.getSafeUri.asString}' width='223px' height='40px' /></g:MenuItem>
-      					<g:MenuItem ui:field='searchProjectsItem'><img src='{res.menuSearchProjectsIcon.getSafeUri.asString}' width='223px' height='40px' /></g:MenuItem>
-      					<g:MenuItem ui:field='chooseProjectsItem'><img src='{res.menuChooseProjectsIcon.getSafeUri.asString}' width='223px' height='40px' /></g:MenuItem>
+      					<g:MenuItem ui:field='shareProjectsItem'><font style="font-family:Century Gothic; font-size: 18px; color: #8BFF2D;">Create a project</font></g:MenuItem>
+      					<g:MenuItem ui:field='searchProjectsItem'><font style="font-family:Century Gothic; font-size: 18px; color: #8BFF2D;">Search projects</font></g:MenuItem>
+      					<g:MenuItem ui:field='chooseProjectsItem'><font style="font-family:Century Gothic; font-size: 18px; color: #8BFF2D;">Choose a project</font></g:MenuItem>
      				</g:MenuBar>
 	 		 	</g:MenuItem>
 				<g:MenuItem ui:field='mapItem'>
-				  <img src='{res.menuMapIcon.getSafeUri.asString}' />
+				  <font style="font-family:Century Gothic; font-size: 22px; color: #FFFFFF; font-weight:normal;">Map</font>
 				</g:MenuItem>
 				
 				<!-- 

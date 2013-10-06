@@ -105,7 +105,7 @@ public interface Resources extends ClientBundle {
     @Source("radioSelTop.gif")
     ImageResource radioSelLogo();
     
-    // The new desigh September 27th 2012
+    // The new design September 27th 2012
     @Source("TopePG.jpg")
     ImageResource name3Logo();
     @Source("filler.jpg")
@@ -184,6 +184,10 @@ public interface Resources extends ClientBundle {
     ImageResource shelterWebPic();
     @Source("webpics/whatdowedo.jpg")
     ImageResource whatdowedoWebPic();
+    @Source("Migue.jpg")
+    ImageResource Miguelpic();
+    @Source("Kathy.jpg")
+    ImageResource Kathypic();
     
     // Webpage resources "about us"
     @Source("webpics/aboutus.jpg")

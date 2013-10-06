@@ -1,39 +1,28 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
-	xmlns:g="urn:import:com.google.gwt.user.client.ui">
-
-    <ui:with field='res' type='com.owb.playhelp.client.resources.Resources'/>
-    
-	<ui:style src="../../../resources/GlobalStyles.css">
-		.important {
-			font-weight: bold;
-		}
-		.description{
-	        color:#9152a0;
-	        margin: 30px;
-	   }
-	</ui:style>
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">    
 	<g:HTMLPanel>
-	   <div class="{style.description}">
-	    <h1>MISSION</h1>
-	    
-			<table border="5px solid red" align="left">
-			    <tr>
-			        <td width="50">
-					<g:Image url='{res.aboutusWebPic.getSafeUri.asString}' pixelSize="300,300"/>
-				    </td>
-			        <td width="250">
-						Orphanage Without Borders is a volunteer organization aiming to create an impact in the life
-					    of children. Our purpose is to facilitate connections between orphanages and projects
-					    helping children in order to respond to their needs. We intend to use the existing resources
-					    and the power of organizations that already exist to help in specific areas. We believe
-					    that collaboration is the key to improve the life of depracated children and that the knowledge 
-					    of existing resources is an enourmous asset to make help more efficient.<br></br>
-    		    	</td>
-    		    </tr>
-    		 </table>
-	    
-	    
-		</div>
+<div align="center">
+<p>&nbsp;</p>
+    <font style="font-family:Century Gothic;">
+ <font style="font-size: 50px; color: #8BFF2D;">Our mission</font>
+ <br></br>
+<p><font style="font-size: 22px; color: #F09;">Orphanage Without Borders harvests the power of technology to <strong>connect</strong> and <strong>engage</strong> individuals and resources with the <strong>needs</strong> of orphan children around the world.</font></p>
+<p>&nbsp;</p>
+<font style="font-size: 50px; color: #8BFF2D;">Our approach</font>
+<font style="font-size: 15px; color: #999;">
+  <p>1. We gather and present <strong>knowledge</strong> about the needs of orphan children. </p>
+  <p>2. We provide a practical source of <strong>information</strong> for volunteers and organizations, increasing the flow of information. </p>
+  <p>3. We facilitate the creation of small tangible <strong>projects</strong> to meet the essential needs of these children. </p>
+  <p>4. We <strong>connect</strong> existing resources (organizations, individuals and corporations) to these projects.</p>
+  <p>5. We <strong>empower</strong> people to actively participate and make decisions that directly help orphans around the world.</p>
+  <p>6. We <strong>visually represent </strong>the projects and resources for anyone who wants to improve the situation.</p>
+  <p>7. We foster <strong>collaboration and crowdsourcing</strong> for more efficient results. </p>
+  <p>8. We promote the <strong>exchange of ideas and experiences</strong>, bringing donors, organizations and volunteers closer.</p>
+  <p>9. We provide <strong>transparency</strong> about the legitimacy of orphanages around the world. </p>
+  <p>10. We issue <strong>updates</strong> on the status of projects that are addressing the needs of orphan children. </p>
+</font>
+</font>
+</div>
 	</g:HTMLPanel>
 </ui:UiBinder> 

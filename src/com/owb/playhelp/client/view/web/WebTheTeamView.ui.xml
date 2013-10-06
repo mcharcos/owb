@@ -1,78 +1,117 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
-	xmlns:g="urn:import:com.google.gwt.user.client.ui">
-	<ui:style>
-		.important {
-			font-weight: bold;
-		}
-		.description{
-	        color:#9152a0;
-	        margin: 30px;
-	   }
-	</ui:style>
-	<g:HTMLPanel>
-	   <div class="{style.description}">
-	    <h1>THE TEAM</h1>
-	    
-		<table align="left">
-    		<tr>
-		        <td width="570">
-			    <b>Kathy</b>
-				Kathy has a PhD in Biomedical Science and she currently does research on AIDS. It is her dream to rescue children living in the streets and make sure that someone cares for them affectionately. In the Summer of 2004, she went to India to volunteer at an orphanage. The children in the shelter had a profound effect on her, and this experience intensified her desire to help orphans around the world. She is also a strong advocate of teamwork. 
-				</td>
-			</tr>
-			<tr>
-				<td>
-				<br></br>
-				</td>
-			</tr>
-			<tr>
-				<td>
-				<b>Miguel</b>
-				Miguel is a software engineer working for a national organization. He also has a PhD in Astronomy. He is probably the main driving force putting this project into action and making this longtime dream a reality. He cares deeply about the well-being of children in general and wants to guarantee that the horrid conditions in some orphanages cease to exist.
-				</td>
-			</tr>
-			<tr>
-				<td>
-				<br></br>
-				</td>
-			</tr>
-			<tr>
-				<td>
-				<b>Karine</b>
-				</td>
-			</tr>
-			<tr>
-				<td>
-				<br></br>
-				</td>
-			</tr>
-			<tr>
-				<td>
-				<b>Sadie</b>
-				</td>
-			</tr>
-			<tr>
-				<td>
-				<br></br>
-				</td>
-			</tr>
-			<tr>
-				<td>
-				<b>Sangeeta</b>
-				</td>
-			</tr>
-			<tr>
-				<td>
-				<br></br>
-				</td>
-			</tr>
-			<tr>
-				<td>
-				<b>Erika</b>
-				</td>
-			</tr>
-		</table>
-		</div>
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">   
+	    <ui:with field='res' type='com.owb.playhelp.client.resources.Resources'/>
+<ui:style>
+a:link {
+	color: #999;
+	text-decoration: none;
+}
+a:visited {
+	color: #666;
+	text-decoration: none;
+}
+a:hover {
+	color: #C9F;
+	text-decoration: underline;
+}
+a:active {
+	color: #999;
+	text-decoration: none;
+}
+body div table {
+	text-align: center;
+}
+</ui:style> 
+  <g:HTMLPanel>
+<div align="center">
+<p>&nbsp;</p>
+  <p><font style="font-family:Century Gothic;">
+      <font style="font-size: 50px; color: #8BFF2D;">People</font></font>    </p>
+  <table width="600" border="0" cellspacing="1">
+  <tr>
+        <td colspan="9"><font style="font-family:Century Gothic;"><font style="font-size: 15px; color: #999;"><font style="font-size: 22px; color: #F09;">co-founders</font></font></font></td>
+    </tr>
+      <tr>
+        <td colspan="3">
+			<g:Image url='{res.Miguelpic.getSafeUri.asString}' pixelSize="89,90"/>
+        </td>
+        <td colspan="3">&nbsp;</td>
+        <td width="90" colspan="3">			<g:Image url='{res.Kathypic.getSafeUri.asString}' pixelSize="90,90"/>
+</td>
+      </tr>
+      <tr>
+        <td colspan="3"><font style="font-family:Century Gothic;"><font style="font-size: 15px; color: #999;">Miguel Charcos Lloréns, Ph.D. </font></font></td>
+        <td colspan="3">&nbsp;</td>
+        <td colspan="3"><font style="font-family:Century Gothic;"><font style="font-size: 15px; color: #999;">Kathy Laughlin Charcos, Ph.D.</font></font></td>
+      </tr>
+      <tr>
+        <td colspan="3"><font style="font-family:Century Gothic;"><font style="font-size: 15px; color: #999;"><a href="mailto:mvcharcos@orphanagewithoutborders.org ">e-mail</a></font></font><br></br></td>
+        <td colspan="3">&nbsp;</td>
+        <td colspan="3"><font style="font-family:Century Gothic;"><font style="font-size: 15px; color: #999;"><a href="mailto:kl@orphanagewithoutborders.org">e-mail</a></font></font></td>
+      </tr>
+      <tr>
+        <td colspan="9">&nbsp;</td>
+      </tr>
+      <tr>
+        <td colspan="9"><font style="font-family:Century Gothic;"><font style="font-size: 15px; color: #999;"><font style="font-size: 22px; color: #F09;">our team of  volunteers</font></font></font></td>
+      </tr>
+      <tr>
+        <td colspan="3">&nbsp;</td>
+        <td colspan="3">&nbsp;</td>
+        <td colspan="3">&nbsp;</td>
+      </tr>
+      <tr>
+        <td colspan="3"><font style="font-family:Century Gothic;"><font style="font-size: 15px; color: #999;">Karine Ramani, M.S.</font></font></td>
+        <td colspan="3"><font style="font-family:Century Gothic;"><font style="font-size: 15px; color: #999;">Erika Rodríguez</font></font></td>
+        <td colspan="3"><font style="font-family:Century Gothic;"><font style="font-size: 15px; color: #999;">Sandra Poetgens</font></font></td>
+      </tr>
+      <tr>
+        <td colspan="3">&nbsp;</td>
+        <td colspan="3">&nbsp;</td>
+        <td colspan="3">&nbsp;</td>
+      </tr>
+      <tr>
+        <td colspan="3"><font style="font-family:Century Gothic;"><font style="font-size: 15px; color: #999;">Saeideh Joodaki</font></font></td>
+        <td colspan="3"><font style="font-family:Century Gothic;"><font style="font-size: 15px; color: #999;">Sangeeta Vaidya</font></font></td>
+        <td colspan="3"><font style="font-family:Century Gothic;"><font style="font-size: 15px; color: #999;">Frank Kmak</font></font></td>
+      </tr>
+      <tr>
+        <td colspan="3">&nbsp;</td>
+        <td colspan="3">&nbsp;</td>
+        <td colspan="3">&nbsp;</td>
+      </tr>
+      <tr>
+        <td colspan="3"><font style="font-family:Century Gothic;"><font style="font-size: 15px; color: #999;">Samira Motiwala</font></font></td>
+        <td colspan="3"><font style="font-family:Century Gothic;"><font style="font-size: 15px; color: #999;">Malena Salas</font></font></td>
+        <td colspan="3"><font style="font-family:Century Gothic;"><font style="font-size: 15px; color: #999;">Clarita Monrose</font></font></td>
+      </tr>
+      <tr>
+        <td colspan="3">&nbsp;</td>
+        <td colspan="3">&nbsp;</td>
+        <td colspan="3">&nbsp;</td>
+      </tr>
+  </table>
+  <font style="font-family:Century Gothic;"><font style="font-size: 15px; color: #999;">    </font></font><font style="font-family:Century Gothic;">
+  </font><font style="font-family:Century Gothic;">
+<p> <font style="font-size: 22px; color: #F09;">people we have worked with</font>    </p>
+    </font>
+    <p><font style="font-family:Century Gothic; font-size: 15px; color: #999;">Rotary International (Canada and Uganda)</font></p>
+    <p><font style="font-family:Century Gothic; font-size: 15px; color: #999;">Barry Laughlin &amp; Associates (USA)</font></p>
+    <p><font style="font-family:Century Gothic; font-size: 15px; color: #999;">Half the Sky Foundation (USA)</font></p>
+    <p><font style="font-family:Century Gothic; font-size: 15px; color: #999;">ThoughtWorks (USA)</font></p>
+    <p><font style="font-family:Century Gothic; font-size: 15px; color: #999;">Santa Clara University (USA)</font></p>
+<p>&nbsp;</p>
+<p><font style="font-family:Century Gothic; font-size: 22px; color: #F09;">orphanage partners</font></p>
+<p><font style="font-family:Century Gothic; font-size: 15px; color: #999;">Kanabulemu Orphanage Organization (Uganda)</font></p>
+<p><font style="font-family:Century Gothic; font-size: 15px; color: #999;">Bal Vihar Home for Children (India)</font></p>
+<p><font style="font-family:Century Gothic; font-size: 15px; color: #999;">Sarthak Orphanage (India)</font></p>
+<p><font style="font-family:Century Gothic; font-size: 15px; color: #999;">Casa Hogar Niño Feliz (Mexico)</font></p>
+<p><font style="font-family:Century Gothic; font-size: 15px; color: #999;">Mi Casa Children's Home (Mexico)</font></p>
+<p><font style="font-family:Century Gothic; font-size: 15px; color: #999;">Casa Hogar Jeruel (Mexico)</font></p>
+<p><font style="font-family:Century Gothic; font-size: 15px; color: #999;">Street Children LEEDO (Bangladesh)</font></p>
+
+<p>&nbsp;</p>
+</div>
 	</g:HTMLPanel>
 </ui:UiBinder> 

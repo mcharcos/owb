@@ -32,14 +32,14 @@ public class WebMenuView extends Composite implements WebMenuPresenter.Display {
 	@UiField 
 	MenuItem volunteerItem;
 	@UiField
-	MenuItem homeItem, mapItem, aboutUsItem, ourMissionItem, ourViewItem, theTeamItem, joinOWBItem;
+	MenuItem homeItem, mapItem, aboutUsItem, ourMissionItem, theTeamItem, joinOWBItem;
 	@UiField
 	MenuItem resourcesItem, joinNetworkItem, searchResourcesItem;
 	@UiField 
 	MenuItem needsItem, shareProjectsItem, searchProjectsItem;
-	@UiField
+	//@UiField
 	ImageElement aboutUsImg;
-	
+	MenuItem ourViewItem;
 	/*
 	@UiField contextItem;
 	@UiField

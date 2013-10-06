@@ -87,12 +87,12 @@ public class WebMenuPresenter  implements Presenter {
 				eventBus.fireEvent(new ShowWebEvent("getourMissionItem"));
 			}
 		});
-		this.display.getourViewItem().setCommand(new Command() {
+		/*this.display.getourViewItem().setCommand(new Command() {
 			@Override
 			public void execute() {
 				eventBus.fireEvent(new ShowWebEvent("getourViewItem"));
 			}
-		});
+		});*/
 		this.display.gettheTeamItem().setCommand(new Command() {
 			@Override
 			public void execute() {
