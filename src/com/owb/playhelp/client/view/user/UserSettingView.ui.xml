@@ -12,7 +12,7 @@
 			text-align: left;
 		}
 		.backgroundall {  
-	        background-color: #b414d8;
+	        background-color: #8bff2d;
 			height                      :   60px;
          }  
 	</ui:style>
