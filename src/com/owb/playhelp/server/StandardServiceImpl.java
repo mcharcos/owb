@@ -12,6 +12,7 @@ import javax.jdo.Transaction;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.owb.playhelp.client.service.StandardService;
+import com.owb.playhelp.server.domain.AreaStandard;
 import com.owb.playhelp.server.domain.SNgo;
 import com.owb.playhelp.server.domain.user.UserProfile;
 import com.owb.playhelp.shared.StandardInfo;
@@ -48,8 +49,26 @@ public class StandardServiceImpl extends RemoteServiceServlet implements Standar
 	    }
 	    return result;
 	}
-	
+
 	private StandardInfo updateStdNgo(StandardInfo stdInfo){
+		logger.info("------------------- Starting Ngo standard update ---------------------------");
+	    PersistenceManager pm = PMFactory.getTxnPm();
+	    UserProfile user = LoginHelper.getLoggedUser(getThreadLocalRequest().getSession(), pm);
+	    if (user == null) {
+	    	logger.warning("User is not logged in");
+	    	pm.close();
+	    	return null;
+	    }
+	    pm.close();
+
+	    SNgo standard = SNgo.findOrCreate(new SNgo(stdInfo),user,stdInfo);
+	    
+	    logger.fine("Standard unique id: "+standard.getUniqueId());
+	    
+	    return stdInfo;
+	}
+	
+	private StandardInfo updateStdNgo1(StandardInfo stdInfo){
 		logger.info("------------------- Starting Ngo standard update ---------------------------");
 	    PersistenceManager pm = PMFactory.getTxnPm();
 	    UserProfile user = LoginHelper.getLoggedUser(getThreadLocalRequest().getSession(), pm);
@@ -152,6 +171,7 @@ public class StandardServiceImpl extends RemoteServiceServlet implements Standar
 				if (ngoId != null){
 					foundNgo = pm.getObjectById(SNgo.class, ngoId);
 					record = SNgo.toInfo(foundNgo,userId);
+					AreaStandard water = foundNgo.getStdWater();
 					if (isAdmin) record.activateMember();
 					ngoArray.add(record);	
 				}

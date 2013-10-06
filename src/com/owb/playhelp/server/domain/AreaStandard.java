@@ -1,19 +1,14 @@
 package com.owb.playhelp.server.domain;
 
-import java.io.Serializable;
 import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
 import javax.jdo.annotations.EmbeddedOnly;
-import javax.jdo.annotations.IdGeneratorStrategy;
-import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
-import javax.jdo.annotations.PrimaryKey;
 
-import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.Text;
 import com.owb.playhelp.server.utils.Utils;
 import com.owb.playhelp.shared.AreaStandardInfo;
@@ -31,7 +26,7 @@ public class AreaStandard {
     private Key AnotherClassId;*/
 	
 	public AreaStandard(){
-		
+		this.add(100L,"");
 	}
 
 	public AreaStandard(Long stdStatus, String stdDesc){

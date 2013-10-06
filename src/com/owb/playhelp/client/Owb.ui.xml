@@ -65,6 +65,7 @@
 						<g:HorizontalPanel ui:field='topCenterPanel' styleName='{style.horizontalTopStyle}'/>
 						<g:HorizontalPanel ui:field='barPanel'  styleName='{style.horizontalBarStyle}' horizontalAlignment="ALIGN_CENTER"/> 
 						<g:HorizontalPanel ui:field='centerPanel' styleName='{style.horizontalCenterStyle}' horizontalAlignment="ALIGN_CENTER" />
+						<g:HorizontalPanel ui:field='footerPanel' styleName='{style.horizontalCenterStyle}' horizontalAlignment="ALIGN_CENTER" />
 					</g:VerticalPanel>
 					<g:VerticalPanel>
 						<g:HorizontalPanel styleName='{style.horizontalTopStyle}'>
