@@ -11,6 +11,7 @@ import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.PersistenceCapable;
 
 import com.owb.playhelp.server.PMFactory;
+import com.owb.playhelp.server.domain.user.UserProfile;
 import com.owb.playhelp.shared.DBRecordInfo;
 import com.owb.playhelp.shared.StandardInfo;
 
@@ -148,7 +149,98 @@ public class SNgo extends Standard {
 	    // the input object after being persisted
 	    return detached;
 	  }
-	  
+
+		/**
+		 * Retrieve the user from the database if it already exist or
+		 * create a new account if it is the first loggin
+		 * @param Standard
+		 * @return
+		 */
+		  public static SNgo findOrCreate(SNgo record, UserProfile user, StandardInfo stdInfo) {
+		
+			// Open the data-store manager 
+		    PersistenceManager pm = PMFactory.getTxnPm();
+		    
+		    // Set the required variables
+		    Transaction tx = null;
+		    SNgo oneResult = null, detached = null;
+		    
+		    String uniqueId = record.getUniqueId();
+		    
+		    // Define the query
+		    Query q = pm.newQuery(SNgo.class, "uniqueId == :uniqueId");
+		    q.setUnique(true);
+		
+		    // perform the query and creation under transactional control,
+		    // to prevent another process from creating an acct with the same id.
+		    try {
+		      for (int i = 0; i < NUM_RETRIES; i++) {
+		        // Initialize and start the transaction
+		    	tx = pm.currentTransaction();
+		        tx.begin();
+		        
+		        // Execute the query for the current uniqueId of the input object
+		        oneResult = (SNgo) q.execute(uniqueId);
+		        
+		        // If found, we detach the copy from the datastore so
+		        // we can use it when returned
+		        // If not found, we make the current ngo persistent 
+		        // and detache the object.
+		        if (oneResult != null) {
+		          log.info("User uniqueId already exists: " + uniqueId);
+		          detached = pm.detachCopy(oneResult);
+			      if (user.isAdmin()){
+			  	      if (detached.isMember(user.getId())) {
+			  	    	  detached.add(stdInfo);
+			  	    	  pm.makePersistent(detached);
+			  	    	  detached = pm.detachCopy(oneResult);
+			  	      }
+				  }
+		        } else {
+		          log.info("Standard " + uniqueId + " does not exist, creating...");
+		          record.add(stdInfo);
+		          pm.makePersistent(record);
+		          detached = pm.detachCopy(record);
+		        }
+		        
+		        // commit the transaction
+		        try {
+		          tx.commit();
+		          break;
+		        }
+		        catch (JDOCanRetryException e1) {
+		          if (i == (NUM_RETRIES - 1)) { 
+		            throw e1;
+		          }
+		        }
+		      } // end for
+		    } catch (JDOUserException e){ 
+		          log.info("JDOUserException: SNgo table is empty");
+		          // Create friends from Google+
+		          record.add(stdInfo);
+		          pm.makePersistent(record); 
+		          detached = pm.detachCopy(record);	
+			        try {
+				          tx.commit();
+				        }
+				        catch (JDOCanRetryException e1) {
+				        }
+		    } catch (Exception e) {
+		      e.printStackTrace();
+		    } 
+		    finally {
+		      if (tx.isActive()) {
+		        tx.rollback();
+		      }
+		      // Close the persistent manager and the query.
+		      pm.close();
+		      q.closeAll();
+		    }
+		    
+		    // Return a detached copy of the retrieved object or 
+		    // the input object after being persisted
+		    return detached;
+		  }
 
 		/**
 		 * Creates a share object to be passed to the front end. The resulting

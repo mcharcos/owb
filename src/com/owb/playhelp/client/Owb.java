@@ -6,6 +6,7 @@ package com.owb.playhelp.client;
 
 import com.owb.playhelp.client.event.user.LoginEvent;
 import com.owb.playhelp.client.presenter.BusyIndicatorPresenter;
+import com.owb.playhelp.client.presenter.FooterPanelPresenter;
 import com.owb.playhelp.client.presenter.LeftPanelPresenter;
 import com.owb.playhelp.client.presenter.TopCenterPanelPresenter;
 import com.owb.playhelp.client.presenter.user.UserSettingPresenter;
@@ -31,7 +32,6 @@ import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.RunAsyncCallback;
 import com.google.gwt.dom.client.Document;
-import com.google.gwt.dom.client.Style.BorderStyle;
 import com.google.gwt.event.logical.shared.ResizeEvent;
 import com.google.gwt.event.logical.shared.ResizeHandler;
 import com.google.gwt.event.shared.SimpleEventBus;
@@ -43,7 +43,6 @@ import com.google.gwt.user.client.rpc.SerializationStreamFactory;
 import com.google.gwt.user.client.ui.DockLayoutPanel;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.RootLayoutPanel;
-import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 
@@ -114,7 +113,7 @@ public class Owb implements EntryPoint {
 	 * Layout the window with three frameworks
 	 */
 	@UiField LeftPanel actionPanel;
-	@UiField HorizontalPanel topCenterPanel, barPanel;
+	@UiField HorizontalPanel topCenterPanel, barPanel, footerPanel;
 	@UiField HorizontalPanel centerPanel;
 	@UiField VerticalPanel statusPanel;
 	@UiField Image leftTopImg, rightTopImg;
@@ -129,6 +128,7 @@ public class Owb implements EntryPoint {
 	//private MapMenuPresenter mapMenuPresenter = null;
 	private LeftPanelPresenter leftPanelPresenter = null;
 	private TopCenterPanelPresenter topCenterPanelPresenter = null;
+	private FooterPanelPresenter footerPanelPresenter = null;
 	private UserSettingPresenter userSettingsPresenter = null;
 	
 	/**
@@ -278,6 +278,10 @@ public class Owb implements EntryPoint {
 	  topCenterPanelPresenter = new TopCenterPanelPresenter(thePath, tcpanel);
 	  topCenterPanelPresenter.go(topCenterPanel);
 	  
+	  FooterPanel footer = new FooterPanel();
+	  footerPanelPresenter = new FooterPanelPresenter(thePath, footer);
+	  footerPanelPresenter.go(footerPanel);
+	  
 	  userSettingsPresenter = new UserSettingPresenter(loginService,thePath, new UserSettingView());
 	  userSettingsPresenter.go(tcpanel.getUserSettings());
 	  
@@ -362,6 +366,14 @@ public class Owb implements EntryPoint {
 	 */
 	public LeftPanel getActionPanel() {
 		return actionPanel;
+	}
+	
+	/**
+	 * Returns the footer of the page
+	 * @return Footer Panel
+	 */
+	public HorizontalPanel getFooterPanel() {
+		return footerPanel;
 	}
 	
 	

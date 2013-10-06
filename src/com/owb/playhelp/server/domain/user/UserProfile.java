@@ -169,7 +169,7 @@ public class UserProfile implements Serializable, Cacheable {
 	    } catch (JDOUserException e){
 	          log.info("JDOUserException: UserProfile table is empty");
 	          // We could create friends from Google+
-	          pm.makePersistent(user);
+	          pm.makePersistent(user); 
 	          detached = pm.detachCopy(user);	    	
 		        try {
 			          tx.commit();
