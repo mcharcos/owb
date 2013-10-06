@@ -10,6 +10,7 @@
 		.gwt-MenuBar
 		{
 		    cursor                      :   hand;
+			width						: 	100%;
 		    background-color            :   #8bff2d;
 			border						:	0px 0px 0px 0px;
 		    margin						: 	0px 0px 0px 0px;
@@ -17,57 +18,12 @@
 		}
 		.gwt-MenuBar table
 		{
-		    background-color            :   #8bff2d;
+			width						: 	100%;	    
+			background-color            :   #8bff2d;
 			border						:	0px 0px 0px 0px;
 		    margin						: 	0px 0px 0px 0px;
 		    padding						: 	0px 0px 0px 0px;
 			horizontal-align			:	justified
-		}
-		.gwt-MenuBar .gwt-MenuItemSeparator 
-		{ 
-			width: 1px;
-			padding: 50px;
-			margin: 0px;
-			border: 0px;
-			border-left: 1px solid #888888;
-			background: white; 
-		}
-		.gwt-MenuBar .gwt-MenuItem .gwt-MenuBar
-		{
-		    background-color            :   #8bff2d;
-			border						:	0px 0px 0px 0px;
-		    margin						: 	0px 0px 0px 0px;
-		    padding						: 	0px 0px 0px 0px;
-			horizontal-align			:	left
-		}
-		.gwt-MenuBar .gwt-MenuItem .gwt-MenuBar table
-		{
-		    background-color            :   #8bff2d;
-			border						:	0px 0px 0px 0px;
-		    marging						: 	0px 0px 0px 0px;
-		    padding						: 	0px 0px 0px 0px;
-		}
-		.gwt-MenuBar .gwt-MenuItem
-		{
-		    cursor                      :   hand;
-		    cursor                      :   pointer;
-		    background-color            :   #8bff2d;
-			border						:	0px 0px 0px 0px;
-		    margin						: 	0px 0px 0px 0px;
-		    padding						: 	0px 0px 0px 0px;
-			text-color					:	red;
-			text-shadow					: 	none;
-		}
-		.gwt-MenuBar .gwt-MenuItem .gwt-MenuBar-selected
-		{
-			font-color					:	#F00;
-		    background-color            :   #FFFFFF !important;
-			border						:	0px 0px 0px 0px;
-		    margin						: 	0px 0px 0px 0px;
-		    padding						: 	0px 0px 0px 0px;
-		}
-		.gwt-MenuBar-vertical table {
-		 	border-collapse: collapse;
 		}
 		.gwt-MenuBar table	a:hover 
 		{

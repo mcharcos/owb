@@ -29,17 +29,17 @@
             background-color: #8bff2d;
 		}
          .horizontalBarStyle{
-			height: 50px;
+			height: 35px;
 			width: 100%;
             background-color:#8bff2d;
 		}
          .horizontalMenuStyle{
-			height: 50px;
+			height: 35px;
             background-color:#8bff2d;
 		}
          .fillBeforeBarStyle{
-			width: 30px;
-			height: 50px;
+			width: 35px;
+			height: 35px;
             background-color:#8bff2d;
 		}
          .fillAfterBarStyle{
