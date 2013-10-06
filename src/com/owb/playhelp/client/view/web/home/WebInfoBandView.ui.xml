@@ -5,27 +5,29 @@
 		.button {
 			font-weight: bold;
         	text-align: center;
-        	font-size:40px;
-        	color:#b314d5;
-        	font-family: Arial, sans-serif;
-        	background: #fbe600;
+        	font-size:30px;
+        	color: #FFFFFF;
+        	font-family: "Century Gothic";
+        	background: #FA58D0;
         	border-bottom-left-radius: 16px 16px;
 	        border-bottom-right-radius: 16px 16px;
 	        border-top-left-radius: 16px 16px;
 	        border-top-right-radius: 16px 16px;
+			border: 3px outset #F3F781;
 		}
 		.vertPanel {
-		    background: #b314d5;
-		    border:5px outset blue;
-            width: 100px ;
-            height: 30px ;
+		    background: #FFFFFF;
+            width: 160px ;
+            height: 150px ;
             margin-left: 5px ;
             margin-right: 5px ;
+            margin-top: 5px ;
+            margin-bottom: 5px ;
             padding: 5px;
-            margin-bottom:5px;
-            font-color: #ffffff;
-        	font-family: "Arial" Grande, sans-serif;
+        	font-family: "Century Gothic";
+			font-color: #CC2EFA;
         	font-size: 12px;
+			font-align: justified
 		}
 		.cellPanel {
             margin: 25px;

@@ -2,11 +2,20 @@
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
 	xmlns:g="urn:import:com.google.gwt.user.client.ui">
 	<ui:style>
-		.important {
-			font-weight: bold;
+		.background {
+			background-color: #D0A9F5;
+			font-family:Century Gothic; 
+			font-size: 14px; 
+			color: #FFFFFF;
 		}
 	</ui:style>
-	<g:HTMLPanel>
-		Copyright
+	<g:HTMLPanel styleName='{style.background}'>
+		    <br></br>
+		    <br></br>© 2013 Orphanage Without Borders. All rights reserved.
+		    <br></br>e-mail: OWB@orphanagewithoutborders.org
+		    <br></br>phone #: 65O-429-8434    
+		 	<br></br>
+		 	<br></br>
+		 	<br></br>
 	</g:HTMLPanel>
 </ui:UiBinder> 

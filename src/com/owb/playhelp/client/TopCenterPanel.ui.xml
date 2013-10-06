@@ -6,23 +6,26 @@
      
 	<ui:style>
 		.logo_small {
-			background-color            :   #9152a0;
+			background-color            :   #8bff2d;
 			width                       :   311px;
 			height                      :   80px;
 		}
 		.logo_bar {
+			background-color            :   #8bff2d;
 			width                       :   60px;
 			height                      :   60px;
 		}
 		.mainBar {
-			background-color            :   #9152a0;
+			background-color            :   #8bff2d;
 		}
 		.important {
 			font-weight: bold;
+	        background-color			:	#8bff2d;
 		}
 		.backgroundall {  
-	        background-color			:	#9152a0;
+	        background-color			:	#8bff2d;
 			height                      :   60px;
+			margin						:	0px;
          }  
 	</ui:style>
 	<g:HorizontalPanel styleName='{style.backgroundall}'>

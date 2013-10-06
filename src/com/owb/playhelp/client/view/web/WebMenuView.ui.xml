@@ -20,7 +20,7 @@
 		    background-color            :   #8bff2d;
 			border						:	0px 0px 0px 0px;
 		    margin						: 	0px 0px 0px 0px;
-		    padding						: 	0px 40px 0px 40px;
+		    padding						: 	0px 0px 0px 0px;
 			horizontal-align			:	justified
 		}
 		.gwt-MenuBar .gwt-MenuItemSeparator 
@@ -60,7 +60,7 @@
 		}
 		.gwt-MenuBar .gwt-MenuItem .gwt-MenuBar-selected
 		{
-			font-color					:	#F00
+			font-color					:	#F00;
 		    background-color            :   #FFFFFF !important;
 			border						:	0px 0px 0px 0px;
 		    margin						: 	0px 0px 0px 0px;
@@ -103,7 +103,7 @@ background: url(images/bluebar-bg-selected.png) no-repeat 50% 100%;
 				</g:MenuItem>
 			<g:MenuItem ui:field='homeItem'><font style="font-family:Century Gothic; font-size: 22px; color: #FFFFFF; font-weight:normal;">Home</font>
 				</g:MenuItem>
-				<g:MenuItem ui:field='aboutUsItem'><font style="font-family:Century Gothic; font-size: 22px; color: #FFFFFF; font-weight:normal;">About us</font>
+				<g:MenuItem ui:field='aboutUsItem'><font style="font-family:Century Gothic; font-size: 22px; color: #FFFFFF; font-weight:normal;">About</font>
 				    <g:MenuBar vertical="true">
       					<!-- <g:MenuItem ui:field='contextItem'><font color="#ab0fc8"><b><i>Context</i></b></font></g:MenuItem> -->
       					<g:MenuItem ui:field='ourMissionItem'><font style="font-family:Century Gothic; font-size: 18px; color: #8BFF2D;">Our mission</font></g:MenuItem>
