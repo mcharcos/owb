@@ -13,7 +13,7 @@
 	        border-bottom-right-radius: 16px 16px;
 	        border-top-left-radius: 16px 16px;
 	        border-top-right-radius: 16px 16px;
-			border: 3px outset #F3F781;
+			border: 3px outset #F781F3;
 		}
 		.vertPanel {
 		    background: #FFFFFF;
