@@ -26,7 +26,6 @@ import com.owb.playhelp.shared.DBRecordInfo;
  */
 @SuppressWarnings("serial")
 @PersistenceCapable(identityType = IdentityType.APPLICATION, detachable = "true")
-//@Inheritance(strategy=InheritanceStrategy.NEW_TABLE)
 public class Ngo extends DBRecord  {
 
 	/**

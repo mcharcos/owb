@@ -189,12 +189,10 @@ public class SNgo extends Standard {
 		        if (oneResult != null) {
 		          log.info("User uniqueId already exists: " + uniqueId);
 		          detached = pm.detachCopy(oneResult);
-			      if (user.isAdmin()){
-			  	      if (detached.isMember(user.getId())) {
-			  	    	  detached.add(stdInfo);
-			  	    	  pm.makePersistent(detached);
-			  	    	  detached = pm.detachCopy(oneResult);
-			  	      }
+			      if (user.isAdmin() || detached.isMember(user.getId())) {
+		  	    	  detached.add(stdInfo);
+		  	    	  pm.makePersistent(detached);
+		  	    	  detached = pm.detachCopy(oneResult);
 				  }
 		        } else {
 		          log.info("Standard " + uniqueId + " does not exist, creating...");

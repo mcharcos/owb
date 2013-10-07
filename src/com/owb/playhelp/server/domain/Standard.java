@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 
 import javax.jdo.annotations.Embedded;
 import javax.jdo.annotations.Column;
+import javax.jdo.annotations.Extension;
 import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.PersistenceCapable;
@@ -39,7 +40,7 @@ import com.owb.playhelp.server.utils.cache.Cacheable;
 @SuppressWarnings("serial")
 @PersistenceCapable(identityType = IdentityType.APPLICATION, detachable = "true")
 @Inheritance(strategy=InheritanceStrategy.SUBCLASS_TABLE)
-public class Standard implements Serializable, Cacheable  {
+public abstract class Standard implements Serializable, Cacheable  {
 
 	  //private static final long serialVersionUID = -2023204547641864687L;
 	  protected static final Logger log = Logger.getLogger(Utils.class.getName());
