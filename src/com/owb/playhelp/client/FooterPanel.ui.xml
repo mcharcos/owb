@@ -3,10 +3,10 @@
 	xmlns:g="urn:import:com.google.gwt.user.client.ui">
 	<ui:style>
 		.background {
-			background-color: #D0A9F5;
+			background-color: #F2F2F2;
 			font-family:Century Gothic; 
 			font-size: 14px; 
-			color: #FFFFFF;
+			color: #999999;
 		}
 	</ui:style>
 	<g:HTMLPanel styleName='{style.background}'>

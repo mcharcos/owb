@@ -1,11 +1,15 @@
 body,table {
 	font-size: small;
+	font-family: Century Gothic;
+	color: #999;
+	font-size: 15px;
 }
 
 body {
-	font-family: Helvetica, Arial, sans-serif;
-	color: #000;
 	background: blue;
+	font-family: Century Gothic;
+	color: #999;
+	font-size: 15px;
 }
 
 .popup {
@@ -13,6 +17,9 @@ body {
 	padding: 0.5em;
 	width: 14em;
 	height: 2.5em;
+	font-family: Century Gothic;
+	color: #999;
+	font-size: 15px;
 }
 
 .fullWidth {
@@ -21,32 +28,52 @@ body {
 
 .button {
 	float: right;
+	font-family: Century Gothic;
+	color: #C9F;
+	font-size: 15px;
+	text-decoration: underline;
+}
 }
 
 .addListBox {
     float: right;
     padding: 8px 4px;
+    font-family: Century Gothic;
+	color: #999;
+	font-size: 15px;
 }
 
 .addElementListLink {
 	color: blue;
 	font-size: 1.1em;
 	cursor: pointer;
+	font-family: Century Gothic;
+	color: #999;
+	font-size: 15px;
 }
 
 .alignTextRight {
 	text-align: right;
 	background-color: blue;
 	width: 100%;
+	font-family: Century Gothic;
+	color: #999;
+	font-size: 15px;
 }
 
 .boxPadding {
 	margin: 11px 0 11px 11px;
 	xpadding: 11px;
+	font-family: Century Gothic;
+	color: #999;
+	font-size: 15px;
 }
 
 .boxBorder {
 	border: 2px solid #5693d6;
+	font-family: Century Gothic;
+	color: #999;
+	font-size: 15px;
 }
 
 .contentColumn {
@@ -54,12 +81,18 @@ body {
 	background-color: white;
 	border: 2px solid #5693d6;
 	width:200px;
+	font-family: Century Gothic;
+	color: #999;
+	font-size: 15px;
 }
 
 .formTitle {
 	font-weight: bold;
 	font-size: 2em;
 	margin: 15px 0;
+	font-family: Century Gothic;
+	color: #999;
+	font-size: 15px;
 }
 
 .formButtons {
@@ -67,19 +100,31 @@ body {
 	margin: 10px 0;
 	padding: 10px;
 	background-color: #e3e3e3;
+	font-family: Century Gothic;
+	color: #999;
+	font-size: 15px;
 }
 
 .formContainer {
 	padding: 10px;
+	font-family: Century Gothic;
+	color: #999;
+	font-size: 15px;
 }
 
 .help {
 	color: gray; 
+	font-family: Century Gothic;
+	color: #999;
+	font-size: 15px;
 }
 
 .link {
 	text-decoration: underline;
 	cursor: pointer;
+	font-family: Century Gothic;
+	color: #999;
+	font-size: 15px;
 }
 
 .mainPanel {
@@ -87,6 +132,9 @@ body {
 	background-color: white;
 	border: 2px solid #5693d6;
 	height: 100%;
+	font-family: Century Gothic;
+	color: #999;
+	font-size: 15px;
 }
 
 .footerPanel {
@@ -94,11 +142,17 @@ body {
 	padding: 10px;
 	border-top: 2px solid #5693d6;
 	text-align: right;
+	font-family: Century Gothic;
+	color: #999;
+	font-size: 15px;
 	}
 
 .messageList {
 	width: 100%;
 	padding: 10px;
+	font-family: Century Gothic;
+	color: #999;
+	font-size: 15px;
 }
 
 .titleBar {
@@ -108,27 +162,42 @@ body {
 	padding: 8px 4px;
 	font-size: 1.1em;
 	font-weight: bold;
+	font-family: Century Gothic;
+	color: #999;
+	font-size: 15px;
 }
 
 .outer {
 	background-color: #f9f184;
+	font-family: Century Gothic;
+	color: #999;
+	font-size: 15px;
 }
 
 .formwrapper{ /*field row DIV (includes two columns- Styled label column and 'the field' column)*/
 	width: 100%; /*width of form rows*/
 	overflow: hidden;
 	padding: 5px 0;
+	font-family: Century Gothic;
+	color: #999;
+	font-size: 15px;
 }
 .formlabel{
     float: left;
 	width: 150px; /*width of label (left column)*/
 	text-transform: uppercase;
-	border-bottom: 1px solid red;
-	margin-right: 15px; /*spacing with right column*/
+	border-bottom: 1px solid #F09;
+	margin-right: 15px; /*spacing with right column*/	
+	font-family: Century Gothic;
+	color: #999;
+	font-size: 15px;
 }
 .formfield{
 	float: left;
 	margin-bottom: 10px; /* space following the field */
+	font-family: Century Gothic;
+	color: #999;
+	font-size: 15px;
 }
 
 
@@ -137,16 +206,25 @@ body {
 	overflow: hidden;
 	border:5px solid red;
 	padding: 5px 0;
+	font-family: Century Gothic;
+	color: #999;
+	font-size: 15px;
 }
 .descpic{
 	width: auto;
 	float: left;
 	margin-right: 10px; /* space following the field */
+	font-family: Century Gothic;
+	color: #999;
+	font-size: 15px;
 }
 .desclabel{
 	float:left;
 	width: 250px; /*width of label (left column)*/
 	margin-top: 5px; /*spacing with right column*/
 	color:#9152a0;
+	font-family: Century Gothic;
+	color: #999;
+	font-size: 15px;
 }
 

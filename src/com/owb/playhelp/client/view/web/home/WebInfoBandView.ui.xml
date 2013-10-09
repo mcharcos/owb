@@ -33,6 +33,15 @@
             margin: 25px;
             padding: 5px;
 		}
+		/*.button .gwt-PushButton-up-hovering {
+  			padding: 2px;
+  			background-color: #FE2E9A;
+  			border: 2px solid #faf9f7;
+  			border-right: 2px solid #848280;
+  			border-bottom: 2px solid #848280;
+  			cursor: pointer;
+  			cursor: hand;
+		}*/
 	</ui:style>
 	<g:VerticalPanel styleName="{style.vertPanel}">
 	    <g:cell horizontalAlignment="ALIGN_CENTER" verticalAlignment="ALIGN_MIDDLE" styleName="{style.cellPanel}">

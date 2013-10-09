@@ -6,7 +6,8 @@
 	
     <ui:with field='res' type='com.owb.playhelp.client.resources.Resources'/>
     
-	<ui:style>
+    <ui:style src="../../resources/GlobalStyles.css">
+
 		.gwt-MenuBar
 		{
 		    cursor                      :   hand;
@@ -25,11 +26,36 @@
 		    padding						: 	0px 0px 0px 0px;
 			horizontal-align			:	justified
 		}
-		.gwt-MenuBar table	a:hover 
+		.gwt-MenuBar .gwt-PushButton-down-hovering 
 		{
-			font-color					:	#F00;
-			background-color            :   #FFFFFF;
-		}			
+			background-color			: 	#FA58D0;
+			cursor						:	pointer;
+			cursor						: 	hand;
+		}
+		.gwt-MenuBar .gwt-MenuItem 
+		{
+			background-color			: 	#FA58D0;
+			cursor						: 	pointer;
+			cursor						: 	hand;
+			border						:	0px 0px 0px 0px;
+		    margin						: 	0px 0px 0px 0px;
+		    padding						: 	5px 5px 5px 0px;
+		}
+		.gwt-MenuItem .gwt-PushButton-down-hovering 
+		{
+			background-color: #FA58D0;
+			cursor: pointer;
+			cursor: hand;
+		}
+		a, a:visited, a:hover {
+  			color: #FA58D0;
+		}
+		.gwt-MenuBar a:hover {
+  			color: #FA58D0;
+		}
+		.gwt-MenuItem a:hover {
+  			color: #FA58D0;
+		}
 	</ui:style>
 	
 	<!--

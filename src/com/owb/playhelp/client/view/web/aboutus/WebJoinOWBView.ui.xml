@@ -5,36 +5,41 @@
 	<ui:style src="../../../resources/GlobalStyles.css" >
 		.important {
 			font-weight: bold;
+			font-family: Century Gothic;
+			color: #999;
+			font-size: 15px;
 		}
 		.description{
 	        color:#9152a0;
 	        margin: 30px;
+			font-family: Century Gothic;
+			color: #999;
+			font-size: 15px;
 	   }
 	</ui:style>
 	<g:HTMLPanel>
 	   <div class="{style.description}">
-	    <h1>VOLUNTEER OPPORTUNITIES</h1>
+	    <p><font style="font-family:Century Gothic; font-size: 50px; color: #8BFF2D;">Join our volunteer team</font></p>
 
-		<table align="left">
+		<table align="center">
     		<tr>
-    			<td>
+    			<td align="center">
 		        <g:Image url='{res.volunteerWebPic.getSafeUri.asString}'/>
 	    		</td>
 	    	</tr>
     		<tr>
-		        <td width="570">
-		        We meet every Wednesday at 4pm and Friday at 12 PM (Pacific Standard Time).
+		        <td width="570" align="center">
+		        <font style="font-family:Century Gothic; font-size: 15px; color: #999;">
+		        We meet every <font style="font-family:Century Gothic; font-size: 15px; color: #F09;">Friday at 12 PM (PST)</font>.
 		        <br></br>
-				While our meetings are held in Mountain View, CA, we also have the option
-				of video-conferencing through Google Hangouts or Skype.<br></br>
+				Our meetings are held in Mountain View, CA, but many of our volunteers choose to join via video-conferencing through <font style="font-family:Century Gothic; font-size: 15px; color: #F09;">Google Hangouts</font> or <font style="font-family:Century Gothic; font-size: 15px; color: #F09;">Skype.</font><br></br>
 				<br></br>
-				Please fill out the volunteering form to join us or 
-				to view our current volunteer opportunities or 
-			    contact us at <b>owb@orphanagewithoutborders.org</b> for requesting information about our organization or share
-			    your interests for helping children.<br></br>
+				Please fill out the volunteering form to join our team.<br></br>
+			    You may also contact us on <font style="font-family:Century Gothic; font-size: 15px; color: #F09;">OWB@orphanagewithoutborders.org</font> to request information about our organization or share
+			    your interests and ideas to help children.<br></br>
 				<br></br>
-				Would you like to join our development team? Help develop our open source application at https://github.com/mcharcos/owb 
-				to provide a tool for collaboration.
+				Would you like to join our software development team? Help develop our open source application on <a href="https://github.com/mcharcos/owb">https://github.com/mcharcos/owb</a> 
+	    		</font>
 	    		</td>
 	    	</tr>
 	    	<tr><td>
@@ -65,28 +70,27 @@
 				</div>
 			</div>
 			
-		<div class="{style.formTitle}">Which activities would you like to be involved?</div>
+		<div class="{style.formTitle}">How would you like to be involved?</div>
 		<g:VerticalPanel>
-			<g:CheckBox ui:field='question1'>Website development (programming)</g:CheckBox>
-			<g:CheckBox ui:field='question2'>Website development (programming)</g:CheckBox>
-			<g:CheckBox ui:field='question3'>Website development (design)</g:CheckBox>
-			<g:CheckBox ui:field='question4'>Fundraising</g:CheckBox>
-			<g:CheckBox ui:field='question5'>Researching the needs of orphans and street children</g:CheckBox>
-			<g:CheckBox ui:field='question6'>Researching existing organizations that target a specific need</g:CheckBox>
-			<g:CheckBox ui:field='question7'>Researching existing organizations in a particular location</g:CheckBox>
-			<g:CheckBox ui:field='question8'>Recruiting more volunteers to help us</g:CheckBox>
-			<g:CheckBox ui:field='question9'>Gathering and creating the documentation needed for the 501(c)3 registration</g:CheckBox>
-			<g:CheckBox ui:field='question10'>Developing an improvement plan for an orphanage </g:CheckBox>
+			<g:CheckBox ui:field='question1'><font style="font-family:Century Gothic; font-size: 15px; color: #999;">Website development (programming)</font></g:CheckBox>
+			<g:CheckBox ui:field='question2'><font style="font-family:Century Gothic; font-size: 15px; color: #999;">Website development (design)</font></g:CheckBox>
+			<g:CheckBox ui:field='question3'><font style="font-family:Century Gothic; font-size: 15px; color: #999;">Fundraising</font></g:CheckBox>
+			<g:CheckBox ui:field='question4'><font style="font-family:Century Gothic; font-size: 15px; color: #999;">Researching the needs of orphans and street children</font></g:CheckBox>
+			<g:CheckBox ui:field='question5'><font style="font-family:Century Gothic; font-size: 15px; color: #999;">Researching existing organizations that target a specific need</font></g:CheckBox>
+			<g:CheckBox ui:field='question6'><font style="font-family:Century Gothic; font-size: 15px; color: #999;">Researching existing organizations in a particular location</font></g:CheckBox>
+			<g:CheckBox ui:field='question7'><font style="font-family:Century Gothic; font-size: 15px; color: #999;">Recruiting more volunteers to help us</font></g:CheckBox>
+			<g:CheckBox ui:field='question8'><font style="font-family:Century Gothic; font-size: 15px; color: #999;">Gathering and creating the documentation needed for the 501(c)3 registration</font></g:CheckBox>
+			<g:CheckBox ui:field='question9'><font style="font-family:Century Gothic; font-size: 15px; color: #999;">Developing an improvement plan for an orphanage</font></g:CheckBox>
+			<g:HorizontalPanel>
+				<g:CheckBox ui:field='question10'><font style="font-family:Century Gothic; font-size: 15px; color: #999;"><par>Other: </par></font></g:CheckBox>
+				<g:TextArea ui:field='descField' width="25em" height="5em"></g:TextArea>
+			</g:HorizontalPanel>
 		</g:VerticalPanel>
 			<br></br>
-			<div class="{style.formwrapper}">
-				<div class="{style.formlabel}">
-					<g:Label >Explain further your interests:</g:Label>
-				</div>
-				<div class="{style.formfield}">
-					<g:TextArea ui:field='descField' width="25em" height="15em"></g:TextArea>
-				</div>
-			</div>
+			<p><font style="font-family:Century Gothic; font-size: 15px; color: #999;"><b>Your Google+ and/or Skype name</b>
+			<br></br>(please specify which is which)
+			</font></p>
+			<g:TextBox ui:field='skypeField' width="25em"></g:TextBox>
 			
 		<div class="{style.formTitle}">Additional Information</div>
 			<div class="{style.formwrapper}">

@@ -26,11 +26,10 @@ body div table {
   <g:HTMLPanel>
 <div align="center">
 <p>&nbsp;</p>
-  <p><font style="font-family:Century Gothic;">
-      <font style="font-size: 50px; color: #8BFF2D;">People</font></font>    </p>
+  <p><font style="font-family:Century Gothic; font-size: 50px; color: #8BFF2D;">People</font></p>
   <table width="600" border="0" cellspacing="1">
   <tr>
-        <td colspan="9"><font style="font-family:Century Gothic;"><font style="font-size: 15px; color: #999;"><font style="font-size: 22px; color: #F09;">co-founders</font></font></font></td>
+        <td colspan="9"><font style="font-family:Century Gothic; font-size: 22px; color: #F09;">co-founders</font></td>
     </tr>
       <tr>
         <td colspan="3">
@@ -41,14 +40,14 @@ body div table {
 </td>
       </tr>
       <tr>
-        <td colspan="3"><font style="font-family:Century Gothic;"><font style="font-size: 15px; color: #999;">Miguel Charcos Lloréns, Ph.D. </font></font></td>
+        <td colspan="3"><font style="font-family:Century Gothic; font-size: 15px; color: #999;">Miguel Charcos Lloréns, Ph.D.</font></td>
         <td colspan="3">&nbsp;</td>
-        <td colspan="3"><font style="font-family:Century Gothic;"><font style="font-size: 15px; color: #999;">Kathy Laughlin Charcos, Ph.D.</font></font></td>
+        <td colspan="3"><font style="font-family:Century Gothic; font-size: 15px; color: #999;">Kathy Laughlin Charcos, Ph.D.</font></td>
       </tr>
       <tr>
-        <td colspan="3"><font style="font-family:Century Gothic;"><font style="font-size: 15px; color: #999;"><a href="mailto:mvcharcos@orphanagewithoutborders.org ">e-mail</a></font></font><br></br></td>
+        <td colspan="3"><font style="font-family:Century Gothic; font-size: 15px; color: #999;"><a href="mailto:mvcharcos@orphanagewithoutborders.org ">e-mail</a></font><br></br></td>
         <td colspan="3">&nbsp;</td>
-        <td colspan="3"><font style="font-family:Century Gothic;"><font style="font-size: 15px; color: #999;"><a href="mailto:kl@orphanagewithoutborders.org">e-mail</a></font></font></td>
+        <td colspan="3"><font style="font-family:Century Gothic; font-size: 15px; color: #999;"><a href="mailto:kl@orphanagewithoutborders.org">e-mail</a></font></td>
       </tr>
       <tr>
         <td colspan="9">&nbsp;</td>
