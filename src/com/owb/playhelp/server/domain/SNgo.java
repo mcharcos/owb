@@ -1,6 +1,7 @@
 package com.owb.playhelp.server.domain;
 
 import java.util.Date;
+import java.util.UUID;
 
 import javax.jdo.JDOCanRetryException;
 import javax.jdo.JDOUserException;
@@ -10,6 +11,7 @@ import javax.jdo.Transaction;
 import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.PersistenceCapable;
 
+import com.google.appengine.api.datastore.Text;
 import com.owb.playhelp.server.PMFactory;
 import com.owb.playhelp.server.domain.user.UserProfile;
 import com.owb.playhelp.shared.DBRecordInfo;
@@ -30,11 +32,18 @@ public class SNgo extends Standard {
 
 	  //private static final long serialVersionUID = -2023204547641864687L;
 	public SNgo(){
-		super();
+		UUID uuid = UUID.randomUUID();
+		this.setUniqueId(uuid.toString()); 
+		this.initAreaStandard();
 	}
 	
 	public SNgo(DBRecord record){
-		super(record);
+		this.setName(record.getName());
+		this.setDescription(record.getDescription());
+		this.setAddress(record.getAddress());
+		this.setLatitude(record.getLatitude());
+		this.setLongitude(record.getLongitude());
+		this.atest1 = new TestEmbedded();
 	}
 	
 	public SNgo(Ngo record){
@@ -44,6 +53,7 @@ public class SNgo extends Standard {
 		this.setAddress(record.getAddress());
 		this.setLatitude(record.getLatitude());
 		this.setLongitude(record.getLongitude());
+		this.atest1 = new TestEmbedded();
 
 		// Complete standard information from record
 		// We will have to check if it already existed 
@@ -53,7 +63,20 @@ public class SNgo extends Standard {
 	}
 
 	public SNgo(DBRecordInfo record){
-		super(record);
+		this();
+		this.setName(record.getName());
+		this.setDescription(record.getDescription());
+		this.setAddress(record.getAddress());
+		this.setLatitude(record.getLatitude());
+		this.setLongitude(record.getLongitude());
+
+		if (record.getStandard() == null){
+			log.info("SNgo(DBRecordInfo): Does not have StandardInfo");
+			return;
+		}
+		this.setUniqueId(record.getStandard().getUniqueId());
+		this.add(record.getStandard());
+		this.atest1 = new TestEmbedded();
 		
 		// Complete standard information from record
 		// We will have to check if it already existed 
@@ -63,8 +86,10 @@ public class SNgo extends Standard {
 		// we should create the method to perform the task.
 	}
 
-	public SNgo(StandardInfo record){
-		super(record);
+	public SNgo(StandardInfo stdInfo){
+		this();
+		this.add(stdInfo);
+		this.atest1 = new TestEmbedded();
 	}
 
 	/**
@@ -186,14 +211,14 @@ public class SNgo extends Standard {
 		        // we can use it when returned
 		        // If not found, we make the current ngo persistent 
 		        // and detache the object.
-		        if (oneResult != null) {
-		          log.info("User uniqueId already exists: " + uniqueId);
-		          detached = pm.detachCopy(oneResult);
-			      if (user.isAdmin() || detached.isMember(user.getId())) {
-		  	    	  detached.add(stdInfo);
-		  	    	  pm.makePersistent(detached);
-		  	    	  detached = pm.detachCopy(oneResult);
+		        if (oneResult != null) {  
+		          log.info("Standard uniqueId already exists: " + uniqueId);
+			      if (user.isAdmin() || oneResult.isMember(user.getId())) {
+			    	  oneResult.add(stdInfo);
+			    	  oneResult.setTest(3L);
+		  	    	  pm.makePersistent(oneResult);
 				  }
+		          detached = pm.detachCopy(oneResult);
 		        } else {
 		          log.info("Standard " + uniqueId + " does not exist, creating...");
 		          record.add(stdInfo);
@@ -213,7 +238,7 @@ public class SNgo extends Standard {
 		        }
 		      } // end for
 		    } catch (JDOUserException e){ 
-		          log.info("JDOUserException: SNgo table is empty");
+		          log.warning("JDOUserException: "+e.getMessage());
 		          // Create friends from Google+
 		          record.add(stdInfo);
 		          pm.makePersistent(record); 

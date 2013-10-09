@@ -43,6 +43,7 @@ import com.owb.playhelp.client.service.VolunteerServiceAsync;
 import com.owb.playhelp.client.view.AddStandardView;
 import com.owb.playhelp.client.view.ContactHomeView;
 import com.owb.playhelp.client.view.DBRecordListView;
+import com.owb.playhelp.client.view.MyDialog;
 import com.owb.playhelp.client.view.ShowDetailsDBRecordView;
 import com.owb.playhelp.client.view.StandardListView;
 import com.owb.playhelp.client.view.map.MainHomeView;
@@ -121,6 +122,11 @@ import com.owb.playhelp.client.event.orphanage.AddOrphanageCancelEventHandler;
 import com.owb.playhelp.client.event.project.ShowPopupAddProjectEvent;
 import com.owb.playhelp.client.event.project.ShowPopupAddProjectEventHandler;
 import com.owb.playhelp.client.helper.RPCCall;
+import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.DialogBox;
+import com.google.gwt.user.client.ui.HTML;
+import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.VerticalPanel;
 
 /**
  * 
@@ -376,15 +382,16 @@ public class PathGuide implements ValueChangeHandler<String>  {
 		thePath.addHandler(ShowAddDBRecordEvent.TYPE, new ShowAddDBRecordEventHandler(){
 			public void onShowAddDBRecord(ShowAddDBRecordEvent event){
 				if (currentUser == null){
-					Window.alert("You must log in to add or update an Organization");
+					//Window.alert("You must log in to add or update a record");
+					new MyDialog("Warning", "<b>You must log in to add or update a record.</b>").show();
 					return;
 				}
 				if (event.getDBRecord() == null){
-					Window.alert("Problem selecting elemet to be updated. Contact the administrator.");
+					new MyDialog("Warning", "<b>Problem selecting elemet to be updated. Contact the administrator.</b>").show();
 					return;
 				}
 				if (!event.getDBRecord().getMember()){
-					Window.alert("You can't update records if you are not a member.");
+					new MyDialog("Warning", "<b>You can't update records if you are not a member.</b>").show();
 					return;
 				}
 				lastView = History.getToken();
@@ -449,12 +456,12 @@ public class PathGuide implements ValueChangeHandler<String>  {
 		thePath.addHandler(ShowPopupAddProjectEvent.TYPE, new ShowPopupAddProjectEventHandler(){
 			public void onShowPopupAddProject(ShowPopupAddProjectEvent event){
 				if (currentUser == null){
-					Window.alert("You must log in to add or update a Project");
+					new MyDialog("Warning","<b>You must log in to add or update a Project.</b>").show();
 					return;
 				}
 				if (event.getProject() != null){
 					if (!event.getProject().getMember()){
-						Window.alert("You can't update an Project if you are not a member ");
+						new MyDialog("Warning","<b>You can't update an Project if you are not a member.</b>").show();
 						return;
 					}
 				}
@@ -747,8 +754,8 @@ public class PathGuide implements ValueChangeHandler<String>  {
 				//Owb.get().getMainTitle().setText("User Preferences");
 				presenter = new NgoListPresenter(ngoService,thePath,new DBRecordListView());
 				presenter.go(Owb.get().getMainPanel());	
-				presenter = new SNgoListPresenter(standardService,thePath,new StandardListView());
-				presenter.go(Owb.get().getMainPanel());	
+				//presenter = new SNgoListPresenter(standardService,thePath,new StandardListView());
+				//presenter.go(Owb.get().getMainPanel());	
 	        return;
 	        } 
 			if (token.equals("listVolunteer")) {

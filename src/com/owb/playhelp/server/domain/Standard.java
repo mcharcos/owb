@@ -10,7 +10,6 @@ import java.util.logging.Logger;
 
 import javax.jdo.annotations.Embedded;
 import javax.jdo.annotations.Column;
-import javax.jdo.annotations.Extension;
 import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.PersistenceCapable;
@@ -18,8 +17,6 @@ import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 import javax.jdo.annotations.Inheritance;
 import javax.jdo.annotations.InheritanceStrategy;
-import javax.persistence.Basic;
-import javax.persistence.FetchType;
 
 import com.google.appengine.api.datastore.Text;
 import com.owb.playhelp.shared.AreaStandardInfo;
@@ -37,8 +34,8 @@ import com.owb.playhelp.server.utils.cache.Cacheable;
  * for other records as ngo, orphanages, users,...
  *
  */
-@SuppressWarnings("serial")
-@PersistenceCapable(identityType = IdentityType.APPLICATION, detachable = "true")
+@SuppressWarnings("serial") 
+@PersistenceCapable(identityType = IdentityType.APPLICATION, detachable = "true") 
 @Inheritance(strategy=InheritanceStrategy.SUBCLASS_TABLE)
 public abstract class Standard implements Serializable, Cacheable  {
 
@@ -89,6 +86,10 @@ public abstract class Standard implements Serializable, Cacheable  {
      * description is entered at the same time.
     */
 
+	@Persistent
+	@Embedded
+	protected TestEmbedded atest1;
+	 
 	/*
 	* Clean Water
 	*/ 	
@@ -202,7 +203,7 @@ public abstract class Standard implements Serializable, Cacheable  {
 	/*
 	* Discipline
 	*/ 
-	@Persistent
+	
 	@Embedded(members = {
 	        @Persistent(name="stdDate", columns=@Column(name="disciplineDate")),
 	        @Persistent(name="stdStatus", columns=@Column(name="disciplineStatus")),
@@ -263,23 +264,7 @@ public abstract class Standard implements Serializable, Cacheable  {
 	public Standard() {
 		UUID uuid = UUID.randomUUID();
 		this.uniqueId = uuid.toString();  
-		water = new AreaStandard(); 
-		food = new AreaStandard(); 
-		shelter = new AreaStandard(); 
-		clothing = new AreaStandard(); 
-		water = new AreaStandard(); 
-		medicine = new AreaStandard(); 
-		hygiene = new AreaStandard(); 
-		safety = new AreaStandard(); 
-		activity = new AreaStandard(); 
-		education = new AreaStandard(); 
-		guidance = new AreaStandard(); 
-		responsibility = new AreaStandard(); 
-		discipline = new AreaStandard(); 
-		love = new AreaStandard(); 
-		compassion = new AreaStandard(); 
-		joy = new AreaStandard();
-		hope = new AreaStandard(); 
+		this.initAreaStandard();
 	}
 	
 	public Standard(DBRecordInfo record){
@@ -310,6 +295,27 @@ public abstract class Standard implements Serializable, Cacheable  {
 	public Standard(StandardInfo stdInfo){
 		this();
 		this.add(stdInfo);
+	}
+	
+	protected void initAreaStandard(){
+		atest1 = new TestEmbedded();
+		water = new AreaStandard(); 
+		food = new AreaStandard(); 
+		shelter = new AreaStandard(); 
+		clothing = new AreaStandard(); 
+		water = new AreaStandard(); 
+		medicine = new AreaStandard(); 
+		hygiene = new AreaStandard(); 
+		safety = new AreaStandard(); 
+		activity = new AreaStandard(); 
+		education = new AreaStandard(); 
+		guidance = new AreaStandard(); 
+		responsibility = new AreaStandard(); 
+		discipline = new AreaStandard(); 
+		love = new AreaStandard(); 
+		compassion = new AreaStandard(); 
+		joy = new AreaStandard();
+		hope = new AreaStandard(); 
 	}
 
 	/**
@@ -557,6 +563,18 @@ public abstract class Standard implements Serializable, Cacheable  {
 	public AreaStandard getStdWater(){
 		return this.water;
 	}
+	public void setStdWater(AreaStandard std){
+		this.water = std;
+	}
+	public AreaStandard getStdActivity(){
+		return this.activity;
+	}
+	public void setStdActivity(AreaStandard std){
+		this.activity = std;
+	}
+	public void setTest(Long test){
+		this.atest1.set(test);
+	}
 	
 	/*
 	 * Methods to retrieve the standards at a specific date 
@@ -574,7 +592,7 @@ public abstract class Standard implements Serializable, Cacheable  {
 		log.info("Getting water standard");
 		return this.getStdInfo(this.water, date);
 	}
-	public AreaStandardInfo getLastWater(Date date){
+	public AreaStandardInfo getLastWater(){
 		log.info("Getting last water standard");
 		return this.getStdInfo(this.water, new Date());
 	}
@@ -583,7 +601,7 @@ public abstract class Standard implements Serializable, Cacheable  {
 		log.info("Getting food standard");
 		return this.getStdInfo(this.food, date);
 	}
-	public AreaStandardInfo getLastFood(Date date){
+	public AreaStandardInfo getLastFood(){
 		log.info("Getting last food standard");
 		return this.getStdInfo(this.food, new Date());
 	}
@@ -592,7 +610,7 @@ public abstract class Standard implements Serializable, Cacheable  {
 		log.info("Getting shelter standard");
 		return this.getStdInfo(this.shelter, date);
 	}
-	public AreaStandardInfo getLastShelter(Date date){
+	public AreaStandardInfo getLastShelter(){
 		log.info("Getting last shelter standard");
 		return this.getStdInfo(this.shelter, new Date());
 	}
@@ -601,7 +619,7 @@ public abstract class Standard implements Serializable, Cacheable  {
 		log.info("Getting clothing standard");
 		return this.getStdInfo(this.clothing, date);
 	}
-	public AreaStandardInfo getLastClothing(Date date){
+	public AreaStandardInfo getLastClothing(){
 		log.info("Getting last clothing standard");
 		return this.getStdInfo(this.clothing, new Date());
 	}
@@ -610,7 +628,7 @@ public abstract class Standard implements Serializable, Cacheable  {
 		log.info("Getting medicine standard");
 		return this.getStdInfo(this.medicine, date);
 	}
-	public AreaStandardInfo getLastMedicine(Date date){
+	public AreaStandardInfo getLastMedicine(){
 		log.info("Getting last medicine standard");
 		return this.getStdInfo(this.medicine, new Date());
 	}
@@ -619,7 +637,7 @@ public abstract class Standard implements Serializable, Cacheable  {
 		log.info("Getting hygiene standard");
 		return this.getStdInfo(this.hygiene, date);
 	}
-	public AreaStandardInfo getLastHygiene(Date date){
+	public AreaStandardInfo getLastHygiene(){
 		log.info("Getting last hygiene standard");
 		return this.getStdInfo(this.hygiene, new Date());
 	}
@@ -628,7 +646,7 @@ public abstract class Standard implements Serializable, Cacheable  {
 		log.info("Getting safety standard");
 		return this.getStdInfo(this.safety, date);
 	}
-	public AreaStandardInfo getLastSafety(Date date){
+	public AreaStandardInfo getLastSafety(){
 		log.info("Getting last safety standard");
 		return this.getStdInfo(this.safety, new Date());
 	}
@@ -637,7 +655,7 @@ public abstract class Standard implements Serializable, Cacheable  {
 		log.info("Getting activity standard");
 		return this.getStdInfo(this.activity, date);
 	}
-	public AreaStandardInfo getLastActivity(Date date){
+	public AreaStandardInfo getLastActivity(){
 		log.info("Getting last activty standard");
 		return this.getStdInfo(this.activity, new Date());
 	}
@@ -646,7 +664,7 @@ public abstract class Standard implements Serializable, Cacheable  {
 		log.info("Getting education standard");
 		return this.getStdInfo(this.education, date);
 	}
-	public AreaStandardInfo getLastEducation(Date date){
+	public AreaStandardInfo getLastEducation(){
 		log.info("Getting last education standard");
 		return this.getStdInfo(this.education, new Date());
 	}
@@ -655,7 +673,7 @@ public abstract class Standard implements Serializable, Cacheable  {
 		log.info("Getting guidance standard");
 		return this.getStdInfo(this.guidance, date);
 	}
-	public AreaStandardInfo getLastGuidance(Date date){
+	public AreaStandardInfo getLastGuidance(){
 		log.info("Getting last guidance standard");
 		return this.getStdInfo(this.guidance, new Date());
 	}
@@ -664,7 +682,7 @@ public abstract class Standard implements Serializable, Cacheable  {
 		log.info("Getting responsibility standard");
 		return this.getStdInfo(this.responsibility, date);
 	}
-	public AreaStandardInfo getLastResponsibility(Date date){
+	public AreaStandardInfo getLastResponsibility(){
 		log.info("Getting last responsibility standard");
 		return this.getStdInfo(this.responsibility, new Date());
 	}
@@ -673,7 +691,7 @@ public abstract class Standard implements Serializable, Cacheable  {
 		log.info("Getting discipline standard");
 		return this.getStdInfo(this.discipline, date);
 	}
-	public AreaStandardInfo getLastDiscipline(Date date){
+	public AreaStandardInfo getLastDiscipline(){
 		log.info("Getting last discipline standard");
 		return this.getStdInfo(this.discipline, new Date());
 	}
@@ -682,7 +700,7 @@ public abstract class Standard implements Serializable, Cacheable  {
 		log.info("Getting love standard");
 		return this.getStdInfo(this.love, date);
 	}
-	public AreaStandardInfo getLastLove(Date date){
+	public AreaStandardInfo getLastLove(){
 		log.info("Getting last love standard");
 		return this.getStdInfo(this.love, new Date());
 	}
@@ -691,7 +709,7 @@ public abstract class Standard implements Serializable, Cacheable  {
 		log.info("Getting compassion standard");
 		return this.getStdInfo(this.compassion, date);
 	}
-	public AreaStandardInfo getLastCompassion(Date date){
+	public AreaStandardInfo getLastCompassion(){
 		log.info("Getting last compassion standard");
 		return this.getStdInfo(this.compassion, new Date());
 	}
@@ -700,7 +718,7 @@ public abstract class Standard implements Serializable, Cacheable  {
 		log.info("Getting joy standard");
 		return this.getStdInfo(this.joy, date);
 	}
-	public AreaStandardInfo getLastJoy(Date date){
+	public AreaStandardInfo getLastJoy(){
 		log.info("Getting last joy standard");
 		return this.getStdInfo(this.joy, new Date());
 	}
@@ -709,7 +727,7 @@ public abstract class Standard implements Serializable, Cacheable  {
 		log.info("Getting hope standard");
 		return this.getStdInfo(this.hope, date);
 	}
-	public AreaStandardInfo getLastHope(Date date){
+	public AreaStandardInfo getLastHope(){
 		log.info("Getting last hope standard");
 		return this.getStdInfo(this.hope, new Date());
 	}

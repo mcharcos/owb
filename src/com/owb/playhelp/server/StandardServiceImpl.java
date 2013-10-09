@@ -65,6 +65,44 @@ public class StandardServiceImpl extends RemoteServiceServlet implements Standar
 	    
 	    logger.fine("Standard unique id: "+standard.getUniqueId());
 	    
+	    pm = PMFactory.getTxnPm();
+		
+		// If the user is not an admin and it is not a member the ngo information could not
+		// be updated
+		if (!user.isAdmin()){
+	      if (!standard.isMember(user.getId())) {
+	    	  pm.close();
+	    	  return null;
+	      }
+		}
+	    
+		try {
+			for (int i = 0; i < NUM_RETRIES; i++){
+				pm.currentTransaction().begin();
+				SNgo stdPersist = pm.makePersistent(standard);
+				try {
+			          logger.fine("starting commit");
+			          pm.currentTransaction().commit();
+			          logger.fine("commit was successful");
+			          break;
+			    } catch (JDOCanRetryException e1) {
+			          if (i == (NUM_RETRIES - 1)) {
+			            throw e1;
+			          }
+			        }
+			} // end for
+		}catch (Exception e) {
+		      e.printStackTrace();
+		      logger.warning(e.getMessage());
+		} finally {
+			if (pm.currentTransaction().isActive()){
+				pm.currentTransaction().rollback();
+				logger.warning("transaction rollback");
+			}
+			pm.close();
+		}
+		
+	    
 	    return stdInfo;
 	}
 	
@@ -171,7 +209,6 @@ public class StandardServiceImpl extends RemoteServiceServlet implements Standar
 				if (ngoId != null){
 					foundNgo = pm.getObjectById(SNgo.class, ngoId);
 					record = SNgo.toInfo(foundNgo,userId);
-					AreaStandard water = foundNgo.getStdWater();
 					if (isAdmin) record.activateMember();
 					ngoArray.add(record);	
 				}

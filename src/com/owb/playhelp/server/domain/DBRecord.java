@@ -118,14 +118,7 @@ public abstract class DBRecord implements Serializable, Cacheable  {
 		this();
 		
 		// Copy the information from the input
-		this.setName(recordInfo.getName());
-		this.setDescription(recordInfo.getDescription());
-		this.setAddress(recordInfo.getAddress());
-		this.setLatitude(recordInfo.getLatitude());
-		this.setLongitude(recordInfo.getLongitude());
-		this.setPhone(recordInfo.getPhone());
-		this.setEmail(recordInfo.getEmail());
-		this.setWebsite(recordInfo.getWebsite());
+		this.reEdit(recordInfo);
 		this.setUniqueId(recordInfo.getUniqueId());
 		
 		// If the input object did not contain a uniqueId, that means 
@@ -151,7 +144,6 @@ public abstract class DBRecord implements Serializable, Cacheable  {
 		
 		this.setName(recordInfo.getName());
 		this.setDescription(recordInfo.getDescription());
-		this.setName(recordInfo.getName());
 		this.setAddress(recordInfo.getAddress());
 		this.setLatitude(recordInfo.getLatitude());
 		this.setLongitude(recordInfo.getLongitude());

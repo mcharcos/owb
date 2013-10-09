@@ -299,8 +299,8 @@ public class NgoStandard  implements Serializable, Cacheable{
 		        }
 		        catch (JDOCanRetryException e1) {
 		        }
-	    } catch (Exception e) {
-	      e.printStackTrace();
+	    } catch (Exception e) { 
+	      e.printStackTrace(); 
 	    } 
 	    finally {
 	      if (tx.isActive()) {
