@@ -14,6 +14,7 @@ import com.google.gwt.user.client.ui.HasValue;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.Widget;
 
+import com.owb.playhelp.client.event.dbrecord.DBRecordUpdateEvent;
 import com.owb.playhelp.client.event.orphanage.AddOrphanageCancelEvent;
 import com.owb.playhelp.client.event.orphanage.AddOrphanageUpdateEvent;
 import com.owb.playhelp.client.event.orphanage.OrphanageUpdateEvent;
@@ -112,6 +113,7 @@ public class AddOrphanagePresenter implements Presenter {
 					  	display.getEmailField().getValue().trim(),
 					  	display.getWebField().getValue().trim());
           } else {
+        	  orphanage.setName(display.getNameField().getValue().trim());
         	  orphanage.setDescription(display.getDescField().getValue().trim());
         	  orphanage.setAddress(display.getAddressField().getValue().trim(), lat, lng);
         	  orphanage.setPhone(display.getPhoneField().getValue().trim());
@@ -131,12 +133,13 @@ public class AddOrphanagePresenter implements Presenter {
 	      @Override
 	      public void onSuccess(DBRecordInfo result) {
 	        GWT.log("OrphanageAddPresenter: Firing OrphanageUpdateEvent");
-	        eventBus.fireEvent(new OrphanageUpdateEvent((OrphanageInfo) result)); 
+	        eventBus.fireEvent(new DBRecordUpdateEvent(result));
 	      }
 
 	      @Override
 	      public void onFailure(Throwable caught) {
-	        Window.alert("Error retrieving project...");
+	        Window.alert("Error retrieving orphanage...");
+	        eventBus.fireEvent(new DBRecordUpdateEvent(null)); 
 	      }
 	    }.retry(3);
 	  }

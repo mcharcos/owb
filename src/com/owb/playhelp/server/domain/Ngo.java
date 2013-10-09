@@ -3,6 +3,8 @@
  */
 package com.owb.playhelp.server.domain;
 
+import java.util.UUID;
+
 import javax.jdo.JDOCanRetryException;
 import javax.jdo.JDOUserException;
 import javax.jdo.PersistenceManager;
@@ -26,9 +28,13 @@ import com.owb.playhelp.shared.DBRecordInfo;
  */
 @SuppressWarnings("serial")
 @PersistenceCapable(identityType = IdentityType.APPLICATION, detachable = "true")
-//@Inheritance(strategy=InheritanceStrategy.NEW_TABLE)
 public class Ngo extends DBRecord  {
 
+	public Ngo(){
+		UUID uuid = UUID.randomUUID();
+		this.setUniqueId(uuid.toString());  
+	}
+	
 	/**
 	 * Constructor class from a shared class. It will initialize an object
 	 * with the information from an DBRecordInfo object passed from the 
@@ -38,7 +44,18 @@ public class Ngo extends DBRecord  {
 	 */
 	public Ngo(DBRecordInfo ngoInfo) {
 		// Construct the object
-		super(ngoInfo);
+		this();
+		
+		// Copy the information from the input
+		this.reEdit(ngoInfo);
+		this.setUniqueId(ngoInfo.getUniqueId());
+		
+		// If the input object did not contain a uniqueId, that means 
+		// that it should be created because probably is a new entry
+		if (this.getUniqueId() == null) {
+			UUID uuid = UUID.randomUUID();
+			this.setUniqueId(uuid.toString());
+		} 
 	}
 
 
@@ -55,7 +72,7 @@ public class Ngo extends DBRecord  {
 	    
 	    // Set the required variables
 	    Transaction tx = null;
-	    Ngo oneResult = null, detached = null;
+	    Ngo oneResult = new Ngo(), detached = new Ngo();
 	    boolean newPersisted=false;
 	    
 	    // Get the unique Id from the input ngo

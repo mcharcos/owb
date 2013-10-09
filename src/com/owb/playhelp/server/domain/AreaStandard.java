@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import javax.jdo.annotations.EmbeddedOnly;
+import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 
@@ -38,23 +39,36 @@ public class AreaStandard {
 	}
 	
 
-    @Persistent   //(defaultFetchGroup = "true")
+    @Persistent  //(defaultFetchGroup = "true")
     private List<Date> stdDate = new ArrayList<Date>();
-    @Persistent   //(defaultFetchGroup = "true")
+    @Persistent  //(defaultFetchGroup = "true")
     private List<Long> stdStatus = new ArrayList<Long>();
-    @Persistent   //(defaultFetchGroup = "true")
+    @Persistent  //(defaultFetchGroup = "true")
 	private List<Text> stdDesc = new ArrayList<Text>();
 
 	public void add(Long stdStatus, String stdDesc){
-		this.stdDate.add(new Date());
-		this.stdStatus.add(stdStatus);
-		this.stdDesc.add(new Text(stdDesc));
+		this.add(stdStatus,stdDesc,new Date());
 	}
 	
 	public void add(Long stdStatus, String stdDesc, Date date){
-		this.stdDate.add(date);
-		this.stdStatus.add(stdStatus);
-		this.stdDesc.add(new Text(stdDesc));
+		//this.stdDate.add(date);
+		//this.stdStatus.add(stdStatus);
+		//this.stdDesc.add(new Text(stdDesc));
+		if (this.stdDate.size() == 0){
+			this.stdDate.add(date);
+		} else {
+			this.stdDate.set(0, date);
+		}
+		if (this.stdStatus.size() == 0){
+			this.stdStatus.add(stdStatus);
+		} else {
+			this.stdStatus.set(0, stdStatus);
+		}
+		if (this.stdDesc.size() == 0){
+			this.stdDesc.add(new Text(stdDesc));
+		} else {
+			this.stdDesc.set(0, new Text(stdDesc));
+		}
 	}
 	
 	public void add(AreaStandardInfo std){

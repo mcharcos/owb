@@ -171,7 +171,7 @@ public class UserProfile implements Serializable, Cacheable {
 	          // We could create friends from Google+
 	          pm.makePersistent(user); 
 	          detached = pm.detachCopy(user);	    	
-		        try {
+		        try { 
 			          tx.commit();
 			        }
 			        catch (JDOCanRetryException e1) {

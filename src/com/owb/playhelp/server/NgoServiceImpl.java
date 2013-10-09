@@ -43,7 +43,8 @@ public class NgoServiceImpl extends RemoteServiceServlet implements NgoService {
 	    
 	    // Here we create the instance in the data base or 
 	    // retrieve the instance that has the same UniqueId
-		Ngo ngo = Ngo.findOrCreateDBRecord(new Ngo(ngoInfo),userId);
+		Ngo ngo = new Ngo(ngoInfo);
+		ngo = Ngo.findOrCreateDBRecord(ngo,userId);
 
 		if (ngo == null){
 			return null;
