@@ -30,9 +30,9 @@ public class TopCenterPanel extends Composite implements TopCenterPanelPresenter
 	@UiField
 	Image newsPanel;
 	@UiField
-	Image worldPanel;
+	Image worldPanel;*/
 	@UiField
-	Image friendPanel;*/
+	Image beforeUserPanel;
 	@UiField
 	Image owbPanel;
 	@UiField
@@ -54,7 +54,7 @@ public class TopCenterPanel extends Composite implements TopCenterPanelPresenter
 	/*public Image getNewsPanel() {
 	    return newsPanel;
 	}*/
-
+	@Override
 	public HorizontalPanel getUserSettings(){
 		return userSettings;
 	}
@@ -73,16 +73,17 @@ public class TopCenterPanel extends Composite implements TopCenterPanelPresenter
 	 * 
 	 * @return Image representing the friend icon
 	 */
-	/*
-	public Image getFriendPanel() {
-	    return friendPanel;
-	}*/
+	@Override
+	public Image getBeforeUserPanel() {
+	    return beforeUserPanel;
+	}
 
 	/**
 	 * Get the field of the image containing the owb icon
 	 * 
 	 * @return Image representing the owb icon
 	 */
+	@Override
 	public Image getOwbPanel() {
 	    return owbPanel;
 	}

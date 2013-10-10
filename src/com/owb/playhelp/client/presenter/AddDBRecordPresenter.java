@@ -21,6 +21,8 @@ import com.owb.playhelp.client.event.dbrecord.DBRecordUpdateEvent;
 import com.owb.playhelp.client.event.ngo.NgoUpdateEvent;
 import com.owb.playhelp.client.event.orphanage.AddOrphanageCancelEvent;
 import com.owb.playhelp.client.event.orphanage.AddOrphanageUpdateEvent;
+import com.owb.playhelp.client.event.user.LogoutEvent;
+import com.owb.playhelp.client.event.user.LogoutEventHandler;
 import com.owb.playhelp.client.helper.RPCCall;
 import com.owb.playhelp.client.service.NgoServiceAsync;
 import com.owb.playhelp.client.view.MyDialog;
@@ -55,7 +57,7 @@ public class AddDBRecordPresenter implements Presenter {
 	}
 
 	public void bind() {
-	    this.display.getSaveBut().addClickHandler(new ClickHandler() {
+		this.display.getSaveBut().addClickHandler(new ClickHandler() {
 	        public void onClick(ClickEvent event) {
 	        	if (!checkRequiredFields()) return;
 	        	updateDBRecord();

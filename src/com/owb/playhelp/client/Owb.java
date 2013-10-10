@@ -4,6 +4,7 @@
 package com.owb.playhelp.client;
 
 
+import com.owb.playhelp.client.event.WinSizeUpdateEvent;
 import com.owb.playhelp.client.event.user.LoginEvent;
 import com.owb.playhelp.client.presenter.BusyIndicatorPresenter;
 import com.owb.playhelp.client.presenter.FooterPanelPresenter;
@@ -114,9 +115,9 @@ public class Owb implements EntryPoint {
 	 * Layout the window with three frameworks
 	 */
 	@UiField LeftPanel actionPanel;
-	@UiField HorizontalPanel topCenterPanel, beforeBarPanel, barPanel, footerPanel;
+	@UiField HorizontalPanel topCenterPanel, barPanel, footerPanel;
 	@UiField HorizontalPanel centerPanel;
-	@UiField VerticalPanel statusPanel;
+	@UiField VerticalPanel statusPanel, centerColumn;
 	@UiField Image leftTopImg, rightTopImg;
 
 	RootLayoutPanel rootLayout;
@@ -263,9 +264,6 @@ public class Owb implements EntryPoint {
 	  ProjectServiceAsync projectService = GWT.create(ProjectService.class);
 	  VolunteerServiceAsync volunteerService = GWT.create(VolunteerService.class);
 	  PathGuide guide = new PathGuide(userService, ngoService, orphanageService, standardService, projectService, volunteerService, loginService, thePath, currentUser);
-	  guide.go();
-	  
-	  
 	  
 	  //userBadgePresenter = new UserBadgePresenter(loginService, thePath, new UserBadgeView());
 	  //userBadgePresenter.go(actionPanel.getProfilePanel());
@@ -297,9 +295,10 @@ public class Owb implements EntryPoint {
         	  adjustWindowSize();
           }
       });  
+	  guide.go();
 	  }
 	
-	private void adjustWindowSize(){
+	public void adjustWindowSize(){
 		  int winWidth = Window.getClientWidth();
 	  	  int width;
 	  	  
@@ -308,6 +307,7 @@ public class Owb implements EntryPoint {
 	  	  } else {
 	  		  topCenterPanel.setWidth(winWidth-200+"px");
 	  	  }
+
 	  	  
 	  	  width = (winWidth-topCenterPanel.getOffsetWidth())/2;
 	  	  //int height = Window.getClientHeight();
@@ -321,9 +321,12 @@ public class Owb implements EntryPoint {
 	  		  rightTopImg.setWidth("1px");        		  
 	  	  }
 	  	  
+	  	  //Window.alert(Integer.toString(actionPanel.getOffsetWidth()));
 	  	  // Adjust menu size
-		  beforeBarPanel.setWidth(topCenterPanel.getOffsetWidth()-barPanel.getOffsetWidth()+"px");
+	  	  //updateSizeMenuPanel();
+		  thePath.fireEvent(new WinSizeUpdateEvent(leftTopImg.getWidth(),topCenterPanel.getOffsetWidth(),rightTopImg.getWidth()));
 	}
+	
 	
 	/**
 	 * Returns the event bus that will be listen by the presenters. There is only one single event 
@@ -375,6 +378,15 @@ public class Owb implements EntryPoint {
 	public HorizontalPanel getFooterPanel() {
 		return footerPanel;
 	}
-	
+
+	public int getWidthLeft(){
+		return this.leftTopImg.getWidth();
+	}
+	public int getWidthCenter(){
+		return this.topCenterPanel.getOffsetWidth();
+	}
+	public int getWidthRigth(){
+		return this.rightTopImg.getWidth();
+	}
 	
 }

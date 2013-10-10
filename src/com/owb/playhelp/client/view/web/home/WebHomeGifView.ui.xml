@@ -10,7 +10,7 @@
 	</ui:style>
 	
 	<g:VerticalPanel styleName='{style.main}' horizontalAlignment="ALIGN_CENTER">
-	    <g:Image url='{res.slideshowgif.getSafeUri.asString}'/>
+	    <g:Image ui:field="imgField" url='{res.slideshowgif.getSafeUri.asString}'/>
 		<g:HorizontalPanel ui:field='infoBandField' horizontalAlignment="ALIGN_CENTER"/>
 		<g:HTMLPanel>
 		<p><font style="font-family: Century Gothic; font-size: 18px; color: #b314d5;">Orphanage Without Borders harvests the power of technology to <strong>connect</strong> and <strong>engage</strong> individuals and resources with the <strong>needs</strong> of orphan children around the world.</font></p>
