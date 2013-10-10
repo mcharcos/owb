@@ -112,7 +112,7 @@ public interface Resources extends ClientBundle {
     ImageResource radioSelLogo();
     
     // The new design September 27th 2012
-    @Source("TopePG.jpg")
+    @Source("TOPE.jpg")
     ImageResource name3Logo();
     @Source("fillerLarge.jpg")
     ImageResource bar3Logo();
