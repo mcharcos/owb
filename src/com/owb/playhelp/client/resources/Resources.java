@@ -204,6 +204,8 @@ public interface Resources extends ClientBundle {
     ImageResource bluepic();
     @Source("yellowgreenphoto.jpg")
     ImageResource yellowgreenpic();
+    @Source("nopicphoto.jpg")
+    ImageResource nopicpic();
     
     // Webpage resources "about us"
     @Source("webpics/aboutus.jpg")
