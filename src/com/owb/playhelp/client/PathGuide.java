@@ -63,6 +63,7 @@ import com.owb.playhelp.client.view.web.aboutus.WebAboutUsView;
 import com.owb.playhelp.client.view.web.aboutus.WebContextView;
 import com.owb.playhelp.client.view.web.aboutus.WebJoinOWBView;
 import com.owb.playhelp.client.view.web.aboutus.WebOurViewView;
+import com.owb.playhelp.client.view.web.home.WebHomeGifView;
 import com.owb.playhelp.client.view.web.home.WebHomeView;
 import com.owb.playhelp.client.view.web.whatdowedo.WebWhatCleanWaterView;
 import com.owb.playhelp.client.view.web.whatdowedo.WebWhatClothingView;
@@ -568,7 +569,7 @@ public class PathGuide implements ValueChangeHandler<String>  {
 				if (token.equals("webgethomeItem")) {
 					//webMain.getIndexField().add(new WebOurCommunityIndexView());
 					Owb.get().getMainPanel().add(webMain);
-					WebHomePresenter webHomePresenter = new WebHomePresenter(thePath, new WebHomeView());
+					WebHomePresenter webHomePresenter = new WebHomePresenter(thePath, new WebHomeGifView());
 					webHomePresenter.go(webMain.getAreaField());
 		        return;
 		        } 
