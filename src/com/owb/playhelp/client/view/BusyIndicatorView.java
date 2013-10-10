@@ -1,5 +1,6 @@
 package com.owb.playhelp.client.view;
 
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.user.client.ui.Widget;
@@ -17,9 +18,13 @@ public class BusyIndicatorView extends PopupPanel implements BusyIndicatorPresen
 	
   public BusyIndicatorView() {
     //setAnimationEnabled(false);
-    //this.center();
-    //this.center();
-    setPopupPosition(550, 150);
+	int winWidth = Window.getClientWidth();
+	int winHeight = Window.getClientHeight();
+	if (winWidth > 0 && winHeight > 0){
+		setPopupPosition(winWidth/2-icon.getWidth()/2, winHeight/3-icon.getHeight()/2);
+	} else {
+		this.center();
+	}
     add(icon);
   }
 

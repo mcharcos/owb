@@ -38,6 +38,7 @@ public class WebPictureBandView extends Composite implements WebPictureBandPrese
 	
 	private List<Image> listImage;
     private Timer timer;
+    private int idxRepeat;
 
     @UiField DeckLayoutPanel panelSlider;
     @UiField Label nextLeft, nextRight;
@@ -66,14 +67,18 @@ public class WebPictureBandView extends Composite implements WebPictureBandPrese
         setSize(manual);
         
         if (animate){
+        	idxRepeat=0; 
 	        timer=new Timer(){
 	            @Override
 	            public void run() {
 	                // TODO Auto-generated method stub
 	                int index = panelSlider.getVisibleWidgetIndex();
 	                index++;
-	                if (index == panelSlider.getWidgetCount()) index = 0;
-	                panelSlider.showWidget(index);
+	                if (index == panelSlider.getWidgetCount()) {
+	                	index = 0;
+	                	idxRepeat++;
+	                }
+	                if (idxRepeat < 2) panelSlider.showWidget(index);
 	            }          
 	        };
 	        timer.scheduleRepeating(5000);
