@@ -4,11 +4,17 @@ import com.google.gwt.resources.client.ClientBundle;
 import com.google.gwt.resources.client.ImageResource;
 import com.google.gwt.resources.client.ImageResource.ImageOptions;
 import com.google.gwt.core.client.GWT;
+//import com.google.gwt.resources.client.CssResource;
 
 public interface Resources extends ClientBundle {
 	// I added this line below
     public static final Resources INSTANCE =  GWT.create(Resources.class);
 
+    /*
+    @Source("mysettings.css")
+    @CssResource.NotStrict
+    CssResource css();*/
+    
     // Menu bar
     @ImageOptions(preventInlining=true)
     @Source("webmenu/Phome.jpg")

@@ -23,6 +23,7 @@ import com.owb.playhelp.client.event.orphanage.AddOrphanageCancelEvent;
 import com.owb.playhelp.client.event.orphanage.AddOrphanageUpdateEvent;
 import com.owb.playhelp.client.helper.RPCCall;
 import com.owb.playhelp.client.service.NgoServiceAsync;
+import com.owb.playhelp.client.view.MyDialog;
 import com.owb.playhelp.shared.DBRecordInfo;
 import com.owb.playhelp.shared.ngo.NgoInfo;
 
@@ -126,11 +127,11 @@ public class AddDBRecordPresenter implements Presenter {
 		  
 		  if (missedKeys.isEmpty()) return true;
 		  
-		  String msg = "The following fields are required: ";
+		  String msg = "<b>The following fields are required:</b> ";
 		  for (String keys:missedKeys) {
-			  msg = msg+"\n    - "+keys;
+			  msg = msg+"<br></br>    - "+keys;
 		  }
-		  Window.alert(msg);
+		  new MyDialog("Warning", msg).show();
 		  
 		  return false;
 		  

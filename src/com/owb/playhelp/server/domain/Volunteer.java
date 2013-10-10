@@ -27,7 +27,8 @@ import com.owb.playhelp.shared.DBRecordInfo;
 //@Inheritance(strategy=InheritanceStrategy.NEW_TABLE)
 public class Volunteer extends DBRecord {
 
-
+	private String skype;
+	
 	/**
 	 * Constructor class from a shared class. It will initialize an object
 	 * with the information from an DBRecordInfo object passed from the 
@@ -38,6 +39,7 @@ public class Volunteer extends DBRecord {
 	public Volunteer(DBRecordInfo volunteerInfo) {
 		// Construct the object
 		super(volunteerInfo);
+		this.skype = volunteerInfo.getSkype();
 	}
 
 
@@ -183,5 +185,12 @@ public class Volunteer extends DBRecord {
 			if (o.isFollower(userId)) oInfo.activateFollower();
 			
 			return oInfo;
+		}
+		
+		public String getSkype(){
+			return this.skype;
+		}
+		public void setSkype(String skype){
+			this.skype = skype;
 		}
 }

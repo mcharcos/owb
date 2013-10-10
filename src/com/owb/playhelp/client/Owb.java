@@ -28,6 +28,7 @@ import com.owb.playhelp.client.service.VolunteerService;
 import com.owb.playhelp.client.service.VolunteerServiceAsync;
 import com.owb.playhelp.client.service.project.ProjectService;
 import com.owb.playhelp.client.service.project.ProjectServiceAsync;
+import com.owb.playhelp.client.resources.Resources;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.RunAsyncCallback;
@@ -163,6 +164,7 @@ public class Owb implements EntryPoint {
 	 */
 	public void onModuleLoad() {
 		singleton = this;
+		//Resources.INSTANCE.css().ensureInjected(); 
 		
 		// set the title of the browser window
 		if (Document.get() != null) {
