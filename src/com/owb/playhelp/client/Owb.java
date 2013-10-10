@@ -301,12 +301,11 @@ public class Owb implements EntryPoint {
 		  int winWidth = Window.getClientWidth();
 	  	  int width;
 	  	  
-	  	  /*
 	  	  if (winWidth > 1368){
 	  		  topCenterPanel.setWidth("1366px");
 	  	  } else {
-	  		  topCenterPanel.setWidth(winWidth-300+"px");
-	  	  }*/
+	  		  topCenterPanel.setWidth(winWidth-200+"px");
+	  	  }
 	  	  
 	  	  width = (winWidth-topCenterPanel.getOffsetWidth())/2;
 	  	  //int height = Window.getClientHeight();
