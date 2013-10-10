@@ -36,8 +36,9 @@ body div table {
 			<g:Image url='{res.Miguelpic.getSafeUri.asString}' pixelSize="89,90"/>
         </td>
         <td colspan="3">&nbsp;</td>
-        <td width="90" colspan="3">			<g:Image url='{res.Kathypic.getSafeUri.asString}' pixelSize="90,90"/>
-</td>
+        <td width="90" colspan="3">			
+            <g:Image url='{res.Kathypic.getSafeUri.asString}' pixelSize="90,90"/>
+		</td>
       </tr>
       <tr>
         <td colspan="3"><font style="font-family:Century Gothic; font-size: 15px; color: #999;">Miguel Charcos Lloréns, Ph.D.</font></td>
@@ -56,19 +57,31 @@ body div table {
         <td colspan="9"><font style="font-family:Century Gothic;"><font style="font-size: 15px; color: #999;"><font style="font-size: 22px; color: #F09;">our team of  volunteers</font></font></font></td>
       </tr>
       <tr>
-        <td colspan="3">&nbsp;</td>
-        <td colspan="3">&nbsp;</td>
-        <td colspan="3">&nbsp;</td>
+        <td colspan="3">
+			<g:Image url='{res.Karipic.getSafeUri.asString}' pixelSize="89,90"/>
+        </td>
+		<td width="90" colspan="3">			
+            <g:Image url='{res.Erikapic.getSafeUri.asString}' pixelSize="90,90"/>
+		</td>
+		<td width="90" colspan="3">			
+            <g:Image url='{res.yellowgreenpic.getSafeUri.asString}' pixelSize="90,90"/>
+		</td>
       </tr>
       <tr>
-        <td colspan="3"><font style="font-family:Century Gothic;"><font style="font-size: 15px; color: #999;">Karine Ramani, M.S.</font></font></td>
-        <td colspan="3"><font style="font-family:Century Gothic;"><font style="font-size: 15px; color: #999;">Erika Rodríguez</font></font></td>
+        <td colspan="3"><font style="font-family:Century Gothic;"><font style="font-size: 15px; color: #999;">Karine Ramani, M.A.</font></font></td>
+        <td colspan="3"><font style="font-family:Century Gothic;"><font style="font-size: 15px; color: #999;">Erika Rodríguez, Ph.D.</font></font></td>
         <td colspan="3"><font style="font-family:Century Gothic;"><font style="font-size: 15px; color: #999;">Sandra Poetgens</font></font></td>
       </tr>
       <tr>
-        <td colspan="3">&nbsp;</td>
-        <td colspan="3">&nbsp;</td>
-        <td colspan="3">&nbsp;</td>
+        <td colspan="3">
+			<g:Image url='{res.yellowgreenpic.getSafeUri.asString}' pixelSize="89,90"/>
+        </td>
+		<td width="90" colspan="3">			
+            <g:Image url='{res.yellowgreenpic.getSafeUri.asString}' pixelSize="90,90"/>
+		</td>
+		<td width="90" colspan="3">			
+            <g:Image url='{res.yellowgreenpic.getSafeUri.asString}' pixelSize="90,90"/>
+		</td>
       </tr>
       <tr>
         <td colspan="3"><font style="font-family:Century Gothic;"><font style="font-size: 15px; color: #999;">Saeideh Joodaki</font></font></td>
@@ -76,9 +89,15 @@ body div table {
         <td colspan="3"><font style="font-family:Century Gothic;"><font style="font-size: 15px; color: #999;">Frank Kmak</font></font></td>
       </tr>
       <tr>
-        <td colspan="3">&nbsp;</td>
-        <td colspan="3">&nbsp;</td>
-        <td colspan="3">&nbsp;</td>
+        <td colspan="3">
+			<g:Image url='{res.yellowgreenpic.getSafeUri.asString}' pixelSize="89,90"/>
+        </td>
+		<td width="90" colspan="3">			
+            <g:Image url='{res.yellowgreenpic.getSafeUri.asString}' pixelSize="90,90"/>
+		</td>
+		<td width="90" colspan="3">			
+            <g:Image url='{res.yellowgreenpic.getSafeUri.asString}' pixelSize="90,90"/>
+		</td>
       </tr>
       <tr>
         <td colspan="3"><font style="font-family:Century Gothic;"><font style="font-size: 15px; color: #999;">Samira Motiwala</font></font></td>
@@ -109,8 +128,6 @@ body div table {
 <p><font style="font-family:Century Gothic; font-size: 15px; color: #999;">Mi Casa Children's Home (Mexico)</font></p>
 <p><font style="font-family:Century Gothic; font-size: 15px; color: #999;">Casa Hogar Jeruel (Mexico)</font></p>
 <p><font style="font-family:Century Gothic; font-size: 15px; color: #999;">Street Children LEEDO (Bangladesh)</font></p>
-
-<p>&nbsp;</p>
 </div>
 	</g:HTMLPanel>
 </ui:UiBinder> 

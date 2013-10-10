@@ -188,6 +188,22 @@ public interface Resources extends ClientBundle {
     ImageResource Miguelpic();
     @Source("Kathy.jpg")
     ImageResource Kathypic();
+    @Source("Erikaphoto.jpg")
+    ImageResource Erikapic();
+    @Source("Kariphoto.jpg")
+    ImageResource Karipic();
+    @Source("pinkphoto.jpg")
+    ImageResource pinkpic();
+    @Source("purplephoto.jpg")
+    ImageResource purplepic();
+    @Source("greenphoto.jpg")
+    ImageResource greenpic();
+    @Source("yellowphoto.jpg")
+    ImageResource yellowpic();
+    @Source("bluephoto.jpg")
+    ImageResource bluepic();
+    @Source("yellowgreenphoto.jpg")
+    ImageResource yellowgreenpic();
     
     // Webpage resources "about us"
     @Source("webpics/aboutus.jpg")
