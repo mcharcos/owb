@@ -5,6 +5,7 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
 import com.owb.playhelp.client.presenter.MapMarkerPresenter;
@@ -23,7 +24,7 @@ public class MapMarkerView extends Composite implements MapMarkerPresenter.Displ
 	}
 
 	@UiField
-	Label recordName, recordDescription;
+	HTML recordName, recordDescription;
 	@UiField
 	Anchor detailsBut;
 
@@ -32,11 +33,11 @@ public class MapMarkerView extends Composite implements MapMarkerPresenter.Displ
 		return this;
 	}
 	  @Override
-	public Label getRecordName(){
+	public HTML getRecordName(){
 		return recordName;
 	} 
 	  @Override
-	public Label getRecordDescription(){
+	public HTML getRecordDescription(){
 		return recordDescription;
 	}
 	@Override

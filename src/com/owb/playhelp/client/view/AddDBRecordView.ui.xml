@@ -2,17 +2,28 @@
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
 	xmlns:g="urn:import:com.google.gwt.user.client.ui">
 	<ui:style src="../resources/GlobalStyles.css" >
+		.description{
+	        color:#9152a0;
+	        margin: 30px;
+			font-family: Century Gothic;
+			color: #999;
+			font-size: 15px;
+	   }
 	</ui:style>
 	<g:HTMLPanel>
-	        <div class="{style.formTitle}"><g:Label ui:field='pageTitle' /></div>	        
+	   <div class="{style.description}">
+	        <!-- <div class="{style.formTitle}"> -->
+	        <p><font style="font-family:Century Gothic; font-size: 50px; color: #8BFF2D;"><g:Label ui:field='pageTitle' /></font></p>
+	        <!-- </div> -->
 	        
-	        <table align="left">
+	        <table align="center">
     		<tr>
-		        <td width="570">
+		        <td width="570" align="center">
 			        <g:HTML ui:field='pageDescription'/><br></br><br></br>
             	</td>
             </tr>
-            </table>
+            
+	    	<tr><td>
             
 			<div class="{style.formwrapper}">
 				<div class="{style.formlabel}">
@@ -67,5 +78,8 @@
 			<g:Anchor href='javascript:;' ui:field='cancelBut'>Cancel</g:Anchor>
 		</div>
 		<div ui:field='nameDiv' />
+		</td></tr>
+	    </table>
+		</div>
 	</g:HTMLPanel>
 </ui:UiBinder> 

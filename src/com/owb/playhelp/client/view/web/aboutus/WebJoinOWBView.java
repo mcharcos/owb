@@ -34,7 +34,7 @@ public class WebJoinOWBView extends Composite implements AddVolunteerPresenter.D
 	}
 
 
-	@UiField TextBox nameField,addressField,phoneField,emailField,webField;
+	@UiField TextBox nameField,addressField,phoneField,emailField,webField, skypeField;
 	@UiField TextArea descField;
 	@UiField CheckBox question1, question2, question3, question4, question5, question6, question7, question8, question9, question10;
 	@UiField
@@ -84,6 +84,10 @@ public class WebJoinOWBView extends Composite implements AddVolunteerPresenter.D
 	  @Override
 	  public HasValue<String> getWebField(){
 		  return webField;
+	  }
+	  @Override
+	  public HasValue<String> getSkypeField(){
+		  return skypeField;
 	  }
 	  @Override
 	  public ArrayList<CheckBox> getCheckBoxList(){

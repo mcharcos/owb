@@ -7,6 +7,7 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.user.client.ui.Anchor;
+import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HasText;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.Widget;
@@ -18,8 +19,8 @@ import com.owb.playhelp.shared.UserProfileInfo;
 public class MapMarkerPresenter implements Presenter {
 	public interface Display {
 		Widget asWidget();
-		public HasText getRecordName();
-		public HasText getRecordDescription();
+		public HTML getRecordName();
+		public HTML getRecordDescription();
 		public Anchor getDetailsBut();
 	}
 
@@ -65,7 +66,14 @@ public class MapMarkerPresenter implements Presenter {
 		container.clear();
 		container.add(display.asWidget());
 		display.getRecordName().setText(record.getName());
-		display.getRecordDescription().setText(record.getDescription());
+		
+		String desc=record.getDescription();
+		int endIndex=record.getDescription().length();
+		if (endIndex > 250){
+			endIndex = 250;
+			desc=record.getDescription().substring(0, endIndex)+"...";
+		}
+		display.getRecordDescription().setText(desc);
 		bind();
 	}
 

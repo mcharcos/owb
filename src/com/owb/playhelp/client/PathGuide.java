@@ -44,6 +44,7 @@ import com.owb.playhelp.client.view.AddStandardView;
 import com.owb.playhelp.client.view.ContactHomeView;
 import com.owb.playhelp.client.view.DBRecordListView;
 import com.owb.playhelp.client.view.MyDialog;
+import com.owb.playhelp.client.view.LoginDialog;
 import com.owb.playhelp.client.view.ShowDetailsDBRecordView;
 import com.owb.playhelp.client.view.StandardListView;
 import com.owb.playhelp.client.view.map.MainHomeView;
@@ -384,7 +385,7 @@ public class PathGuide implements ValueChangeHandler<String>  {
 			public void onShowAddDBRecord(ShowAddDBRecordEvent event){
 				if (currentUser == null){
 					//Window.alert("You must log in to add or update a record");
-					new MyDialog("Warning", "<b>You must log in to add or update a record.</b>").show();
+					new LoginDialog("Warning", "<b>You must log in to add or update a record.</b>").show();
 					return;
 				}
 				if (event.getDBRecord() == null){

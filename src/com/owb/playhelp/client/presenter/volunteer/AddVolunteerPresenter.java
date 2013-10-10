@@ -26,6 +26,7 @@ import com.owb.playhelp.client.event.volunteer.VolunteerUpdateEvent;
 import com.owb.playhelp.client.helper.RPCCall;
 import com.owb.playhelp.client.presenter.Presenter;
 import com.owb.playhelp.client.service.VolunteerServiceAsync;
+import com.owb.playhelp.client.view.MyDialog;
 import com.owb.playhelp.shared.DBRecordInfo;
 
 public class AddVolunteerPresenter implements Presenter {
@@ -40,6 +41,7 @@ public class AddVolunteerPresenter implements Presenter {
 		HasValue<String> getEmailField();
 		HasValue<String> getWebField();
 		ArrayList<CheckBox> getCheckBoxList();
+		HasValue<String> getSkypeField();
 	} 
 	  
 	private final SimpleEventBus eventBus;
@@ -94,6 +96,7 @@ public class AddVolunteerPresenter implements Presenter {
 		this.display.getPhoneField().setValue(this.volunteer.getPhone());
 		this.display.getEmailField().setValue(this.volunteer.getEmail());
 		this.display.getWebField().setValue(this.volunteer.getWebsite());
+		this.display.getSkypeField().setValue(this.volunteer.getSkype());
 	}
 	  
 	  private void updateVolunteer(){
@@ -121,13 +124,15 @@ public class AddVolunteerPresenter implements Presenter {
 					  	display.getAddressField().getValue().trim(), lat, lng, 
 					  	display.getPhoneField().getValue().trim(),
 					  	display.getEmailField().getValue().trim(),
-					  	display.getWebField().getValue().trim());
+					  	display.getWebField().getValue().trim(),
+					  	display.getSkypeField().getValue().trim());
 		  } else {
 			  volunteer.setName(display.getNameField().getValue().trim());
 			  volunteer.setAddress(display.getAddressField().getValue().trim(),lat,lng);
 			  volunteer.setPhone(display.getPhoneField().getValue().trim());
 			  volunteer.setEmail(display.getEmailField().getValue().trim());
 			  volunteer.setWebsite(display.getWebField().getValue().trim());
+			  volunteer.setSkype(display.getSkypeField().getValue().trim());
 			  volunteer.setDescription(description);
 		  }
 		  
@@ -168,12 +173,12 @@ public class AddVolunteerPresenter implements Presenter {
 		  }
 		  
 		  if (missedKeys.isEmpty()) return true;
-		  
-		  String msg = "The following fields are required: ";
+
+		  String msg = "<b>The following fields are required:</b> <br></br>";
 		  for (String keys:missedKeys) {
-			  msg = msg+"\n    - "+keys;
+			  msg = msg+"<br></br>    - "+keys;
 		  }
-		  Window.alert(msg);
+		  new MyDialog("Warning", msg).show();
 		  
 		  return false;
 		  

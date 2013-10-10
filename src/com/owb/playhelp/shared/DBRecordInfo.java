@@ -36,6 +36,7 @@ public class DBRecordInfo implements Serializable {
 	private String phone;
 	private String email;
 	private String website;
+	private String skype;
 	private String uniqueId;
 	private StandardInfo standard;
 	private boolean valid;
@@ -122,11 +123,19 @@ public class DBRecordInfo implements Serializable {
 	        // Window.alert("Map cannot be loaded!!");
 	      } */
 	}
+	public DBRecordInfo(Integer dbType,String name, String description,String address, double lat, double lng, String phone, String email, String website, String skype) {
+		this(dbType,name,description,address,lat,lng);
+		this.phone = phone;
+		this.email = email;
+		this.website = website;
+		this.skype = skype;
+	}
 	public DBRecordInfo(Integer dbType,String name, String description,String address, double lat, double lng, String phone, String email, String website) {
 		this(dbType,name,description,address,lat,lng);
 		this.phone = phone;
 		this.email = email;
 		this.website = website;
+		this.skype = "";
 	}
 
 
@@ -231,6 +240,15 @@ public class DBRecordInfo implements Serializable {
 		return this.website;
 	}
 
+	/**
+	   * Gets the skype name. 
+	   * 
+	   * @param 
+	   * @return Skype
+	   */
+	public String getSkype(){
+		return this.skype;
+	}
 	  /**
 	   * Gets the uniqueId of the organization. This is the id that will be used by other objects
 	   * to refer to an object of this particular class.
@@ -454,6 +472,16 @@ public class DBRecordInfo implements Serializable {
 	   */
 	public void setWebsite(String website) {
 		this.website = website;
+	}
+
+	  /**
+	   * Sets the skype 
+	   * 
+	   * @param Skype name
+	   * @return 
+	   */
+	public void setSkype(String skype){
+		this.skype = skype;
 	}
 
 	  /**
