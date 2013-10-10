@@ -69,9 +69,17 @@ public class MainHomePresenter implements Presenter {
 	private MapWidget map = null; 
 	private Geocoder geocoder = null; 
 
+	private int width, height;
 
 	public MainHomePresenter(UserProfileInfo currentUser, NgoServiceAsync ngoService, OrphanageServiceAsync orphanageService,
 			SimpleEventBus eventBus, Display display) {
+		this(Window.getClientWidth()/2,Window.getClientHeight()/2,currentUser,ngoService,orphanageService,eventBus,display);
+	}
+
+	public MainHomePresenter(int width, int height, UserProfileInfo currentUser, NgoServiceAsync ngoService, OrphanageServiceAsync orphanageService,
+			SimpleEventBus eventBus, Display display) {
+		this.width = width;
+		this.height = height;
 		this.currentUser = currentUser;
 		this.ngoService = ngoService;
 		this.orphanageService = orphanageService;
@@ -105,7 +113,7 @@ public class MainHomePresenter implements Presenter {
 					map = new MapWidget(LatLng.newInstance(0, 0), 2); 
 					
 					//map.setSize("100%", "100%");
-			        map.setSize("600px", "600px"); 
+			        map.setSize(width+"px", height+"px"); 
 			        map.addControl(new LargeMapControl()); 
 			        map.setDoubleClickZoom(true);
 			        map.setDraggable(true);

@@ -770,7 +770,7 @@ public class PathGuide implements ValueChangeHandler<String>  {
 				//mapMenuPresenter.go(Owb.get().getBarPanel());
 				WebMenuPresenter webMenuPresenter = new WebMenuPresenter(thePath, loginService, new WebMenuView());
 				webMenuPresenter.go(Owb.get().getBarPanel());
-				presenter = new MainHomePresenter(currentUser,ngoService,orphanageService,thePath,new MainHomeView());
+				presenter = new MainHomePresenter(Owb.get().getMainPanel().getOffsetWidth(),Window.getClientHeight(),currentUser,ngoService,orphanageService,thePath,new MainHomeView());
 				presenter.go(Owb.get().getMainPanel());
 	        return;
 	      } 
