@@ -109,8 +109,8 @@
 					<g:TextBox ui:field='webField' width="25em"></g:TextBox>
 				</div>
 			</div>
-		<div class='{style.button}'>
-			<g:Anchor href='javascript:;' ui:field='saveBut'>Save</g:Anchor>
+		<div class='{style.button}' align="center">
+			<g:Anchor href='javascript:;' ui:field='saveBut'>Submit</g:Anchor>
 			<g:Anchor href='javascript:;' ui:field='cancelBut'>Cancel</g:Anchor>
 		</div>
 		<div ui:field='nameDiv' />

@@ -1,10 +1,12 @@
 package com.owb.playhelp.client.presenter.web;
 
 import com.google.gwt.event.shared.SimpleEventBus;
+import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
+import com.owb.playhelp.client.Owb;
 import com.owb.playhelp.client.presenter.Presenter;
 import com.owb.playhelp.client.view.web.home.WebInfoBandView;
 
@@ -12,6 +14,8 @@ public class WebHomePresenter  implements Presenter {
 	public interface Display {
 		Widget asWidget();
 		HorizontalPanel getInfoBandField();
+		HTMLPanel getNewsPanel1();
+		HTMLPanel getNewsPanel2();
 	}
 
 	private final SimpleEventBus eventBus;
@@ -30,6 +34,9 @@ public class WebHomePresenter  implements Presenter {
 	public void go(final HasWidgets container) {
 		container.clear();
 		container.add(display.asWidget());
+
+		this.display.getNewsPanel1().setWidth(Owb.get().getMainPanel().getOffsetWidth()*0.6+"px");
+		this.display.getNewsPanel2().setWidth(Owb.get().getMainPanel().getOffsetWidth()*0.6+"px");
 		
 		String messageVolunteer = "<b>DO YOU LOVE HELPING CHILDREN? </b><br></br> " +
 				"Do you love being involved in ground breaking non-profit organizations that help children? " +
@@ -40,7 +47,7 @@ public class WebHomePresenter  implements Presenter {
 				"An hour of your time can change a life of a child! Volunteer TODAY!!";
 		messageVolunteer = "<font style='font-family:Century Gothic; font-size: 15px; color: #999; align: justify;'>Are you a techie? Social butterfly? Artist? We can use your help! We're seeking committed, creative, compassionate, and awesome individuals who are willing to give their time to continue building this network to help children in need. You can volunteer with computer programming, brainstorming, research, and much more - join us!</font>";
 		// Add the Info band widgets on the bottom of the page
-		WebInfoBandView volunteerBandView = new WebInfoBandView("Volunteer With Us",messageVolunteer,null,"270px","30px");
+		WebInfoBandView volunteerBandView = new WebInfoBandView("Volunteer With Us","",null,"270px","30px");
 		WebInfoBandVolunteerPresenter volunteerBandPresenter = new WebInfoBandVolunteerPresenter(eventBus, volunteerBandView);
 		volunteerBandPresenter.go(this.display.getInfoBandField());
 		
@@ -53,7 +60,7 @@ public class WebHomePresenter  implements Presenter {
 				"If you as an organization also thinks that collaboration is the key for a global change, join our Network "+
 				"and collaborate with other organizations to the cause";
 		messageResource="<font style='font-family:Century Gothic; font-size: 15px; color: #999; align: justify;'>Companies, non-profits, agencies, and individuals who want to help: this is a call to you! You represent a resource, and this network connects resources to needs. If you agree that collaboration is key to global change, join our network now and work with others to support projects, share expertise, and provide feedback.</font>";
-		WebInfoBandView resourceBandView = new WebInfoBandView("Join Our Network",messageResource,null,"270px","30px");
+		WebInfoBandView resourceBandView = new WebInfoBandView("Join Our Network","",null,"270px","30px");
 		WebInfoBandResourcesPresenter resourceBandPresenter = new WebInfoBandResourcesPresenter(eventBus, resourceBandView);
 		resourceBandPresenter.go(this.display.getInfoBandField());
   
@@ -66,7 +73,7 @@ public class WebHomePresenter  implements Presenter {
 		        "or be more efficient. If you think you have a project helping children in need, you can share it with organizations "+
 		        "and individuals of our network by applying as an orphanage. ";
 		messageProjects = "<font style='font-family:Century Gothic; font-size: 15px; color: #999; align: justify;'>This is where you ask for help. If you are in an orphanage, or you know one personally, you can create a project to help fulfill a specific need of the children there. Share it with the members of our network. We promote the creation of small tangible projects that can easily be connected to existing resources that can help meet those needs.</font>";
-		WebInfoBandView needBandView = new WebInfoBandView("Submit Your Request",messageProjects,null,"270px","30px");
+		WebInfoBandView needBandView = new WebInfoBandView("Submit Your Request","",null,"270px","30px");
 		WebInfoBandProjectsPresenter needBandPresenter = new WebInfoBandProjectsPresenter(eventBus, needBandView);
 		needBandPresenter.go(this.display.getInfoBandField());
 		

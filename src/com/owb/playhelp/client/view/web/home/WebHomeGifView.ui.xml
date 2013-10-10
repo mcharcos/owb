@@ -1,6 +1,7 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
 	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+		<ui:with field='res' type='com.owb.playhelp.client.resources.Resources'/>
 	<ui:style>
 		.main {
             background-color	:	white;
@@ -9,6 +10,34 @@
 	</ui:style>
 	
 	<g:VerticalPanel styleName='{style.main}' horizontalAlignment="ALIGN_CENTER">
+	    <g:Image url='{res.slideshowgif.getSafeUri.asString}'/>
 		<g:HorizontalPanel ui:field='infoBandField' horizontalAlignment="ALIGN_CENTER"/>
+		<g:HTMLPanel>
+		<p><font style="font-family: Century Gothic; font-size: 18px; color: #b314d5;">Orphanage Without Borders harvests the power of technology to <strong>connect</strong> and <strong>engage</strong> individuals and resources with the <strong>needs</strong> of orphan children around the world.</font></p>
+		<p>&nbsp;</p>
+    	<font style="font-family:Century Gothic;">
+		<p><font style="font-size: 22px; color: #F09;">quarterly update</font></p>
+		<br></br>		
+		</font>
+		</g:HTMLPanel>
+  		<g:HorizontalPanel>
+  			<g:HTMLPanel ui:field="newsPanel1">
+				<div align="left">
+		  		<font style="font-size: 15px; color: #999;">
+		  		<p><strong>Our first project:</strong> We started working with an orphanage in a small village of Uganda after they contacted us for help. They currently provide housing for 50 children and support 260 more with education, as well as spiritual and moral support. They have several projects in mind, one of which is to build a larger facility so they can house more orphan children from the small HIV/AIDS- and war-affected village. We are working on identifying local resources that may be able to help them meet their needs.</p>
+		  		<p><strong>On the horizon: </strong>We have also been in touch with 2 orphanages in India and 2 in Mexico and are just waiting to gather more information on their specific needs. </p>
+  				</font>
+				</div>
+  			</g:HTMLPanel>
+  			<g:VerticalPanel width="40px" />
+  			<g:HTMLPanel ui:field="newsPanel2">
+				<div align="left">
+		  		<font style="font-size: 15px; color: #999;">
+		  		<p><strong>Community connections: </strong>We were contacted by a local individual who wanted to donate toys to orphans in the community. One of our volunteers helped her connect with a local organization that was happy to accept them. </p>
+		  		<p><strong>Volunteers: </strong>Our volunteer team grew a little bit more over the Summer. The new vounteers bring exceptional skills and motivation to the table and we're truly grateful for their time. That makes 11 of us now who are actively helping to build this network. We can always use more help - join us!</p>
+				</font>
+				</div>
+			</g:HTMLPanel>
+		</g:HorizontalPanel>
 	</g:VerticalPanel>
 </ui:UiBinder> 

@@ -13,48 +13,18 @@
 		    cursor                      :   hand;
 			width						: 	100%;
 		    background-color            :   #8bff2d;
-			border						:	0px 0px 0px 0px;
-		    margin						: 	0px 0px 0px 0px;
-		    padding						: 	0px 0px 0px 0px;
 		}
 		.gwt-MenuBar table
 		{
 			width						: 	100%;	    
 			background-color            :   #8bff2d;
-			border						:	0px 0px 0px 0px;
-		    margin						: 	0px 0px 0px 0px;
-		    padding						: 	0px 0px 0px 0px;
-			horizontal-align			:	justified
-		}
-		.gwt-MenuBar .gwt-PushButton-down-hovering 
-		{
-			background-color			: 	#FA58D0;
-			cursor						:	pointer;
-			cursor						: 	hand;
 		}
 		.gwt-MenuBar .gwt-MenuItem 
 		{
 			background-color			: 	#FA58D0;
 			cursor						: 	pointer;
 			cursor						: 	hand;
-			border						:	0px 0px 0px 0px;
-		    margin						: 	0px 0px 0px 0px;
-		    padding						: 	5px 5px 5px 0px;
-		}
-		.gwt-MenuItem .gwt-PushButton-down-hovering 
-		{
-			background-color: #FA58D0;
-			cursor: pointer;
-			cursor: hand;
-		}
-		a, a:visited, a:hover {
-  			color: #FA58D0;
-		}
-		.gwt-MenuBar a:hover {
-  			color: #FA58D0;
-		}
-		.gwt-MenuItem a:hover {
-  			color: #FA58D0;
+			padding						: 	5px 5px 5px 0px;
 		}
 	</ui:style>
 	
@@ -79,79 +49,77 @@ background: url(images/bluebar-bg-selected.png) no-repeat 50% 100%;
 	  		<g:MenuBar ui:field='mainMenu' vertical="false">
 				<g:MenuItem ui:field='internalMenu'>
 				    <g:MenuBar vertical="true">
-	  			  		<g:MenuItem ui:field='volunteerItem'><font style="font-family:Century Gothic; font-size: 22px; color: #FFFFFF; font-weight:normal;">Volunteers</font></g:MenuItem>
+	  			  		<g:MenuItem ui:field='volunteerItem'>Volunteers</g:MenuItem>
 	  			    </g:MenuBar>
 				</g:MenuItem>
-			<g:MenuItem ui:field='homeItem'><font style="font-family:Century Gothic; font-size: 22px; color: #FFFFFF; font-weight:normal;">Home</font>
+			<g:MenuItem ui:field='homeItem'>Home
 				</g:MenuItem>
-				<g:MenuItem ui:field='aboutUsItem'><font style="font-family:Century Gothic; font-size: 22px; color: #FFFFFF; font-weight:normal;">About</font>
+				<g:MenuItem ui:field='aboutUsItem'>About
 				    <g:MenuBar vertical="true">
-      					<!-- <g:MenuItem ui:field='contextItem'><font color="#ab0fc8"><b><i>Context</i></b></font></g:MenuItem> -->
-      					<g:MenuItem ui:field='ourMissionItem'><font style="font-family:Century Gothic; font-size: 18px; color: #8BFF2D;">Our mission</font></g:MenuItem>
-      					<g:MenuItem ui:field='theTeamItem'><font style="font-family:Century Gothic; font-size: 18px; color: #8BFF2D;">Our team</font></g:MenuItem>
-      					<g:MenuItem ui:field='joinOWBItem'><font style="font-family:Century Gothic; font-size: 18px; color: #8BFF2D;">Join our team</font></g:MenuItem>
+      					<g:MenuItem ui:field='ourMissionItem'>Our mission</g:MenuItem>
+      					<g:MenuItem ui:field='theTeamItem'>Our team</g:MenuItem>
+      					<g:MenuItem ui:field='joinOWBItem'>Join our team</g:MenuItem>
      				</g:MenuBar>
 				</g:MenuItem>
-				<g:MenuItem ui:field='resourcesItem'><font style="font-family:Century Gothic; font-size: 22px; color: #FFFFFF; font-weight:normal;">Resources</font>
+				<g:MenuItem ui:field='resourcesItem'>Resources
 				    <g:MenuBar vertical="true">
-      					<g:MenuItem ui:field='joinNetworkItem'><font style="font-family:Century Gothic; font-size: 18px; color: #8BFF2D;">Join the network</font></g:MenuItem>
-      					<g:MenuItem ui:field='searchResourcesItem'><font style="font-family:Century Gothic; font-size: 18px; color: #8BFF2D;">Search resources</font></g:MenuItem>
+      					<g:MenuItem ui:field='joinNetworkItem'>Join the network</g:MenuItem>
+      					<g:MenuItem ui:field='searchResourcesItem'>Browse resources</g:MenuItem>
      				</g:MenuBar>
 	 		 	</g:MenuItem>
-				<g:MenuItem ui:field='needsItem'><font style="font-family:Century Gothic; font-size: 22px; color: #FFFFFF; font-weight:normal;">Needs</font>
+				<g:MenuItem ui:field='needsItem'>Needs
 				    <g:MenuBar vertical="true">
-      					<g:MenuItem ui:field='shareProjectsItem'><font style="font-family:Century Gothic; font-size: 18px; color: #8BFF2D;">Create a project</font></g:MenuItem>
-      					<g:MenuItem ui:field='searchProjectsItem'><font style="font-family:Century Gothic; font-size: 18px; color: #8BFF2D;">Search projects</font></g:MenuItem>
-      					<g:MenuItem ui:field='chooseProjectsItem'><font style="font-family:Century Gothic; font-size: 18px; color: #8BFF2D;">Choose a project</font></g:MenuItem>
+      					<g:MenuItem ui:field='shareProjectsItem'>Create a project</g:MenuItem>
+      					<g:MenuItem ui:field='searchProjectsItem'>Browse projects</g:MenuItem>
      				</g:MenuBar>
 	 		 	</g:MenuItem>
 				<g:MenuItem ui:field='mapItem'>
-				  <font style="font-family:Century Gothic; font-size: 22px; color: #FFFFFF; font-weight:normal;">Map</font>
+				  Map
 				</g:MenuItem>
 				
 				<!-- 
-				<g:MenuItem ui:field='whatDoWeDoItem'><font color="#ab0fc8"><b><i>What_do_we_do?</i></b></font>
+				<g:MenuItem ui:field='whatDoWeDoItem'><font color="#ab0fc8"><b><i>What_do_we_do?</i></b>
 				    <g:MenuBar vertical="true">
-      					<g:MenuItem><font color="#ab0fc8"><b><i>Life Essentials</i></b></font>
+      					<g:MenuItem><font color="#ab0fc8"><b><i>Life Essentials</i></b>
       						<g:MenuBar vertical="true">
-      							<g:MenuItem ui:field='cleanWaterItem'><font color="#ab0fc8"><b><i>Clean Water</i></b></font></g:MenuItem>
-      							<g:MenuItem ui:field='foodItem'><font color="#ab0fc8"><b><i>Food</i></b></font></g:MenuItem>
-      							<g:MenuItem ui:field='shelterItem'><font color="#ab0fc8"><b><i>Shelter</i></b></font></g:MenuItem>
-      							<g:MenuItem ui:field='clothingItem'><font color="#ab0fc8"><b><i>Clothing</i></b></font></g:MenuItem>
+      							<g:MenuItem ui:field='cleanWaterItem'><font color="#ab0fc8"><b><i>Clean Water</i></b></g:MenuItem>
+      							<g:MenuItem ui:field='foodItem'><font color="#ab0fc8"><b><i>Food</i></b></g:MenuItem>
+      							<g:MenuItem ui:field='shelterItem'><font color="#ab0fc8"><b><i>Shelter</i></b></g:MenuItem>
+      							<g:MenuItem ui:field='clothingItem'><font color="#ab0fc8"><b><i>Clothing</i></b></g:MenuItem>
       						</g:MenuBar>
       					</g:MenuItem>
-      					<g:MenuItem><font color="#ab0fc8"><b><i>Physical Health</i></b></font>
+      					<g:MenuItem><font color="#ab0fc8"><b><i>Physical Health</i></b>
       						<g:MenuBar vertical="true">
-      							<g:MenuItem ui:field='healthItem'><font color="#ab0fc8"><b><i>Medicine</i></b></font></g:MenuItem>
-      							<g:MenuItem ui:field='hygieneItem'><font color="#ab0fc8"><b><i>Hygiene</i></b></font></g:MenuItem>
-      							<g:MenuItem ui:field='safetyItem'><font color="#ab0fc8"><b><i>Safety</i></b></font></g:MenuItem>
-      							<g:MenuItem ui:field='excerciseItem'><font color="#ab0fc8"><b><i>Physical Activities</i></b></font></g:MenuItem>
+      							<g:MenuItem ui:field='healthItem'><font color="#ab0fc8"><b><i>Medicine</i></b></g:MenuItem>
+      							<g:MenuItem ui:field='hygieneItem'><font color="#ab0fc8"><b><i>Hygiene</i></b></g:MenuItem>
+      							<g:MenuItem ui:field='safetyItem'><font color="#ab0fc8"><b><i>Safety</i></b></g:MenuItem>
+      							<g:MenuItem ui:field='excerciseItem'><font color="#ab0fc8"><b><i>Physical Activities</i></b></g:MenuItem>
       						</g:MenuBar>
       					</g:MenuItem>
-      					<g:MenuItem><font color="#ab0fc8"><b><i>Education</i></b></font>
+      					<g:MenuItem><font color="#ab0fc8"><b><i>Education</i></b>
       						<g:MenuBar vertical="true">
-      							<g:MenuItem ui:field='educationItem'><font color="#ab0fc8"><b><i>Schooling Education</i></b></font></g:MenuItem>
-      							<g:MenuItem ui:field='guidanceItem'><font color="#ab0fc8"><b><i>Guidance</i></b></font></g:MenuItem>
-      							<g:MenuItem ui:field='responsabilitiesItem'><font color="#ab0fc8"><b><i>Responsabilities</i></b></font></g:MenuItem>
-      							<g:MenuItem ui:field='disciplineItem'><font color="#ab0fc8"><b><i>Discipline</i></b></font></g:MenuItem>
+      							<g:MenuItem ui:field='educationItem'><font color="#ab0fc8"><b><i>Schooling Education</i></b></g:MenuItem>
+      							<g:MenuItem ui:field='guidanceItem'><font color="#ab0fc8"><b><i>Guidance</i></b></g:MenuItem>
+      							<g:MenuItem ui:field='responsabilitiesItem'><font color="#ab0fc8"><b><i>Responsabilities</i></b></g:MenuItem>
+      							<g:MenuItem ui:field='disciplineItem'><font color="#ab0fc8"><b><i>Discipline</i></b></g:MenuItem>
       						</g:MenuBar>
       					</g:MenuItem>
-      					<g:MenuItem><font color="#ab0fc8"><b><i>Emotional Health</i></b></font>
+      					<g:MenuItem><font color="#ab0fc8"><b><i>Emotional Health</i></b>
       						<g:MenuBar vertical="true">
-      							<g:MenuItem ui:field='loveItem'><font color="#ab0fc8"><b><i>Love</i></b></font></g:MenuItem>
-      							<g:MenuItem ui:field='compassionateEnvironementItem'><font color="#ab0fc8"><b><i>Compassionate Environment</i></b></font></g:MenuItem>
-      							<g:MenuItem ui:field='joyItem'><font color="#ab0fc8"><b><i>Joy</i></b></font></g:MenuItem>
-      							<g:MenuItem ui:field='hopeOfFutureItem'><font color="#ab0fc8"><b><i>Hope of Future</i></b></font></g:MenuItem>
+      							<g:MenuItem ui:field='loveItem'><font color="#ab0fc8"><b><i>Love</i></b></g:MenuItem>
+      							<g:MenuItem ui:field='compassionateEnvironementItem'><font color="#ab0fc8"><b><i>Compassionate Environment</i></b></g:MenuItem>
+      							<g:MenuItem ui:field='joyItem'><font color="#ab0fc8"><b><i>Joy</i></b></g:MenuItem>
+      							<g:MenuItem ui:field='hopeOfFutureItem'><font color="#ab0fc8"><b><i>Hope of Future</i></b></g:MenuItem>
       						</g:MenuBar>
       					</g:MenuItem>
      				</g:MenuBar>
 				</g:MenuItem>
-				<g:MenuItem ui:field='howDoWeHelpItem'><font color="#ab0fc8"><b><i>Who_do_we_work_with?</i></b></font>
+				<g:MenuItem ui:field='howDoWeHelpItem'><font color="#ab0fc8"><b><i>Who_do_we_work_with?</i></b>
 				    <g:MenuBar vertical="true">
-      					<g:MenuItem ui:field='howChildrenItem'><font color="#ab0fc8"><b><i>Children</i></b></font></g:MenuItem>
-      					<g:MenuItem ui:field='howProjectsItem'><font color="#ab0fc8"><b><i>Projects</i></b></font></g:MenuItem>
-      					<g:MenuItem ui:field='howOrganizationsItem'><font color="#ab0fc8"><b><i>Organizations</i></b></font></g:MenuItem>
-      					<g:MenuItem ui:field='howIndividualsItem'><font color="#ab0fc8"><b><i>Individuals</i></b></font></g:MenuItem>
+      					<g:MenuItem ui:field='howChildrenItem'><font color="#ab0fc8"><b><i>Children</i></b></g:MenuItem>
+      					<g:MenuItem ui:field='howProjectsItem'><font color="#ab0fc8"><b><i>Projects</i></b></g:MenuItem>
+      					<g:MenuItem ui:field='howOrganizationsItem'><font color="#ab0fc8"><b><i>Organizations</i></b></g:MenuItem>
+      					<g:MenuItem ui:field='howIndividualsItem'><font color="#ab0fc8"><b><i>Individuals</i></b></g:MenuItem>
      				</g:MenuBar>
 				</g:MenuItem>
 				 -->

@@ -5,6 +5,7 @@ import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.TabLayoutPanel;
 import com.google.gwt.user.client.ui.Widget;
@@ -19,6 +20,7 @@ public class WebHomeGifView extends Composite implements WebHomePresenter.Displa
 	}
 
 	@UiField HorizontalPanel infoBandField;
+	@UiField HTMLPanel newsPanel1, newsPanel2;
 	
 	public WebHomeGifView() {
 		initWidget(uiBinder.createAndBindUi(this));
@@ -27,6 +29,14 @@ public class WebHomeGifView extends Composite implements WebHomePresenter.Displa
 	@Override
 	public HorizontalPanel getInfoBandField() {
 		return infoBandField;
+	}
+	@Override 
+	public HTMLPanel getNewsPanel1(){
+		return newsPanel1;
+	}
+	@Override 
+	public HTMLPanel getNewsPanel2(){
+		return newsPanel2;
 	}
 
 }

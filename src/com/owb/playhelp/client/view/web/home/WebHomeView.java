@@ -7,6 +7,7 @@ import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.TabLayoutPanel;
@@ -63,5 +64,12 @@ public class WebHomeView extends Composite implements WebHomePresenter.Display {
 	public HorizontalPanel getInfoBandField() {
 		return infoBandField;
 	}
-
+	@Override 
+	public HTMLPanel getNewsPanel1(){
+		return new HTMLPanel("");
+	}
+	@Override 
+	public HTMLPanel getNewsPanel2(){
+		return new HTMLPanel("");
+	}
 }

@@ -192,18 +192,6 @@ public interface Resources extends ClientBundle {
     ImageResource Erikapic();
     @Source("Kariphoto.jpg")
     ImageResource Karipic();
-    @Source("pinkphoto.jpg")
-    ImageResource pinkpic();
-    @Source("purplephoto.jpg")
-    ImageResource purplepic();
-    @Source("greenphoto.jpg")
-    ImageResource greenpic();
-    @Source("yellowphoto.jpg")
-    ImageResource yellowpic();
-    @Source("bluephoto.jpg")
-    ImageResource bluepic();
-    @Source("yellowgreenphoto.jpg")
-    ImageResource yellowgreenpic();
     @Source("nopicphoto.jpg")
     ImageResource nopicpic();
     
@@ -232,6 +220,9 @@ public interface Resources extends ClientBundle {
     ImageResource homeimg3();
     @Source("slide4b.jpg")
     ImageResource homeimg4();
+    @Source("slideshow.gif")
+    ImageResource slideshowgif();
+    
     
     
     
