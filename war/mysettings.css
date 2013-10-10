@@ -1,1164 +1,1152 @@
-{\rtf1\ansi\ansicpg1252\cocoartf1138\cocoasubrtf510
-{\fonttbl\f0\fnil\fcharset0 Monaco;}
-{\colortbl;\red255\green255\blue255;\red63\green95\blue191;\red63\green127\blue127;\red127\green0\blue127;
-\red42\green0\blue225;}
-\paperw12600\paperh8280\margl1440\margr1440\vieww10800\viewh8400\viewkind0
-\deftab720
-\pard\pardeftab720
+/**
+ * The file contains styles for GWT widgets in the standard theme.
+ *
+ * In order to maintain cross-browser compatibility, the following syntax is
+ * used to create IE6 specific style rules:
+ *    .gwt-Widget {
+ *      property: rule applies to all browsers
+ *      -property: rule applies only to IE6 (overrides previous rule)
+ *    }
+ *    * html .gwt-Widget {
+ *      property: rule applies to all versions of IE
+ *    }
+ */
 
-\f0\fs22 \cf2 /**\cf0 \
-\cf2  * The file contains styles for GWT widgets in the standard theme.\cf0 \
-\cf2  *\cf0 \
-\cf2  * In order to maintain cross-browser compatibility, the following syntax is\cf0 \
-\cf2  * used to create IE6 specific style rules:\cf0 \
-\cf2  *    .\ul gwt\ulnone -Widget \{\cf0 \
-\cf2  *      property: rule applies to all browsers\cf0 \
-\cf2  *      -property: rule applies only to IE6 (overrides previous rule)\cf0 \
-\cf2  *    \}\cf0 \
-\cf2  *    * \ul html\ulnone  .\ul gwt\ulnone -Widget \{\cf0 \
-\cf2  *      property: rule applies to all versions of IE\cf0 \
-\cf2  *    \}\cf0 \
-\cf2  */\cf0 \
-\
-\pard\pardeftab720
-\cf3 body,\cf0  \cf3 table td,\cf0  \cf3 select\cf0  \{\
-  \cf4 font-family\cf0 : \cf5 Arial\cf0  \cf5 Unicode\cf0  \cf5 MS,\cf0  \cf5 Arial,\cf0  \cf5 sans-serif\cf0 ;\
-  \cf4 font-size\cf0 : \cf5 small\cf0 ;\
-\}\
-\cf3 pre\cf0  \{\
-  \cf4 font-family\cf0 : \cf5 "courier new",\cf0  \cf5 courier\cf0 ;\
-  \cf4 font-size\cf0 : \cf5 small\cf0 ;\
-\}\
-\cf3 body\cf0  \{\
-  \cf4 color\cf0 : \cf5 black\cf0 ;\
-  \cf4 margin\cf0 : \cf5 0px\cf0 ;\
-  \cf4 border\cf0 : \cf5 0px\cf0 ;\
-  \cf4 padding\cf0 : \cf5 0px\cf0 ;\
-  \cf4 background\cf0 : \cf5 #fff\cf0 ;\
-  \cf4 direction\cf0 : \cf5 ltr\cf0 ;\
-\}\
-\cf3 a,\cf0  \cf3 a:visited,\cf0  \cf3 a:hover\cf0  \{\
-  \cf4 color\cf0 : \cf5 #dc50fa\cf0 ;\
-\}\
-\
-\pard\pardeftab720
-\cf2 /**\cf0 \
-\cf2  * The reference theme can be used to determine when this style sheet has\cf0 \
-\cf2  * loaded.  Create a hidden \ul div\ulnone  element with absolute position, assign the style\cf0 \
-\cf2  * name below, and attach it to the DOM.  Use a timer to detect when the\cf0 \
-\cf2  * element's height and width are set to 5px.\cf0 \
-\cf2  */\cf0 \
-\pard\pardeftab720
-\cf3 .gwt-Reference-standard\cf0  \{\
-  \cf4 height\cf0 : \cf5 5px\cf0 ;\
-  \cf4 width\cf0 : \cf5 5px\cf0 ;\
-  \cf4 zoom\cf0 : \cf5 1\cf0 ;\
-\}\
-\
-\cf3 .gwt-Button\cf0  \{\
-  \cf4 margin\cf0 : \cf5 0\cf0 ;\
-  \cf4 padding\cf0 : \cf5 3px\cf0  \cf5 5px\cf0 ;\
-  \cf4 text-decoration\cf0 : \cf5 none\cf0 ;\
-  \cf4 font-size\cf0 : \cf5 small\cf0 ;\
-  \cf4 cursor\cf0 : \cf5 pointer\cf0 ;\
-  \cf4 cursor\cf0 : \cf5 hand\cf0 ;\
-  \cf4 background\cf0 : \cf5 url("images/hborder.png")\cf0  \cf5 repeat-x\cf0  \cf5 0px\cf0  \cf5 -27px\cf0 ;\
-  \cf4 border\cf0 : \cf5 1px\cf0  \cf5 outset\cf0  \cf5 #ccc\cf0 ;\
-\}\
-\cf3 .gwt-Button:active\cf0  \{\
-  \cf4 border\cf0 : \cf5 1px\cf0  \cf5 inset\cf0  \cf5 #ccc\cf0 ;\
-\}\
-\cf3 .gwt-Button:hover\cf0  \{\
-  \cf4 border-color\cf0 : \cf5 #9cf\cf0  \cf5 #69e\cf0  \cf5 #69e\cf0  \cf5 #7af\cf0 ;\
-\}\
-\cf3 .gwt-Button[disabled]\cf0  \{\
-  \cf4 cursor\cf0 : \cf5 default\cf0 ;\
-  \cf4 color\cf0 : \cf5 #888\cf0 ;\
-\}\
-\cf3 .gwt-Button[disabled]:hover\cf0  \{\
-  \cf4 border\cf0 : \cf5 1px\cf0  \cf5 outset\cf0  \cf5 #ccc\cf0 ;\
-\}\
-\
-\cf3 .gwt-CheckBox\cf0  \{\
-\}\
-\cf3 .gwt-CheckBox-disabled\cf0  \{\
-  \cf4 color\cf0 : \cf5 #888\cf0 ;\
-\}\
-\
-\cf3 .gwt-DecoratorPanel\cf0  \{\
-\}\
-\cf3 .gwt-DecoratorPanel .topCenter,\cf0 \
-\cf3 .gwt-DecoratorPanel .bottomCenter\cf0  \{\
-  \cf4 background\cf0 : \cf5 url(images/hborder.png)\cf0  \cf5 repeat-x\cf0 ;\
-\}\
-\cf3 .gwt-DecoratorPanel .middleLeft,\cf0 \
-\cf3 .gwt-DecoratorPanel .middleRight\cf0  \{\
-  \cf4 background\cf0 : \cf5 url(images/vborder.png)\cf0  \cf5 repeat-y\cf0 ;\
-\}\
-\cf3 .gwt-DecoratorPanel .topLeftInner,\cf0 \
-\cf3 .gwt-DecoratorPanel .topRightInner,\cf0 \
-\cf3 .gwt-DecoratorPanel .bottomLeftInner,\cf0 \
-\cf3 .gwt-DecoratorPanel .bottomRightInner\cf0  \{\
-  \cf4 width\cf0 : \cf5 5px\cf0 ;\
-  \cf4 height\cf0 : \cf5 5px\cf0 ;\
-  \cf4 zoom\cf0 : \cf5 1\cf0 ;\
-\}\
-\cf3 .gwt-DecoratorPanel .topLeft\cf0  \{\
-  \cf4 background\cf0 : \cf5 url(images/corner.png)\cf0  \cf5 no-repeat\cf0  \cf5 0px\cf0  \cf5 0px\cf0 ;\
-  \cf4 -background\cf0 : \cf5 url(images/corner_ie6.png)\cf0  \cf5 no-repeat\cf0  \cf5 0px\cf0  \cf5 0px\cf0 ;\
-\}\
-\cf3 .gwt-DecoratorPanel .topRight\cf0  \{\
-  \cf4 background\cf0 : \cf5 url(images/corner.png)\cf0  \cf5 no-repeat\cf0  \cf5 -5px\cf0  \cf5 0px\cf0 ;\
-  \cf4 -background\cf0 : \cf5 url(images/corner_ie6.png)\cf0  \cf5 no-repeat\cf0  \cf5 -5px\cf0  \cf5 0px\cf0 ;\
-\}\
-\cf3 .gwt-DecoratorPanel .bottomLeft\cf0  \{\
-  \cf4 background\cf0 : \cf5 url(images/corner.png)\cf0  \cf5 no-repeat\cf0  \cf5 0px\cf0  \cf5 -5px\cf0 ;\
-  \cf4 -background\cf0 : \cf5 url(images/corner_ie6.png)\cf0  \cf5 no-repeat\cf0  \cf5 0px\cf0  \cf5 -5px\cf0 ;\
-\}\
-\cf3 .gwt-DecoratorPanel .bottomRight\cf0  \{\
-  \cf4 background\cf0 : \cf5 url(images/corner.png)\cf0  \cf5 no-repeat\cf0  \cf5 -5px\cf0  \cf5 -5px\cf0 ;\
-  \cf4 -background\cf0 : \cf5 url(images/corner_ie6.png)\cf0  \cf5 no-repeat\cf0  \cf5 -5px\cf0  \cf5 -5px\cf0 ;\
-\}\
-\cf3 * html .gwt-DecoratorPanel .topLeftInner,\cf0 \
-\cf3 * html .gwt-DecoratorPanel .topRightInner,\cf0 \
-\cf3 * html .gwt-DecoratorPanel .bottomLeftInner,\cf0 \
-\cf3 * html .gwt-DecoratorPanel .bottomRightInner\cf0  \{\
-  \cf4 width\cf0 : \cf5 5px\cf0 ;\
-  \cf4 height\cf0 : \cf5 5px\cf0 ;\
-  \cf4 overflow\cf0 : \cf5 hidden\cf0 ;\
-\}\
-\
-\cf3 .gwt-DialogBox .Caption\cf0  \{\
-  \cf4 background\cf0 : \cf5 #ECCEF5\cf0  \cf5 url(images/hborder.png)\cf0  \cf5 repeat-x\cf0  \cf5 0px\cf0  \cf5 -2003px\cf0 ;\
-  \cf4 padding\cf0 : \cf5 4px\cf0  \cf5 4px\cf0  \cf5 4px\cf0  \cf5 8px\cf0 ;\
-  \cf4 cursor\cf0 : \cf5 default\cf0 ;\
-  \cf4 border-bottom\cf0 : \cf5 1px\cf0  \cf5 solid\cf0  \cf5 #dc50fa\cf0 ;\
-  \cf4 border-top\cf0 : \cf5 5px\cf0  \cf5 solid\cf0  \cf5 #D0A9F5\cf0 ;\
-\}\
-\cf3 .gwt-DialogBox .dialogContent\cf0  \{\
-\}\
-\cf3 .gwt-DialogBox .dialogMiddleCenter\cf0  \{\
-  \cf4 padding\cf0 : \cf5 3px\cf0 ;\
-  \cf4 background\cf0 : \cf5 white\cf0 ;\
-\}\
-\cf3 .gwt-DialogBox .dialogBottomCenter\cf0  \{\
-  \cf4 background\cf0 : \cf5 url(images/hborder.png)\cf0  \cf5 repeat-x\cf0  \cf5 0px\cf0  \cf5 -4px\cf0 ;\
-  \cf4 -background\cf0 : \cf5 url(images/hborder_ie6.png)\cf0  \cf5 repeat-x\cf0  \cf5 0px\cf0  \cf5 -4px\cf0 ;\
-\}\
-\cf3 .gwt-DialogBox .dialogMiddleLeft\cf0  \{\
-  \cf4 background\cf0 : \cf5 url(images/vborder.png)\cf0  \cf5 repeat-y\cf0 ;\
-\}\
-\cf3 .gwt-DialogBox .dialogMiddleRight\cf0  \{\
-  \cf4 background\cf0 : \cf5 url(images/vborder.png)\cf0  \cf5 repeat-y\cf0  \cf5 -4px\cf0  \cf5 0px\cf0 ;\
-  \cf4 -background\cf0 : \cf5 url(images/vborder_ie6.png)\cf0  \cf5 repeat-y\cf0  \cf5 -4px\cf0  \cf5 0px\cf0 ;\
-\}\
-\cf3 .gwt-DialogBox .dialogTopLeftInner\cf0  \{\
-  \cf4 width\cf0 : \cf5 5px\cf0 ;\
-  \cf4 zoom\cf0 : \cf5 1\cf0 ;\
-\}\
-\cf3 .gwt-DialogBox .dialogTopRightInner\cf0  \{\
-  \cf4 width\cf0 : \cf5 8px\cf0 ;\
-  \cf4 zoom\cf0 : \cf5 1\cf0 ;\
-\}\
-\cf3 .gwt-DialogBox .dialogBottomLeftInner\cf0  \{\
-  \cf4 width\cf0 : \cf5 5px\cf0 ;\
-  \cf4 height\cf0 : \cf5 8px\cf0 ;\
-  \cf4 zoom\cf0 : \cf5 1\cf0 ;\
-\}\
-\cf3 .gwt-DialogBox .dialogBottomRightInner\cf0  \{\
-  \cf4 width\cf0 : \cf5 5px\cf0 ;\
-  \cf4 height\cf0 : \cf5 8px\cf0 ;\
-  \cf4 zoom\cf0 : \cf5 1\cf0 ;\
-\}\
-\cf3 .gwt-DialogBox .dialogTopLeft\cf0  \{\
-  \cf4 background\cf0 : \cf5 url(images/corner.png)\cf0  \cf5 no-repeat\cf0  \cf5 -13px\cf0  \cf5 0px\cf0 ;\
-  \cf4 -background\cf0 : \cf5 url(images/corner_ie6.png)\cf0  \cf5 no-repeat\cf0  \cf5 -13px\cf0  \cf5 0px\cf0 ;\
-\}\
-\cf3 .gwt-DialogBox .dialogTopRight\cf0  \{\
-  \cf4 background\cf0 : \cf5 url(images/corner.png)\cf0  \cf5 no-repeat\cf0  \cf5 -18px\cf0  \cf5 0px\cf0 ;\
-  \cf4 -background\cf0 : \cf5 url(images/corner_ie6.png)\cf0  \cf5 no-repeat\cf0  \cf5 -18px\cf0  \cf5 0px\cf0 ;\
-\}\
-\cf3 .gwt-DialogBox .dialogBottomLeft\cf0  \{\
-  \cf4 background\cf0 : \cf5 url(images/corner.png)\cf0  \cf5 no-repeat\cf0  \cf5 0px\cf0  \cf5 -15px\cf0 ;\
-  \cf4 -background\cf0 : \cf5 url(images/corner_ie6.png)\cf0  \cf5 no-repeat\cf0  \cf5 0px\cf0  \cf5 -15px\cf0 ;\
-\}\
-\cf3 .gwt-DialogBox .dialogBottomRight\cf0  \{\
-  \cf4 background\cf0 : \cf5 url(images/corner.png)\cf0  \cf5 no-repeat\cf0  \cf5 -5px\cf0  \cf5 -15px\cf0 ;\
-  \cf4 -background\cf0 : \cf5 url(images/corner_ie6.png)\cf0  \cf5 no-repeat\cf0  \cf5 -5px\cf0  \cf5 -15px\cf0 ;\
-\}\
-\cf3 * html .gwt-DialogBox .dialogTopLeftInner\cf0  \{\
-  \cf4 width\cf0 : \cf5 5px\cf0 ;\
-  \cf4 overflow\cf0 : \cf5 hidden\cf0 ;\
-\}\
-\cf3 * html .gwt-DialogBox .dialogTopRightInner\cf0  \{\
-  \cf4 width\cf0 : \cf5 8px\cf0 ;\
-  \cf4 overflow\cf0 : \cf5 hidden\cf0 ;\
-\}\
-\cf3 * html .gwt-DialogBox .dialogBottomLeftInner\cf0  \{\
-  \cf4 width\cf0 : \cf5 5px\cf0 ;\
-  \cf4 height\cf0 : \cf5 8px\cf0 ;\
-  \cf4 overflow\cf0 : \cf5 hidden\cf0 ;\
-\}\
-\cf3 * html .gwt-DialogBox .dialogBottomRightInner\cf0  \{\
-  \cf4 width\cf0 : \cf5 8px\cf0 ;\
-  \cf4 height\cf0 : \cf5 8px\cf0 ;\
-  \cf4 overflow\cf0 : \cf5 hidden\cf0 ;\
-\}\
-\
-\cf3 .gwt-DisclosurePanel\cf0  \{\
-\}\
-\cf3 .gwt-DisclosurePanel-open\cf0  \{\
-\}\
-\cf3 .gwt-DisclosurePanel-closed\cf0  \{\
-\}\
-\cf3 .gwt-DisclosurePanel .header,\cf0 \
-\cf3 .gwt-DisclosurePanel .header a,\cf0 \
-\cf3 .gwt-DisclosurePanel .header td\cf0  \{\
-  \cf4 text-decoration\cf0 : \cf5 none\cf0 ;  \cf2 /* Remove underline from header */\cf0 \
-  \cf4 color\cf0 : \cf5 black\cf0 ; \
-  \cf4 cursor\cf0 : \cf5 pointer\cf0 ;\
-  \cf4 cursor\cf0 : \cf5 hand\cf0 ;\
-\}\
-\cf3 .gwt-DisclosurePanel .content\cf0  \{\
-  \cf4 border-left\cf0 : \cf5 3px\cf0  \cf5 solid\cf0  \cf5 #e8eef7\cf0 ;\
-  \cf4 padding\cf0 : \cf5 4px\cf0  \cf5 0px\cf0  \cf5 4px\cf0  \cf5 8px\cf0 ;\
-  \cf4 margin-left\cf0 : \cf5 6px\cf0 ;\
-\}\
-\
-\cf3 .gwt-FileUpload\cf0  \{\
-\}\
-\
-\cf3 .gwt-Frame\cf0  \{\
-  \cf4 border-top\cf0 : \cf5 2px\cf0  \cf5 solid\cf0  \cf5 #666\cf0 ;\
-  \cf4 border-left\cf0 : \cf5 2px\cf0  \cf5 solid\cf0  \cf5 #666\cf0 ;\
-  \cf4 border-right\cf0 : \cf5 2px\cf0  \cf5 solid\cf0  \cf5 #bbb\cf0 ;\
-  \cf4 border-bottom\cf0 : \cf5 2px\cf0  \cf5 solid\cf0  \cf5 #bbb\cf0 ;\
-\}\
-\
-\cf3 .gwt-HorizontalSplitPanel\cf0  \{\
-\}\
-\cf3 .gwt-HorizontalSplitPanel .hsplitter\cf0  \{\
-  \cf4 cursor\cf0 : \cf5 move\cf0 ;\
-  \cf4 border\cf0 : \cf5 0px\cf0 ; \
-  \cf4 background\cf0 : \cf5 #91c0ef\cf0  \cf5 url(images/vborder.png)\cf0  \cf5 repeat-y\cf0 ;\
-  \cf4 line-height\cf0 : \cf5 0px\cf0 ;\
-\}\
-\cf3 .gwt-VerticalSplitPanel\cf0  \{\
-\}\
-\cf3 .gwt-VerticalSplitPanel .vsplitter\cf0  \{\
-  \cf4 cursor\cf0 : \cf5 move\cf0 ;\
-  \cf4 border\cf0 : \cf5 0px\cf0 ; \
-  \cf4 background\cf0 : \cf5 #91c0ef\cf0  \cf5 url(images/hborder.png)\cf0  \cf5 repeat-x\cf0 ;\
-  \cf4 line-height\cf0 : \cf5 0px\cf0 ;\
-\}\
-\
-\cf3 .gwt-HTML\cf0  \{\
-\}\
-\
-\cf3 .gwt-Hyperlink\cf0  \{\
-\}\
-\
-\cf3 .gwt-Image\cf0  \{\
-\}\
-\
-\cf3 .gwt-Label\cf0  \{\
-\}\
-\
-\cf3 .gwt-ListBox\cf0  \{\
-\}\
-\
-\cf3 .gwt-MenuBar\cf0  \{\
-  \cf4 cursor\cf0 : \cf5 default\cf0 ;\
-\}\
-\cf3 .gwt-MenuBar .gwt-MenuItem\cf0  \{\
-  \cf4 cursor\cf0 : \cf5 default\cf0 ;\
-\}\
-\cf3 .gwt-MenuBar .gwt-MenuItem-selected\cf0  \{\
-  \cf4 background\cf0 : \cf5 #FA58D0\cf0 ; \cf2 /*this is where we change hovering color of the menus*/\cf0 \
-  \cf4 color\cf0 : \cf5 #FFFFFF\cf0 ;\
-\}\
-\cf3 .gwt-MenuBar .gwt-MenuItem-disabled\cf0  \{\
-  \cf4 color\cf0 : \cf5 #c0c0c0\cf0 ;\
-\}\
-\cf3 .gwt-MenuBar-horizontal\cf0  \{\
-  \cf4 background\cf0 : \cf5 #8BFF2D\cf0 ; \cf2 /*original era una imagen*/\cf0 \
-  \cf4 border\cf0 : \cf5 0px\cf0  \cf5 solid\cf0  \cf5 #8BFF2D\cf0 ; \cf2 /*bordecito al rededor del menu de arriba*/\cf0 \
-\}\
-\cf3 .gwt-MenuBar-horizontal .gwt-MenuItem\cf0  \{\
-  \cf4 padding\cf0 : \cf5 0px\cf0  \cf5 20px\cf0  \cf5 0px\cf0  \cf5 20px\cf0 ; \cf2 /*spacing of menu items on top menu*/\cf0 \
-  \cf4 vertical-align\cf0 : \cf5 bottom\cf0 ;\
-  \cf4 color\cf0 : \cf5 #666666\cf0 ;\
-  \cf4 font-weight\cf0 : \cf5 bold\cf0 ;\
-\}\
-\cf3 .gwt-MenuBar-horizontal .gwt-MenuItemSeparator\cf0  \{\
-  \cf4 width\cf0 : \cf5 1px\cf0 ;\
-  \cf4 padding\cf0 : \cf5 0px\cf0 ;\
-  \cf4 margin\cf0 : \cf5 0px\cf0 ;\
-  \cf4 border\cf0 : \cf5 0px\cf0 ;\
-  \cf4 border-left\cf0 : \cf5 1px\cf0  \cf5 solid\cf0  \cf5 #888888\cf0 ;\
-  \cf4 background\cf0 : \cf5 white\cf0 ;\
-\}\
-\cf3 .gwt-MenuBar-horizontal .gwt-MenuItemSeparator .menuSeparatorInner\cf0  \{\
-  \cf4 width\cf0 : \cf5 1px\cf0 ;\
-  \cf4 height\cf0 : \cf5 1px\cf0 ;\
-  \cf4 background\cf0 : \cf5 white\cf0 ; \
-\}\
-\cf3 .gwt-MenuBar-vertical\cf0  \{\
-  \cf4 margin-top\cf0 : \cf5 0px\cf0 ;\
-  \cf4 margin-left\cf0 : \cf5 0px\cf0 ;\
-  \cf4 background\cf0 : \cf5 #FFFFFF\cf0 ; \cf2 /*color of background in drop-down menu*/\cf0 \
-\}\
-\cf3 .gwt-MenuBar-vertical table\cf0  \{\
-  \cf4 border-collapse\cf0 : \cf5 collapse\cf0 ;\
-\}\
-\cf3 .gwt-MenuBar-vertical .gwt-MenuItem\cf0  \{\
-  \cf4 padding\cf0 : \cf5 4px\cf0  \cf5 10px\cf0  \cf5 4px\cf0  \cf5 4px\cf0 ; \cf2 /*entre cada menu item: up - right - down - left*/\cf0 \
-\}\
-\cf3 .gwt-MenuBar-vertical .gwt-MenuItemSeparator\cf0  \{\
-  \cf4 padding\cf0 : \cf5 2px\cf0  \cf5 0px\cf0 ;\
-\}\
-\cf3 .gwt-MenuBar-vertical .gwt-MenuItemSeparator .menuSeparatorInner\cf0  \{\
-  \cf4 height\cf0 : \cf5 1px\cf0 ;\
-  \cf4 padding\cf0 : \cf5 0px\cf0 ;\
-  \cf4 border\cf0 : \cf5 0px\cf0 ;\
-  \cf4 border-top\cf0 : \cf5 1px\cf0  \cf5 solid\cf0  \cf5 #777777\cf0 ;\
-  \cf4 background\cf0 : \cf5 #ddddee\cf0 ;\
-  \cf4 overflow\cf0 : \cf5 hidden\cf0 ;\
-\}\
-\cf3 .gwt-MenuBar-vertical .subMenuIcon\cf0  \{\
-  \cf4 padding-right\cf0 : \cf5 4px\cf0 ;\
-\}\
-\cf3 .gwt-MenuBar-vertical .subMenuIcon-selected\cf0  \{\
-  \cf4 background\cf0 : \cf5 #E0EDFE\cf0 ;\
-\}\
-\cf3 .gwt-MenuBarPopup\cf0  \{\
-  \cf4 margin\cf0 : \cf5 0px\cf0  \cf5 0px\cf0  \cf5 0px\cf0  \cf5 3px\cf0 ;\
-\}\
-\cf3 .gwt-MenuBarPopup .menuPopupTopCenter\cf0  \{\
-  \cf4 background\cf0 : \cf5 url(images/hborder.png)\cf0  \cf5 0px\cf0  \cf5 -12px\cf0  \cf5 repeat-x\cf0 ;\
-\}\
-\cf3 .gwt-MenuBarPopup .menuPopupBottomCenter\cf0  \{\
-  \cf4 background\cf0 : \cf5 url(images/hborder.png)\cf0  \cf5 0px\cf0  \cf5 -13px\cf0  \cf5 repeat-x\cf0 ;\
-  \cf4 -background\cf0 : \cf5 url(images/hborder_ie6.png)\cf0  \cf5 0px\cf0  \cf5 -13px\cf0  \cf5 repeat-x\cf0 ;\
-\}\
-\cf3 .gwt-MenuBarPopup .menuPopupMiddleLeft\cf0  \{\
-  \cf4 background\cf0 : \cf5 url(images/vborder.png)\cf0  \cf5 -12px\cf0  \cf5 0px\cf0  \cf5 repeat-y\cf0 ;\
-  \cf4 -background\cf0 : \cf5 url(images/vborder_ie6.png)\cf0  \cf5 -12px\cf0  \cf5 0px\cf0  \cf5 repeat-y\cf0 ;\
-\}\
-\cf3 .gwt-MenuBarPopup .menuPopupMiddleRight\cf0  \{\
-  \cf4 background\cf0 : \cf5 url(images/vborder.png)\cf0  \cf5 -13px\cf0  \cf5 0px\cf0  \cf5 repeat-y\cf0 ;\
-  \cf4 -background\cf0 : \cf5 url(images/vborder_ie6.png)\cf0  \cf5 -13px\cf0  \cf5 0px\cf0  \cf5 repeat-y\cf0 ;\
-\}\
-\cf3 .gwt-MenuBarPopup .menuPopupTopLeftInner\cf0  \{\
-  \cf4 width\cf0 : \cf5 5px\cf0 ;\
-  \cf4 height\cf0 : \cf5 5px\cf0 ;\
-  \cf4 zoom\cf0 : \cf5 1\cf0 ;\
-\}\
-\cf3 .gwt-MenuBarPopup .menuPopupTopRightInner\cf0  \{\
-  \cf4 width\cf0 : \cf5 8px\cf0 ;\
-  \cf4 height\cf0 : \cf5 5px\cf0 ;\
-  \cf4 zoom\cf0 : \cf5 1\cf0 ;\
-\}\
-\cf3 .gwt-MenuBarPopup .menuPopupBottomLeftInner\cf0  \{\
-  \cf4 width\cf0 : \cf5 5px\cf0 ;\
-  \cf4 height\cf0 : \cf5 8px\cf0 ;\
-  \cf4 zoom\cf0 : \cf5 1\cf0 ;\
-\}\
-\cf3 .gwt-MenuBarPopup .menuPopupBottomRightInner\cf0  \{\
-  \cf4 width\cf0 : \cf5 8px\cf0 ;\
-  \cf4 height\cf0 : \cf5 8px\cf0 ;\
-  \cf4 zoom\cf0 : \cf5 1\cf0 ;\
-\}\
-\cf3 .gwt-MenuBarPopup .menuPopupTopLeft\cf0  \{\
-  \cf4 background\cf0 : \cf5 url(images/corner.png)\cf0  \cf5 no-repeat\cf0  \cf5 0px\cf0  \cf5 -36px\cf0 ;\
-  \cf4 -background\cf0 : \cf5 url(images/corner_ie6.png)\cf0  \cf5 no-repeat\cf0  \cf5 0px\cf0  \cf5 -36px\cf0 ;\
-\}\
-\cf3 .gwt-MenuBarPopup .menuPopupTopRight\cf0  \{\
-  \cf4 background\cf0 : \cf5 url(images/corner.png)\cf0  \cf5 no-repeat\cf0  \cf5 -5px\cf0  \cf5 -36px\cf0 ;\
-  \cf4 -background\cf0 : \cf5 url(images/corner_ie6.png)\cf0  \cf5 no-repeat\cf0  \cf5 -5px\cf0  \cf5 -36px\cf0 ;\
-\}\
-\cf3 .gwt-MenuBarPopup .menuPopupBottomLeft\cf0  \{\
-  \cf4 background\cf0 : \cf5 url(images/corner.png)\cf0  \cf5 no-repeat\cf0  \cf5 0px\cf0  \cf5 -41px\cf0 ;\
-  \cf4 -background\cf0 : \cf5 url(images/corner_ie6.png)\cf0  \cf5 no-repeat\cf0  \cf5 0px\cf0  \cf5 -41px\cf0 ;\
-\}\
-\cf3 .gwt-MenuBarPopup .menuPopupBottomRight\cf0  \{\
-  \cf4 background\cf0 : \cf5 url(images/corner.png)\cf0  \cf5 no-repeat\cf0  \cf5 -5px\cf0  \cf5 -41px\cf0 ;\
-  \cf4 -background\cf0 : \cf5 url(images/corner_ie6.png)\cf0  \cf5 no-repeat\cf0  \cf5 -5px\cf0  \cf5 -41px\cf0 ;\
-\}\
-\cf3 * html .gwt-MenuBarPopup .menuPopupTopLeftInner\cf0  \{\
-  \cf4 width\cf0 : \cf5 5px\cf0 ;\
-  \cf4 height\cf0 : \cf5 5px\cf0 ;\
-  \cf4 overflow\cf0 : \cf5 hidden\cf0 ;\
-\}\
-\cf3 * html .gwt-MenuBarPopup .menuPopupTopRightInner\cf0  \{\
-  \cf4 width\cf0 : \cf5 8px\cf0 ;\
-  \cf4 height\cf0 : \cf5 5px\cf0 ;\
-  \cf4 overflow\cf0 : \cf5 hidden\cf0 ;\
-\}\
-\cf3 * html .gwt-MenuBarPopup .menuPopupBottomLeftInner\cf0  \{\
-  \cf4 width\cf0 : \cf5 5px\cf0 ;\
-  \cf4 height\cf0 : \cf5 8px\cf0 ;\
-  \cf4 overflow\cf0 : \cf5 hidden\cf0 ;\
-\}\
-\cf3 * html .gwt-MenuBarPopup .menuPopupBottomRightInner\cf0  \{\
-  \cf4 width\cf0 : \cf5 8px\cf0 ;\
-  \cf4 height\cf0 : \cf5 8px\cf0 ;\
-  \cf4 overflow\cf0 : \cf5 hidden\cf0 ;\
-\}\
-\
-\cf3 .gwt-PasswordTextBox\cf0  \{\
-  \cf4 padding\cf0 : \cf5 2px\cf0 ;\
-\}\
-\cf3 .gwt-PasswordTextBox-readonly\cf0  \{\
-  \cf4 color\cf0 : \cf5 #888\cf0 ;\
-\}\
-\
-\cf3 .gwt-PopupPanel\cf0  \{\
-  \cf4 border\cf0 : \cf5 0px\cf0  \cf5 solid\cf0  \cf5 #FFFFFF\cf0 ; \cf2 /*border around loading-page-symbol*/\cf0 \
-  \cf4 padding\cf0 : \cf5 3px\cf0 ;\
-  \cf4 background\cf0 : \cf5 white\cf0 ;\
-\}\
-\
-\cf3 .gwt-DecoratedPopupPanel .popupContent\cf0  \{\
-\}\
-\cf3 .gwt-DecoratedPopupPanel .popupMiddleCenter\cf0  \{\
-  \cf4 padding\cf0 : \cf5 3px\cf0 ;\
-  \cf4 background\cf0 : \cf5 #d0e4f6\cf0 ;\
-\}\
-\cf3 .gwt-DecoratedPopupPanel .popupTopCenter\cf0  \{\
-  \cf4 background\cf0 : \cf5 url(images/hborder.png)\cf0  \cf5 repeat-x\cf0 ;\
-\}\
-\cf3 .gwt-DecoratedPopupPanel .popupBottomCenter\cf0  \{\
-  \cf4 background\cf0 : \cf5 url(images/hborder.png)\cf0  \cf5 repeat-x\cf0  \cf5 0px\cf0  \cf5 -4px\cf0 ;\
-  \cf4 -background\cf0 : \cf5 url(images/hborder_ie6.png)\cf0  \cf5 repeat-x\cf0  \cf5 0px\cf0  \cf5 -4px\cf0 ;\
-\}\
-\cf3 .gwt-DecoratedPopupPanel .popupMiddleLeft\cf0  \{\
-  \cf4 background\cf0 : \cf5 url(images/vborder.png)\cf0  \cf5 repeat-y\cf0 ;\
-\}\
-\cf3 .gwt-DecoratedPopupPanel .popupMiddleRight\cf0  \{\
-  \cf4 background\cf0 : \cf5 url(images/vborder.png)\cf0  \cf5 repeat-y\cf0  \cf5 -4px\cf0  \cf5 0px\cf0 ;\
-  \cf4 -background\cf0 : \cf5 url(images/vborder_ie6.png)\cf0  \cf5 repeat-y\cf0  \cf5 -4px\cf0  \cf5 0px\cf0 ;\
-\}\
-\cf3 .gwt-DecoratedPopupPanel .popupTopLeftInner\cf0  \{\
-  \cf4 width\cf0 : \cf5 5px\cf0 ;\
-  \cf4 height\cf0 : \cf5 5px\cf0 ;\
-  \cf4 zoom\cf0 : \cf5 1\cf0 ;\
-\}\
-\cf3 .gwt-DecoratedPopupPanel .popupTopRightInner\cf0  \{\
-  \cf4 width\cf0 : \cf5 8px\cf0 ;\
-  \cf4 height\cf0 : \cf5 5px\cf0 ;\
-  \cf4 zoom\cf0 : \cf5 1\cf0 ;\
-\}\
-\cf3 .gwt-DecoratedPopupPanel .popupBottomLeftInner\cf0  \{\
-  \cf4 width\cf0 : \cf5 5px\cf0 ;\
-  \cf4 height\cf0 : \cf5 8px\cf0 ;\
-  \cf4 zoom\cf0 : \cf5 1\cf0 ;\
-\}\
-\cf3 .gwt-DecoratedPopupPanel .popupBottomRightInner\cf0  \{\
-  \cf4 width\cf0 : \cf5 8px\cf0 ;\
-  \cf4 height\cf0 : \cf5 8px\cf0 ;\
-  \cf4 zoom\cf0 : \cf5 1\cf0 ;\
-\}\
-\cf3 .gwt-DecoratedPopupPanel .popupTopLeft\cf0  \{\
-  \cf4 background\cf0 : \cf5 url(images/corner.png)\cf0  \cf5 no-repeat\cf0  \cf5 0px\cf0  \cf5 -10px\cf0 ;\
-  \cf4 -background\cf0 : \cf5 url(images/corner_ie6.png)\cf0  \cf5 no-repeat\cf0  \cf5 0px\cf0  \cf5 -10px\cf0 ;\
-\}\
-\cf3 .gwt-DecoratedPopupPanel .popupTopRight\cf0  \{\
-  \cf4 background\cf0 : \cf5 url(images/corner.png)\cf0  \cf5 no-repeat\cf0  \cf5 -5px\cf0  \cf5 -10px\cf0 ;\
-  \cf4 -background\cf0 : \cf5 url(images/corner_ie6.png)\cf0  \cf5 no-repeat\cf0  \cf5 -5px\cf0  \cf5 -10px\cf0 ;\
-\}\
-\cf3 .gwt-DecoratedPopupPanel .popupBottomLeft\cf0  \{\
-  \cf4 background\cf0 : \cf5 url(images/corner.png)\cf0  \cf5 no-repeat\cf0  \cf5 0px\cf0  \cf5 -15px\cf0 ;\
-  \cf4 -background\cf0 : \cf5 url(images/corner_ie6.png)\cf0  \cf5 no-repeat\cf0  \cf5 0px\cf0  \cf5 -15px\cf0 ;\
-\}\
-\cf3 .gwt-DecoratedPopupPanel .popupBottomRight\cf0  \{\
-  \cf4 background\cf0 : \cf5 url(images/corner.png)\cf0  \cf5 no-repeat\cf0  \cf5 -5px\cf0  \cf5 -15px\cf0 ;\
-  \cf4 -background\cf0 : \cf5 url(images/corner_ie6.png)\cf0  \cf5 no-repeat\cf0  \cf5 -5px\cf0  \cf5 -15px\cf0 ;\
-\}\
-\cf3 * html .gwt-DecoratedPopupPanel .popupTopLeftInner\cf0  \{\
-  \cf4 width\cf0 : \cf5 5px\cf0 ;\
-  \cf4 height\cf0 : \cf5 5px\cf0 ;\
-  \cf4 overflow\cf0 : \cf5 hidden\cf0 ;\
-\}\
-\cf3 * html .gwt-DecoratedPopupPanel .popupTopRightInner\cf0  \{\
-  \cf4 width\cf0 : \cf5 8px\cf0 ;\
-  \cf4 height\cf0 : \cf5 5px\cf0 ;\
-  \cf4 overflow\cf0 : \cf5 hidden\cf0 ;\
-\}\
-\cf3 * html .gwt-DecoratedPopupPanel .popupBottomLeftInner\cf0  \{\
-  \cf4 width\cf0 : \cf5 5px\cf0 ;\
-  \cf4 height\cf0 : \cf5 8px\cf0 ;\
-  \cf4 overflow\cf0 : \cf5 hidden\cf0 ;\
-\}\
-\cf3 * html .gwt-DecoratedPopupPanel .popupBottomRightInner\cf0  \{\
-  \cf4 width\cf0 : \cf5 8px\cf0 ;\
-  \cf4 height\cf0 : \cf5 8px\cf0 ;\
-  \cf4 overflow\cf0 : \cf5 hidden\cf0 ;\
-\}\
-\
-\cf3 .gwt-PopupPanelGlass\cf0  \{\
-  \cf4 background-color\cf0 : \cf5 #000\cf0 ;\
-  \cf4 opacity\cf0 : \cf5 0.3\cf0 ;\
-  \cf4 filter\cf0 : \cf5 alpha(opacity\cf0 =\cf5 30)\cf0 ;\
-\}\
-\
-\cf3 .gwt-PushButton-up,\cf0 \
-\cf3 .gwt-PushButton-up-hovering,\cf0 \
-\cf3 .gwt-PushButton-up-disabled,\cf0 \
-\cf3 .gwt-PushButton-down,\cf0 \
-\cf3 .gwt-PushButton-down-hovering,\cf0 \
-\cf3 .gwt-PushButton-down-disabled\cf0  \{\
-  \cf4 margin\cf0 : \cf5 0\cf0 ;\
-  \cf4 text-decoration\cf0 : \cf5 none\cf0 ;\
-  \cf4 background\cf0 : \cf5 url("images/hborder.png")\cf0  \cf5 repeat-x\cf0  \cf5 0px\cf0  \cf5 -27px\cf0 ;\
-\}\
-\cf3 .gwt-PushButton-up,\cf0 \
-\cf3 .gwt-PushButton-up-hovering,\cf0 \
-\cf3 .gwt-PushButton-up-disabled\cf0  \{\
-  \cf4 padding\cf0 : \cf5 3px\cf0  \cf5 5px\cf0  \cf5 3px\cf0  \cf5 5px\cf0 ;\
-\}\
-\cf3 .gwt-PushButton-up\cf0  \{\
-  \cf4 border\cf0 : \cf5 1px\cf0  \cf5 outset\cf0  \cf5 #ccc\cf0 ;\
-  \cf4 cursor\cf0 : \cf5 pointer\cf0 ;\
-  \cf4 cursor\cf0 : \cf5 hand\cf0 ;\
-\}\
-\cf3 .gwt-PushButton-up-hovering\cf0  \{\
-  \cf4 border\cf0 : \cf5 1px\cf0  \cf5 outset\cf0 ;\
-  \cf4 border-color\cf0 : \cf5 #9cf\cf0  \cf5 #69e\cf0  \cf5 #69e\cf0  \cf5 #7af\cf0 ;\
-  \cf4 cursor\cf0 : \cf5 pointer\cf0 ;\
-  \cf4 cursor\cf0 : \cf5 hand\cf0 ;\
-\}\
-\cf3 .gwt-PushButton-up-disabled\cf0  \{\
-  \cf4 border\cf0 : \cf5 1px\cf0  \cf5 outset\cf0  \cf5 #ccc\cf0 ;\
-  \cf4 cursor\cf0 : \cf5 default\cf0 ;\
-  \cf4 opacity\cf0 : \cf5 .5\cf0 ;\
-  \cf4 filter\cf0 : \cf5 alpha(opacity\cf0 =\cf5 40)\cf0 ;\
-  \cf4 zoom\cf0 : \cf5 1\cf0 ;\
-\}\
-\cf3 .gwt-PushButton-down,\cf0 \
-\cf3 .gwt-PushButton-down-hovering,\cf0 \
-\cf3 .gwt-PushButton-down-disabled\cf0  \{\
-  \cf4 padding\cf0 : \cf5 4px\cf0  \cf5 4px\cf0  \cf5 2px\cf0  \cf5 6px\cf0 ;\
-\}\
-\cf3 .gwt-PushButton-down\cf0  \{\
-  \cf4 border\cf0 : \cf5 1px\cf0  \cf5 inset\cf0  \cf5 #666\cf0 ;\
-  \cf4 cursor\cf0 : \cf5 pointer\cf0 ;\
-  \cf4 cursor\cf0 : \cf5 hand\cf0 ;\
-\}\
-\cf3 .gwt-PushButton-down-hovering\cf0  \{\
-  \cf4 border\cf0 : \cf5 1px\cf0  \cf5 inset\cf0 ;\
-  \cf4 border-color\cf0 : \cf5 #9cf\cf0  \cf5 #69e\cf0  \cf5 #69e\cf0  \cf5 #7af\cf0 ;\
-  \cf4 cursor\cf0 : \cf5 pointer\cf0 ;\
-  \cf4 cursor\cf0 : \cf5 hand\cf0 ;\
-\}\
-\cf3 .gwt-PushButton-down-disabled\cf0  \{\
-  \cf4 border\cf0 : \cf5 1px\cf0  \cf5 outset\cf0  \cf5 #ccc\cf0 ;\
-  \cf4 cursor\cf0 : \cf5 default\cf0 ;\
-  \cf4 opacity\cf0 : \cf5 0.5\cf0 ;\
-  \cf4 filter\cf0 : \cf5 alpha(opacity\cf0 =\cf5 40)\cf0 ;\
-  \cf4 zoom\cf0 : \cf5 1\cf0 ;\
-\}\
-\
-\cf3 .gwt-RadioButton\cf0  \{\
-\}\
-\cf3 .gwt-RadioButton-disabled\cf0  \{\
-  \cf4 color\cf0 : \cf5 #888\cf0 ;\
-\}\
-\
-\cf3 .gwt-RichTextArea\cf0  \{\
-\}\
-\cf3 .hasRichTextToolbar\cf0  \{\
-  \cf4 border\cf0 : \cf5 0px\cf0 ;\
-\}\
-\cf3 .gwt-RichTextToolbar\cf0  \{\
-  \cf4 background\cf0 : \cf5 #e3e8f3\cf0  \cf5 url(images/hborder.png)\cf0  \cf5 repeat-x\cf0  \cf5 0px\cf0  \cf5 -2003px\cf0 ;\
-  \cf4 border-bottom\cf0 : \cf5 1px\cf0  \cf5 solid\cf0  \cf5 #BBBBBB\cf0 ;\
-  \cf4 padding\cf0 : \cf5 3px\cf0 ;\
-  \cf4 margin\cf0 : \cf5 0px\cf0 ;\
-\}\
-\cf3 .gwt-RichTextToolbar .gwt-PushButton-up\cf0  \{\
-  \cf4 padding\cf0 : \cf5 0px\cf0  \cf5 1px\cf0  \cf5 0px\cf0  \cf5 0px\cf0 ;\
-  \cf4 margin-right\cf0 : \cf5 4px\cf0 ;\
-  \cf4 margin-bottom\cf0 : \cf5 4px\cf0 ;\
-  \cf4 border-width\cf0 : \cf5 1px\cf0 ; \
-\}\
-\cf3 .gwt-RichTextToolbar .gwt-PushButton-up-hovering\cf0  \{\
-  \cf4 margin-right\cf0 : \cf5 4px\cf0 ;\
-  \cf4 margin-bottom\cf0 : \cf5 4px\cf0 ;\
-  \cf4 padding\cf0 : \cf5 0px\cf0  \cf5 1px\cf0  \cf5 0px\cf0  \cf5 0px\cf0 ;\
-  \cf4 border-width\cf0 : \cf5 1px\cf0 ; \
-\}\
-\cf3 .gwt-RichTextToolbar .gwt-PushButton-down\cf0  \{\
-  \cf4 margin-right\cf0 : \cf5 4px\cf0 ;\
-  \cf4 margin-bottom\cf0 : \cf5 4px\cf0 ;\
-  \cf4 padding\cf0 : \cf5 0px\cf0  \cf5 0px\cf0  \cf5 0px\cf0  \cf5 1px\cf0 ;\
-  \cf4 border-width\cf0 : \cf5 1px\cf0 ; \
-\}\
-\cf3 .gwt-RichTextToolbar .gwt-PushButton-down-hovering\cf0  \{\
-  \cf4 margin-right\cf0 : \cf5 4px\cf0 ;\
-  \cf4 margin-bottom\cf0 : \cf5 4px\cf0 ;\
-  \cf4 padding\cf0 : \cf5 0px\cf0  \cf5 0px\cf0  \cf5 0px\cf0  \cf5 1px\cf0 ;\
-  \cf4 border-width\cf0 : \cf5 1px\cf0 ; \
-\}\
-\cf3 .gwt-RichTextToolbar .gwt-ToggleButton-up\cf0  \{\
-  \cf4 margin-right\cf0 : \cf5 4px\cf0 ;\
-  \cf4 margin-bottom\cf0 : \cf5 4px\cf0 ;\
-  \cf4 padding\cf0 : \cf5 0px\cf0  \cf5 1px\cf0  \cf5 0px\cf0  \cf5 0px\cf0 ;\
-  \cf4 border-width\cf0 : \cf5 1px\cf0 ;\
-\}\
-\cf3 .gwt-RichTextToolbar .gwt-ToggleButton-up-hovering\cf0  \{\
-  \cf4 margin-right\cf0 : \cf5 4px\cf0 ;\
-  \cf4 margin-bottom\cf0 : \cf5 4px\cf0 ;\
-  \cf4 padding\cf0 : \cf5 0px\cf0  \cf5 1px\cf0  \cf5 0px\cf0  \cf5 0px\cf0 ;\
-  \cf4 border-width\cf0 : \cf5 1px\cf0 ;\
-\}\
-\cf3 .gwt-RichTextToolbar .gwt-ToggleButton-down\cf0  \{\
-  \cf4 margin-right\cf0 : \cf5 4px\cf0 ;\
-  \cf4 margin-bottom\cf0 : \cf5 4px\cf0 ;\
-  \cf4 padding\cf0 : \cf5 0px\cf0  \cf5 0px\cf0  \cf5 0px\cf0  \cf5 1px\cf0 ;\
-  \cf4 border-width\cf0 : \cf5 1px\cf0 ;\
-\}\
-\cf3 .gwt-RichTextToolbar .gwt-ToggleButton-down-hovering\cf0  \{\
-  \cf4 margin-right\cf0 : \cf5 4px\cf0 ;\
-  \cf4 margin-bottom\cf0 : \cf5 4px\cf0 ;\
-  \cf4 padding\cf0 : \cf5 0px\cf0  \cf5 0px\cf0  \cf5 0px\cf0  \cf5 1px\cf0 ;\
-  \cf4 border-width\cf0 : \cf5 1px\cf0 ;\
-\}\
-\
-\cf3 .gwt-StackPanel\cf0  \{\
-  \cf4 border-bottom\cf0 : \cf5 1px\cf0  \cf5 solid\cf0  \cf5 #bbbbbb\cf0 ;\
-\}\
-\cf3 .gwt-StackPanel .gwt-StackPanelItem\cf0  \{\
-  \cf4 cursor\cf0 : \cf5 pointer\cf0 ;\
-  \cf4 cursor\cf0 : \cf5 hand\cf0 ;\
-  \cf4 font-weight\cf0 : \cf5 bold\cf0 ;\
-  \cf4 font-size\cf0 : \cf5 1.3em\cf0 ;\
-  \cf4 padding\cf0 : \cf5 3px\cf0 ;\
-  \cf4 border\cf0 : \cf5 1px\cf0  \cf5 solid\cf0  \cf5 #bbbbbb\cf0 ;\
-  \cf4 border-bottom\cf0 : \cf5 0px\cf0 ;\
-  \cf4 background\cf0 : \cf5 #d3def6\cf0  \cf5 url(images/hborder.png)\cf0  \cf5 repeat-x\cf0  \cf5 0px\cf0  \cf5 -989px\cf0 ;\
-\}\
-\cf3 .gwt-StackPanel .gwt-StackPanelContent\cf0  \{\
-  \cf4 border\cf0 : \cf5 1px\cf0  \cf5 solid\cf0  \cf5 #bbbbbb\cf0 ;\
-  \cf4 border-bottom\cf0 : \cf5 0px\cf0 ;\
-  \cf4 background\cf0 : \cf5 white\cf0 ;\
-  \cf4 padding\cf0 : \cf5 2px\cf0  \cf5 2px\cf0  \cf5 10px\cf0  \cf5 5px\cf0 ;\
-\}\
-\
-\cf3 .gwt-DecoratedStackPanel\cf0  \{\
-  \cf4 border-bottom\cf0 : \cf5 1px\cf0  \cf5 solid\cf0  \cf5 #bbbbbb\cf0 ;\
-\}\
-\cf3 .gwt-DecoratedStackPanel .gwt-StackPanelContent\cf0  \{\
-  \cf4 border\cf0 : \cf5 1px\cf0  \cf5 solid\cf0  \cf5 #bbbbbb\cf0 ;\
-  \cf4 border-bottom\cf0 : \cf5 0px\cf0 ;\
-  \cf4 background\cf0 : \cf5 white\cf0 ;\
-  \cf4 padding\cf0 : \cf5 2px\cf0  \cf5 2px\cf0  \cf5 10px\cf0  \cf5 5px\cf0 ;\
-\}\
-\cf3 .gwt-DecoratedStackPanel .gwt-StackPanelItem\cf0  \{\
-  \cf4 cursor\cf0 : \cf5 pointer\cf0 ;\
-  \cf4 cursor\cf0 : \cf5 hand\cf0 ;\
-\}\
-\cf3 .gwt-DecoratedStackPanel .stackItemTopLeft,\cf0 \
-\cf3 .gwt-DecoratedStackPanel .stackItemTopRight\cf0  \{\
-  \cf4 height\cf0 : \cf5 6px\cf0 ;\
-  \cf4 width\cf0 : \cf5 6px\cf0 ;\
-  \cf4 zoom\cf0 : \cf5 1\cf0 ;\
-\}\
-\cf3 .gwt-DecoratedStackPanel .stackItemTopLeft\cf0  \{\
-  \cf4 border-left\cf0 : \cf5 1px\cf0  \cf5 solid\cf0  \cf5 #bbbbbb\cf0 ;\
-  \cf4 background\cf0 : \cf5 #d3def6\cf0  \cf5 url(images/corner.png)\cf0  \cf5 no-repeat\cf0  \cf5 0px\cf0  \cf5 -49px\cf0 ;\
-  \cf4 -background\cf0 : \cf5 #d3def6\cf0  \cf5 url(images/corner_ie6.png)\cf0  \cf5 no-repeat\cf0  \cf5 0px\cf0  \cf5 -49px\cf0 ;\
-\}\
-\cf3 .gwt-DecoratedStackPanel .stackItemTopRight\cf0  \{\
-  \cf4 border-right\cf0 : \cf5 1px\cf0  \cf5 solid\cf0  \cf5 #bbbbbb\cf0 ;\
-  \cf4 background\cf0 : \cf5 #d3def6\cf0  \cf5 url(images/corner.png)\cf0  \cf5 no-repeat\cf0  \cf5 -6px\cf0  \cf5 -49px\cf0 ;\
-  \cf4 -background\cf0 : \cf5 #d3def6\cf0  \cf5 url(images/corner_ie6.png)\cf0  \cf5 no-repeat\cf0  \cf5 -6px\cf0  \cf5 -49px\cf0 ;\
-\}\
-\cf3 .gwt-DecoratedStackPanel .stackItemTopLeftInner,\cf0 \
-\cf3 .gwt-DecoratedStackPanel .stackItemTopRightInner\cf0  \{\
-  \cf4 width\cf0 : \cf5 1px\cf0 ;\
-  \cf4 height\cf0 : \cf5 1px\cf0 ;\
-\}\
-\cf3 * html .gwt-DecoratedStackPanel .stackItemTopLeftInner,\cf0 \
-\cf3 * html .gwt-DecoratedStackPanel .stackItemTopRightInner\cf0  \{\
-  \cf4 width\cf0 : \cf5 6px\cf0 ;\
-  \cf4 height\cf0 : \cf5 6px\cf0 ;\
-  \cf4 overflow\cf0 : \cf5 hidden\cf0 ;\
-\}\
-\cf3 .gwt-DecoratedStackPanel .stackItemTopCenter\cf0  \{\
-  \cf4 background\cf0 : \cf5 url(images/hborder.png)\cf0  \cf5 0px\cf0  \cf5 -21px\cf0  \cf5 repeat-x\cf0 ;\
-\}\
-\cf3 .gwt-DecoratedStackPanel .stackItemMiddleLeft\cf0  \{\
-  \cf4 background\cf0 : \cf5 #d3def6\cf0  \cf5 url(images/hborder.png)\cf0  \cf5 repeat-x\cf0  \cf5 0px\cf0  \cf5 -989px\cf0 ;\
-  \cf4 border-left\cf0 : \cf5 1px\cf0  \cf5 solid\cf0  \cf5 #bbbbbb\cf0 ;\
-\}\
-\cf3 .gwt-DecoratedStackPanel .stackItemMiddleLeftInner,\cf0 \
-\cf3 .gwt-DecoratedStackPanel .stackItemMiddleRightInner\cf0  \{\
-  \cf4 width\cf0 : \cf5 1px\cf0 ;\
-  \cf4 height\cf0 : \cf5 1px\cf0 ;\
-\}\
-\cf3 .gwt-DecoratedStackPanel .stackItemMiddleRight\cf0  \{\
-  \cf4 background\cf0 : \cf5 #d3def6\cf0  \cf5 url(images/hborder.png)\cf0  \cf5 repeat-x\cf0  \cf5 0px\cf0  \cf5 -989px\cf0 ;\
-  \cf4 border-right\cf0 : \cf5 1px\cf0  \cf5 solid\cf0  \cf5 #bbbbbb\cf0 ;\
-\}\
-\cf3 .gwt-DecoratedStackPanel .stackItemMiddleCenter\cf0  \{\
-  \cf4 font-weight\cf0 : \cf5 bold\cf0 ;\
-  \cf4 font-size\cf0 : \cf5 1.3em\cf0 ;\
-  \cf4 background\cf0 : \cf5 #d3def6\cf0  \cf5 url(images/hborder.png)\cf0  \cf5 repeat-x\cf0  \cf5 0px\cf0  \cf5 -989px\cf0 ;\
-\}\
-\cf3 .gwt-DecoratedStackPanel .gwt-StackPanelItem-first .stackItemTopRight,\cf0 \
-\cf3 .gwt-DecoratedStackPanel .gwt-StackPanelItem-first .stackItemTopLeft\cf0  \{\
-  \cf4 border\cf0 : \cf5 0px\cf0 ;\
-  \cf4 background-color\cf0 : \cf5 white\cf0 ;\
-\}\
-\cf3 .gwt-DecoratedStackPanel .gwt-StackPanelItem-below-selected .stackItemTopLeft,\cf0 \
-\cf3 .gwt-DecoratedStackPanel .gwt-StackPanelItem-below-selected .stackItemTopRight\cf0  \{\
-  \cf4 background-color\cf0 : \cf5 white\cf0 ;\
-\}\
-\
-\cf3 .gwt-SuggestBox\cf0  \{\
-  \cf4 padding\cf0 : \cf5 2px\cf0 ;\
-\}\
-\cf3 .gwt-SuggestBoxPopup\cf0  \{\
-  \cf4 margin-left\cf0 : \cf5 3px\cf0 ;\
-\}\
-\cf3 .gwt-SuggestBoxPopup .item\cf0  \{\
-  \cf4 padding\cf0 : \cf5 2px\cf0  \cf5 6px\cf0 ;\
-  \cf4 color\cf0 : \cf5 #424242\cf0 ;\
-  \cf4 cursor\cf0 : \cf5 default\cf0 ;\
-\}\
-\cf3 .gwt-SuggestBoxPopup .item-selected\cf0  \{\
-  \cf4 background\cf0 : \cf5 #b7d6f6\cf0 ;\
-\}\
-\cf3 .gwt-SuggestBoxPopup .suggestPopupContent\cf0  \{\
-  \cf4 background\cf0 : \cf5 white\cf0 ;\
-\}\
-\cf3 .gwt-SuggestBoxPopup .suggestPopupTopCenter\cf0  \{\
-  \cf4 background\cf0 : \cf5 url(images/hborder.png)\cf0  \cf5 repeat-x\cf0 ;\
-\}\
-\cf3 .gwt-SuggestBoxPopup .suggestPopupBottomCenter\cf0  \{\
-  \cf4 background\cf0 : \cf5 url(images/hborder.png)\cf0  \cf5 repeat-x\cf0  \cf5 0px\cf0  \cf5 -4px\cf0 ;\
-  \cf4 -background\cf0 : \cf5 url(images/hborder_ie6.png)\cf0  \cf5 repeat-x\cf0  \cf5 0px\cf0  \cf5 -4px\cf0 ;\
-\}\
-\cf3 .gwt-SuggestBoxPopup .suggestPopupMiddleLeft\cf0  \{\
-  \cf4 background\cf0 : \cf5 url(images/vborder.png)\cf0  \cf5 repeat-y\cf0 ;\
-\}\
-\cf3 .gwt-SuggestBoxPopup .suggestPopupMiddleRight\cf0  \{\
-  \cf4 background\cf0 : \cf5 url(images/vborder.png)\cf0  \cf5 repeat-y\cf0  \cf5 -4px\cf0  \cf5 0px\cf0 ;\
-  \cf4 -background\cf0 : \cf5 url(images/vborder_ie6.png)\cf0  \cf5 repeat-y\cf0  \cf5 -4px\cf0  \cf5 0px\cf0 ;\
-\}\
-\cf3 .gwt-SuggestBoxPopup .suggestPopupTopLeftInner\cf0  \{\
-  \cf4 width\cf0 : \cf5 5px\cf0 ;\
-  \cf4 height\cf0 : \cf5 5px\cf0 ;\
-  \cf4 zoom\cf0 : \cf5 1\cf0 ;  \
-\}\
-\cf3 .gwt-SuggestBoxPopup .suggestPopupTopRightInner\cf0  \{\
-  \cf4 width\cf0 : \cf5 8px\cf0 ;\
-  \cf4 height\cf0 : \cf5 5px\cf0 ;\
-  \cf4 zoom\cf0 : \cf5 1\cf0 ;\
-\}\
-\cf3 .gwt-SuggestBoxPopup .suggestPopupBottomLeftInner\cf0  \{\
-  \cf4 width\cf0 : \cf5 5px\cf0 ;\
-  \cf4 height\cf0 : \cf5 8px\cf0 ;\
-  \cf4 zoom\cf0 : \cf5 1\cf0 ;\
-\}\
-\cf3 .gwt-SuggestBoxPopup .suggestPopupBottomRightInner\cf0  \{\
-  \cf4 width\cf0 : \cf5 8px\cf0 ;\
-  \cf4 height\cf0 : \cf5 8px\cf0 ;\
-  \cf4 zoom\cf0 : \cf5 1\cf0 ;\
-\}\
-\cf3 .gwt-SuggestBoxPopup .suggestPopupTopLeft\cf0  \{\
-  \cf4 background\cf0 : \cf5 url(images/corner.png)\cf0  \cf5 no-repeat\cf0  \cf5 0px\cf0  \cf5 -23px\cf0 ;\
-  \cf4 -background\cf0 : \cf5 url(images/corner_ie6.png)\cf0  \cf5 no-repeat\cf0  \cf5 0px\cf0  \cf5 -23px\cf0 ;\
-\}\
-\cf3 .gwt-SuggestBoxPopup .suggestPopupTopRight\cf0  \{\
-  \cf4 background\cf0 : \cf5 url(images/corner.png)\cf0  \cf5 no-repeat\cf0  \cf5 -5px\cf0  \cf5 -23px\cf0 ;\
-  \cf4 -background\cf0 : \cf5 url(images/corner_ie6.png)\cf0  \cf5 no-repeat\cf0  \cf5 -5px\cf0  \cf5 -23px\cf0 ;\
-\}\
-\cf3 .gwt-SuggestBoxPopup .suggestPopupBottomLeft\cf0  \{\
-  \cf4 background\cf0 : \cf5 url(images/corner.png)\cf0  \cf5 no-repeat\cf0  \cf5 0px\cf0  \cf5 -28px\cf0 ;\
-  \cf4 -background\cf0 : \cf5 url(images/corner_ie6.png)\cf0  \cf5 no-repeat\cf0  \cf5 0px\cf0  \cf5 -28px\cf0 ;\
-\}\
-\cf3 .gwt-SuggestBoxPopup .suggestPopupBottomRight\cf0  \{\
-  \cf4 background\cf0 : \cf5 url(images/corner.png)\cf0  \cf5 no-repeat\cf0  \cf5 -5px\cf0  \cf5 -28px\cf0 ;\
-  \cf4 -background\cf0 : \cf5 url(images/corner_ie6.png)\cf0  \cf5 no-repeat\cf0  \cf5 -5px\cf0  \cf5 -28px\cf0 ;\
-\}\
-\cf3 * html .gwt-SuggestBoxPopup .suggestPopupTopLeftInner\cf0  \{\
-  \cf4 width\cf0 : \cf5 5px\cf0 ;\
-  \cf4 height\cf0 : \cf5 5px\cf0 ;\
-  \cf4 overflow\cf0 : \cf5 hidden\cf0 ;\
-\}\
-\cf3 * html .gwt-SuggestBoxPopup .suggestPopupTopRightInner\cf0  \{\
-  \cf4 width\cf0 : \cf5 8px\cf0 ;\
-  \cf4 height\cf0 : \cf5 5px\cf0 ;\
-  \cf4 overflow\cf0 : \cf5 hidden\cf0 ;\
-\}\
-\cf3 * html .gwt-SuggestBoxPopup .suggestPopupBottomLeftInner\cf0  \{\
-  \cf4 width\cf0 : \cf5 5px\cf0 ;\
-  \cf4 height\cf0 : \cf5 8px\cf0 ;\
-  \cf4 overflow\cf0 : \cf5 hidden\cf0 ;\
-\}\
-\cf3 * html .gwt-SuggestBoxPopup .suggestPopupBottomRightInner\cf0  \{\
-  \cf4 width\cf0 : \cf5 8px\cf0 ;\
-  \cf4 height\cf0 : \cf5 8px\cf0 ;\
-  \cf4 overflow\cf0 : \cf5 hidden\cf0 ;\
-\}\
-\
-\cf3 .gwt-TabBar\cf0  \{\
-\}\
-\cf3 .gwt-TabBar .gwt-TabBarFirst\cf0  \{\
-  \cf4 width\cf0 : \cf5 5px\cf0 ;  \cf2 /* first tab distance from the left */\cf0 \
-\}\
-\cf3 .gwt-TabBar .gwt-TabBarRest\cf0  \{\
-\}\
-\cf3 .gwt-TabBar .gwt-TabBarItem\cf0  \{\
-  \cf4 margin-left\cf0 : \cf5 6px\cf0 ;\
-  \cf4 padding\cf0 : \cf5 3px\cf0  \cf5 6px\cf0  \cf5 3px\cf0  \cf5 6px\cf0 ;\
-  \cf4 cursor\cf0 : \cf5 pointer\cf0 ;\
-  \cf4 cursor\cf0 : \cf5 hand\cf0 ;\
-  \cf4 color\cf0 : \cf5 black\cf0 ;\
-  \cf4 font-weight\cf0 : \cf5 bold\cf0 ;\
-  \cf4 text-align\cf0 : \cf5 center\cf0 ;\
-  \cf4 background\cf0 : \cf5 #d0e4f6\cf0 ;\
-\}\
-\cf3 .gwt-TabBar .gwt-TabBarItem-selected\cf0  \{\
-  \cf4 cursor\cf0 : \cf5 default\cf0 ;\
-  \cf4 background\cf0 : \cf5 #92c1f0\cf0 ;\
-\} \
-\cf3 .gwt-TabBar .gwt-TabBarItem-disabled\cf0  \{\
-  \cf4 cursor\cf0 : \cf5 default\cf0 ;\
-  \cf4 color\cf0 : \cf5 #999999\cf0 ;\
-\}\
-\cf3 .gwt-TabPanel\cf0  \{\
-\}\
-\cf3 .gwt-TabPanelBottom\cf0  \{\
-  \cf4 border-color\cf0 : \cf5 #92c1f0\cf0 ;\
-  \cf4 border-style\cf0 : \cf5 solid\cf0 ;\
-  \cf4 border-width\cf0 : \cf5 3px\cf0  \cf5 2px\cf0  \cf5 2px\cf0 ;\
-  \cf4 overflow\cf0 : \cf5 hidden\cf0 ;\
-  \cf4 padding\cf0 : \cf5 6px\cf0 ;\
-\}\
-\
-\cf3 .gwt-DecoratedTabBar\cf0  \{\
-\}\
-\cf3 .gwt-DecoratedTabBar .gwt-TabBarFirst\cf0  \{\
-  \cf4 width\cf0 : \cf5 5px\cf0 ;  \cf2 /* first tab distance from the left */\cf0 \
-\}\
-\cf3 .gwt-DecoratedTabBar .gwt-TabBarRest\cf0  \{\
-\}\
-\cf3 .gwt-DecoratedTabBar .gwt-TabBarItem\cf0  \{\
-  \cf4 border-collapse\cf0 : \cf5 collapse\cf0 ;\
-  \cf4 margin-left\cf0 : \cf5 6px\cf0 ;\
-\}\
-\cf3 .gwt-DecoratedTabBar .tabTopCenter\cf0  \{\
-  \cf4 padding\cf0 : \cf5 0px\cf0 ;\
-  \cf4 background\cf0 : \cf5 #d0e4f6\cf0 ;\
-\}\
-\cf3 .gwt-DecoratedTabBar .tabTopLeft,\cf0 \
-\cf3 .gwt-DecoratedTabBar .tabTopRight\cf0  \{\
-  \cf4 padding\cf0 : \cf5 0px\cf0 ;\
-  \cf4 zoom\cf0 : \cf5 1\cf0 ;\
-\}\
-\cf3 .gwt-DecoratedTabBar .tabTopLeftInner,\cf0 \
-\cf3 .gwt-DecoratedTabBar .tabTopRightInner\cf0  \{\
-  \cf4 width\cf0 : \cf5 6px\cf0 ;\
-  \cf4 height\cf0 : \cf5 6px\cf0 ;\
-\}\
-\cf3 .gwt-DecoratedTabBar .tabTopLeft\cf0  \{\
-  \cf4 background\cf0 : \cf5 url(images/corner.png)\cf0  \cf5 no-repeat\cf0  \cf5 0px\cf0  \cf5 -55px\cf0 ;\
-  \cf4 -background\cf0 : \cf5 url(images/corner_ie6.png)\cf0  \cf5 no-repeat\cf0  \cf5 0px\cf0  \cf5 -55px\cf0 ;\
-\}\
-\cf3 .gwt-DecoratedTabBar .tabTopRight\cf0  \{\
-  \cf4 background\cf0 : \cf5 url(images/corner.png)\cf0  \cf5 no-repeat\cf0  \cf5 -6px\cf0  \cf5 -55px\cf0 ;\
-  \cf4 -background\cf0 : \cf5 url(images/corner_ie6.png)\cf0  \cf5 no-repeat\cf0  \cf5 -6px\cf0  \cf5 -55px\cf0 ;\
-\}\
-\cf3 * html .gwt-DecoratedTabBar .tabTopLeftInner,\cf0 \
-\cf3 * html .gwt-DecoratedTabBar .tabTopRightInner\cf0  \{\
-  \cf4 width\cf0 : \cf5 6px\cf0 ;\
-  \cf4 height\cf0 : \cf5 6px\cf0 ;\
-  \cf4 overflow\cf0 : \cf5 hidden\cf0 ;\
-\}\
-\cf3 .gwt-DecoratedTabBar .tabMiddleLeft,\cf0 \
-\cf3 .gwt-DecoratedTabBar .tabMiddleRight\cf0  \{\
-  \cf4 width\cf0 : \cf5 6px\cf0 ;\
-  \cf4 padding\cf0 : \cf5 0px\cf0 ;\
-  \cf4 background\cf0 : \cf5 #d0e4f6\cf0 ;\
-\}\
-\cf3 .gwt-DecoratedTabBar .tabMiddleLeftInner,\cf0 \
-\cf3 .gwt-DecoratedTabBar .tabMiddleRightInner\cf0  \{\
-  \cf4 width\cf0 : \cf5 1px\cf0 ;\
-  \cf4 height\cf0 : \cf5 1px\cf0 ;\
-\}\
-\cf3 .gwt-DecoratedTabBar .tabMiddleCenter\cf0  \{\
-  \cf4 padding\cf0 : \cf5 0px\cf0  \cf5 4px\cf0  \cf5 2px\cf0  \cf5 4px\cf0 ;\
-  \cf4 cursor\cf0 : \cf5 pointer\cf0 ;\
-  \cf4 cursor\cf0 : \cf5 hand\cf0 ;\
-  \cf4 color\cf0 : \cf5 black\cf0 ;\
-  \cf4 font-weight\cf0 : \cf5 bold\cf0 ;\
-  \cf4 text-align\cf0 : \cf5 center\cf0 ;\
-  \cf4 background\cf0 : \cf5 #d0e4f6\cf0 ;\
-\}\
-\cf3 .gwt-DecoratedTabBar .gwt-TabBarItem-selected .tabTopCenter\cf0  \{\
-  \cf4 background\cf0 : \cf5 #92c1f0\cf0 ;\
-\}\
-\cf3 .gwt-DecoratedTabBar .gwt-TabBarItem-selected .tabTopLeft\cf0  \{\
-  \cf4 background-position\cf0 : \cf5 0px\cf0  \cf5 -61px\cf0 ;\
-\}\
-\cf3 .gwt-DecoratedTabBar .gwt-TabBarItem-selected .tabTopRight\cf0  \{\
-  \cf4 background-position\cf0 : \cf5 -6px\cf0  \cf5 -61px\cf0 ;\
-\}\
-\cf3 .gwt-DecoratedTabBar .gwt-TabBarItem-selected .tabMiddleLeft,\cf0 \
-\cf3 .gwt-DecoratedTabBar .gwt-TabBarItem-selected .tabMiddleRight\cf0  \{\
-  \cf4 background\cf0 : \cf5 #92c1f0\cf0 ;\
-\}\
-\cf3 .gwt-DecoratedTabBar .gwt-TabBarItem-selected .tabMiddleCenter\cf0  \{\
-  \cf4 cursor\cf0 : \cf5 default\cf0 ;\
-  \cf4 background\cf0 : \cf5 #92c1f0\cf0 ;\
-\}\
-\cf3 .gwt-DecoratedTabBar .gwt-TabBarItem-disabled .tabMiddleCenter\cf0  \{\
-  \cf4 cursor\cf0 : \cf5 default\cf0 ;\
-  \cf4 color\cf0 : \cf5 #999999\cf0 ;\
-\}\
-\
-\cf3 .gwt-TextArea\cf0  \{\
-  \cf4 padding\cf0 : \cf5 2px\cf0 ;\
-\}\
-\cf3 .gwt-TextArea-readonly\cf0  \{\
-  \cf4 color\cf0 : \cf5 #888\cf0 ;\
-\}\
-\
-\cf3 .gwt-TextBox\cf0  \{\
-  \cf4 padding\cf0 : \cf5 2px\cf0 ;\
-\}\
-\cf3 .gwt-TextBox-readonly\cf0  \{\
-  \cf4 color\cf0 : \cf5 #888\cf0 ;\
-\}\
-\
-\cf3 .gwt-ToggleButton-up,\cf0 \
-\cf3 .gwt-ToggleButton-up-hovering,\cf0 \
-\cf3 .gwt-ToggleButton-up-disabled,\cf0 \
-\cf3 .gwt-ToggleButton-down,\cf0 \
-\cf3 .gwt-ToggleButton-down-hovering,\cf0 \
-\cf3 .gwt-ToggleButton-down-disabled\cf0  \{\
-  \cf4 margin\cf0 : \cf5 0\cf0 ;\
-  \cf4 text-decoration\cf0 : \cf5 none\cf0 ;\
-  \cf4 background\cf0 : \cf5 url("images/hborder.png")\cf0  \cf5 repeat-x\cf0  \cf5 0px\cf0  \cf5 -27px\cf0 ;\
-\}\
-\cf3 .gwt-ToggleButton-up,\cf0 \
-\cf3 .gwt-ToggleButton-up-hovering,\cf0 \
-\cf3 .gwt-ToggleButton-up-disabled\cf0  \{\
-  \cf4 padding\cf0 : \cf5 3px\cf0  \cf5 5px\cf0  \cf5 3px\cf0  \cf5 5px\cf0 ;\
-\}\
-\cf3 .gwt-ToggleButton-up\cf0  \{\
-  \cf4 border\cf0 : \cf5 1px\cf0  \cf5 outset\cf0  \cf5 #ccc\cf0 ;\
-  \cf4 cursor\cf0 : \cf5 pointer\cf0 ;\
-  \cf4 cursor\cf0 : \cf5 hand\cf0 ;\
-\}\
-\cf3 .gwt-ToggleButton-up-hovering\cf0  \{\
-  \cf4 border\cf0 : \cf5 1px\cf0  \cf5 outset\cf0 ;\
-  \cf4 border-color\cf0 : \cf5 #9cf\cf0  \cf5 #69e\cf0  \cf5 #69e\cf0  \cf5 #7af\cf0 ;\
-  \cf4 cursor\cf0 : \cf5 pointer\cf0 ;\
-  \cf4 cursor\cf0 : \cf5 hand\cf0 ;\
-\}\
-\cf3 .gwt-ToggleButton-up-disabled\cf0  \{\
-  \cf4 border\cf0 : \cf5 1px\cf0  \cf5 outset\cf0  \cf5 #ccc\cf0 ;\
-  \cf4 cursor\cf0 : \cf5 default\cf0 ;\
-  \cf4 opacity\cf0 : \cf5 .5\cf0 ;\
-  \cf4 zoom\cf0 : \cf5 1\cf0 ;\
-  \cf4 filter\cf0 : \cf5 alpha(opacity\cf0 =\cf5 40)\cf0 ;\
-\}\
-\cf3 .gwt-ToggleButton-down,\cf0 \
-\cf3 .gwt-ToggleButton-down-hovering,\cf0 \
-\cf3 .gwt-ToggleButton-down-disabled\cf0  \{\
-  \cf4 padding\cf0 : \cf5 4px\cf0  \cf5 4px\cf0  \cf5 2px\cf0  \cf5 6px\cf0 ;\
-\}\
-\cf3 .gwt-ToggleButton-down\cf0  \{\
-  \cf4 background-position\cf0 : \cf5 0\cf0  \cf5 -513px\cf0 ;\
-  \cf4 border\cf0 : \cf5 1px\cf0  \cf5 inset\cf0  \cf5 #ccc\cf0 ;\
-  \cf4 cursor\cf0 : \cf5 pointer\cf0 ;\
-  \cf4 cursor\cf0 : \cf5 hand\cf0 ;\
-\}\
-\cf3 .gwt-ToggleButton-down-hovering\cf0  \{\
-  \cf4 background-position\cf0 : \cf5 0\cf0  \cf5 -513px\cf0 ;\
-  \cf4 border\cf0 : \cf5 1px\cf0  \cf5 inset\cf0 ;\
-  \cf4 border-color\cf0 : \cf5 #9cf\cf0  \cf5 #69e\cf0  \cf5 #69e\cf0  \cf5 #7af\cf0 ;\
-  \cf4 cursor\cf0 : \cf5 pointer\cf0 ;\
-  \cf4 cursor\cf0 : \cf5 hand\cf0 ;\
-\}\
-\cf3 .gwt-ToggleButton-down-disabled\cf0  \{\
-  \cf4 background-position\cf0 : \cf5 0\cf0  \cf5 -513px\cf0 ;\
-  \cf4 border\cf0 : \cf5 1px\cf0  \cf5 inset\cf0  \cf5 #ccc\cf0 ;\
-  \cf4 cursor\cf0 : \cf5 default\cf0 ;\
-  \cf4 opacity\cf0 : \cf5 .5\cf0 ;\
-  \cf4 zoom\cf0 : \cf5 1\cf0 ;\
-  \cf4 filter\cf0 : \cf5 alpha(opacity\cf0 =\cf5 40)\cf0 ;\
-\}\
-\
-\cf3 .gwt-Tree .gwt-TreeItem\cf0  \{\
-  \cf4 padding\cf0 : \cf5 1px\cf0  \cf5 0px\cf0 ;\
-  \cf4 margin\cf0 : \cf5 0px\cf0 ;\
-  \cf4 white-space\cf0 : \cf5 nowrap\cf0 ;\
-  \cf4 cursor\cf0 : \cf5 hand\cf0 ;\
-  \cf4 cursor\cf0 : \cf5 pointer\cf0 ;\
-\}\
-\cf3 .gwt-Tree .gwt-TreeItem-selected\cf0  \{\
-  \cf4 background\cf0 : \cf5 #93c2f1\cf0  \cf5 url(images/hborder.png)\cf0  \cf5 repeat-x\cf0  \cf5 0px\cf0  \cf5 -1463px\cf0 ;\
-\}\
-\cf3 .gwt-TreeItem .gwt-RadioButton input,\cf0 \
-\cf3 .gwt-TreeItem .gwt-CheckBox input\cf0  \{\
-  \cf4 margin-left\cf0 : \cf5 0px\cf0 ;\
-\}\
-\cf3 * html .gwt-TreeItem .gwt-RadioButton input,\cf0 \
-\cf3 * html .gwt-TreeItem .gwt-CheckBox input\cf0  \{\
-  \cf4 margin-left\cf0 : \cf5 -4px\cf0 ;\
-\}\
-\
-\cf3 .gwt-DateBox input\cf0  \{\
-  \cf4 width\cf0 : \cf5 8em\cf0 ;\
-\}\
-\cf3 .dateBoxFormatError\cf0  \{\
-  \cf4 background\cf0 : \cf5 #ffcccc\cf0 ;\
-\}\
-\cf3 .dateBoxPopup\cf0  \{\
-\}\
-\
-\cf3 .gwt-DatePicker\cf0  \{\
-  \cf4 border\cf0 : \cf5 1px\cf0  \cf5 solid\cf0  \cf5 #A2BBDD\cf0 ;\
-  \cf4 cursor\cf0 : \cf5 default\cf0 ;\
-\}\
-\cf3 .gwt-DatePicker td,\cf0 \
-\cf3 .datePickerMonthSelector td:focus\cf0  \{\
-  \cf4 outline\cf0 : \cf5 none\cf0 \
-\}\
-\cf3 .datePickerDays\cf0  \{\
-  \cf4 width\cf0 : \cf5 100%\cf0 ;\
-  \cf4 background\cf0 : \cf5 white\cf0 ;\
-\}\
-\cf3 .datePickerDay,\cf0 \
-\cf3 .datePickerWeekdayLabel,\cf0 \
-\cf3 .datePickerWeekendLabel\cf0  \{\
-  \cf4 font-size\cf0 : \cf5 75%\cf0 ;\
-  \cf4 text-align\cf0 : \cf5 center\cf0 ;\
-  \cf4 padding\cf0 : \cf5 4px\cf0 ;\
-  \cf4 outline\cf0 : \cf5 none\cf0 ;\
-\}\
-\cf3 .datePickerWeekdayLabel,\cf0 \
-\cf3 .datePickerWeekendLabel\cf0  \{\
-  \cf4 background\cf0 : \cf5 #C3D9FF\cf0 ;\
-  \cf4 padding\cf0 : \cf5 0px\cf0  \cf5 4px\cf0  \cf5 2px\cf0 ;\
-  \cf4 cursor\cf0 : \cf5 default\cf0 ;\
-\}\
-\cf3 .datePickerDay\cf0  \{\
-  \cf4 padding\cf0 : \cf5 4px\cf0 ;\
-  \cf4 cursor\cf0 : \cf5 hand\cf0 ;\
-  \cf4 cursor\cf0 : \cf5 pointer\cf0 ;\
-\}\
-\cf3 .datePickerDayIsToday\cf0  \{\
-  \cf4 border\cf0 : \cf5 1px\cf0  \cf5 solid\cf0  \cf5 black\cf0 ;\
-  \cf4 padding\cf0 : \cf5 3px\cf0 ;\
-\}\
-\cf3 .datePickerDayIsWeekend\cf0  \{\
-  \cf4 background\cf0 : \cf5 #EEEEEE\cf0 ;\
-\}\
-\cf3 .datePickerDayIsFiller\cf0  \{\
-  \cf4 color\cf0 : \cf5 #888888\cf0 ;\
-\}\
-\cf3 .datePickerDayIsValue\cf0  \{\
-  \cf4 background\cf0 : \cf5 #aaccee\cf0 ;\
-\}\
-\cf3 .datePickerDayIsDisabled\cf0  \{\
-  \cf4 color\cf0 : \cf5 #AAAAAA\cf0 ;\
-  \cf4 font-style\cf0 : \cf5 italic\cf0 ;\
-\}\
-\cf3 .datePickerDayIsHighlighted\cf0  \{\
-  \cf4 background\cf0 : \cf5 #F0E68C\cf0 ;\
-\}\
-\cf3 .datePickerDayIsValueAndHighlighted\cf0  \{\
-  \cf4 background\cf0 : \cf5 #bbddd9\cf0 ;\
-\}\
-\cf3 .datePickerMonthSelector\cf0  \{\
-  \cf4 background\cf0 : \cf5 #C3D9FF\cf0 ;\
-  \cf4 width\cf0 : \cf5 100%\cf0 ;\
-\}\
-\cf3 td.datePickerMonth\cf0  \{\
-  \cf4 text-align\cf0 : \cf5 center\cf0 ;\
-  \cf4 vertical-align\cf0 : \cf5 center\cf0 ;\
-  \cf4 white-space\cf0 : \cf5 nowrap\cf0 ;\
-  \cf4 font-size\cf0 : \cf5 70%\cf0 ;\
-  \cf4 font-weight\cf0 : \cf5 bold\cf0 ;\
-  \cf4 color\cf0 : \cf5 blue\cf0 ;\
-\}\
-\cf3 .datePickerPreviousButton,\cf0 \
-\cf3 .datePickerNextButton\cf0  \{\
-  \cf4 font-size\cf0 : \cf5 120%\cf0 ;\
-  \cf4 line-height\cf0 : \cf5 1em\cf0 ;\
-  \cf4 color\cf0 : \cf5 blue\cf0 ;\
-  \cf4 cursor\cf0 : \cf5 hand\cf0 ;\
-  \cf4 cursor\cf0 : \cf5 pointer\cf0 ;\
-  \cf4 padding\cf0 : \cf5 0px\cf0  \cf5 4px\cf0 ;\
-\}\
-\
-\cf3 .gwt-StackLayoutPanel\cf0  \{\
-  \cf4 border-bottom\cf0 : \cf5 1px\cf0  \cf5 solid\cf0  \cf5 #bbbbbb\cf0 ;\
-\}\
-\cf3 .gwt-StackLayoutPanel .gwt-StackLayoutPanelHeader\cf0  \{\
-  \cf4 cursor\cf0 : \cf5 pointer\cf0 ;\
-  \cf4 cursor\cf0 : \cf5 hand\cf0 ;\
-  \cf4 font-weight\cf0 : \cf5 bold\cf0 ;\
-  \cf4 font-size\cf0 : \cf5 1.3em\cf0 ;\
-  \cf4 padding\cf0 : \cf5 3px\cf0 ;\
-  \cf4 border\cf0 : \cf5 1px\cf0  \cf5 solid\cf0  \cf5 #bbbbbb\cf0 ;\
-  \cf4 border-bottom\cf0 : \cf5 0px\cf0 ;\
-  \cf4 background\cf0 : \cf5 #d3def6\cf0  \cf5 url(images/hborder.png)\cf0  \cf5 repeat-x\cf0  \cf5 0px\cf0  \cf5 -989px\cf0 ;\
-\}\
-\cf3 .gwt-StackLayoutPanel .gwt-StackLayoutPanelHeader-hovering\cf0  \{\
-  \cf4 background\cf0 : \cf5 #d3def6\cf0  \cf5 url(images/hborder.png)\cf0  \cf5 repeat-x\cf0  \cf5 0px\cf0  \cf5 -1464px\cf0 ;\
-\}\
-\cf3 .gwt-StackLayoutPanel .gwt-StackLayoutPanelContent\cf0  \{\
-  \cf4 border\cf0 : \cf5 1px\cf0  \cf5 solid\cf0  \cf5 #bbbbbb\cf0 ;\
-  \cf4 border-bottom\cf0 : \cf5 0px\cf0 ;\
-  \cf4 background\cf0 : \cf5 white\cf0 ;\
-  \cf4 padding\cf0 : \cf5 2px\cf0  \cf5 2px\cf0  \cf5 10px\cf0  \cf5 5px\cf0 ;\
-\}\
-\
-\cf3 .gwt-TabLayoutPanel\cf0  \{\
-\}\
-\cf3 .gwt-TabLayoutPanel .gwt-TabLayoutPanelTabs\cf0  \{\
-\}\
-\cf3 .gwt-TabLayoutPanelContentContainer\cf0  \{\
-  \cf4 border-color\cf0 : \cf5 #FFFFFF\cf0 ;\
-  \cf4 border-style\cf0 : \cf5 solid\cf0 ;\
-  \cf4 border-width\cf0 : \cf5 2px\cf0  \cf5 1px\cf0  \cf5 1px\cf0 ;\
-\}\
-\cf3 .gwt-TabLayoutPanel .gwt-TabLayoutPanelContent\cf0  \{\
-  \cf4 border-color\cf0 : \cf5 #FFFFFF\cf0 ;\
-  \cf4 border-style\cf0 : \cf5 solid\cf0 ;\
-  \cf4 border-width\cf0 : \cf5 1px\cf0 ;\
-  \cf4 overflow\cf0 : \cf5 hidden\cf0 ;\
-  \cf4 padding\cf0 : \cf5 6px\cf0 ;\
-\}\
-\cf3 .gwt-TabLayoutPanel .gwt-TabLayoutPanelTab\cf0  \{\
-  \cf4 margin-left\cf0 : \cf5 6px\cf0 ;\
-  \cf4 padding\cf0 : \cf5 3px\cf0  \cf5 6px\cf0  \cf5 3px\cf0  \cf5 6px\cf0 ;\
-  \cf4 cursor\cf0 : \cf5 pointer\cf0 ;\
-  \cf4 cursor\cf0 : \cf5 hand\cf0 ;\
-  \cf4 color\cf0 : \cf5 black\cf0 ;\
-  \cf4 font-weight\cf0 : \cf5 bold\cf0 ;\
-  \cf4 text-align\cf0 : \cf5 center\cf0 ;\
-  \cf4 background\cf0 : \cf5 #d0e4f6\cf0 ;\
-\}\
-\cf3 .gwt-TabLayoutPanel .gwt-TabLayoutPanelTab-selected\cf0  \{\
-  \cf4 cursor\cf0 : \cf5 default\cf0 ;\
-  \cf4 background\cf0 : \cf5 #FFFFFF\cf0 ;\
-\}\
-\
-\cf3 .gwt-SplitLayoutPanel-HDragger\cf0  \{\
-  \cf4 background\cf0 : \cf5 #FFFFFF\cf0  \cf5 url(images/splitPanelThumb.png)\cf0  \cf5 center\cf0  \cf5 center\cf0  \cf5 no-repeat\cf0 ;\
-  \cf4 cursor\cf0 : \cf5 col-resize\cf0 ;\
-\}\
-\
-\cf3 .gwt-SplitLayoutPanel-VDragger\cf0  \{\
-  \cf4 background\cf0 : \cf5 #FFFFFF\cf0  \cf5 url(images/splitPanelThumb.png)\cf0  \cf5 center\cf0  \cf5 center\cf0  \cf5 no-repeat\cf0 ;\
-  \cf4 cursor\cf0 : \cf5 row-resize\cf0 ;\
-\}\
+body, table td, select {
+  font-family: Arial Unicode MS, Arial, sans-serif;
+  font-size: small;
+}
+pre {
+  font-family: "courier new", courier;
+  font-size: small;
+}
+body {
+  color: black;
+  margin: 0px;
+  border: 0px;
+  padding: 0px;
+  background: #fff;
+  direction: ltr;
+}
+a, a:visited, a:hover {
+  color: #dc50fa;
+}
+
+/**
+ * The reference theme can be used to determine when this style sheet has
+ * loaded.  Create a hidden div element with absolute position, assign the style
+ * name below, and attach it to the DOM.  Use a timer to detect when the
+ * element's height and width are set to 5px.
+ */
+.gwt-Reference-standard {
+  height: 5px;
+  width: 5px;
+  zoom: 1;
+}
+
+.gwt-Button {
+  margin: 0;
+  padding: 3px 5px;
+  text-decoration: none;
+  font-size: small;
+  cursor: pointer;
+  cursor: hand;
+  background: url("images/hborder.png") repeat-x 0px -27px;
+  border: 1px outset #ccc;
+}
+.gwt-Button:active {
+  border: 1px inset #ccc;
+}
+.gwt-Button:hover {
+  border-color: #9cf #69e #69e #7af;
+}
+.gwt-Button[disabled] {
+  cursor: default;
+  color: #888;
+}
+.gwt-Button[disabled]:hover {
+  border: 1px outset #ccc;
+}
+
+.gwt-CheckBox {
+}
+.gwt-CheckBox-disabled {
+  color: #888;
+}
+
+.gwt-DecoratorPanel {
+}
+.gwt-DecoratorPanel .topCenter,
+.gwt-DecoratorPanel .bottomCenter {
+  background: url(images/hborder.png) repeat-x;
+}
+.gwt-DecoratorPanel .middleLeft,
+.gwt-DecoratorPanel .middleRight {
+  background: url(images/vborder.png) repeat-y;
+}
+.gwt-DecoratorPanel .topLeftInner,
+.gwt-DecoratorPanel .topRightInner,
+.gwt-DecoratorPanel .bottomLeftInner,
+.gwt-DecoratorPanel .bottomRightInner {
+  width: 5px;
+  height: 5px;
+  zoom: 1;
+}
+.gwt-DecoratorPanel .topLeft {
+  background: url(images/corner.png) no-repeat 0px 0px;
+  -background: url(images/corner_ie6.png) no-repeat 0px 0px;
+}
+.gwt-DecoratorPanel .topRight {
+  background: url(images/corner.png) no-repeat -5px 0px;
+  -background: url(images/corner_ie6.png) no-repeat -5px 0px;
+}
+.gwt-DecoratorPanel .bottomLeft {
+  background: url(images/corner.png) no-repeat 0px -5px;
+  -background: url(images/corner_ie6.png) no-repeat 0px -5px;
+}
+.gwt-DecoratorPanel .bottomRight {
+  background: url(images/corner.png) no-repeat -5px -5px;
+  -background: url(images/corner_ie6.png) no-repeat -5px -5px;
+}
+* html .gwt-DecoratorPanel .topLeftInner,
+* html .gwt-DecoratorPanel .topRightInner,
+* html .gwt-DecoratorPanel .bottomLeftInner,
+* html .gwt-DecoratorPanel .bottomRightInner {
+  width: 5px;
+  height: 5px;
+  overflow: hidden;
+}
+
+.gwt-DialogBox .Caption {
+  background: #ECCEF5 url(images/hborder.png) repeat-x 0px -2003px;
+  padding: 4px 4px 4px 8px;
+  cursor: default;
+  border-bottom: 1px solid #dc50fa;
+  border-top: 5px solid #D0A9F5;
+}
+.gwt-DialogBox .dialogContent {
+}
+.gwt-DialogBox .dialogMiddleCenter {
+  padding: 3px;
+  background: white;
+}
+.gwt-DialogBox .dialogBottomCenter {
+  background: url(images/hborder.png) repeat-x 0px -4px;
+  -background: url(images/hborder_ie6.png) repeat-x 0px -4px;
+}
+.gwt-DialogBox .dialogMiddleLeft {
+  background: url(images/vborder.png) repeat-y;
+}
+.gwt-DialogBox .dialogMiddleRight {
+  background: url(images/vborder.png) repeat-y -4px 0px;
+  -background: url(images/vborder_ie6.png) repeat-y -4px 0px;
+}
+.gwt-DialogBox .dialogTopLeftInner {
+  width: 5px;
+  zoom: 1;
+}
+.gwt-DialogBox .dialogTopRightInner {
+  width: 8px;
+  zoom: 1;
+}
+.gwt-DialogBox .dialogBottomLeftInner {
+  width: 5px;
+  height: 8px;
+  zoom: 1;
+}
+.gwt-DialogBox .dialogBottomRightInner {
+  width: 5px;
+  height: 8px;
+  zoom: 1;
+}
+.gwt-DialogBox .dialogTopLeft {
+  background: url(images/corner.png) no-repeat -13px 0px;
+  -background: url(images/corner_ie6.png) no-repeat -13px 0px;
+}
+.gwt-DialogBox .dialogTopRight {
+  background: url(images/corner.png) no-repeat -18px 0px;
+  -background: url(images/corner_ie6.png) no-repeat -18px 0px;
+}
+.gwt-DialogBox .dialogBottomLeft {
+  background: url(images/corner.png) no-repeat 0px -15px;
+  -background: url(images/corner_ie6.png) no-repeat 0px -15px;
+}
+.gwt-DialogBox .dialogBottomRight {
+  background: url(images/corner.png) no-repeat -5px -15px;
+  -background: url(images/corner_ie6.png) no-repeat -5px -15px;
+}
+* html .gwt-DialogBox .dialogTopLeftInner {
+  width: 5px;
+  overflow: hidden;
+}
+* html .gwt-DialogBox .dialogTopRightInner {
+  width: 8px;
+  overflow: hidden;
+}
+* html .gwt-DialogBox .dialogBottomLeftInner {
+  width: 5px;
+  height: 8px;
+  overflow: hidden;
+}
+* html .gwt-DialogBox .dialogBottomRightInner {
+  width: 8px;
+  height: 8px;
+  overflow: hidden;
+}
+
+.gwt-DisclosurePanel {
+}
+.gwt-DisclosurePanel-open {
+}
+.gwt-DisclosurePanel-closed {
+}
+.gwt-DisclosurePanel .header,
+.gwt-DisclosurePanel .header a,
+.gwt-DisclosurePanel .header td {
+  text-decoration: none;  /* Remove underline from header */
+  color: black; 
+  cursor: pointer;
+  cursor: hand;
+}
+.gwt-DisclosurePanel .content {
+  border-left: 3px solid #e8eef7;
+  padding: 4px 0px 4px 8px;
+  margin-left: 6px;
+}
+
+.gwt-FileUpload {
+}
+
+.gwt-Frame {
+  border-top: 2px solid #666;
+  border-left: 2px solid #666;
+  border-right: 2px solid #bbb;
+  border-bottom: 2px solid #bbb;
+}
+
+.gwt-HorizontalSplitPanel {
+}
+.gwt-HorizontalSplitPanel .hsplitter {
+  cursor: move;
+  border: 0px; 
+  background: #91c0ef url(images/vborder.png) repeat-y;
+  line-height: 0px;
+}
+.gwt-VerticalSplitPanel {
+}
+.gwt-VerticalSplitPanel .vsplitter {
+  cursor: move;
+  border: 0px; 
+  background: #91c0ef url(images/hborder.png) repeat-x;
+  line-height: 0px;
+}
+
+.gwt-HTML {
+}
+
+.gwt-Hyperlink {
+}
+
+.gwt-Image {
+}
+
+.gwt-Label {
+}
+
+.gwt-ListBox {
+}
+
+.gwt-MenuBar {
+  cursor: default;
+}
+.gwt-MenuBar .gwt-MenuItem {
+  cursor: default;
+}
+.gwt-MenuBar .gwt-MenuItem-selected {
+  background: #FA58D0; /*this is where we change hovering color of the menus*/
+  color: #FFFFFF;
+}
+.gwt-MenuBar .gwt-MenuItem-disabled {
+  color: #c0c0c0;
+}
+.gwt-MenuBar-horizontal {
+  background: #8BFF2D; /*original era una imagen*/
+  border: 0px solid #8BFF2D; /*bordecito al rededor del menu de arriba*/
+}
+.gwt-MenuBar-horizontal .gwt-MenuItem {
+  padding: 0px 20px 0px 20px; /*spacing of menu items on top menu*/
+  vertical-align: bottom;
+  color: #666666;
+  font-weight: bold;
+}
+.gwt-MenuBar-horizontal .gwt-MenuItemSeparator {
+  width: 1px;
+  padding: 0px;
+  margin: 0px;
+  border: 0px;
+  border-left: 1px solid #888888;
+  background: white;
+}
+.gwt-MenuBar-horizontal .gwt-MenuItemSeparator .menuSeparatorInner {
+  width: 1px;
+  height: 1px;
+  background: white; 
+}
+.gwt-MenuBar-vertical {
+  margin-top: 0px;
+  margin-left: 0px;
+  background: #FFFFFF; /*color of background in drop-down menu*/
+}
+.gwt-MenuBar-vertical table {
+  border-collapse: collapse;
+}
+.gwt-MenuBar-vertical .gwt-MenuItem {
+  padding: 4px 10px 4px 4px; /*entre cada menu item: up - right - down - left*/
+}
+.gwt-MenuBar-vertical .gwt-MenuItemSeparator {
+  padding: 2px 0px;
+}
+.gwt-MenuBar-vertical .gwt-MenuItemSeparator .menuSeparatorInner {
+  height: 1px;
+  padding: 0px;
+  border: 0px;
+  border-top: 1px solid #777777;
+  background: #ddddee;
+  overflow: hidden;
+}
+.gwt-MenuBar-vertical .subMenuIcon {
+  padding-right: 4px;
+}
+.gwt-MenuBar-vertical .subMenuIcon-selected {
+  background: #E0EDFE;
+}
+.gwt-MenuBarPopup {
+  margin: 0px 0px 0px 3px;
+}
+.gwt-MenuBarPopup .menuPopupTopCenter {
+  background: url(images/hborder.png) 0px -12px repeat-x;
+}
+.gwt-MenuBarPopup .menuPopupBottomCenter {
+  background: url(images/hborder.png) 0px -13px repeat-x;
+  -background: url(images/hborder_ie6.png) 0px -13px repeat-x;
+}
+.gwt-MenuBarPopup .menuPopupMiddleLeft {
+  background: url(images/vborder.png) -12px 0px repeat-y;
+  -background: url(images/vborder_ie6.png) -12px 0px repeat-y;
+}
+.gwt-MenuBarPopup .menuPopupMiddleRight {
+  background: url(images/vborder.png) -13px 0px repeat-y;
+  -background: url(images/vborder_ie6.png) -13px 0px repeat-y;
+}
+.gwt-MenuBarPopup .menuPopupTopLeftInner {
+  width: 5px;
+  height: 5px;
+  zoom: 1;
+}
+.gwt-MenuBarPopup .menuPopupTopRightInner {
+  width: 8px;
+  height: 5px;
+  zoom: 1;
+}
+.gwt-MenuBarPopup .menuPopupBottomLeftInner {
+  width: 5px;
+  height: 8px;
+  zoom: 1;
+}
+.gwt-MenuBarPopup .menuPopupBottomRightInner {
+  width: 8px;
+  height: 8px;
+  zoom: 1;
+}
+.gwt-MenuBarPopup .menuPopupTopLeft {
+  background: url(images/corner.png) no-repeat 0px -36px;
+  -background: url(images/corner_ie6.png) no-repeat 0px -36px;
+}
+.gwt-MenuBarPopup .menuPopupTopRight {
+  background: url(images/corner.png) no-repeat -5px -36px;
+  -background: url(images/corner_ie6.png) no-repeat -5px -36px;
+}
+.gwt-MenuBarPopup .menuPopupBottomLeft {
+  background: url(images/corner.png) no-repeat 0px -41px;
+  -background: url(images/corner_ie6.png) no-repeat 0px -41px;
+}
+.gwt-MenuBarPopup .menuPopupBottomRight {
+  background: url(images/corner.png) no-repeat -5px -41px;
+  -background: url(images/corner_ie6.png) no-repeat -5px -41px;
+}
+* html .gwt-MenuBarPopup .menuPopupTopLeftInner {
+  width: 5px;
+  height: 5px;
+  overflow: hidden;
+}
+* html .gwt-MenuBarPopup .menuPopupTopRightInner {
+  width: 8px;
+  height: 5px;
+  overflow: hidden;
+}
+* html .gwt-MenuBarPopup .menuPopupBottomLeftInner {
+  width: 5px;
+  height: 8px;
+  overflow: hidden;
+}
+* html .gwt-MenuBarPopup .menuPopupBottomRightInner {
+  width: 8px;
+  height: 8px;
+  overflow: hidden;
+}
+
+.gwt-PasswordTextBox {
+  padding: 2px;
+}
+.gwt-PasswordTextBox-readonly {
+  color: #888;
+}
+
+.gwt-PopupPanel {
+  border: 0px solid #FFFFFF; /*border around loading-page-symbol*/
+  padding: 3px;
+  background: white;
+}
+
+.gwt-DecoratedPopupPanel .popupContent {
+}
+.gwt-DecoratedPopupPanel .popupMiddleCenter {
+  padding: 3px;
+  background: #d0e4f6;
+}
+.gwt-DecoratedPopupPanel .popupTopCenter {
+  background: url(images/hborder.png) repeat-x;
+}
+.gwt-DecoratedPopupPanel .popupBottomCenter {
+  background: url(images/hborder.png) repeat-x 0px -4px;
+  -background: url(images/hborder_ie6.png) repeat-x 0px -4px;
+}
+.gwt-DecoratedPopupPanel .popupMiddleLeft {
+  background: url(images/vborder.png) repeat-y;
+}
+.gwt-DecoratedPopupPanel .popupMiddleRight {
+  background: url(images/vborder.png) repeat-y -4px 0px;
+  -background: url(images/vborder_ie6.png) repeat-y -4px 0px;
+}
+.gwt-DecoratedPopupPanel .popupTopLeftInner {
+  width: 5px;
+  height: 5px;
+  zoom: 1;
+}
+.gwt-DecoratedPopupPanel .popupTopRightInner {
+  width: 8px;
+  height: 5px;
+  zoom: 1;
+}
+.gwt-DecoratedPopupPanel .popupBottomLeftInner {
+  width: 5px;
+  height: 8px;
+  zoom: 1;
+}
+.gwt-DecoratedPopupPanel .popupBottomRightInner {
+  width: 8px;
+  height: 8px;
+  zoom: 1;
+}
+.gwt-DecoratedPopupPanel .popupTopLeft {
+  background: url(images/corner.png) no-repeat 0px -10px;
+  -background: url(images/corner_ie6.png) no-repeat 0px -10px;
+}
+.gwt-DecoratedPopupPanel .popupTopRight {
+  background: url(images/corner.png) no-repeat -5px -10px;
+  -background: url(images/corner_ie6.png) no-repeat -5px -10px;
+}
+.gwt-DecoratedPopupPanel .popupBottomLeft {
+  background: url(images/corner.png) no-repeat 0px -15px;
+  -background: url(images/corner_ie6.png) no-repeat 0px -15px;
+}
+.gwt-DecoratedPopupPanel .popupBottomRight {
+  background: url(images/corner.png) no-repeat -5px -15px;
+  -background: url(images/corner_ie6.png) no-repeat -5px -15px;
+}
+* html .gwt-DecoratedPopupPanel .popupTopLeftInner {
+  width: 5px;
+  height: 5px;
+  overflow: hidden;
+}
+* html .gwt-DecoratedPopupPanel .popupTopRightInner {
+  width: 8px;
+  height: 5px;
+  overflow: hidden;
+}
+* html .gwt-DecoratedPopupPanel .popupBottomLeftInner {
+  width: 5px;
+  height: 8px;
+  overflow: hidden;
+}
+* html .gwt-DecoratedPopupPanel .popupBottomRightInner {
+  width: 8px;
+  height: 8px;
+  overflow: hidden;
+}
+
+.gwt-PopupPanelGlass {
+  background-color: #000;
+  opacity: 0.3;
+  filter: alpha(opacity=30);
+}
+
+.gwt-PushButton-up,
+.gwt-PushButton-up-hovering,
+.gwt-PushButton-up-disabled,
+.gwt-PushButton-down,
+.gwt-PushButton-down-hovering,
+.gwt-PushButton-down-disabled {
+  margin: 0;
+  text-decoration: none;
+  background: url("images/hborder.png") repeat-x 0px -27px;
+}
+.gwt-PushButton-up,
+.gwt-PushButton-up-hovering,
+.gwt-PushButton-up-disabled {
+  padding: 3px 5px 3px 5px;
+}
+.gwt-PushButton-up {
+  border: 1px outset #ccc;
+  cursor: pointer;
+  cursor: hand;
+}
+.gwt-PushButton-up-hovering {
+  border: 1px outset;
+  border-color: #9cf #69e #69e #7af;
+  cursor: pointer;
+  cursor: hand;
+}
+.gwt-PushButton-up-disabled {
+  border: 1px outset #ccc;
+  cursor: default;
+  opacity: .5;
+  filter: alpha(opacity=40);
+  zoom: 1;
+}
+.gwt-PushButton-down,
+.gwt-PushButton-down-hovering,
+.gwt-PushButton-down-disabled {
+  padding: 4px 4px 2px 6px;
+}
+.gwt-PushButton-down {
+  border: 1px inset #666;
+  cursor: pointer;
+  cursor: hand;
+}
+.gwt-PushButton-down-hovering {
+  border: 1px inset;
+  border-color: #9cf #69e #69e #7af;
+  cursor: pointer;
+  cursor: hand;
+}
+.gwt-PushButton-down-disabled {
+  border: 1px outset #ccc;
+  cursor: default;
+  opacity: 0.5;
+  filter: alpha(opacity=40);
+  zoom: 1;
+}
+
+.gwt-RadioButton {
+}
+.gwt-RadioButton-disabled {
+  color: #888;
+}
+
+.gwt-RichTextArea {
+}
+.hasRichTextToolbar {
+  border: 0px;
+}
+.gwt-RichTextToolbar {
+  background: #e3e8f3 url(images/hborder.png) repeat-x 0px -2003px;
+  border-bottom: 1px solid #BBBBBB;
+  padding: 3px;
+  margin: 0px;
+}
+.gwt-RichTextToolbar .gwt-PushButton-up {
+  padding: 0px 1px 0px 0px;
+  margin-right: 4px;
+  margin-bottom: 4px;
+  border-width: 1px; 
+}
+.gwt-RichTextToolbar .gwt-PushButton-up-hovering {
+  margin-right: 4px;
+  margin-bottom: 4px;
+  padding: 0px 1px 0px 0px;
+  border-width: 1px; 
+}
+.gwt-RichTextToolbar .gwt-PushButton-down {
+  margin-right: 4px;
+  margin-bottom: 4px;
+  padding: 0px 0px 0px 1px;
+  border-width: 1px; 
+}
+.gwt-RichTextToolbar .gwt-PushButton-down-hovering {
+  margin-right: 4px;
+  margin-bottom: 4px;
+  padding: 0px 0px 0px 1px;
+  border-width: 1px; 
+}
+.gwt-RichTextToolbar .gwt-ToggleButton-up {
+  margin-right: 4px;
+  margin-bottom: 4px;
+  padding: 0px 1px 0px 0px;
+  border-width: 1px;
+}
+.gwt-RichTextToolbar .gwt-ToggleButton-up-hovering {
+  margin-right: 4px;
+  margin-bottom: 4px;
+  padding: 0px 1px 0px 0px;
+  border-width: 1px;
+}
+.gwt-RichTextToolbar .gwt-ToggleButton-down {
+  margin-right: 4px;
+  margin-bottom: 4px;
+  padding: 0px 0px 0px 1px;
+  border-width: 1px;
+}
+.gwt-RichTextToolbar .gwt-ToggleButton-down-hovering {
+  margin-right: 4px;
+  margin-bottom: 4px;
+  padding: 0px 0px 0px 1px;
+  border-width: 1px;
+}
+
+.gwt-StackPanel {
+  border-bottom: 1px solid #bbbbbb;
+}
+.gwt-StackPanel .gwt-StackPanelItem {
+  cursor: pointer;
+  cursor: hand;
+  font-weight: bold;
+  font-size: 1.3em;
+  padding: 3px;
+  border: 1px solid #bbbbbb;
+  border-bottom: 0px;
+  background: #d3def6 url(images/hborder.png) repeat-x 0px -989px;
+}
+.gwt-StackPanel .gwt-StackPanelContent {
+  border: 1px solid #bbbbbb;
+  border-bottom: 0px;
+  background: white;
+  padding: 2px 2px 10px 5px;
+}
+
+.gwt-DecoratedStackPanel {
+  border-bottom: 1px solid #bbbbbb;
+}
+.gwt-DecoratedStackPanel .gwt-StackPanelContent {
+  border: 1px solid #bbbbbb;
+  border-bottom: 0px;
+  background: white;
+  padding: 2px 2px 10px 5px;
+}
+.gwt-DecoratedStackPanel .gwt-StackPanelItem {
+  cursor: pointer;
+  cursor: hand;
+}
+.gwt-DecoratedStackPanel .stackItemTopLeft,
+.gwt-DecoratedStackPanel .stackItemTopRight {
+  height: 6px;
+  width: 6px;
+  zoom: 1;
+}
+.gwt-DecoratedStackPanel .stackItemTopLeft {
+  border-left: 1px solid #bbbbbb;
+  background: #d3def6 url(images/corner.png) no-repeat 0px -49px;
+  -background: #d3def6 url(images/corner_ie6.png) no-repeat 0px -49px;
+}
+.gwt-DecoratedStackPanel .stackItemTopRight {
+  border-right: 1px solid #bbbbbb;
+  background: #d3def6 url(images/corner.png) no-repeat -6px -49px;
+  -background: #d3def6 url(images/corner_ie6.png) no-repeat -6px -49px;
+}
+.gwt-DecoratedStackPanel .stackItemTopLeftInner,
+.gwt-DecoratedStackPanel .stackItemTopRightInner {
+  width: 1px;
+  height: 1px;
+}
+* html .gwt-DecoratedStackPanel .stackItemTopLeftInner,
+* html .gwt-DecoratedStackPanel .stackItemTopRightInner {
+  width: 6px;
+  height: 6px;
+  overflow: hidden;
+}
+.gwt-DecoratedStackPanel .stackItemTopCenter {
+  background: url(images/hborder.png) 0px -21px repeat-x;
+}
+.gwt-DecoratedStackPanel .stackItemMiddleLeft {
+  background: #d3def6 url(images/hborder.png) repeat-x 0px -989px;
+  border-left: 1px solid #bbbbbb;
+}
+.gwt-DecoratedStackPanel .stackItemMiddleLeftInner,
+.gwt-DecoratedStackPanel .stackItemMiddleRightInner {
+  width: 1px;
+  height: 1px;
+}
+.gwt-DecoratedStackPanel .stackItemMiddleRight {
+  background: #d3def6 url(images/hborder.png) repeat-x 0px -989px;
+  border-right: 1px solid #bbbbbb;
+}
+.gwt-DecoratedStackPanel .stackItemMiddleCenter {
+  font-weight: bold;
+  font-size: 1.3em;
+  background: #d3def6 url(images/hborder.png) repeat-x 0px -989px;
+}
+.gwt-DecoratedStackPanel .gwt-StackPanelItem-first .stackItemTopRight,
+.gwt-DecoratedStackPanel .gwt-StackPanelItem-first .stackItemTopLeft {
+  border: 0px;
+  background-color: white;
+}
+.gwt-DecoratedStackPanel .gwt-StackPanelItem-below-selected .stackItemTopLeft,
+.gwt-DecoratedStackPanel .gwt-StackPanelItem-below-selected .stackItemTopRight {
+  background-color: white;
+}
+
+.gwt-SuggestBox {
+  padding: 2px;
+}
+.gwt-SuggestBoxPopup {
+  margin-left: 3px;
+}
+.gwt-SuggestBoxPopup .item {
+  padding: 2px 6px;
+  color: #424242;
+  cursor: default;
+}
+.gwt-SuggestBoxPopup .item-selected {
+  background: #b7d6f6;
+}
+.gwt-SuggestBoxPopup .suggestPopupContent {
+  background: white;
+}
+.gwt-SuggestBoxPopup .suggestPopupTopCenter {
+  background: url(images/hborder.png) repeat-x;
+}
+.gwt-SuggestBoxPopup .suggestPopupBottomCenter {
+  background: url(images/hborder.png) repeat-x 0px -4px;
+  -background: url(images/hborder_ie6.png) repeat-x 0px -4px;
+}
+.gwt-SuggestBoxPopup .suggestPopupMiddleLeft {
+  background: url(images/vborder.png) repeat-y;
+}
+.gwt-SuggestBoxPopup .suggestPopupMiddleRight {
+  background: url(images/vborder.png) repeat-y -4px 0px;
+  -background: url(images/vborder_ie6.png) repeat-y -4px 0px;
+}
+.gwt-SuggestBoxPopup .suggestPopupTopLeftInner {
+  width: 5px;
+  height: 5px;
+  zoom: 1;  
+}
+.gwt-SuggestBoxPopup .suggestPopupTopRightInner {
+  width: 8px;
+  height: 5px;
+  zoom: 1;
+}
+.gwt-SuggestBoxPopup .suggestPopupBottomLeftInner {
+  width: 5px;
+  height: 8px;
+  zoom: 1;
+}
+.gwt-SuggestBoxPopup .suggestPopupBottomRightInner {
+  width: 8px;
+  height: 8px;
+  zoom: 1;
+}
+.gwt-SuggestBoxPopup .suggestPopupTopLeft {
+  background: url(images/corner.png) no-repeat 0px -23px;
+  -background: url(images/corner_ie6.png) no-repeat 0px -23px;
+}
+.gwt-SuggestBoxPopup .suggestPopupTopRight {
+  background: url(images/corner.png) no-repeat -5px -23px;
+  -background: url(images/corner_ie6.png) no-repeat -5px -23px;
+}
+.gwt-SuggestBoxPopup .suggestPopupBottomLeft {
+  background: url(images/corner.png) no-repeat 0px -28px;
+  -background: url(images/corner_ie6.png) no-repeat 0px -28px;
+}
+.gwt-SuggestBoxPopup .suggestPopupBottomRight {
+  background: url(images/corner.png) no-repeat -5px -28px;
+  -background: url(images/corner_ie6.png) no-repeat -5px -28px;
+}
+* html .gwt-SuggestBoxPopup .suggestPopupTopLeftInner {
+  width: 5px;
+  height: 5px;
+  overflow: hidden;
+}
+* html .gwt-SuggestBoxPopup .suggestPopupTopRightInner {
+  width: 8px;
+  height: 5px;
+  overflow: hidden;
+}
+* html .gwt-SuggestBoxPopup .suggestPopupBottomLeftInner {
+  width: 5px;
+  height: 8px;
+  overflow: hidden;
+}
+* html .gwt-SuggestBoxPopup .suggestPopupBottomRightInner {
+  width: 8px;
+  height: 8px;
+  overflow: hidden;
+}
+
+.gwt-TabBar {
+}
+.gwt-TabBar .gwt-TabBarFirst {
+  width: 5px;  /* first tab distance from the left */
+}
+.gwt-TabBar .gwt-TabBarRest {
+}
+.gwt-TabBar .gwt-TabBarItem {
+  margin-left: 6px;
+  padding: 3px 6px 3px 6px;
+  cursor: pointer;
+  cursor: hand;
+  color: black;
+  font-weight: bold;
+  text-align: center;
+  background: #d0e4f6;
+}
+.gwt-TabBar .gwt-TabBarItem-selected {
+  cursor: default;
+  background: #92c1f0;
+} 
+.gwt-TabBar .gwt-TabBarItem-disabled {
+  cursor: default;
+  color: #999999;
+}
+.gwt-TabPanel {
+}
+.gwt-TabPanelBottom {
+  border-color: #92c1f0;
+  border-style: solid;
+  border-width: 3px 2px 2px;
+  overflow: hidden;
+  padding: 6px;
+}
+
+.gwt-DecoratedTabBar {
+}
+.gwt-DecoratedTabBar .gwt-TabBarFirst {
+  width: 5px;  /* first tab distance from the left */
+}
+.gwt-DecoratedTabBar .gwt-TabBarRest {
+}
+.gwt-DecoratedTabBar .gwt-TabBarItem {
+  border-collapse: collapse;
+  margin-left: 6px;
+}
+.gwt-DecoratedTabBar .tabTopCenter {
+  padding: 0px;
+  background: #d0e4f6;
+}
+.gwt-DecoratedTabBar .tabTopLeft,
+.gwt-DecoratedTabBar .tabTopRight {
+  padding: 0px;
+  zoom: 1;
+}
+.gwt-DecoratedTabBar .tabTopLeftInner,
+.gwt-DecoratedTabBar .tabTopRightInner {
+  width: 6px;
+  height: 6px;
+}
+.gwt-DecoratedTabBar .tabTopLeft {
+  background: url(images/corner.png) no-repeat 0px -55px;
+  -background: url(images/corner_ie6.png) no-repeat 0px -55px;
+}
+.gwt-DecoratedTabBar .tabTopRight {
+  background: url(images/corner.png) no-repeat -6px -55px;
+  -background: url(images/corner_ie6.png) no-repeat -6px -55px;
+}
+* html .gwt-DecoratedTabBar .tabTopLeftInner,
+* html .gwt-DecoratedTabBar .tabTopRightInner {
+  width: 6px;
+  height: 6px;
+  overflow: hidden;
+}
+.gwt-DecoratedTabBar .tabMiddleLeft,
+.gwt-DecoratedTabBar .tabMiddleRight {
+  width: 6px;
+  padding: 0px;
+  background: #d0e4f6;
+}
+.gwt-DecoratedTabBar .tabMiddleLeftInner,
+.gwt-DecoratedTabBar .tabMiddleRightInner {
+  width: 1px;
+  height: 1px;
+}
+.gwt-DecoratedTabBar .tabMiddleCenter {
+  padding: 0px 4px 2px 4px;
+  cursor: pointer;
+  cursor: hand;
+  color: black;
+  font-weight: bold;
+  text-align: center;
+  background: #d0e4f6;
+}
+.gwt-DecoratedTabBar .gwt-TabBarItem-selected .tabTopCenter {
+  background: #92c1f0;
+}
+.gwt-DecoratedTabBar .gwt-TabBarItem-selected .tabTopLeft {
+  background-position: 0px -61px;
+}
+.gwt-DecoratedTabBar .gwt-TabBarItem-selected .tabTopRight {
+  background-position: -6px -61px;
+}
+.gwt-DecoratedTabBar .gwt-TabBarItem-selected .tabMiddleLeft,
+.gwt-DecoratedTabBar .gwt-TabBarItem-selected .tabMiddleRight {
+  background: #92c1f0;
+}
+.gwt-DecoratedTabBar .gwt-TabBarItem-selected .tabMiddleCenter {
+  cursor: default;
+  background: #92c1f0;
+}
+.gwt-DecoratedTabBar .gwt-TabBarItem-disabled .tabMiddleCenter {
+  cursor: default;
+  color: #999999;
+}
+
+.gwt-TextArea {
+  padding: 2px;
+}
+.gwt-TextArea-readonly {
+  color: #888;
+}
+
+.gwt-TextBox {
+  padding: 2px;
+}
+.gwt-TextBox-readonly {
+  color: #888;
+}
+
+.gwt-ToggleButton-up,
+.gwt-ToggleButton-up-hovering,
+.gwt-ToggleButton-up-disabled,
+.gwt-ToggleButton-down,
+.gwt-ToggleButton-down-hovering,
+.gwt-ToggleButton-down-disabled {
+  margin: 0;
+  text-decoration: none;
+  background: url("images/hborder.png") repeat-x 0px -27px;
+}
+.gwt-ToggleButton-up,
+.gwt-ToggleButton-up-hovering,
+.gwt-ToggleButton-up-disabled {
+  padding: 3px 5px 3px 5px;
+}
+.gwt-ToggleButton-up {
+  border: 1px outset #ccc;
+  cursor: pointer;
+  cursor: hand;
+}
+.gwt-ToggleButton-up-hovering {
+  border: 1px outset;
+  border-color: #9cf #69e #69e #7af;
+  cursor: pointer;
+  cursor: hand;
+}
+.gwt-ToggleButton-up-disabled {
+  border: 1px outset #ccc;
+  cursor: default;
+  opacity: .5;
+  zoom: 1;
+  filter: alpha(opacity=40);
+}
+.gwt-ToggleButton-down,
+.gwt-ToggleButton-down-hovering,
+.gwt-ToggleButton-down-disabled {
+  padding: 4px 4px 2px 6px;
+}
+.gwt-ToggleButton-down {
+  background-position: 0 -513px;
+  border: 1px inset #ccc;
+  cursor: pointer;
+  cursor: hand;
+}
+.gwt-ToggleButton-down-hovering {
+  background-position: 0 -513px;
+  border: 1px inset;
+  border-color: #9cf #69e #69e #7af;
+  cursor: pointer;
+  cursor: hand;
+}
+.gwt-ToggleButton-down-disabled {
+  background-position: 0 -513px;
+  border: 1px inset #ccc;
+  cursor: default;
+  opacity: .5;
+  zoom: 1;
+  filter: alpha(opacity=40);
+}
+
+.gwt-Tree .gwt-TreeItem {
+  padding: 1px 0px;
+  margin: 0px;
+  white-space: nowrap;
+  cursor: hand;
+  cursor: pointer;
+}
+.gwt-Tree .gwt-TreeItem-selected {
+  background: #93c2f1 url(images/hborder.png) repeat-x 0px -1463px;
+}
+.gwt-TreeItem .gwt-RadioButton input,
+.gwt-TreeItem .gwt-CheckBox input {
+  margin-left: 0px;
+}
+* html .gwt-TreeItem .gwt-RadioButton input,
+* html .gwt-TreeItem .gwt-CheckBox input {
+  margin-left: -4px;
+}
+
+.gwt-DateBox input {
+  width: 8em;
+}
+.dateBoxFormatError {
+  background: #ffcccc;
+}
+.dateBoxPopup {
+}
+
+.gwt-DatePicker {
+  border: 1px solid #A2BBDD;
+  cursor: default;
+}
+.gwt-DatePicker td,
+.datePickerMonthSelector td:focus {
+  outline: none
+}
+.datePickerDays {
+  width: 100%;
+  background: white;
+}
+.datePickerDay,
+.datePickerWeekdayLabel,
+.datePickerWeekendLabel {
+  font-size: 75%;
+  text-align: center;
+  padding: 4px;
+  outline: none;
+}
+.datePickerWeekdayLabel,
+.datePickerWeekendLabel {
+  background: #C3D9FF;
+  padding: 0px 4px 2px;
+  cursor: default;
+}
+.datePickerDay {
+  padding: 4px;
+  cursor: hand;
+  cursor: pointer;
+}
+.datePickerDayIsToday {
+  border: 1px solid black;
+  padding: 3px;
+}
+.datePickerDayIsWeekend {
+  background: #EEEEEE;
+}
+.datePickerDayIsFiller {
+  color: #888888;
+}
+.datePickerDayIsValue {
+  background: #aaccee;
+}
+.datePickerDayIsDisabled {
+  color: #AAAAAA;
+  font-style: italic;
+}
+.datePickerDayIsHighlighted {
+  background: #F0E68C;
+}
+.datePickerDayIsValueAndHighlighted {
+  background: #bbddd9;
+}
+.datePickerMonthSelector {
+  background: #C3D9FF;
+  width: 100%;
+}
+td.datePickerMonth {
+  text-align: center;
+  vertical-align: center;
+  white-space: nowrap;
+  font-size: 70%;
+  font-weight: bold;
+  color: blue;
+}
+.datePickerPreviousButton,
+.datePickerNextButton {
+  font-size: 120%;
+  line-height: 1em;
+  color: blue;
+  cursor: hand;
+  cursor: pointer;
+  padding: 0px 4px;
+}
+
+.gwt-StackLayoutPanel {
+  border-bottom: 1px solid #bbbbbb;
+}
+.gwt-StackLayoutPanel .gwt-StackLayoutPanelHeader {
+  cursor: pointer;
+  cursor: hand;
+  font-weight: bold;
+  font-size: 1.3em;
+  padding: 3px;
+  border: 1px solid #bbbbbb;
+  border-bottom: 0px;
+  background: #d3def6 url(images/hborder.png) repeat-x 0px -989px;
+}
+.gwt-StackLayoutPanel .gwt-StackLayoutPanelHeader-hovering {
+  background: #d3def6 url(images/hborder.png) repeat-x 0px -1464px;
+}
+.gwt-StackLayoutPanel .gwt-StackLayoutPanelContent {
+  border: 1px solid #bbbbbb;
+  border-bottom: 0px;
+  background: white;
+  padding: 2px 2px 10px 5px;
+}
+
+.gwt-TabLayoutPanel {
+}
+.gwt-TabLayoutPanel .gwt-TabLayoutPanelTabs {
+}
+.gwt-TabLayoutPanelContentContainer {
+  border-color: #FFFFFF;
+  border-style: solid;
+  border-width: 2px 1px 1px;
+}
+.gwt-TabLayoutPanel .gwt-TabLayoutPanelContent {
+  border-color: #FFFFFF;
+  border-style: solid;
+  border-width: 1px;
+  overflow: hidden;
+  padding: 6px;
+}
+.gwt-TabLayoutPanel .gwt-TabLayoutPanelTab {
+  margin-left: 6px;
+  padding: 3px 6px 3px 6px;
+  cursor: pointer;
+  cursor: hand;
+  color: black;
+  font-weight: bold;
+  text-align: center;
+  background: #d0e4f6;
+}
+.gwt-TabLayoutPanel .gwt-TabLayoutPanelTab-selected {
+  cursor: default;
+  background: #FFFFFF;
+}
+
+.gwt-SplitLayoutPanel-HDragger {
+  background: #FFFFFF url(images/splitPanelThumb.png) center center no-repeat;
+  cursor: col-resize;
+}
+
+.gwt-SplitLayoutPanel-VDragger {
+  background: #FFFFFF url(images/splitPanelThumb.png) center center no-repeat;
+  cursor: row-resize;
 }
