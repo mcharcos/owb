@@ -1,12 +1,18 @@
 package com.owb.playhelp.client.presenter.web;
 
 import com.google.gwt.event.shared.SimpleEventBus;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
 import com.owb.playhelp.client.Owb;
+import com.owb.playhelp.client.event.WinSizeUpdateEvent;
+import com.owb.playhelp.client.event.WinSizeUpdateEventHandler;
+import com.owb.playhelp.client.event.user.LoginEvent;
+import com.owb.playhelp.client.event.user.LoginEventHandler;
 import com.owb.playhelp.client.presenter.Presenter;
 import com.owb.playhelp.client.view.web.home.WebInfoBandView;
 
@@ -16,6 +22,7 @@ public class WebHomePresenter  implements Presenter {
 		HorizontalPanel getInfoBandField();
 		HTMLPanel getNewsPanel1();
 		HTMLPanel getNewsPanel2();
+		Image getImageField();
 	}
 
 	private final SimpleEventBus eventBus;
@@ -27,7 +34,11 @@ public class WebHomePresenter  implements Presenter {
 	}
 
 	public void bind() {
-		
+		eventBus.addHandler(WinSizeUpdateEvent.TYPE, new WinSizeUpdateEventHandler(){
+			  @Override public void onWinSizeUpdate(WinSizeUpdateEvent event){
+				  updateSizes();
+			  }
+		  });
 	}
 
 
@@ -35,8 +46,6 @@ public class WebHomePresenter  implements Presenter {
 		container.clear();
 		container.add(display.asWidget());
 
-		this.display.getNewsPanel1().setWidth(Owb.get().getMainPanel().getOffsetWidth()*0.6+"px");
-		this.display.getNewsPanel2().setWidth(Owb.get().getMainPanel().getOffsetWidth()*0.6+"px");
 		
 		String messageVolunteer = "<b>DO YOU LOVE HELPING CHILDREN? </b><br></br> " +
 				"Do you love being involved in ground breaking non-profit organizations that help children? " +
@@ -77,7 +86,25 @@ public class WebHomePresenter  implements Presenter {
 		WebInfoBandProjectsPresenter needBandPresenter = new WebInfoBandProjectsPresenter(eventBus, needBandView);
 		needBandPresenter.go(this.display.getInfoBandField());
 		
+		updateSizes();
 		bind();
+	}
+	
+	private void updateSizes(){
+		  int width0img = display.getImageField().getWidth();
+		  int height0img = display.getImageField().getHeight();
+		  if (Owb.get().getWidthCenter() < width0img){
+			  display.getImageField().setWidth(Owb.get().getWidthCenter()+"px");
+			  display.getImageField().setHeight(height0img/width0img*Owb.get().getWidthCenter()+"px");
+		  }
+		  //Window.alert(Integer.toString(Owb.get().getWidthCenter())+" "+Integer.toString(width0img));
+		  
+		  int widthNews = (Owb.get().getWidthCenter() - 40)/2;
+		  if (widthNews > 0){
+			  this.display.getNewsPanel1().setWidth(widthNews+"px");
+			  this.display.getNewsPanel2().setWidth(widthNews+"px");
+		  }
+		  //Window.alert(Integer.toString(Owb.get().getWidthCenter())+" "+Integer.toString(widthNews));
 	}
 	
 

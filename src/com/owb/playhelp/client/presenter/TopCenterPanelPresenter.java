@@ -10,11 +10,15 @@ import com.google.gwt.event.dom.client.MouseOverHandler;
 import com.google.gwt.event.dom.client.MouseOutEvent;
 import com.google.gwt.event.dom.client.MouseOutHandler;
 import com.google.gwt.event.shared.SimpleEventBus;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Widget;
+import com.owb.playhelp.client.Owb;
 import com.owb.playhelp.client.resources.Resources;
+import com.owb.playhelp.client.event.WinSizeUpdateEvent;
+import com.owb.playhelp.client.event.WinSizeUpdateEventHandler;
 import com.owb.playhelp.client.event.friend.FriendsHomeEvent;
 import com.owb.playhelp.client.event.map.MainHomeEvent;
 import com.owb.playhelp.client.event.news.NewsHomeEvent;
@@ -36,6 +40,7 @@ public class TopCenterPanelPresenter implements Presenter {
 		public Image getFriendPanel();*/
 		public Image getOwbPanel();
 		public HorizontalPanel getUserSettings();
+		Image getBeforeUserPanel();
 	}
 
 	private final SimpleEventBus eventBus;
@@ -48,6 +53,11 @@ public class TopCenterPanelPresenter implements Presenter {
 	}
 	public void bind() {
 
+		eventBus.addHandler(WinSizeUpdateEvent.TYPE, new WinSizeUpdateEventHandler(){
+			  @Override public void onWinSizeUpdate(WinSizeUpdateEvent event){
+				  updateSizes();
+			  }
+		  });
 		  this.display.getOwbPanel().addClickHandler(new ClickHandler(){
 				 public void onClick(ClickEvent event){
 					 eventBus.fireEvent(new ShowWebEvent("gethomeItem"));
@@ -123,6 +133,17 @@ public class TopCenterPanelPresenter implements Presenter {
 	public void go(final HasWidgets container) {
 		container.clear();
 		container.add(display.asWidget());
+		updateSizes();
 		bind();
+	}
+
+	private void updateSizes(){
+		  //Window.alert(Integer.toString(Owb.get().getWidthCenter())+" "+Integer.toString(display.getOwbPanel().getWidth())+" "+Integer.toString(display.getUserSettings().getOffsetWidth()));
+		  int widthdiff = Owb.get().getWidthCenter() - display.getOwbPanel().getWidth() - display.getUserSettings().getOffsetWidth();
+		  if (widthdiff >0){
+			  display.getBeforeUserPanel().setWidth(widthdiff+"px");
+		  } else {
+			  display.getBeforeUserPanel().setVisible(false);
+		  }
 	}
 }

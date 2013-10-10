@@ -72,4 +72,8 @@ public class WebHomeView extends Composite implements WebHomePresenter.Display {
 	public HTMLPanel getNewsPanel2(){
 		return new HTMLPanel("");
 	}
+	@Override 
+	public Image getImageField(){
+		return new Image();
+	}
 }

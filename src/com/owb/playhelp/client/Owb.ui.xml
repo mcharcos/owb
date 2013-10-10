@@ -75,10 +75,9 @@
 					  	<g:HorizontalPanel styleName='{style.horizontalBarStyle}'/>
 					  	<app:LeftPanel ui:field='actionPanel'/>
 					</g:VerticalPanel>
-					<g:VerticalPanel>
+					<g:VerticalPanel ui:field='centerColumn'>
 						<g:HorizontalPanel ui:field='topCenterPanel' styleName='{style.horizontalTopStyle}'/>
-						<g:HorizontalPanel styleName='{style.fillAfterBarStyle}'>
-							<g:HorizontalPanel ui:field='beforeBarPanel' styleName='{style.fillBeforeBarStyle}' horizontalAlignment="ALIGN_LEFT"/>
+						<g:HorizontalPanel styleName='{style.fillAfterBarStyle}' horizontalAlignment="ALIGN_RIGHT">
 							<g:HorizontalPanel ui:field='barPanel'  styleName='{style.horizontalMenuStyle}' horizontalAlignment="ALIGN_RIGHT"/>
 						</g:HorizontalPanel>
 						<g:HorizontalPanel ui:field='centerPanel' styleName='{style.horizontalCenterStyle}' horizontalAlignment="ALIGN_CENTER" />

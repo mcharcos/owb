@@ -7,6 +7,7 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.TabLayoutPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.owb.playhelp.client.presenter.web.WebHomePresenter;
@@ -19,6 +20,7 @@ public class WebHomeGifView extends Composite implements WebHomePresenter.Displa
 	interface WebHomeViewUiBinder extends UiBinder<Widget, WebHomeGifView> {
 	}
 
+	@UiField Image imgField;
 	@UiField HorizontalPanel infoBandField;
 	@UiField HTMLPanel newsPanel1, newsPanel2;
 	
@@ -37,6 +39,10 @@ public class WebHomeGifView extends Composite implements WebHomePresenter.Displa
 	@Override 
 	public HTMLPanel getNewsPanel2(){
 		return newsPanel2;
+	}
+	@Override
+	public Image getImageField(){
+		return imgField;
 	}
 
 }

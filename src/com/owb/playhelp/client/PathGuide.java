@@ -21,7 +21,6 @@ import com.owb.playhelp.client.presenter.news.NewsHomePresenter;
 import com.owb.playhelp.client.presenter.ngo.AddNgoPresenter;
 import com.owb.playhelp.client.presenter.ngo.NgoListPresenter;
 import com.owb.playhelp.client.presenter.ngo.ReportAbuseNgoPresenter;
-import com.owb.playhelp.client.presenter.ngo.SNgoListPresenter;
 import com.owb.playhelp.client.presenter.ngo.ShowDetailsNgoPresenter;
 import com.owb.playhelp.client.presenter.orphanage.AddOrphanagePresenter;
 import com.owb.playhelp.client.presenter.orphanage.OrphanageListPresenter;
@@ -32,7 +31,6 @@ import com.owb.playhelp.client.presenter.volunteer.VolunteerListPresenter;
 import com.owb.playhelp.client.presenter.web.ContactHomePresenter;
 import com.owb.playhelp.client.presenter.web.WebHomePresenter;
 import com.owb.playhelp.client.presenter.web.WebMenuPresenter;
-import com.owb.playhelp.client.presenter.web.WebPagesPresenter;
 import com.owb.playhelp.client.service.project.ProjectServiceAsync;
 import com.owb.playhelp.client.service.LoginServiceAsync;
 import com.owb.playhelp.client.service.NgoServiceAsync;
@@ -46,43 +44,18 @@ import com.owb.playhelp.client.view.DBRecordListView;
 import com.owb.playhelp.client.view.MyDialog;
 import com.owb.playhelp.client.view.LoginDialog;
 import com.owb.playhelp.client.view.ShowDetailsDBRecordView;
-import com.owb.playhelp.client.view.StandardListView;
 import com.owb.playhelp.client.view.map.MainHomeView;
 import com.owb.playhelp.client.view.news.NewsHomeView;
 import com.owb.playhelp.client.view.ngo.AddNgoView;
 import com.owb.playhelp.client.view.ngo.ReportAbuseNgoView;
 import com.owb.playhelp.client.view.orphanage.AddOrphanageView;
 import com.owb.playhelp.client.view.user.UserPreferenceEditView;
-import com.owb.playhelp.client.view.web.WebHowChildrenView;
-import com.owb.playhelp.client.view.web.WebHowDoWeHelpView;
-import com.owb.playhelp.client.view.web.WebHowIndividualsView;
-import com.owb.playhelp.client.view.web.WebJoinNetworkView;
 import com.owb.playhelp.client.view.web.WebMenuView;
 import com.owb.playhelp.client.view.web.WebTheTeamView;
 import com.owb.playhelp.client.view.web.WebMainIndexView;
 import com.owb.playhelp.client.view.web.aboutus.WebAboutUsView;
-import com.owb.playhelp.client.view.web.aboutus.WebContextView;
 import com.owb.playhelp.client.view.web.aboutus.WebJoinOWBView;
-import com.owb.playhelp.client.view.web.aboutus.WebOurViewView;
 import com.owb.playhelp.client.view.web.home.WebHomeGifView;
-import com.owb.playhelp.client.view.web.home.WebHomeView;
-import com.owb.playhelp.client.view.web.whatdowedo.WebWhatCleanWaterView;
-import com.owb.playhelp.client.view.web.whatdowedo.WebWhatClothingView;
-import com.owb.playhelp.client.view.web.whatdowedo.WebWhatCompassionateView;
-import com.owb.playhelp.client.view.web.whatdowedo.WebWhatDisciplineView;
-import com.owb.playhelp.client.view.web.whatdowedo.WebWhatDoWeDoView;
-import com.owb.playhelp.client.view.web.whatdowedo.WebWhatEducationView;
-import com.owb.playhelp.client.view.web.whatdowedo.WebWhatExcerciseView;
-import com.owb.playhelp.client.view.web.whatdowedo.WebWhatFoodView;
-import com.owb.playhelp.client.view.web.whatdowedo.WebWhatGuidanceView;
-import com.owb.playhelp.client.view.web.whatdowedo.WebWhatHealthView;
-import com.owb.playhelp.client.view.web.whatdowedo.WebWhatHopeOfFutureView;
-import com.owb.playhelp.client.view.web.whatdowedo.WebWhatHygieneView;
-import com.owb.playhelp.client.view.web.whatdowedo.WebWhatJoyView;
-import com.owb.playhelp.client.view.web.whatdowedo.WebWhatLoveView;
-import com.owb.playhelp.client.view.web.whatdowedo.WebWhatResponsabilitiesView;
-import com.owb.playhelp.client.view.web.whatdowedo.WebWhatSafetyView;
-import com.owb.playhelp.client.view.web.whatdowedo.WebWhatShelterView;
 import com.owb.playhelp.client.event.volunteer.ShowAddVolunteerEvent;
 import com.owb.playhelp.client.event.volunteer.ShowAddVolunteerEventHandler;
 import com.owb.playhelp.client.event.web.ContactHomeEvent;
@@ -91,6 +64,8 @@ import com.owb.playhelp.client.event.web.ShowWebEvent;
 import com.owb.playhelp.client.event.web.ShowWebEventHandler;
 import com.owb.playhelp.client.event.standard.ShowAddStandardEvent;
 import com.owb.playhelp.client.event.standard.ShowAddStandardEventHandler;
+import com.owb.playhelp.client.event.user.LogoutEvent;
+import com.owb.playhelp.client.event.user.LogoutEventHandler;
 import com.owb.playhelp.client.event.user.PreferencesEditEvent;
 import com.owb.playhelp.client.event.user.PreferencesEditEventHandler;
 import com.owb.playhelp.client.event.user.UserPreferenceUpdateEvent;
@@ -124,11 +99,6 @@ import com.owb.playhelp.client.event.orphanage.AddOrphanageCancelEventHandler;
 import com.owb.playhelp.client.event.project.ShowPopupAddProjectEvent;
 import com.owb.playhelp.client.event.project.ShowPopupAddProjectEventHandler;
 import com.owb.playhelp.client.helper.RPCCall;
-import com.google.gwt.user.client.ui.Button;
-import com.google.gwt.user.client.ui.DialogBox;
-import com.google.gwt.user.client.ui.HTML;
-import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.VerticalPanel;
 
 /**
  * 
@@ -158,7 +128,7 @@ public class PathGuide implements ValueChangeHandler<String>  {
 	 * For instance, the user settings won't be the same when the user is logged out
 	 * or when there is a specific user since the view shows the name of the user 
 	 */
-	private final UserProfileInfo currentUser;
+	private UserProfileInfo currentUser;
 	
 	/*
 	 * Services for Ngo, Orphanages, projects and users are defined below
@@ -170,6 +140,8 @@ public class PathGuide implements ValueChangeHandler<String>  {
 	private final ProjectServiceAsync projectService;
 	private final UserServiceAsync userService;
 	private final LoginServiceAsync loginService;
+	
+	private boolean loginRequiredPage;
 	
 	/*
 	 * the Presenter instance will be used when creating new presenters
@@ -195,6 +167,7 @@ public class PathGuide implements ValueChangeHandler<String>  {
 		this.loginService = loginService;
 		this.thePath = thePath;
 		this.currentUser = currentUser;
+		this.loginRequiredPage=false;
 		bind();
 	}
 	
@@ -383,31 +356,7 @@ public class PathGuide implements ValueChangeHandler<String>  {
 		 */
 		thePath.addHandler(ShowAddDBRecordEvent.TYPE, new ShowAddDBRecordEventHandler(){
 			public void onShowAddDBRecord(ShowAddDBRecordEvent event){
-				if (currentUser == null){
-					//Window.alert("You must log in to add or update a record");
-					new LoginDialog("Warning", "<b>You must log in to add or update a record.</b>").show();
-					return;
-				}
-				if (event.getDBRecord() == null){
-					new MyDialog("Warning", "<b>Problem selecting elemet to be updated. Contact the administrator.</b>").show();
-					return;
-				}
-				if (!event.getDBRecord().getMember()){
-					new MyDialog("Warning", "<b>You can't update records if you are not a member.</b>").show();
-					return;
-				}
-				lastView = History.getToken();
-				if (event.getDBRecord().getDBType() == DBRecordInfo.ORGANIZATION){
-					History.newItem("addNgo");
-					AddNgoPresenter addNgoPresenter = new AddNgoPresenter(event.getDBRecord(), ngoService,thePath,new AddNgoView());
-			        addNgoPresenter.go(Owb.get().getMainPanel());
-				}
-
-				if (event.getDBRecord().getDBType() == DBRecordInfo.ORPHANAGE){
-					History.newItem("addOrphanage");
-					AddOrphanagePresenter addOrphanagePresenter = new AddOrphanagePresenter(event.getDBRecord(), orphanageService,thePath,new AddOrphanageView());
-					addOrphanagePresenter.go(Owb.get().getMainPanel());
-				}
+				addDBRecord(event.getDBRecord());
 			}
 		});
 
@@ -529,13 +478,18 @@ public class PathGuide implements ValueChangeHandler<String>  {
 			}
 		});
 		
-		/*
 		thePath.addHandler(LogoutEvent.TYPE, new LogoutEventHandler(){
 			public void onLogout(LogoutEvent event){
 				GWT.log("PathGuide: Logout event received");
+				currentUser=null;
+				// TODO: Here we have to add the correct tokens and probably changing the way we want to load the forms 
+				if (loginRequiredPage){
+					History.newItem("webgethomeItem");
+				}
+				lastView=History.getToken();
 				History.newItem("loginout");
 			}
-		});*/
+		});
 	}
 	
 	/**
@@ -543,7 +497,8 @@ public class PathGuide implements ValueChangeHandler<String>  {
 	 */
 	public void go() {
 		if ("".equals(History.getToken())) {
-		    History.newItem("webgethomeItem");
+		    this.loginRequiredPage = false;
+			History.newItem("webgethomeItem");
 		  } else {
 		    History.fireCurrentHistoryState();
 		  }
@@ -556,263 +511,155 @@ public class PathGuide implements ValueChangeHandler<String>  {
 	 */
 	public void onValueChange(ValueChangeEvent<String> event) {
 		String token = event.getValue();
+		
 		if (token != null) {
 			Presenter presenter = null;
 			if (token.equals("0")) token = "webgethomeItem";
 			if (token.contains("web")) {
 				//Owb.get().setWebMenu();
-				WebMenuPresenter webMenuPresenter = new WebMenuPresenter(thePath, loginService, new WebMenuView());
-				webMenuPresenter.go(Owb.get().getBarPanel());
-				
+				//WebMenuPresenter webMenuPresenter = new WebMenuPresenter(thePath, loginService, new WebMenuView());
+				//webMenuPresenter.go(Owb.get().getBarPanel());
 				WebMainIndexView webMain = new WebMainIndexView();
 				
 				Owb.get().getMainPanel().clear();
+				/*
 				if (token.equals("webgethomeItem")) {
 					//webMain.getIndexField().add(new WebOurCommunityIndexView());
 					Owb.get().getMainPanel().add(webMain);
 					WebHomePresenter webHomePresenter = new WebHomePresenter(thePath, new WebHomeGifView());
 					webHomePresenter.go(webMain.getAreaField());
-		        return;
-		        } 
+		        } */
 				if (token.equals("webgetourMissionItem")) {
 					//webMain.getIndexField().add(new WebOurCommunityIndexView());
 					//webMain.getIndexField().add(new WebOurCommunityIndexView());
 					Owb.get().getMainPanel().add(webMain);
 					webMain.getAreaField().add((new WebAboutUsView()).asWidget());
+					this.loginRequiredPage = false;
 					
 					//Owb.get().getMainPanel().add(webMain);
 					//WebPagesPresenter webpagesPresenter = new WebPagesPresenter(new WebOurMissionView());
 					//webpagesPresenter.go(webMain.getAreaField());
-		        return;
-		        } 
-				if (token.equals("webgetourViewItem")) {
-					Owb.get().getMainPanel().add(webMain);
-					WebPagesPresenter webpagesPresenter = new WebPagesPresenter(new WebOurViewView());
-					webpagesPresenter.go(webMain.getAreaField());
-					
-					//webMain.getIndexField().add(new WebOurCommunityIndexView());
-					//Owb.get().getMainPanel().add(webMain);
-					//webMain.getAreaField().add((new WebOurViewView()).asWidget());
-		        return;
 		        } 
 				if (token.equals("webgettheTeamItem")) {
 					//webMain.getIndexField().add(new WebOurCommunityIndexView());
 					Owb.get().getMainPanel().add(webMain);
 					webMain.getAreaField().add((new WebTheTeamView()).asWidget());
-		        return;
+					this.loginRequiredPage = false;
 		        } 
 				if (token.equals("webgetjoinOWBItem")) {
 					//webMain.getIndexField().add(new WebOurCommunityIndexView());
 					Owb.get().getMainPanel().add(webMain);
 					webMain.getAreaField().add((new WebJoinOWBView()).asWidget());
-		        return;
+					this.loginRequiredPage = false;
 		        } 
-				if (token.equals("webgetcontextItem")) {
-					//webMain.getIndexField().add(new WebAboutUsIndexView());
-					Owb.get().getMainPanel().add(webMain);
-					WebPagesPresenter webpagesPresenter = new WebPagesPresenter(new WebContextView());
-					webpagesPresenter.go(webMain.getAreaField());
-		        return;
-		        } 
-				if (token.equals("webgetwhatDoWeDoItem")) {
-					//webMain.getIndexField().add(new WebWhatDoWeDoIndexView());
-					Owb.get().getMainPanel().add(webMain);
-					webMain.getAreaField().add((new WebWhatDoWeDoView()).asWidget());
-		        return;
-		        } 
-				if (token.equals("webgethealthItem")) {
-					//webMain.getIndexField().add(new WebWhatDoWeDoIndexView());
-					Owb.get().getMainPanel().add(webMain);
-					webMain.getAreaField().add((new WebWhatHealthView()).asWidget());
-		        return;
-		        } 
-				if (token.equals("webgetexcerciseItem")) {
-					//webMain.getIndexField().add(new WebWhatDoWeDoIndexView());
-					Owb.get().getMainPanel().add(webMain);
-					webMain.getAreaField().add((new WebWhatExcerciseView()).asWidget());
-		        return;
-		        } 
-				if (token.equals("webgeteducationItem")) {
-					//webMain.getIndexField().add(new WebWhatDoWeDoIndexView());
-					Owb.get().getMainPanel().add(webMain);
-					webMain.getAreaField().add((new WebWhatEducationView()).asWidget());
-		        return;
-		        } 
-				if (token.equals("webgetfoodItem")) {
-					//webMain.getIndexField().add(new WebWhatDoWeDoIndexView());
-					Owb.get().getMainPanel().add(webMain);
-					webMain.getAreaField().add((new WebWhatFoodView()).asWidget());
-		        return;
-		        } 
-				if (token.equals("webgetcleanWaterItem")) {
-					//webMain.getIndexField().add(new WebWhatDoWeDoIndexView());
-					Owb.get().getMainPanel().add(webMain);
-					webMain.getAreaField().add((new WebWhatCleanWaterView()).asWidget());
-		        return;
-		        } 
-				if (token.equals("webgetshelterItem")) {
-					//webMain.getIndexField().add(new WebWhatDoWeDoIndexView());
-					Owb.get().getMainPanel().add(webMain);
-					webMain.getAreaField().add((new WebWhatShelterView()).asWidget());
-		        return;
-		        } 
-				if (token.equals("webgetclothingItem")) {
-					//webMain.getIndexField().add(new WebWhatDoWeDoIndexView());
-					Owb.get().getMainPanel().add(webMain);
-					webMain.getAreaField().add((new WebWhatClothingView()).asWidget());
-		        return;
-		        } 
-				if (token.equals("webgethygieneItem")) {
-					//webMain.getIndexField().add(new WebWhatDoWeDoIndexView());
-					Owb.get().getMainPanel().add(webMain);
-					webMain.getAreaField().add((new WebWhatHygieneView()).asWidget());
-		        return;
-		        } 
-				if (token.equals("webgetjoyItem")) {
-					//webMain.getIndexField().add(new WebWhatDoWeDoIndexView());
-					Owb.get().getMainPanel().add(webMain);
-					webMain.getAreaField().add((new WebWhatJoyView()).asWidget());
-		        return;
-		        } 
-				if (token.equals("webgethopeOfFutureItem")) {
-					//webMain.getIndexField().add(new WebWhatDoWeDoIndexView());
-					Owb.get().getMainPanel().add(webMain);
-					webMain.getAreaField().add((new WebWhatHopeOfFutureView()).asWidget());
-		        return;
-		        } 
-				if (token.equals("webgetloveItem")) {
-					//webMain.getIndexField().add(new WebWhatDoWeDoIndexView());
-					Owb.get().getMainPanel().add(webMain);
-					webMain.getAreaField().add((new WebWhatLoveView()).asWidget());
-		        return;
-		        } 
-				if (token.equals("webgetresponsabilitiesItem")) {
-					//webMain.getIndexField().add(new WebWhatDoWeDoIndexView());
-					Owb.get().getMainPanel().add(webMain);
-					webMain.getAreaField().add((new WebWhatResponsabilitiesView()).asWidget());
-		        return;
-		        } 
-				if (token.equals("webgetsafetyItem")) {
-					//webMain.getIndexField().add(new WebWhatDoWeDoIndexView());
-					Owb.get().getMainPanel().add(webMain);
-					webMain.getAreaField().add((new WebWhatSafetyView()).asWidget());
-		        return;
-		        } 
-				if (token.equals("webgetguidanceItem")) {
-					//webMain.getIndexField().add(new WebWhatDoWeDoIndexView());
-					Owb.get().getMainPanel().add(webMain);
-					webMain.getAreaField().add((new WebWhatGuidanceView()).asWidget());
-		        return;
-		        } 
-				if (token.equals("webgetcompassionateEnvironementItem")) {
-					//webMain.getIndexField().add(new WebWhatDoWeDoIndexView());
-					Owb.get().getMainPanel().add(webMain);
-					webMain.getAreaField().add((new WebWhatCompassionateView()).asWidget());
-		        return;
-		        } 
-				if (token.equals("webgetdisciplineItem")) {
-					//webMain.getIndexField().add(new WebWhatDoWeDoIndexView());
-					Owb.get().getMainPanel().add(webMain);
-					webMain.getAreaField().add((new WebWhatDisciplineView()).asWidget());
-		        return;
-		        } 
-				if (token.equals("webgethowDoWeHelpItem")) {
-					//webMain.getIndexField().add(new WebOurCommunityIndexView());
-					Owb.get().getMainPanel().add(webMain);
-					webMain.getAreaField().add((new WebHowDoWeHelpView()).asWidget());
-		        return;
-		        } 
-				if (token.equals("webgethowChildrentem")) {
-					//webMain.getIndexField().add(new WebOurCommunityIndexView());
-					Owb.get().getMainPanel().add(webMain);
-					webMain.getAreaField().add((new WebHowChildrenView()).asWidget());
-		        return;
-		        } 
-				if (token.equals("webgethowIndividualsItem")) {
-					//webMain.getIndexField().add(new WebOurCommunityIndexView());
-					Owb.get().getMainPanel().add(webMain);
-					webMain.getAreaField().add((new WebHowIndividualsView()).asWidget());
-		        return;
-		        } 
-				if (token.equals("webgetjoinNetworkItem")) {
-					Owb.get().getMainPanel().add((new WebJoinNetworkView()).asWidget());
-		        return;
-		        } 
-				return;
+	        } 
+
+			if (token.equals("webgethomeItem")) {
+				WebHomePresenter webHomePresenter = new WebHomePresenter(thePath, new WebHomeGifView());
+				webHomePresenter.go(Owb.get().getMainPanel());
+				this.loginRequiredPage = false;
 	        } 
 			if (token.equals("edituser")) {
 				//Owb.get().getMainTitle().setText("User Preferences");
 				presenter = new UserPreferenceEditPresenter(currentUser, userService, thePath, new UserPreferenceEditView());
 				presenter.go(Owb.get().getMainPanel());	
-	        return;
+				this.loginRequiredPage = true;
 	      } 
 			if (token.equals("listOrphanage")) {
 				//Owb.get().getMainTitle().setText("User Preferences");
 				presenter = new OrphanageListPresenter(orphanageService,thePath,new DBRecordListView());
 				presenter.go(Owb.get().getMainPanel());	
-	        return;
+				this.loginRequiredPage = true;
 	        } 
 			if (token.equals("listNgo")) {
 				//Owb.get().getMainTitle().setText("User Preferences");
 				presenter = new NgoListPresenter(ngoService,thePath,new DBRecordListView());
 				presenter.go(Owb.get().getMainPanel());	
+				this.loginRequiredPage = true;
 				//presenter = new SNgoListPresenter(standardService,thePath,new StandardListView());
 				//presenter.go(Owb.get().getMainPanel());	
-	        return;
 	        } 
 			if (token.equals("listVolunteer")) {
 				//Owb.get().getMainTitle().setText("User Preferences");
 				presenter = new VolunteerListPresenter(volunteerService,thePath,new DBRecordListView());
 				presenter.go(Owb.get().getMainPanel());	
-	        return;
+				this.loginRequiredPage = true;
 	        } 
 			if (token.equals("map")) {
 				//MapMenuPresenter mapMenuPresenter = new MapMenuPresenter(thePath, new MapMenuView());
 				//mapMenuPresenter.go(Owb.get().getBarPanel());
-				WebMenuPresenter webMenuPresenter = new WebMenuPresenter(thePath, loginService, new WebMenuView());
-				webMenuPresenter.go(Owb.get().getBarPanel());
+				//WebMenuPresenter webMenuPresenter = new WebMenuPresenter(thePath, loginService, new WebMenuView());
+				//webMenuPresenter.go(Owb.get().getBarPanel());
 				presenter = new MainHomePresenter(Owb.get().getMainPanel().getOffsetWidth(),Window.getClientHeight(),currentUser,ngoService,orphanageService,thePath,new MainHomeView());
 				presenter.go(Owb.get().getMainPanel());
-	        return;
+				this.loginRequiredPage = false;
 	      } 
 			if (token.equals("news")) {
 				Owb.get().getBarPanel().clear();
 				presenter = new NewsHomePresenter(currentUser,thePath,new NewsHomeView());
 				presenter.go(Owb.get().getMainPanel());
-	        return;
+				this.loginRequiredPage = false;
 	      } 
 			if (token.equals("contactus")) {
 				Owb.get().getBarPanel().clear();
 				presenter = new ContactHomePresenter(new ContactHomeView());
 				presenter.go(Owb.get().getMainPanel());
-	        return;
+				this.loginRequiredPage = false;
 	      } 
 			if (token.equals("removeDBRecord")) {
 				History.newItem(lastView);
-	        return;
 	      } 
 			if (token.equals("removeSNgo")) {
 				History.newItem(lastView);
-	        return;
 	      } 
 			if (token.equals("updateDBRecord")) {
 				History.newItem(lastView);
-	        return;
+	      } 
+			if (token.equals("loginout")) {
+				History.newItem(lastView);
 	      } 
 			/*
-			if (token.equals("loginout")) {
-				Owb.get().loggedOutView();
-	        return;
-	      } 
 			if (token.equals("restart")) {
 				Owb.get().showCurrentUserView();
 	        return;
 	      } */
-			
+
+			updateMenuBar();
 		}
 		//lastView = token;
+		//thePath.fireEvent(new WinSizeUpdateEvent(Owb.get().getWidthLeft(),Owb.get().getWidthCenter(),Owb.get().getWidthRigth()));
 	}
 
+	private void addDBRecord(DBRecordInfo record){
+		if (currentUser == null){
+			//Window.alert("You must log in to add or update a record");
+			new LoginDialog("Warning", "<b>You must log in to add or update a record.</b>").show();
+			return;
+		}
+		if (record == null){
+			new MyDialog("Warning", "<b>Problem selecting elemet to be updated. Contact the administrator.</b>").show();
+			return;
+		}
+		if (!record.getMember()){
+			new MyDialog("Warning", "<b>You can't update records if you are not a member.</b>").show();
+			return;
+		}
+		lastView = History.getToken();
+		if (record.getDBType() == DBRecordInfo.ORGANIZATION){
+			History.newItem("addNgo");
+			AddNgoPresenter addNgoPresenter = new AddNgoPresenter(record, ngoService,thePath,new AddNgoView());
+	        addNgoPresenter.go(Owb.get().getMainPanel());
+			loginRequiredPage=true;
+		}
+
+		if (record.getDBType() == DBRecordInfo.ORPHANAGE){
+			History.newItem("addOrphanage");
+			AddOrphanagePresenter addOrphanagePresenter = new AddOrphanagePresenter(record, orphanageService,thePath,new AddOrphanageView());
+			addOrphanagePresenter.go(Owb.get().getMainPanel());
+			loginRequiredPage=true;
+		}
+	}
+	
 	private void removeOrphanage(final DBRecordInfo delRecord){
 		new RPCCall<Void>() {
 		      @Override
@@ -878,5 +725,11 @@ public class PathGuide implements ValueChangeHandler<String>  {
 				History.newItem("removeSNgo");
 		      }
 		    }.retry(3);
+	}
+	
+	
+	public void updateMenuBar(){
+		WebMenuPresenter webMenuPresenter = new WebMenuPresenter(thePath, loginService, new WebMenuView());
+		webMenuPresenter.go(Owb.get().getBarPanel());
 	}
 }
