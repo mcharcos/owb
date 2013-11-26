@@ -6,6 +6,7 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.HTML;
+import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
 public class LoginDialog extends DialogBox {
@@ -29,11 +30,23 @@ public class LoginDialog extends DialogBox {
 	          Window.Location.assign("/logingoogle");
 	        }
 	      });
+
+	      Button cancel = new Button("Cancel");
+	      cancel.addClickHandler(new ClickHandler() {
+		        public void onClick(ClickEvent event) {
+		          LoginDialog.this.hide();
+		        }
+		      });
+	      
 	      VerticalPanel dialogVPanel = new VerticalPanel();
 	      dialogVPanel.addStyleName("dialogVPanel");
 	      dialogVPanel.add(new HTML(msg));
 	      dialogVPanel.setHorizontalAlignment(VerticalPanel.ALIGN_RIGHT);
-	      dialogVPanel.add(ok);
+	      
+	      HorizontalPanel buttonPanel = new HorizontalPanel();
+	      buttonPanel.add(ok);
+	      buttonPanel.add(cancel);
+	      dialogVPanel.add(buttonPanel);
 	      this.setWidget(dialogVPanel);
 	      this.center();
 	    }
