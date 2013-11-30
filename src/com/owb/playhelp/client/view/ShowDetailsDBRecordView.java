@@ -6,6 +6,7 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiTemplate;
 import com.google.gwt.user.client.ui.Anchor;
+import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.Widget;
@@ -46,9 +47,9 @@ public class ShowDetailsDBRecordView extends PopupPanel implements ShowDetailsDB
 	@UiField Label nameField,descField,addressField,phoneField,emailField,webField;
 	@UiField ListReportView membersReqField,followersField,abuseReportField;
 	@UiField ListReportView membersField,adminReportField,ngoReportField;
-	@UiField
-	Anchor okBut;
-
+	@UiField Anchor okBut;
+	@UiField CheckBox validateField;
+	
 	  private void startView(){
 		  this.membersField.getTitleReportField().setText("Members");
 		  this.membersField.getAddNewLink().setText("Add Member");
@@ -107,6 +108,10 @@ public class ShowDetailsDBRecordView extends PopupPanel implements ShowDetailsDB
 	  @Override
 	  public Label getWebField(){
 		  return webField;
+	  }
+	  @Override
+	  public CheckBox getValidate(){
+		  return validateField;
 	  }
 	  
 	  @Override

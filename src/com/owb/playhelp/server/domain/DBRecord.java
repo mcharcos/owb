@@ -95,6 +95,12 @@ public abstract class DBRecord implements Serializable, Cacheable  {
 	 */
 	@Persistent
 	private String uniqueId;
+	
+	/*
+	 * Indicates if the record is valid so non legitimate records are shown
+	 * to the users
+	 */
+	private boolean valid;
 
 	/**
 	 * Constructor of the class. When the object is created, it is assigned 
@@ -104,6 +110,7 @@ public abstract class DBRecord implements Serializable, Cacheable  {
 	public DBRecord() {
 		UUID uuid = UUID.randomUUID();
 		this.uniqueId = uuid.toString();  
+		this.valid = false;
 	}
 
 	/**
@@ -175,6 +182,8 @@ public abstract class DBRecord implements Serializable, Cacheable  {
 		// We need to think if this may be handled by the service implementation instead
 		oInfo.deactivateMember();
 		oInfo.deactivateFollower();
+		oInfo.setValid(o.isValid());
+		oInfo.deactivateAdmin();
 		
 		return oInfo;
 	}
@@ -206,6 +215,7 @@ public abstract class DBRecord implements Serializable, Cacheable  {
 		// will be set.
 		if (o.isMember(userId)) oInfo.activateMember();
 		if (o.isFollower(userId)) oInfo.activateFollower();
+		oInfo.setValid(o.isValid());
 		
 		return oInfo;
 	}
@@ -240,6 +250,10 @@ public abstract class DBRecord implements Serializable, Cacheable  {
 	
 	public boolean isNgo(Long ngoId){
 		return true;  //ngos.contains(ngoUniqueId);
+	}
+
+	public boolean isValid(){
+		return valid;
 	}
 	  
 	public void addToCache() {
@@ -315,5 +329,6 @@ public abstract class DBRecord implements Serializable, Cacheable  {
 	public String getUniqueId() {
 		return uniqueId;
 	}
+	
 	
 }

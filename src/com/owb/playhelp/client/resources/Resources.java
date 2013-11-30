@@ -154,6 +154,8 @@ public interface Resources extends ClientBundle {
     ImageResource ngoMapIcon();
     @Source("NgoMapIcon.gif")
     ImageResource orphanageMapIcon();
+    @Source("OrphNonValidMapIcon.png")
+    ImageResource orphNonValidMapIcon();
     
     // Webpage resources "what do we do"
     @Source("webpics/clothing.jpg")

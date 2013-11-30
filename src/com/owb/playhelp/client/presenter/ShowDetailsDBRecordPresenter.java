@@ -9,9 +9,12 @@ import com.google.gwt.event.dom.client.HasClickHandlers;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.shared.SimpleEventBus;
+import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.Widget;
+import com.owb.playhelp.client.event.dbrecord.DBRecordUpdateEvent;
+import com.owb.playhelp.client.event.dbrecord.ShowDetailsDBRecordEvent;
 import com.owb.playhelp.client.view.ListReportView;
 import com.owb.playhelp.shared.DBRecordInfo;
 import com.owb.playhelp.shared.UserProfileInfo;
@@ -34,6 +37,7 @@ public class ShowDetailsDBRecordPresenter implements Presenter {
 		ListReportView getAbuseReportField();
 	    ListReportView getAdminReportField();
 	    ListReportView getNgoReportField();
+		CheckBox getValidate();
 	}
 
 	private final SimpleEventBus eventBus;
@@ -59,10 +63,14 @@ public class ShowDetailsDBRecordPresenter implements Presenter {
 	public void bind() {
 	    this.display.getOkBut().addClickHandler(new ClickHandler() {
 	        public void onClick(ClickEvent event) {
+	        	boolean checked = ((CheckBox) event.getSource()).isChecked();
+	        	if (ngo.getValid() != checked){
+	        		ngo.setValid(checked);
+	        		eventBus.fireEvent(new DBRecordUpdateEvent(ngo));
+	        	}
 	        	display.hide();
 	        }
 	      });
-	    
 	}
 
 	  @Override
@@ -85,6 +93,8 @@ public class ShowDetailsDBRecordPresenter implements Presenter {
 		this.display.getAbuseReportField().setData(ngo.getAbuseReportList());
 		this.display.getAdminReportField().setData(ngo.getAdminReportList());
 		this.display.getNgoReportField().setData(ngo.getNgoReportList());
+		
+		this.display.getValidate().setChecked(ngo.getValid());
 	}
 	
 	

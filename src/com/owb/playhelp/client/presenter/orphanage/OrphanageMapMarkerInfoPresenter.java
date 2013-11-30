@@ -91,6 +91,10 @@ public class OrphanageMapMarkerInfoPresenter implements Presenter {
 			display.getFulldescBut().setVisible(false);
 			display.getAddprojBut().setVisible(false);
 		//}
+			
+		if (orphanage.getAdmin() || orphanage.getMember()){
+			display.getEditBut().setVisible(true);
+		}
 		bind();
 	}
 

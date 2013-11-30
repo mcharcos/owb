@@ -43,6 +43,7 @@ public class DBRecordInfo implements Serializable {
 	private boolean confirmed;
 	private boolean member;
 	private boolean follower;
+	private boolean admin;
 	private List<String> memberList;
 	private List<String> memberReqList;
 	private List<String> followerList;
@@ -315,6 +316,16 @@ public class DBRecordInfo implements Serializable {
 	public boolean getValid(){
 		return valid;
 	}
+
+	  /**
+	   * 
+	   * 
+	   * @param 
+	   * @return Is the user requesting an admin?
+	   */
+	public boolean getAdmin(){
+		return admin;
+	}
 	
 	  /**
 	   * Gets the list of members of the organization. 
@@ -584,7 +595,26 @@ public class DBRecordInfo implements Serializable {
 	public void setAdminReportList(List<String> adminReportList){
 		this.adminReportList = adminReportList;
 	}
-	
+
+	  /**
+	   * Set the member value to true. It is used when the current user is a member of the organization.
+	   * 
+	   * @param 
+	   * @return 
+	   */
+	public void activateAdmin(){
+		this.admin = true;
+	}
+
+	  /**
+	   * Set the member value to false. It is used when the current user is not a member of the organization.
+	   * 
+	   * @param 
+	   * @return 
+	   */
+	public void deactivateAdmin(){
+		this.admin = false;
+	}
 
 	  /**
 	   * Set the member value to true. It is used when the current user is a member of the organization.

@@ -109,7 +109,11 @@ public class OrphanageServiceImpl extends RemoteServiceServlet implements Orphan
 		PersistenceManager pm = PMFactory.getNonTxnPm();
 		UserProfile user = LoginHelper.getLoggedUser(getThreadLocalRequest().getSession(), pm);
 		Long userId = null;
-		if (user != null) userId = user.getId();
+		boolean isAdmin = false;
+		if (user != null) {
+			userId = user.getId();
+			isAdmin = user.isAdmin();
+		}
 		pm.close();
 		
 
@@ -128,8 +132,11 @@ public class OrphanageServiceImpl extends RemoteServiceServlet implements Orphan
 				if (orphanageId != null){
 					foundOrphanage = pm.getObjectById(Orphanage.class, orphanageId);
 					//pm.deletePersistent(pm.getObjectById(Orphanage.class, orphanageId));
-					orphanageInfo = Orphanage.toInfo(foundOrphanage,userId);
-					orphanageArray.add(orphanageInfo);	
+					if ( foundOrphanage.isValid() || isAdmin){  //foundOrphanage.isMember(userId) ||
+						orphanageInfo = Orphanage.toInfo(foundOrphanage,userId);
+						if (isAdmin) orphanageInfo.activateAdmin();
+						orphanageArray.add(orphanageInfo);	
+					}
 				}
 			}
 			 return orphanageArray;

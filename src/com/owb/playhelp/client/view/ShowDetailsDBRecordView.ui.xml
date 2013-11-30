@@ -61,6 +61,7 @@
 					<g:Label ui:field='webField'/>
 				</div>
 			</div>
+			<g:CheckBox ui:field='validateField'> Validate </g:CheckBox>
 			<table>
 				<tr>
 					<td width='150px'>

@@ -151,12 +151,17 @@ public class MainHomePresenter implements Presenter {
 	  	  Icon icon = Icon.DEFAULT_ICON;
 	  	  icon.setImageURL(Resources.INSTANCE.orphanageMapIcon().getURL());
 	  	  icon.setIconSize(Size.newInstance(30, 30));
+
+	  	  Icon iconNonValid = Icon.DEFAULT_ICON;
+	  	  iconNonValid.setImageURL(Resources.INSTANCE.orphNonValidMapIcon().getURL());
+	  	  iconNonValid.setIconSize(Size.newInstance(30, 30));
 	  	  
 		if (orphanageList != null){
 			for (DBRecordInfo orphanage:orphanageList){
 			    //showOrphanage(orphanage);
 				//Window.alert(orphanage.getName());
-			    showRecord(orphanage,icon,"Orphanage");
+			 if (orphanage.getValid()) showRecord(orphanage,icon,"Orphanage");
+			 else showRecord(orphanage,iconNonValid,"Orphanage");
 			}
 		}
 			        
